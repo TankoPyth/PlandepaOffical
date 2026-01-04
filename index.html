@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/plandepa_nobg.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Preconnect to critical domains -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.voiceflow.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://general-runtime.voiceflow.com" />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/plandepa_logo_slim.png" as="image" type="image/png" />
+
+    <!-- Primary Meta Tags -->
+    <title>Plandepa - Build Smart, Grow Simple | Construction AI Automation Australia</title>
+    <meta name="title" content="Plandepa - Build Smart, Grow Simple | Construction AI Automation Australia" />
+    <meta name="description" content="Brisbane & Sydney construction AI automation. ISO certified consultants cut paperwork 60%, increase leads 85%. Buildxact partner serving Australia. Free audit." />
+    <meta name="keywords" content="construction automation Australia, construction business consultant Brisbane, construction consultant Sydney, AI automation construction, Buildxact partner, ISO certified construction consultant" />
+    <meta name="author" content="Plandepa" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://plandepa.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://plandepa.com/" />
+    <meta property="og:title" content="Plandepa - Construction AI Automation Brisbane Sydney | ISO Certified" />
+    <meta property="og:description" content="Brisbane & Sydney ISO certified construction consultants. Cut paperwork 60%, increase leads 85%. Buildxact partner." />
+    <meta property="og:image" content="https://plandepa.com/plandepa_logo_slim.png" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="Plandepa" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://plandepa.com/" />
+    <meta name="twitter:title" content="Plandepa - Construction AI Automation Brisbane Sydney" />
+    <meta name="twitter:description" content="ISO certified construction consultants. Cut paperwork 60%, increase leads 85%. Brisbane, Sydney, Australia." />
+    <meta name="twitter:image" content="https://plandepa.com/plandepa_logo_slim.png" />
+
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="AU-QLD" />
+    <meta name="geo.placename" content="Brisbane" />
+    <meta name="geo.position" content="-27.4698;153.0251" />
+    <meta name="ICBM" content="-27.4698, 153.0251" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RD1NPQXN7Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RD1NPQXN7Y');
+    </script>
+
+    <!-- Voiceflow Chat Widget -->
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: '6818a06ca57c5925dbefe8da' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production',
+              assistant: {
+                stylesheet: `
+                  :root {
+                    --vf-primary-color: #d85247;
+                    --vf-secondary-color: #b04238;
+                  }
+                `
+              }
+            });
+          }
+          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
