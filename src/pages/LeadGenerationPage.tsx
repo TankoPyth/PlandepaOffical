@@ -457,7 +457,7 @@ export function LeadGenerationPage() {
           <p className="text-body-md text-brand-gray">
             Or call:{' '}
             <a href="tel:+1234567890" className="text-brand-black hover:text-brand-red font-semibold transition-colors duration-300 apple-ease">
-              (123) 456-7890
+              +61 447 733 216 or +61 411 521 102
             </a>
           </p>
         </div>
