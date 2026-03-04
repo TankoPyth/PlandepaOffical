@@ -16,7 +16,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Target, MessageSquare, Inbox, RotateCcw, FileText, Camera, BookOpen, FileText as FileTextIcon, Settings, Brain, Network, Zap } from 'lucide-react';
+import { Menu, X, ChevronDown, Target, MessageSquare, Inbox, RotateCcw, FileText, Camera, BookOpen, FileText as FileTextIcon, Settings, Brain, Network, Zap, ClipboardCheck } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Modal } from './ui/Modal';
 import { ContactForm } from './ContactForm';
@@ -26,6 +26,17 @@ import { ContactForm } from './ContactForm';
  * All Plandepa service offerings
  */
 const servicesMenu = {
+  operationsReview: {
+    title: 'Operations Review',
+    icon: ClipboardCheck,
+    badge: '10 Days',
+    description: 'Diagnose control issues & get an execution plan',
+    items: [
+      { name: 'View OSR Details', description: 'How it works', href: '/operations-review' },
+      { name: 'See Deliverables', description: 'What you get', href: '/operations-review#deliverables' },
+      { name: 'Request Review', description: 'Start the process', href: '/operations-review' },
+    ]
+  },
   pilotProgram: {
     title: '28-Day Pilot',
     icon: Zap,

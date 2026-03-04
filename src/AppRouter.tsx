@@ -35,6 +35,7 @@ const PilotProgramPage = lazy(() => import('./pages/PilotProgramPage').then(m =>
 const TrainingPage = lazy(() => import('./pages/TrainingPage').then(m => ({ default: m.TrainingPage })));
 const OngoingSupportPage = lazy(() => import('./pages/OngoingSupportPage').then(m => ({ default: m.OngoingSupportPage })));
 const BuildxactPartnerPage = lazy(() => import('./pages/BuildxactPartnerPage').then(m => ({ default: m.BuildxactPartnerPage })));
+const OSRPage = lazy(() => import('./pages/OSRPage').then(m => ({ default: m.OSRPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
@@ -130,6 +131,8 @@ export function AppRouter() {
             {/* Service pages */}
             <Route path="/business-audit" element={<BusinessAuditPage />} />
             <Route path="/free-audit" element={<Navigate to="/business-audit" replace />} />
+            <Route path="/operations-review" element={<OSRPage />} />
+            <Route path="/osr" element={<Navigate to="/operations-review" replace />} />
             <Route path="/pilot-program" element={<PilotProgramPage />} />
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/ongoing-support" element={<OngoingSupportPage />} />
