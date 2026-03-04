@@ -21,7 +21,7 @@
  */
 
 import { useState } from 'react';
-import { Settings, Brain, DollarSign, Network, RefreshCw, Wrench, ArrowRight, Calculator, Facebook, Instagram, Linkedin, Mail, Inbox, RotateCcw, FileText, Camera, Truck, ArrowLeftRight, Target, Zap, Shield, TrendingUp, Clock, CheckCircle2 } from 'lucide-react';
+import { Settings, Brain, DollarSign, Network, RefreshCw, Wrench, ArrowRight, Calculator, Facebook, Instagram, Linkedin, Mail, Inbox, RotateCcw, FileText, Camera, Truck, ArrowLeftRight, Target, Zap, Shield, TrendingUp, Clock, CheckCircle2, Phone, Rocket, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SectionNumber } from '../components/SectionNumber';
@@ -311,33 +311,57 @@ export function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.4 }}
             >
-              <a
+              <motion.a
                 href="https://www.facebook.com/profile.php?id=61581827105862"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#1877F2] transition-all duration-300 hover:scale-110 group"
+                className="flex items-center gap-2 text-brand-gray hover:text-[#1877F2] transition-all duration-300 group"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Facebook className="w-5 h-5 group-hover:fill-[#1877F2]" />
+                <motion.div
+                  className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center group-hover:bg-[#1877F2] transition-colors duration-300"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <Facebook className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
+                </motion.div>
                 <span className="text-sm font-medium">Facebook</span>
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://www.instagram.com/plandepa/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#E4405F] transition-all duration-300 hover:scale-110 group"
+                className="flex items-center gap-2 text-brand-gray hover:text-[#E4405F] transition-all duration-300 group"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Instagram className="w-5 h-5" />
+                <motion.div
+                  className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-[#F58529] group-hover:via-[#E4405F] group-hover:to-[#C13584] transition-all duration-300"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <Instagram className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
+                </motion.div>
                 <span className="text-sm font-medium">Instagram</span>
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://www.linkedin.com/company/107528755/admin/dashboard/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 hover:scale-110 group"
+                className="flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 group"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Linkedin className="w-5 h-5 group-hover:fill-[#0077B5]" />
+                <motion.div
+                  className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center group-hover:bg-[#0077B5] transition-colors duration-300"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <Linkedin className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
+                </motion.div>
                 <span className="text-sm font-medium">LinkedIn</span>
-              </a>
+              </motion.a>
             </motion.div>
           </motion.div>
         </div>
@@ -378,10 +402,14 @@ export function HomePage() {
           </motion.div>
 
           <motion.div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" variants={staggerItem}>
-            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105" variants={fadeInUp}>
-              <div className="w-12 h-12 bg-brand-black rounded-lg flex items-center justify-center mb-4">
-                <Settings className="w-6 h-6 text-white" />
-              </div>
+            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
+              <motion.div
+                className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-blue-500/20"
+                whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Settings className="w-7 h-7 text-white" strokeWidth={2} />
+              </motion.div>
               <h3 className="text-xl font-bold text-brand-black mb-3">Software & Tools</h3>
               <p className="text-brand-gray mb-4 text-sm">
                 Expert implementation of construction platforms like Buildxact, ClickUp, Xero, and more
@@ -391,10 +419,14 @@ export function HomePage() {
               </Link>
             </motion.div>
 
-            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105" variants={fadeInUp}>
-              <div className="w-12 h-12 bg-brand-black rounded-lg flex items-center justify-center mb-4">
-                <Brain className="w-6 h-6 text-white" />
-              </div>
+            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
+              <motion.div
+                className="w-14 h-14 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-purple-500/20"
+                whileHover={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 0.6, repeat: 0 }}
+              >
+                <Brain className="w-7 h-7 text-white" strokeWidth={2} />
+              </motion.div>
               <h3 className="text-xl font-bold text-brand-black mb-3">AI & Automation</h3>
               <p className="text-brand-gray mb-4 text-sm">
                 Custom workflows, voice agents, and intelligent systems that eliminate repetitive tasks
@@ -404,10 +436,14 @@ export function HomePage() {
               </Link>
             </motion.div>
 
-            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105" variants={fadeInUp}>
-              <div className="w-12 h-12 bg-brand-black rounded-lg flex items-center justify-center mb-4">
-                <Network className="w-6 h-6 text-white" />
-              </div>
+            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
+              <motion.div
+                className="w-14 h-14 bg-gradient-to-br from-green-600 to-green-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-green-500/20"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Network className="w-7 h-7 text-white" strokeWidth={2} />
+              </motion.div>
               <h3 className="text-xl font-bold text-brand-black mb-3">Business Systems</h3>
               <p className="text-brand-gray mb-4 text-sm">
                 Complete systems for quoting, invoicing, project tracking, and team communication
@@ -417,13 +453,21 @@ export function HomePage() {
               </Link>
             </motion.div>
 
-            <motion.div className="bg-brand-red p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 relative overflow-hidden" variants={fadeInUp}>
-              <div className="absolute top-2 right-2 bg-white text-brand-red text-xs font-bold px-2 py-1 rounded">
+            <motion.div className="bg-gradient-to-br from-brand-red to-red-700 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 relative overflow-hidden group" variants={fadeInUp}>
+              <motion.div
+                className="absolute top-2 right-2 bg-white text-brand-red text-xs font-bold px-2 py-1 rounded shadow-sm"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
                 RISK-FREE
-              </div>
-              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-4">
-                <Zap className="w-6 h-6 text-brand-red" />
-              </div>
+              </motion.div>
+              <motion.div
+                className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-4 shadow-lg"
+                whileHover={{ rotate: [0, -15, 15, 0], scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Zap className="w-7 h-7 text-brand-red" strokeWidth={2.5} />
+              </motion.div>
               <h3 className="text-xl font-bold text-white mb-3">28-Day Pilot</h3>
               <p className="text-white/90 mb-4 text-sm">
                 Prove value fast with one workflow. Pay only on measurable results. Perfect starting point.
@@ -617,6 +661,7 @@ export function HomePage() {
               badge="Most Popular"
               badgeColor="green"
               href="/business-audit"
+              icon={Phone}
             />
             <PathCard
               label="KNOW WHAT YOU NEED?"
@@ -630,6 +675,7 @@ export function HomePage() {
               badge="Fastest"
               badgeColor="blue"
               href="/contact"
+              icon={Rocket}
             />
             <PathCard
               label="WANT PROOF FIRST?"
@@ -643,6 +689,7 @@ export function HomePage() {
               badge="Risk-Free"
               badgeColor="red"
               href="/business-audit"
+              icon={Award}
             />
           </motion.div>
 
@@ -732,11 +779,14 @@ export function HomePage() {
               transition={{ duration: 0.3, ease: appleEasing }}
             >
               <motion.div
-                className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                transition={{ duration: 0.5 }}
+                className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/30"
+                initial={{ scale: 0, rotate: -180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
               >
-                <Shield className="w-8 h-8 text-green-600" />
+                <Shield className="w-10 h-10 text-white" strokeWidth={2} />
               </motion.div>
               <h3 className="text-xl font-bold text-brand-black mb-3">Zero Risk</h3>
               <p className="text-brand-gray">
@@ -751,11 +801,14 @@ export function HomePage() {
               transition={{ duration: 0.3, ease: appleEasing }}
             >
               <motion.div
-                className="w-16 h-16 bg-brand-red/10 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                transition={{ duration: 0.5 }}
+                className="w-20 h-20 bg-gradient-to-br from-brand-red to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-red-500/30"
+                initial={{ scale: 0, y: -50 }}
+                whileInView={{ scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                whileHover={{ scale: 1.1 }}
               >
-                <Zap className="w-8 h-8 text-brand-red" />
+                <Zap className="w-10 h-10 text-white" strokeWidth={2.5} />
               </motion.div>
               <h3 className="text-xl font-bold text-brand-black mb-3">Fast Proof</h3>
               <p className="text-brand-gray">
@@ -770,11 +823,14 @@ export function HomePage() {
               transition={{ duration: 0.3, ease: appleEasing }}
             >
               <motion.div
-                className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                transition={{ duration: 0.5 }}
+                className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/30"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                whileHover={{ scale: 1.1 }}
               >
-                <Clock className="w-8 h-8 text-blue-600" />
+                <Clock className="w-10 h-10 text-white" strokeWidth={2} />
               </motion.div>
               <h3 className="text-xl font-bold text-brand-black mb-3">No Disruption</h3>
               <p className="text-brand-gray">
@@ -789,11 +845,14 @@ export function HomePage() {
               transition={{ duration: 0.3, ease: appleEasing }}
             >
               <motion.div
-                className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                transition={{ duration: 0.5 }}
+                className="w-20 h-20 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-orange-500/30"
+                initial={{ scale: 0, rotate: 180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                whileHover={{ scale: 1.1, y: -5 }}
               >
-                <TrendingUp className="w-8 h-8 text-orange-600" />
+                <TrendingUp className="w-10 h-10 text-white" strokeWidth={2} />
               </motion.div>
               <h3 className="text-xl font-bold text-brand-black mb-3">Clear Next Step</h3>
               <p className="text-brand-gray">
