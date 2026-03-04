@@ -35,12 +35,18 @@ export function Footer() {
           </Link>
 
           {/* Footer Navigation Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-8">
-            <a
-              href="/#services"
+          <nav className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+            <Link
+              to="/software"
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
             >
-              Services
+              Software & Tools
+            </Link>
+            <a
+              href="/#workflows"
+              className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
+            >
+              28-Day Pilots
             </a>
             <Link
               to="/case-studies"
@@ -49,17 +55,23 @@ export function Footer() {
               Case Studies
             </Link>
             <Link
+              to="/blog"
+              className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
               to="/business-audit"
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
             >
-              Business Audit
+              Free Discovery
             </Link>
-            <a
-              href="mailto:admin@plandepa.com"
+            <Link
+              to="/contact"
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
             >
               Contact
-            </a>
+            </Link>
           </nav>
 
           <p className="text-body-md text-brand-gray">

@@ -266,15 +266,23 @@ export function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.1 }}
             >
-              Stop The Chaos. Control One Workflow in 28 Days.
+              Construction Systems That Actually Work
             </motion.h1>
+            <motion.p
+              className="text-lg sm:text-xl md:text-2xl text-brand-black font-semibold mb-3 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: appleEasing, delay: 0.15 }}
+            >
+              Your Technology Partner Built By Builders
+            </motion.p>
             <motion.p
               className="text-base sm:text-lg md:text-xl text-brand-gray mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.2 }}
             >
-              We prove value fast - one bottleneck, one month, measurable results. Pay only on success.
+              ISO certified team with real construction experience. We implement software, build automation, and optimize your business systems. Start with a risk-free 28-day pilot or go straight to full implementation.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
@@ -283,11 +291,11 @@ export function HomePage() {
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.3 }}
             >
               <a
-                href="#workflows"
+                href="#services"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-black text-white font-semibold text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
               >
-                <Target className="w-5 h-5" />
-                See Workflow Options
+                <Settings className="w-5 h-5" />
+                Explore Solutions
               </a>
               <Link
                 to="/business-audit"
@@ -340,12 +348,130 @@ export function HomePage() {
           transition={{ duration: 0.8, ease: appleEasing, delay: 0.5 }}
         >
           <p className="text-sm md:text-base text-brand-gray">
-            Trusted by 30+ construction companies
+            Trusted by 30+ construction companies across Australia • ISO Certified • Buildxact Partner
           </p>
         </motion.div>
       </section>
 
       <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
+
+      {/* ============================================
+          SERVICES OVERVIEW SECTION
+          ============================================ */}
+      <motion.section
+        id="services"
+        className="bg-white py-12 md:py-20 px-6"
+        style={{ position: 'relative', zIndex: 10 }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-12 md:mb-16" variants={fadeInUp}>
+            <h2 className="text-3xl sm:text-4xl md:text-display-md font-bold text-brand-black mb-4">
+              What We Do
+            </h2>
+            <p className="text-lg md:text-xl text-brand-gray max-w-3xl mx-auto">
+              From software implementation to custom automation, we handle the full spectrum of construction technology needs
+            </p>
+          </motion.div>
+
+          <motion.div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" variants={staggerItem}>
+            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105" variants={fadeInUp}>
+              <div className="w-12 h-12 bg-brand-black rounded-lg flex items-center justify-center mb-4">
+                <Settings className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-brand-black mb-3">Software & Tools</h3>
+              <p className="text-brand-gray mb-4 text-sm">
+                Expert implementation of construction platforms like Buildxact, ClickUp, Xero, and more
+              </p>
+              <Link to="/software" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+                Learn More <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105" variants={fadeInUp}>
+              <div className="w-12 h-12 bg-brand-black rounded-lg flex items-center justify-center mb-4">
+                <Brain className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-brand-black mb-3">AI & Automation</h3>
+              <p className="text-brand-gray mb-4 text-sm">
+                Custom workflows, voice agents, and intelligent systems that eliminate repetitive tasks
+              </p>
+              <Link to="/software" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+                Learn More <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105" variants={fadeInUp}>
+              <div className="w-12 h-12 bg-brand-black rounded-lg flex items-center justify-center mb-4">
+                <Network className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-brand-black mb-3">Business Systems</h3>
+              <p className="text-brand-gray mb-4 text-sm">
+                Complete systems for quoting, invoicing, project tracking, and team communication
+              </p>
+              <Link to="/software" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+                Learn More <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            <motion.div className="bg-brand-red p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 relative overflow-hidden" variants={fadeInUp}>
+              <div className="absolute top-2 right-2 bg-white text-brand-red text-xs font-bold px-2 py-1 rounded">
+                RISK-FREE
+              </div>
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-brand-red" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">28-Day Pilot</h3>
+              <p className="text-white/90 mb-4 text-sm">
+                Prove value fast with one workflow. Pay only on measurable results. Perfect starting point.
+              </p>
+              <a href="#workflows" className="inline-flex items-center gap-2 text-white font-semibold text-sm hover:gap-3 transition-all duration-300">
+                See Pilots <ArrowRight className="w-4 h-4" />
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
+
+      {/* ============================================
+          STATS SECTION
+          ============================================ */}
+      <motion.section
+        className="bg-brand-light-gray py-12 md:py-16 px-6"
+        style={{ position: 'relative', zIndex: 10 }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12" variants={staggerItem}>
+            <motion.div className="text-center" variants={fadeInUp}>
+              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">30+</div>
+              <div className="text-sm md:text-base text-brand-gray font-medium">Construction Companies</div>
+            </motion.div>
+            <motion.div className="text-center" variants={fadeInUp}>
+              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">50+</div>
+              <div className="text-sm md:text-base text-brand-gray font-medium">Systems Implemented</div>
+            </motion.div>
+            <motion.div className="text-center" variants={fadeInUp}>
+              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">1000+</div>
+              <div className="text-sm md:text-base text-brand-gray font-medium">Hours Saved Monthly</div>
+            </motion.div>
+            <motion.div className="text-center" variants={fadeInUp}>
+              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">100%</div>
+              <div className="text-sm md:text-base text-brand-gray font-medium">ISO Certified Team</div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
 
       <motion.section
         className="bg-white py-12 md:py-16 px-6"
@@ -427,13 +553,30 @@ export function HomePage() {
               We've been there: trying to grow your construction business but drowning in paperwork, missing leads, and spending more time in the office than on site. Every software company promises the world, but nobody speaks your language.
             </p>
             <p className="text-base md:text-lg text-brand-black font-semibold leading-relaxed mb-4">
-              We bring real construction know-how plus the tech smarts to fix your systems. Our promise: what we build saves you more money than it costs within 6 months.
+              We bring real construction know-how plus the tech smarts to fix your systems. From quick workflow pilots to complete business transformation, we handle everything from software implementation to custom AI automation.
+            </p>
+            <p className="text-sm md:text-base text-brand-gray leading-relaxed mb-4">
+              Our promise: what we build saves you more money than it costs within 6 months. Whether you start with a pilot or go straight to full implementation, we prove value fast.
             </p>
             <div className="pt-4 border-t border-brand-gray/20">
               <p className="text-sm md:text-base text-brand-gray mb-2 font-semibold">ISO Certified & Qualified Team</p>
-              <p className="text-xs md:text-sm text-brand-gray">
+              <p className="text-xs md:text-sm text-brand-gray mb-3">
                 Our team holds Diplomas in Project Management, Health & Safety, Building & Construction, plus ISO Auditing Accreditation
               </p>
+              <div className="flex flex-wrap justify-center gap-4 text-xs text-brand-gray">
+                <span className="flex items-center gap-1">
+                  <CheckCircle2 className="w-4 h-4 text-brand-red" />
+                  Buildxact Partner
+                </span>
+                <span className="flex items-center gap-1">
+                  <CheckCircle2 className="w-4 h-4 text-brand-red" />
+                  30+ Companies Served
+                </span>
+                <span className="flex items-center gap-1">
+                  <CheckCircle2 className="w-4 h-4 text-brand-red" />
+                  Software to AI Automation
+                </span>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -454,34 +597,50 @@ export function HomePage() {
           <motion.div className="mb-8 md:mb-16 text-center" variants={staggerItem}>
             <SectionNumber number="01" label="Next Step" className="mb-6 md:mb-8 justify-center" />
             <h2 className="text-3xl sm:text-4xl md:text-display-md font-bold text-brand-black">
-              Ready To Start?
+              How Do You Want To Get Started?
             </h2>
+            <p className="text-base md:text-lg text-brand-gray max-w-2xl mx-auto mt-4">
+              Choose the path that fits your situation. No wrong answers.
+            </p>
           </motion.div>
 
-          <motion.div className="grid md:grid-cols-2 gap-6 md:gap-10 mb-8 md:mb-12" variants={staggerItem}>
+          <motion.div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12" variants={staggerItem}>
             <PathCard
-              label="NOT SURE WHICH WORKFLOW?"
-              title="Book Free Discovery Call"
+              label="NOT SURE WHERE TO START?"
+              title="Free Discovery Call"
               benefits={[
                 'No obligation, no cost',
-                'Identify your biggest bottleneck',
-                'Get honest advice',
-                'Understand if a pilot makes sense',
+                'Identify biggest opportunities',
+                'Get honest recommendations',
+                'Understand all options',
               ]}
-              badge="Lowest Barrier"
+              badge="Most Popular"
               badgeColor="green"
               href="/business-audit"
             />
             <PathCard
-              label="KNOW YOUR BOTTLENECK?"
-              title="Apply for Pilot Slot"
+              label="KNOW WHAT YOU NEED?"
+              title="Direct Implementation"
               benefits={[
-                '28-day proof of concept',
-                'One workflow, measurable results',
+                'Software setup & training',
+                'Custom automation builds',
+                'Full system integration',
+                'Ongoing support available',
+              ]}
+              badge="Fastest"
+              badgeColor="blue"
+              href="/contact"
+            />
+            <PathCard
+              label="WANT PROOF FIRST?"
+              title="28-Day Pilot Program"
+              benefits={[
+                'One workflow fixed in 28 days',
+                'Measurable results guaranteed',
                 'Pay only on success',
                 'Limited to 3 per month',
               ]}
-              badge="Fast Track"
+              badge="Risk-Free"
               badgeColor="red"
               href="/business-audit"
             />
@@ -509,12 +668,15 @@ export function HomePage() {
       >
         <div className="max-w-7xl mx-auto">
           <motion.div className="mb-12 md:mb-16 text-center" variants={staggerItem}>
-            <SectionNumber number="02" label="Workflows" className="mb-6 md:mb-8 justify-center" />
+            <SectionNumber number="02" label="Quick-Win Pilots" className="mb-6 md:mb-8 justify-center" />
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-brand-black mb-4 md:mb-6">
-              Which Workflow Is Killing Your Productivity?
+              Popular 28-Day Pilot Programs
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-brand-gray max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-brand-gray max-w-3xl mx-auto mb-4">
               Pick one bottleneck. We'll build control around it in 28 days. Prove value before scaling.
+            </p>
+            <p className="text-sm md:text-base text-brand-gray max-w-2xl mx-auto">
+              Want something different? We can pilot any workflow in your business. <Link to="/business-audit" className="text-brand-red font-semibold hover:underline">Book a discovery call</Link> to discuss your specific needs.
             </p>
           </motion.div>
 

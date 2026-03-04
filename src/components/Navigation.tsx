@@ -16,36 +16,58 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Target, MessageSquare, Inbox, RotateCcw, FileText, Camera, BookOpen, FileText as FileTextIcon } from 'lucide-react';
+import { Menu, X, ChevronDown, Target, MessageSquare, Inbox, RotateCcw, FileText, Camera, BookOpen, FileText as FileTextIcon, Settings, Brain, Network, Zap } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Modal } from './ui/Modal';
 import { ContactForm } from './ContactForm';
 
 /**
- * SERVICES DROPDOWN - PILOT-FIRST APPROACH
- * Focused on workflow pilots and clear entry points
+ * SERVICES DROPDOWN - FULL SERVICE SHOWCASE
+ * All Plandepa capabilities with pilot as one option
  */
 const servicesMenu = {
-  pilotProgram: {
-    title: '28-Day Pilot Program',
-    icon: Target,
-    badge: 'Most Popular',
-    description: 'Pick one bottleneck, prove value in 28 days',
+  softwareTools: {
+    title: 'Software & Tools',
+    icon: Settings,
+    description: 'Expert implementation of construction platforms',
     items: [
-      { name: 'Inbound Black Hole', description: '8 hrs/week saved', href: '/#workflows' },
-      { name: 'Follow-Up Nightmare', description: '12 hrs/week saved', href: '/#workflows' },
-      { name: 'Variation Delays', description: '10 hrs/week saved', href: '/#workflows' },
-      { name: 'Site-to-Office Gap', description: '15 hrs/week saved', href: '/#workflows' },
+      { name: 'Buildxact', description: 'Estimating & job management', href: '/software' },
+      { name: 'ClickUp', description: 'Project & task management', href: '/software' },
+      { name: 'Xero', description: 'Cloud accounting', href: '/software' },
+      { name: 'View All Software', description: '10+ platforms available', href: '/software' },
     ]
   },
-  getStarted: {
-    title: 'Getting Started',
-    icon: MessageSquare,
-    description: 'Not sure where to begin?',
+  aiAutomation: {
+    title: 'AI & Automation',
+    icon: Brain,
+    description: 'Custom workflows and intelligent systems',
     items: [
-      { name: 'Free Discovery Call', description: 'Identify your bottleneck', href: '/business-audit' },
-      { name: 'Apply for Pilot', description: 'Limited to 3/month', href: '/business-audit' },
-      { name: 'ROI Calculator', description: 'See potential savings', href: '/roi-calculator' },
+      { name: 'N8N Workflows', description: 'Custom automation', href: '/software' },
+      { name: 'Voice Agents', description: '24/7 AI assistants', href: '/software' },
+      { name: 'Document Processing', description: 'Auto data extraction', href: '/software' },
+      { name: 'AI Strategy', description: 'Planning & roadmap', href: '/software' },
+    ]
+  },
+  businessSystems: {
+    title: 'Business Systems',
+    icon: Network,
+    description: 'Complete operational systems',
+    items: [
+      { name: 'Quoting & Estimating', description: 'Fast accurate quotes', href: '/software' },
+      { name: 'Invoice Management', description: 'Auto invoicing & tracking', href: '/software' },
+      { name: 'Project Tracking', description: 'Real-time visibility', href: '/software' },
+      { name: 'Team Communication', description: 'Stay connected', href: '/software' },
+    ]
+  },
+  pilotProgram: {
+    title: '28-Day Pilot',
+    icon: Zap,
+    badge: 'Risk-Free',
+    description: 'Prove value fast with one workflow',
+    items: [
+      { name: 'View Popular Pilots', description: 'See common bottlenecks', href: '/#workflows' },
+      { name: 'Book Discovery', description: 'Identify your opportunity', href: '/business-audit' },
+      { name: 'ROI Calculator', description: 'Estimate savings', href: '/roi-calculator' },
     ]
   }
 };
@@ -164,8 +186,8 @@ export function Navigation() {
               </Link>
 
               {softwareOpen && (
-                <div className="absolute top-full right-0 mt-1 w-[600px] bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-8 animate-scale-in">
-                  <div className="grid grid-cols-2 gap-8">
+                <div className="absolute top-full right-0 mt-1 w-[800px] bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-8 animate-scale-in">
+                  <div className="grid grid-cols-2 gap-6">
                     {Object.values(servicesMenu).map((category) => {
                       const IconComponent = category.icon;
                       return (
@@ -207,21 +229,21 @@ export function Navigation() {
                   <div className="mt-6 pt-6 border-t border-gray-200">
                     <div className="bg-brand-light-gray rounded-xl p-4 text-center">
                       <p className="text-sm font-semibold text-brand-black mb-3">
-                        Ready to see results in 28 days?
+                        Not sure where to start?
                       </p>
                       <div className="flex gap-3">
                         <Link
                           to="/business-audit"
                           className="flex-1 text-center px-4 py-2.5 bg-brand-red text-white font-semibold text-sm rounded-lg hover:bg-red-700 transition-colors duration-300"
                         >
-                          Book Discovery
+                          Free Discovery Call
                         </Link>
-                        <a
-                          href="/#workflows"
+                        <Link
+                          to="/software"
                           className="flex-1 text-center px-4 py-2.5 bg-brand-black text-white font-semibold text-sm rounded-lg hover:bg-gray-800 transition-colors duration-300"
                         >
-                          View Workflows
-                        </a>
+                          View All Services
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -326,21 +348,21 @@ export function Navigation() {
                   })}
                   <div className="bg-brand-light-gray rounded-xl p-4 mt-4">
                     <p className="text-sm font-semibold text-brand-black mb-3">
-                      Ready to see results?
+                      Not sure where to start?
                     </p>
                     <div className="space-y-2">
                       <Link
                         to="/business-audit"
                         className="block text-center px-4 py-2.5 bg-brand-red text-white font-semibold text-sm rounded-lg"
                       >
-                        Book Discovery
+                        Free Discovery Call
                       </Link>
-                      <a
-                        href="/#workflows"
+                      <Link
+                        to="/software"
                         className="block text-center px-4 py-2.5 bg-brand-black text-white font-semibold text-sm rounded-lg"
                       >
-                        View Workflows
-                      </a>
+                        View All Services
+                      </Link>
                     </div>
                   </div>
                 </div>
