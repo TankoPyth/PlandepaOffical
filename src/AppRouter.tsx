@@ -93,7 +93,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col">
       <ScrollProgress />  {/* Reading progress bar at top */}
       <Navigation />      {/* Header with logo and menu */}
-      <main className="flex-1 pt-[120px]">{children}</main>  {/* Page content goes here - updated for dual-layer nav */}
+      <main className="flex-1 pt-20">{children}</main>  {/* Page content goes here */}
       <Footer />          {/* Footer with links and copyright */}
       <StickyContactButton />  {/* Floating contact button that appears on scroll */}
     </div>
