@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Check, Shield, Clock, Zap, HeadphonesIcon, TrendingUp, Wrench, Bell, Lock, RefreshCw, Users, Target, Award } from 'lucide-react';
+import { ArrowLeft, Check, Shield, Clock, Zap, Headphones as HeadphonesIcon, TrendingUp, Wrench, Bell, Lock, RefreshCw, Users, Target, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
