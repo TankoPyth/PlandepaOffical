@@ -30,11 +30,11 @@ import { MinimalServiceCard } from '../components/MinimalServiceCard';
 import { CaseStudyPreview } from '../components/CaseStudyPreview';
 import { SimpleFAQ } from '../components/SimpleFAQ';
 import { StatCard } from '../components/StatCard';
-import { SubtleWaveBackground } from '../components/ui/SubtleWaveBackground';
 import { AngleDivider } from '../components/ui/AngleDivider';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
+import { WebinarRegistrationForm } from '../components/WebinarRegistrationForm';
 import { fadeInUp, staggerContainer, staggerItem, appleEasing } from '../utils/animations';
 import { SEO } from '../components/SEO';
 import { StructuredData, organizationSchema, localBusinessBrisbane, localBusinessSydney, websiteSchema, serviceSchemas, breadcrumbSchema } from '../components/StructuredData';
@@ -100,110 +100,125 @@ export function HomePage() {
         homeBreadcrumb,
       ]} />
       {/* ============================================
-          SECTION 1: HERO SECTION
-          Main headline, description, and CTA buttons
+          SECTION 1: SPATIAL HERO SECTION
+          New benefit-driven headline with webinar registration
           ============================================ */}
-      <section className="relative bg-brand-off-white py-12 md:py-20 px-6 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col">
-        <SubtleWaveBackground />
-        <div className="relative z-10 max-w-4xl mx-auto w-full flex-1 flex flex-col justify-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: appleEasing }}
-          >
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-brand-black mb-5 md:mb-6 leading-tight"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: appleEasing, delay: 0.1 }}
+      <section className="relative bg-[#F5F1E8] py-16 md:py-24 px-6 overflow-hidden min-h-[calc(100vh-120px)] flex flex-col">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(196,30,58,0.08),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(26,26,46,0.05),transparent_50%)]" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              className="text-left"
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: appleEasing }}
             >
-              Less Paperwork. More Jobs. Better Profit.
-            </motion.h1>
-            <motion.p
-              className="text-base sm:text-lg md:text-xl text-brand-gray mb-8 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#1a1a2e] mb-6 leading-[1.1]"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: appleEasing, delay: 0.1 }}
+              >
+                Reclaim Operational Control.{' '}
+                <span className="text-brand-red">Protect Your Margins</span>{' '}
+                without Adding Headcount.
+              </motion.h1>
+              <motion.p
+                className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: appleEasing, delay: 0.2 }}
+              >
+                We help construction companies in Brisbane, Sydney, and across Australia automate operations, reduce overhead, and scale profitably—without the chaos of hiring more staff.
+              </motion.p>
+
+              <motion.div
+                className="flex flex-wrap items-center gap-6 mb-8"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: appleEasing, delay: 0.3 }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-brand-red rounded-full" />
+                  <span className="text-sm font-semibold text-[#1a1a2e]">60% Less Paperwork</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-brand-red rounded-full" />
+                  <span className="text-sm font-semibold text-[#1a1a2e]">85% More Leads</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-brand-red rounded-full" />
+                  <span className="text-sm font-semibold text-[#1a1a2e]">Zero New Hires</span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="flex flex-wrap items-center gap-6"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: appleEasing, delay: 0.4 }}
+              >
+                <a
+                  href="https://www.facebook.com/profile.php?id=61581827105862"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-500 hover:text-[#1877F2] transition-all duration-300 hover:scale-110 group"
+                >
+                  <Facebook className="w-4 h-4 group-hover:fill-[#1877F2]" />
+                  <span className="text-xs font-medium">Facebook</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/plandepa/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-500 hover:text-[#E4405F] transition-all duration-300 hover:scale-110 group"
+                >
+                  <Instagram className="w-4 h-4" />
+                  <span className="text-xs font-medium">Instagram</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/107528755/admin/dashboard/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-500 hover:text-[#0077B5] transition-all duration-300 hover:scale-110 group"
+                >
+                  <Linkedin className="w-4 h-4 group-hover:fill-[#0077B5]" />
+                  <span className="text-xs font-medium">LinkedIn</span>
+                </a>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.2 }}
             >
-              We help construction companies in Brisbane, Sydney, Newcastle and across Australia cut down on the busy work, get more quality leads coming through the door, and grow without the chaos.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: appleEasing, delay: 0.3 }}
-            >
-              <Link
-                to="/roi-calculator"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-black text-white font-semibold text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-              >
-                <Calculator className="w-5 h-5" />
-                Calculate Your ROI
-              </Link>
-              <Link
-                to="/business-audit"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-brand-black font-semibold text-base rounded-lg border-2 border-brand-black hover:bg-brand-black hover:text-white transition-all duration-300 apple-ease"
-              >
-                Book Discovery Call
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <button
-                onClick={() => setIsContactModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-red text-white font-semibold text-base rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-              >
-                <Mail className="w-5 h-5" />
-                Get in Touch
-              </button>
+              <WebinarRegistrationForm
+                onSuccess={() => {
+                  setShowThankYou(true);
+                }}
+              />
             </motion.div>
-            <motion.div
-              className="flex flex-wrap items-center justify-center gap-6"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: appleEasing, delay: 0.4 }}
-            >
-              <a
-                href="https://www.facebook.com/profile.php?id=61581827105862"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#1877F2] transition-all duration-300 hover:scale-110 group"
-              >
-                <Facebook className="w-5 h-5 group-hover:fill-[#1877F2]" />
-                <span className="text-sm font-medium">Facebook</span>
-              </a>
-              <a
-                href="https://www.instagram.com/plandepa/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#E4405F] transition-all duration-300 hover:scale-110 group"
-              >
-                <Instagram className="w-5 h-5" />
-                <span className="text-sm font-medium">Instagram</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/company/107528755/admin/dashboard/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 hover:scale-110 group"
-              >
-                <Linkedin className="w-5 h-5 group-hover:fill-[#0077B5]" />
-                <span className="text-sm font-medium">LinkedIn</span>
-              </a>
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
+
         <motion.div
-          className="relative z-10 text-center pb-6"
+          className="relative z-10 text-center mt-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: appleEasing, delay: 0.5 }}
+          transition={{ duration: 0.8, ease: appleEasing, delay: 0.6 }}
         >
-          <p className="text-sm md:text-base text-brand-gray">
-            Trusted by 30+ construction companies
+          <p className="text-sm text-gray-500">
+            Trusted by 30+ construction companies across Australia
           </p>
         </motion.div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
+      <AngleDivider direction="down-right" fromColor="#F5F1E8" toColor="#FFFFFF" height={100} />
 
       <motion.section
         className="bg-white py-12 md:py-16 px-6"
