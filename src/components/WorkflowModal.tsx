@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, LucideIcon } from 'lucide-react';
+import { X, Check, Video as LucideIcon } from 'lucide-react';
 import { useEffect } from 'react';
 
 interface WorkflowModalProps {

@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { LucideIcon } from 'lucide-react';
+import { Video as LucideIcon } from 'lucide-react';
 import { useRef, useState } from 'react';
 
 interface WorkflowCardProps {
