@@ -493,7 +493,27 @@ export function TrainingPage() {
 
       <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
-      <SimpleFAQ items={faqItems} />
+      <motion.section
+        className="bg-brand-light-gray py-16 md:py-24 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
+        <div className="max-w-4xl mx-auto">
+          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg md:text-xl text-brand-gray">
+              Common questions about our AI automation education programs.
+            </p>
+          </motion.div>
+          <motion.div variants={staggerItem}>
+            <SimpleFAQ items={faqItems} />
+          </motion.div>
+        </div>
+      </motion.section>
 
       <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} title="Register for Education">
         <ContactForm
