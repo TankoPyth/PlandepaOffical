@@ -23,51 +23,49 @@ import { ContactForm } from './ContactForm';
 
 /**
  * SERVICES DROPDOWN - FULL SERVICE SHOWCASE
- * All Plandepa capabilities with pilot as one option
+ * All Plandepa service offerings
  */
 const servicesMenu = {
-  softwareTools: {
-    title: 'Software & Tools',
-    icon: Settings,
-    description: 'Expert implementation of construction platforms',
-    items: [
-      { name: 'Buildxact', description: 'Estimating & job management', href: '/software' },
-      { name: 'ClickUp', description: 'Project & task management', href: '/software' },
-      { name: 'Xero', description: 'Cloud accounting', href: '/software' },
-      { name: 'View All Software', description: '10+ platforms available', href: '/software' },
-    ]
-  },
-  aiAutomation: {
-    title: 'AI & Automation',
-    icon: Brain,
-    description: 'Custom workflows and intelligent systems',
-    items: [
-      { name: 'N8N Workflows', description: 'Custom automation', href: '/software' },
-      { name: 'Voice Agents', description: '24/7 AI assistants', href: '/software' },
-      { name: 'Document Processing', description: 'Auto data extraction', href: '/software' },
-      { name: 'AI Strategy', description: 'Planning & roadmap', href: '/software' },
-    ]
-  },
-  businessSystems: {
-    title: 'Business Systems',
-    icon: Network,
-    description: 'Complete operational systems',
-    items: [
-      { name: 'Quoting & Estimating', description: 'Fast accurate quotes', href: '/software' },
-      { name: 'Invoice Management', description: 'Auto invoicing & tracking', href: '/software' },
-      { name: 'Project Tracking', description: 'Real-time visibility', href: '/software' },
-      { name: 'Team Communication', description: 'Stay connected', href: '/software' },
-    ]
-  },
   pilotProgram: {
     title: '28-Day Pilot',
     icon: Zap,
     badge: 'Risk-Free',
     description: 'Prove value fast with one workflow',
     items: [
-      { name: 'View Popular Pilots', description: 'See common bottlenecks', href: '/#workflows' },
-      { name: 'Book Discovery', description: 'Identify your opportunity', href: '/business-audit' },
-      { name: 'ROI Calculator', description: 'Estimate savings', href: '/roi-calculator' },
+      { name: 'View Program Details', description: 'How the pilot works', href: '/pilot-program' },
+      { name: 'See Workflow Options', description: '6 proven solutions', href: '/pilot-program#workflows' },
+      { name: 'Book Discovery Call', description: 'Start the conversation', href: '/business-audit' },
+    ]
+  },
+  buildxactPartner: {
+    title: 'Buildxact Partner',
+    icon: Settings,
+    badge: 'Official',
+    description: 'Expert implementation & support',
+    items: [
+      { name: 'Buildxact Setup', description: 'Complete implementation', href: '/buildxact' },
+      { name: 'View Packages', description: 'Pricing & options', href: '/buildxact#packages' },
+      { name: 'Book a Demo', description: 'See it in action', href: '/buildxact' },
+    ]
+  },
+  training: {
+    title: 'Training & Education',
+    icon: BookOpen,
+    description: 'Upskill your team on systems & processes',
+    items: [
+      { name: 'Training Programs', description: 'Software & business training', href: '/training' },
+      { name: 'Buildxact Training', description: 'Master estimating', href: '/training#training-tracks' },
+      { name: 'Team Onboarding', description: 'Get everyone up to speed', href: '/training' },
+    ]
+  },
+  ongoingSupport: {
+    title: 'Ongoing Support',
+    icon: Network,
+    description: 'Monthly retainer & maintenance',
+    items: [
+      { name: 'Support Tiers', description: 'Essential to Enterprise', href: '/ongoing-support#tiers' },
+      { name: 'What We Support', description: 'System maintenance & optimization', href: '/ongoing-support' },
+      { name: 'Get a Quote', description: 'Discuss your needs', href: '/ongoing-support' },
     ]
   }
 };

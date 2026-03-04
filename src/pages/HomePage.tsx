@@ -410,11 +410,11 @@ export function HomePage() {
               >
                 <Settings className="w-7 h-7 text-white" strokeWidth={2} />
               </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Software & Tools</h3>
+              <h3 className="text-xl font-bold text-brand-black mb-3">Buildxact Partner</h3>
               <p className="text-brand-gray mb-4 text-sm">
-                Expert implementation of construction platforms like Buildxact, ClickUp, Xero, and more
+                Official partner for Buildxact implementation, training, and ongoing support
               </p>
-              <Link to="/software" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+              <Link to="/buildxact" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
                 Learn More <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -427,11 +427,11 @@ export function HomePage() {
               >
                 <Brain className="w-7 h-7 text-white" strokeWidth={2} />
               </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">AI & Automation</h3>
+              <h3 className="text-xl font-bold text-brand-black mb-3">Training & Education</h3>
               <p className="text-brand-gray mb-4 text-sm">
-                Custom workflows, voice agents, and intelligent systems that eliminate repetitive tasks
+                Professional training programs for software, systems, and construction business processes
               </p>
-              <Link to="/software" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+              <Link to="/training" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
                 Learn More <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -444,11 +444,11 @@ export function HomePage() {
               >
                 <Network className="w-7 h-7 text-white" strokeWidth={2} />
               </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Business Systems</h3>
+              <h3 className="text-xl font-bold text-brand-black mb-3">Ongoing Support</h3>
               <p className="text-brand-gray mb-4 text-sm">
-                Complete systems for quoting, invoicing, project tracking, and team communication
+                Monthly retainer support with proactive monitoring, optimization, and priority help
               </p>
-              <Link to="/software" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+              <Link to="/ongoing-support" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
                 Learn More <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -472,9 +472,9 @@ export function HomePage() {
               <p className="text-white/90 mb-4 text-sm">
                 Prove value fast with one workflow. Pay only on measurable results. Perfect starting point.
               </p>
-              <a href="#workflows" className="inline-flex items-center gap-2 text-white font-semibold text-sm hover:gap-3 transition-all duration-300">
+              <Link to="/pilot-program" className="inline-flex items-center gap-2 text-white font-semibold text-sm hover:gap-3 transition-all duration-300">
                 See Pilots <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -688,7 +688,7 @@ export function HomePage() {
               ]}
               badge="Risk-Free"
               badgeColor="red"
-              href="/business-audit"
+              href="/pilot-program"
               icon={Award}
             />
           </motion.div>

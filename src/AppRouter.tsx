@@ -31,6 +31,10 @@ const LeadGenerationPage = lazy(() => import('./pages/LeadGenerationPage').then(
 const CaseStudiesPage = lazy(() => import('./pages/CaseStudiesPage').then(m => ({ default: m.CaseStudiesPage })));
 const SoftwarePage = lazy(() => import('./pages/SoftwarePage').then(m => ({ default: m.SoftwarePage })));
 const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m => ({ default: m.ROICalculatorPage })));
+const PilotProgramPage = lazy(() => import('./pages/PilotProgramPage').then(m => ({ default: m.PilotProgramPage })));
+const TrainingPage = lazy(() => import('./pages/TrainingPage').then(m => ({ default: m.TrainingPage })));
+const OngoingSupportPage = lazy(() => import('./pages/OngoingSupportPage').then(m => ({ default: m.OngoingSupportPage })));
+const BuildxactPartnerPage = lazy(() => import('./pages/BuildxactPartnerPage').then(m => ({ default: m.BuildxactPartnerPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
@@ -126,6 +130,10 @@ export function AppRouter() {
             {/* Service pages */}
             <Route path="/business-audit" element={<BusinessAuditPage />} />
             <Route path="/free-audit" element={<Navigate to="/business-audit" replace />} />
+            <Route path="/pilot-program" element={<PilotProgramPage />} />
+            <Route path="/training" element={<TrainingPage />} />
+            <Route path="/ongoing-support" element={<OngoingSupportPage />} />
+            <Route path="/buildxact" element={<BuildxactPartnerPage />} />
             <Route path="/lead-generation" element={<LeadGenerationPage />} />
             <Route path="/roi-calculator" element={<ROICalculatorPage />} />
 
