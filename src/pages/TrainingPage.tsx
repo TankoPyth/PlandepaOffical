@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Check, GraduationCap, Users, Video, FileText, Zap, Award, BookOpen, Target, Laptop, ClipboardCheck, TrendingUp, Calendar } from 'lucide-react';
+import { ArrowLeft, Check, Lightbulb, Users, Video, Calendar, DollarSign, Clock, Target, Brain, Zap, TrendingUp, Award, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
@@ -15,114 +15,152 @@ export function TrainingPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
 
-  const trainingTracks = [
+  const educationOffers = [
     {
-      icon: Laptop,
-      title: 'Buildxact Mastery',
-      description: 'Complete estimating and project management training for Buildxact users.',
-      duration: '2-3 days',
-      topics: ['Estimating setup', 'Cost libraries', 'Scheduling', 'Variations', 'Reporting'],
+      icon: Video,
+      badge: 'FREE',
+      title: 'Automation Possibilities Webinar',
+      subtitle: 'What is Possible With Automation in a Construction Business',
+      duration: '90 minutes',
+      price: 'Free',
+      whoFor: 'Owners, directors, and admin or ops leads who keep hearing about AI but do not know what is real, what is safe, or what applies to their business.',
+      whatYouGet: [
+        'The 5 most common admin and management bottlenecks in construction, and why they keep repeating',
+        'Real examples of workflows that can be automated without replacing your software',
+        'A simple way to spot your top 1-3 highest ROI automation opportunities',
+        'What a "pilot" looks like in practice, what gets built, how success is measured',
+        'Live Q&A session',
+      ],
+      whatItIsNot: [
+        'Not technical training',
+        'Not a software demo',
+        'Not hype or theory',
+      ],
+      cta: 'Register for Next Webinar',
     },
     {
       icon: Target,
-      title: 'ClickUp for Construction',
-      description: 'Project management and team coordination customized for construction workflows.',
-      duration: '1-2 days',
-      topics: ['Project setup', 'Task automation', 'Team collaboration', 'Client portals', 'Reporting'],
-    },
-    {
-      icon: BookOpen,
-      title: 'Process & Systems',
-      description: 'Business process optimization and workflow design for construction companies.',
-      duration: '2-4 days',
-      topics: ['Process mapping', 'Bottleneck identification', 'Automation opportunities', 'Change management'],
-    },
-    {
-      icon: ClipboardCheck,
-      title: 'Estimating Excellence',
-      description: 'Advanced estimating techniques, cost control, and margin protection.',
-      duration: '1-2 days',
-      topics: ['Accurate takeoffs', 'Cost databases', 'Margin analysis', 'Competitive bidding', 'Risk assessment'],
+      badge: 'PAID ENTRY',
+      title: 'Automation Clarity Session',
+      subtitle: 'Turn AI confusion into a clear, practical first-step plan',
+      duration: '90 minutes remote',
+      price: '$500 - $1,500',
+      whoFor: 'Construction businesses that want clarity on what to automate first, without committing to a major project.',
+      whatYouGet: [
+        'Identify where work is getting stuck, duplicated, or lost',
+        'Map one workflow end-to-end: capture, assign, SLA, escalation, reporting',
+        'Select the first automation to fix based on impact and ease',
+        'Define success metrics so outcomes are measurable',
+      ],
+      outputs: [
+        'A "first automation" recommendation and why it wins',
+        'A simple workflow map for that process',
+        'Draft success metrics for a pilot',
+        'Recommended next step: either 28-day pilot or OSR',
+      ],
+      whatItIsNot: [
+        'Not generic AI training',
+        'Not a full Operational Systems Review',
+        'Not implementation work',
+      ],
+      cta: 'Book Clarity Session',
     },
     {
       icon: Users,
-      title: 'Team Onboarding',
-      description: 'Get your whole team up to speed on new systems and processes quickly.',
-      duration: 'Flexible',
-      topics: ['System basics', 'Daily workflows', 'Best practices', 'Troubleshooting', 'Ongoing support'],
-    },
-    {
-      icon: Zap,
-      title: 'Custom Training',
-      description: 'Bespoke training programs designed for your specific tools and workflows.',
-      duration: 'Custom',
-      topics: ['Your tools', 'Your processes', 'Your team', 'Your pace'],
-    },
-  ];
-
-  const deliveryMethods = [
-    {
-      icon: Users,
-      title: 'On-Site Training',
-      description: 'We come to your office or site for hands-on, personalized training with your team.',
-      benefits: ['Face-to-face interaction', 'Use your actual data', 'Immediate questions answered', 'Team building'],
-    },
-    {
-      icon: Video,
-      title: 'Remote Sessions',
-      description: 'Live online training sessions via Zoom or Teams, perfect for distributed teams.',
-      benefits: ['Lower cost', 'Flexible scheduling', 'Record sessions', 'Multi-location teams'],
-    },
-    {
-      icon: BookOpen,
-      title: 'Self-Paced Learning',
-      description: 'Access our library of video tutorials, guides, and exercises at your own pace.',
-      benefits: ['Learn anytime', 'Rewatch as needed', 'Lower investment', 'Lifetime access'],
+      badge: 'TEAM SESSION',
+      title: 'Half-Day Team Clarity Workshop',
+      subtitle: 'Align your team so changes actually stick',
+      duration: 'Half-day (remote or on-site)',
+      price: '$2,500 - $7,500',
+      whoFor: 'Teams who need alignment across admin, ops, and leadership so changes actually stick.',
+      whatYouGet: [
+        'What changes first',
+        'Who owns what',
+        'What success looks like',
+        'What gets automated next',
+      ],
+      outputs: [
+        'Prioritized list of automation opportunities (top 5)',
+        'One workflow fully mapped and approved by the team',
+        'Pilot plan with metrics and responsibilities',
+      ],
+      cta: 'Request Team Session',
     },
   ];
 
   const faqItems = [
     {
-      question: 'How do you customize training for our business?',
-      answer: 'We start with a discovery session to understand your current setup, pain points, and goals. Then we build training around your actual workflows and data, not generic examples.',
+      question: 'How is this different from generic AI training?',
+      answer: 'We focus exclusively on construction business workflows. Every example, every automation, every ROI calculation is specific to builders, renovators, and trade contractors. No generic ChatGPT tutorials or theory.',
     },
     {
-      question: 'What if our team has mixed skill levels?',
-      answer: 'We can split into beginner and advanced sessions, or run foundation training for everyone then targeted deep-dives. We adapt to your team\'s needs.',
+      question: 'Do I need to be technical to understand this?',
+      answer: 'Not at all. These sessions are designed for business owners and operations leaders, not IT people. We explain everything in plain English with real construction examples.',
     },
     {
-      question: 'Do you provide training materials?',
-      answer: 'Yes. You get step-by-step guides, video recordings, quick reference sheets, and access to our resource library. Everything your team needs to stay confident.',
+      question: 'What if I am not ready to implement anything yet?',
+      answer: 'That is fine. The free webinar is perfect for learning what is possible. The paid sessions are for when you want specific guidance on your business, even if you are not ready to pull the trigger yet.',
     },
     {
-      question: 'Can we do training in stages?',
-      answer: 'Absolutely. Many clients start with core functionality, then do advanced training later. We can space it out to avoid overwhelming your team.',
+      question: 'Can I bring my whole team to the webinar?',
+      answer: 'Absolutely. The more people who understand what is possible, the easier implementation becomes later. Register once and share the link with your team.',
     },
     {
-      question: 'What ongoing support do you provide after training?',
-      answer: 'We offer 30-day email support included with all training. After that, you can purchase ongoing support packages or book ad-hoc sessions as needed.',
+      question: 'What happens after the Clarity Session?',
+      answer: 'You get a clear recommendation: either proceed with a 28-day pilot, book a full Operational Systems Review, or implement specific changes yourself. No pressure, no lock-in.',
     },
     {
-      question: 'Do you offer certification?',
-      answer: 'For our core training programs (Buildxact, Process & Systems), participants receive a certificate of completion. Great for professional development records.',
+      question: 'Why should I pay for a Clarity Session when the webinar is free?',
+      answer: 'The webinar shows what is possible across construction businesses generally. The Clarity Session analyzes your specific workflows, your bottlenecks, your team, and gives you a custom roadmap.',
+    },
+    {
+      question: 'How is the Team Workshop different from the Clarity Session?',
+      answer: 'The Clarity Session is focused on the business owner or decision-maker. The Team Workshop brings everyone together - admin, ops, leadership - to get alignment so implementation actually works.',
+    },
+  ];
+
+  const learningPath = [
+    {
+      step: '1',
+      title: 'Start with the Free Webinar',
+      description: 'Understand what is possible with AI automation in construction businesses.',
+      icon: Video,
+    },
+    {
+      step: '2',
+      title: 'Book a Clarity Session',
+      description: 'Get specific recommendations for your business and workflows.',
+      icon: Target,
+    },
+    {
+      step: '3',
+      title: 'Run a Team Workshop',
+      description: 'Align your team and create a concrete implementation plan.',
+      icon: Users,
+    },
+    {
+      step: '4',
+      title: 'Start a 28-Day Pilot',
+      description: 'Prove value with one workflow before scaling across your business.',
+      icon: Zap,
     },
   ];
 
   const trainingBreadcrumb = breadcrumbSchema([
     { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Training & Education', url: 'https://plandepa.com/training' },
+    { name: 'AI Automation Education', url: 'https://plandepa.com/training' },
   ]);
 
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Construction Business Training & Education',
+    name: 'AI Automation Education for Construction',
     provider: {
       '@type': 'Organization',
       name: 'Plandepa',
     },
     areaServed: ['Brisbane', 'Sydney', 'Newcastle', 'Australia'],
-    description: 'Professional training for construction software and business processes. Buildxact training, ClickUp for construction, estimating excellence, and custom team training programs.',
+    description: 'AI and automation education programs for construction businesses. Free webinars, clarity sessions, and team workshops to understand and implement automation in construction operations.',
   };
 
   const faqSchema = {
@@ -141,9 +179,9 @@ export function TrainingPage() {
   return (
     <>
       <SEO
-        title="Construction Training & Education Brisbane | Buildxact, ClickUp, Process Training"
-        description="Professional construction business training in Brisbane, Sydney & Newcastle. Buildxact mastery, ClickUp for construction, estimating excellence, and custom team training programs."
-        keywords="Buildxact training Brisbane, construction software training, ClickUp training construction, estimating training, construction business training Sydney, team training Brisbane"
+        title="AI Automation Education for Construction Brisbane | Training & Workshops"
+        description="Learn what is possible with AI automation in construction. Free webinars, clarity sessions, and team workshops. From concept to implementation for Brisbane, Sydney & Newcastle builders."
+        keywords="AI training construction, automation education Brisbane, construction AI workshop, business automation training, construction technology education Sydney"
       />
       <StructuredData data={[trainingBreadcrumb, serviceSchema, faqSchema]} />
 
@@ -164,15 +202,15 @@ export function TrainingPage() {
             className="text-center mb-12 md:mb-16"
           >
             <motion.div variants={staggerItem} className="inline-flex items-center gap-2 bg-brand-red/10 text-brand-red px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              <GraduationCap className="w-4 h-4" />
-              Professional Training Programs
+              <Brain className="w-4 h-4" />
+              AI Automation Education
             </motion.div>
 
             <motion.h1 variants={staggerItem} className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-black mb-6">
-              Training & Education
+              From Learning to Doing
             </motion.h1>
             <motion.p variants={staggerItem} className="text-xl md:text-2xl text-brand-gray max-w-3xl mx-auto mb-8">
-              Get your team confident and competent with the software and systems that run your business.
+              From concept to clarity. Understand what AI can actually do for your construction business.
             </motion.p>
 
             <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -180,13 +218,13 @@ export function TrainingPage() {
                 onClick={() => setIsContactModalOpen(true)}
                 className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
-                Discuss Training Needs
+                Register for Free Webinar
               </button>
               <a
-                href="#training-tracks"
+                href="#offerings"
                 className="bg-white text-brand-black px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-md border-2 border-brand-black"
               >
-                See Training Options
+                See All Options
               </a>
             </motion.div>
           </motion.div>
@@ -205,33 +243,33 @@ export function TrainingPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Why Proper Training Matters
+              Why This Education Matters
             </h2>
             <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
-              Software is useless if your team doesn't know how to use it properly.
+              You keep hearing about AI, but you do not know what is real, what is safe, or what actually applies to construction.
             </p>
           </motion.div>
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-3 gap-8">
             <div className="bg-brand-light-gray p-8 rounded-xl">
-              <Award className="w-12 h-12 text-brand-red mb-4" />
-              <h3 className="text-xl font-bold text-brand-black mb-3">Stop Wasting Money</h3>
+              <Lightbulb className="w-12 h-12 text-brand-red mb-4" />
+              <h3 className="text-xl font-bold text-brand-black mb-3">Clarity Over Hype</h3>
               <p className="text-brand-gray">
-                You paid for software licenses. Make sure your team actually knows how to use them effectively.
+                No ChatGPT tutorials or generic AI theory. Only real construction workflows and practical automation examples.
+              </p>
+            </div>
+            <div className="bg-brand-light-gray p-8 rounded-xl">
+              <Target className="w-12 h-12 text-brand-red mb-4" />
+              <h3 className="text-xl font-bold text-brand-black mb-3">Construction-Specific</h3>
+              <p className="text-brand-gray">
+                Every example is from builders, renovators, and trade contractors. Real bottlenecks, real solutions.
               </p>
             </div>
             <div className="bg-brand-light-gray p-8 rounded-xl">
               <TrendingUp className="w-12 h-12 text-brand-red mb-4" />
-              <h3 className="text-xl font-bold text-brand-black mb-3">Increase Adoption</h3>
+              <h3 className="text-xl font-bold text-brand-black mb-3">From Concept to Action</h3>
               <p className="text-brand-gray">
-                Confident teams use new systems properly. Confused teams go back to spreadsheets and email.
-              </p>
-            </div>
-            <div className="bg-brand-light-gray p-8 rounded-xl">
-              <Zap className="w-12 h-12 text-brand-red mb-4" />
-              <h3 className="text-xl font-bold text-brand-black mb-3">Faster Results</h3>
-              <p className="text-brand-gray">
-                Proper training means your team hits the ground running instead of fumbling for months.
+                Learn what is possible, identify your opportunities, then get a clear path to implementation.
               </p>
             </div>
           </motion.div>
@@ -241,7 +279,7 @@ export function TrainingPage() {
       <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
-        id="training-tracks"
+        id="offerings"
         className="bg-brand-light-gray py-16 md:py-24 px-6"
         initial="hidden"
         whileInView="visible"
@@ -251,35 +289,89 @@ export function TrainingPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Training Programs
+              Education Options
             </h2>
             <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
-              Choose from our proven training tracks or create a custom program.
+              Start with the free webinar, then go deeper based on your needs.
             </p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {trainingTracks.map((track, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-red/10 text-brand-red rounded-lg mb-4">
-                  <track.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold text-brand-black mb-2">{track.title}</h3>
-                <p className="text-brand-gray mb-4">{track.description}</p>
-                <div className="flex items-center gap-2 text-sm text-brand-red font-semibold mb-4">
-                  <Calendar className="w-4 h-4" />
-                  {track.duration}
-                </div>
-                <div className="border-t border-brand-light-gray pt-4">
-                  <div className="text-sm font-semibold text-brand-black mb-2">Topics Covered:</div>
-                  <ul className="space-y-1">
-                    {track.topics.map((topic, idx) => (
-                      <li key={idx} className="text-sm text-brand-gray flex items-start gap-2">
-                        <Check className="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" />
-                        {topic}
-                      </li>
-                    ))}
-                  </ul>
+          <motion.div variants={staggerItem} className="space-y-8">
+            {educationOffers.map((offer, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div className="p-8 md:p-12">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-red/10 text-brand-red rounded-xl">
+                          <offer.icon className="w-7 h-7" />
+                        </div>
+                        <div className="inline-flex items-center gap-2 bg-brand-red text-white px-3 py-1 rounded-full text-xs font-bold">
+                          {offer.badge}
+                        </div>
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-brand-black mb-2">{offer.title}</h3>
+                      <p className="text-lg text-brand-gray mb-4">{offer.subtitle}</p>
+                      <div className="flex flex-wrap gap-4 text-sm">
+                        <div className="flex items-center gap-2 text-brand-gray">
+                          <Clock className="w-4 h-4 text-brand-red" />
+                          {offer.duration}
+                        </div>
+                        <div className="flex items-center gap-2 font-bold text-brand-red">
+                          <DollarSign className="w-4 h-4" />
+                          {offer.price}
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setIsContactModalOpen(true)}
+                      className="bg-brand-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand-red/90 transition-all duration-300 shadow-lg whitespace-nowrap"
+                    >
+                      {offer.cta}
+                    </button>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h4 className="font-bold text-brand-black mb-3">Who it is for:</h4>
+                      <p className="text-brand-gray mb-6">{offer.whoFor}</p>
+
+                      <h4 className="font-bold text-brand-black mb-3">What you get:</h4>
+                      <ul className="space-y-2">
+                        {offer.whatYouGet.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <Check className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
+                            <span className="text-brand-gray text-sm">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      {offer.outputs && (
+                        <>
+                          <h4 className="font-bold text-brand-black mb-3">Tangible outputs:</h4>
+                          <ul className="space-y-2 mb-6">
+                            {offer.outputs.map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <CheckCircle2 className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
+                                <span className="text-brand-gray text-sm">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
+
+                      <h4 className="font-bold text-brand-black mb-3">What this is NOT:</h4>
+                      <ul className="space-y-2">
+                        {offer.whatItIsNot.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <span className="text-brand-gray text-sm">• {item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -299,29 +391,24 @@ export function TrainingPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              How We Deliver Training
+              The Learning Path
             </h2>
             <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
-              Choose the delivery method that works best for your team.
+              From concept to implementation in four clear steps.
             </p>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="grid md:grid-cols-3 gap-8">
-            {deliveryMethods.map((method, index) => (
-              <div key={index} className="bg-brand-light-gray p-8 rounded-xl">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-red text-white rounded-full mb-6">
-                  <method.icon className="w-8 h-8" />
+          <motion.div variants={staggerItem} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {learningPath.map((item, index) => (
+              <div key={index} className="bg-brand-light-gray p-6 rounded-xl relative">
+                <div className="absolute -top-4 -left-4 w-10 h-10 bg-brand-red text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                  {item.step}
                 </div>
-                <h3 className="text-2xl font-bold text-brand-black mb-3">{method.title}</h3>
-                <p className="text-brand-gray mb-6">{method.description}</p>
-                <div className="space-y-2">
-                  {method.benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
-                      <span className="text-brand-gray">{benefit}</span>
-                    </div>
-                  ))}
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-white rounded-lg mb-4 mt-2">
+                  <item.icon className="w-6 h-6 text-brand-red" />
                 </div>
+                <h3 className="text-xl font-bold text-brand-black mb-3">{item.title}</h3>
+                <p className="text-brand-gray">{item.description}</p>
               </div>
             ))}
           </motion.div>
@@ -337,30 +424,41 @@ export function TrainingPage() {
         viewport={{ once: true, margin: "-100px" }}
         variants={staggerContainer}
       >
-        <div className="max-w-4xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              What's Included
-            </h2>
-          </motion.div>
-
-          <motion.div variants={staggerItem} className="bg-white p-8 md:p-12 rounded-2xl shadow-lg">
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                'Pre-training needs assessment',
-                'Customized training materials',
-                'Hands-on practical exercises',
-                'Video recordings of sessions',
-                'Step-by-step documentation',
-                'Quick reference guides',
-                'Certificate of completion',
-                '30-day post-training email support',
-              ].map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-brand-red flex-shrink-0 mt-1" />
-                  <span className="text-lg text-brand-gray">{item}</span>
-                </div>
-              ))}
+        <div className="max-w-7xl mx-auto">
+          <motion.div variants={staggerItem} className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-brand-black mb-6">
+                Real Experience, Not Theory
+              </h2>
+              <p className="text-lg text-brand-gray mb-6">
+                Our team has spent the last year immersing ourselves in everything AI - what issues can actually be solved and where real value can be provided to construction companies.
+              </p>
+              <p className="text-lg text-brand-gray mb-8">
+                This is not just showing you a new product or software. This is walkthroughs of real capabilities with real construction examples.
+              </p>
+              <ul className="space-y-4">
+                {[
+                  'Construction-specific automation examples',
+                  'Real ROI calculations from actual projects',
+                  'Practical implementation roadmaps',
+                  'No vendor lock-in or software sales pitch',
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <Check className="w-6 h-6 text-brand-red flex-shrink-0 mt-1" />
+                    <span className="text-lg text-brand-gray">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <Award className="w-16 h-16 text-brand-red mb-6" />
+              <h3 className="text-2xl font-bold text-brand-black mb-4">From Unsure to Clear</h3>
+              <p className="text-brand-gray mb-6">
+                You understand that not implementing AI now means you will be left behind. But you are unsure about what is actually possible and where to start.
+              </p>
+              <p className="text-brand-gray">
+                These education programs give you the clarity and confidence to move forward with automation in your construction business.
+              </p>
             </div>
           </motion.div>
         </div>
@@ -378,16 +476,16 @@ export function TrainingPage() {
         <div className="max-w-4xl mx-auto">
           <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-2xl text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to Upskill Your Team?
+              Ready to Understand What is Possible?
             </h3>
             <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-              Let's discuss your training needs and build a program that works for your team.
+              Start with the free webinar to see real automation examples from construction businesses.
             </p>
             <button
               onClick={() => setIsContactModalOpen(true)}
               className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              Book a Training Consultation
+              Register for Next Webinar
             </button>
           </motion.div>
         </div>
@@ -397,7 +495,7 @@ export function TrainingPage() {
 
       <SimpleFAQ items={faqItems} />
 
-      <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} title="Discuss Training Needs">
+      <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} title="Register for Education">
         <ContactForm
           onSuccess={() => {
             setIsContactModalOpen(false);
