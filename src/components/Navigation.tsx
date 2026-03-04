@@ -16,58 +16,36 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Settings, Zap, Network, TrendingUp, BookOpen, FileText } from 'lucide-react';
+import { Menu, X, ChevronDown, Target, MessageSquare, Inbox, RotateCcw, FileText, Camera, BookOpen, FileText as FileTextIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Modal } from './ui/Modal';
 import { ContactForm } from './ContactForm';
 
 /**
- * MEGA MENU SERVICES STRUCTURE
- * Organized by category to showcase all capabilities
+ * SERVICES DROPDOWN - PILOT-FIRST APPROACH
+ * Focused on workflow pilots and clear entry points
  */
 const servicesMenu = {
-  softwareTools: {
-    title: 'Software & Tools',
-    icon: Settings,
+  pilotProgram: {
+    title: '28-Day Pilot Program',
+    icon: Target,
+    badge: 'Most Popular',
+    description: 'Pick one bottleneck, prove value in 28 days',
     items: [
-      { name: 'Buildxact', description: 'Estimating & project management' },
-      { name: 'ClickUp', description: 'Task & workflow management' },
-      { name: 'Notion', description: 'Documentation & collaboration' },
-      { name: 'Xero', description: 'Cloud accounting' },
-      { name: 'Deputy', description: 'Staff scheduling & timesheets' }
+      { name: 'Inbound Black Hole', description: '8 hrs/week saved', href: '/#workflows' },
+      { name: 'Follow-Up Nightmare', description: '12 hrs/week saved', href: '/#workflows' },
+      { name: 'Variation Delays', description: '10 hrs/week saved', href: '/#workflows' },
+      { name: 'Site-to-Office Gap', description: '15 hrs/week saved', href: '/#workflows' },
     ]
   },
-  aiAutomation: {
-    title: 'AI & Automation',
-    icon: Zap,
+  getStarted: {
+    title: 'Getting Started',
+    icon: MessageSquare,
+    description: 'Not sure where to begin?',
     items: [
-      { name: 'N8N Workflows', description: 'Custom automation workflows' },
-      { name: 'Zapier Integration', description: 'Connect your apps' },
-      { name: 'Voice Agents', description: 'AI phone assistants' },
-      { name: 'Smart Documents', description: 'Automated document processing' },
-      { name: 'AI Strategy', description: 'Consulting & planning' }
-    ]
-  },
-  businessSystems: {
-    title: 'Business Systems',
-    icon: Network,
-    items: [
-      { name: 'Quoting & Estimating', description: 'Fast, accurate quotes' },
-      { name: 'Invoice Management', description: 'Track payments easily' },
-      { name: 'Project Tracking', description: 'Monitor job progress' },
-      { name: 'Team Communication', description: 'Keep everyone aligned' },
-      { name: 'Document Management', description: 'Organize all files' }
-    ]
-  },
-  growthSupport: {
-    title: 'Growth & Support',
-    icon: TrendingUp,
-    items: [
-      { name: 'Lead Generation', description: 'Attract quality leads' },
-      { name: 'Website Development', description: 'Professional online presence' },
-      { name: 'Business Strategy Audit', description: 'Identify opportunities' },
-      { name: 'ROI Calculator', description: 'See potential savings' },
-      { name: 'Training & Support', description: 'Ongoing assistance' }
+      { name: 'Free Discovery Call', description: 'Identify your bottleneck', href: '/business-audit' },
+      { name: 'Apply for Pilot', description: 'Limited to 3/month', href: '/business-audit' },
+      { name: 'ROI Calculator', description: 'See potential savings', href: '/roi-calculator' },
     ]
   }
 };
@@ -186,31 +164,32 @@ export function Navigation() {
               </Link>
 
               {softwareOpen && (
-                <div className="absolute top-full right-0 mt-1 w-[900px] bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-8 animate-scale-in">
-                  <div className="mb-6">
-                    <Link
-                      to="/services"
-                      className="text-sm font-bold text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease inline-flex items-center gap-2"
-                    >
-                      View All Services & Capabilities →
-                    </Link>
-                  </div>
-                  <div className="grid grid-cols-4 gap-6">
+                <div className="absolute top-full right-0 mt-1 w-[600px] bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-8 animate-scale-in">
+                  <div className="grid grid-cols-2 gap-8">
                     {Object.values(servicesMenu).map((category) => {
                       const IconComponent = category.icon;
                       return (
-                        <div key={category.title} className="space-y-3">
-                          <div className="flex items-center gap-2 mb-3">
-                            <IconComponent className="w-5 h-5 text-brand-red" />
-                            <h3 className="font-bold text-sm text-brand-black uppercase tracking-wide">
-                              {category.title}
-                            </h3>
+                        <div key={category.title} className="space-y-4">
+                          <div>
+                            <div className="flex items-center gap-2 mb-2">
+                              <IconComponent className="w-5 h-5 text-brand-red" />
+                              <h3 className="font-bold text-base text-brand-black">
+                                {category.title}
+                              </h3>
+                              {category.badge && (
+                                <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+                                  {category.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-xs text-brand-gray mb-3">{category.description}</p>
                           </div>
-                          <div className="space-y-2">
+                          <div className="space-y-1">
                             {category.items.map((item) => (
-                              <div
+                              <Link
                                 key={item.name}
-                                className="group/item px-3 py-2 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease cursor-pointer"
+                                to={item.href}
+                                className="group/item block px-3 py-2.5 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease"
                               >
                                 <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
                                   {item.name}
@@ -218,26 +197,33 @@ export function Navigation() {
                                 <div className="text-xs text-brand-gray mt-0.5">
                                   {item.description}
                                 </div>
-                              </div>
+                              </Link>
                             ))}
                           </div>
                         </div>
                       );
                     })}
                   </div>
-                  <div className="mt-6 pt-6 border-t border-gray-200 flex gap-4">
-                    <button
-                      onClick={() => setIsContactModalOpen(true)}
-                      className="flex-1 text-center px-4 py-2 bg-brand-red text-white font-semibold text-sm rounded-lg hover:bg-red-700 transition-colors duration-300"
-                    >
-                      Get in Touch
-                    </button>
-                    <Link
-                      to="/roi-calculator"
-                      className="flex-1 text-center px-4 py-2 bg-brand-black text-white font-semibold text-sm rounded-lg hover:bg-gray-800 transition-colors duration-300"
-                    >
-                      Calculate ROI
-                    </Link>
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <div className="bg-brand-light-gray rounded-xl p-4 text-center">
+                      <p className="text-sm font-semibold text-brand-black mb-3">
+                        Ready to see results in 28 days?
+                      </p>
+                      <div className="flex gap-3">
+                        <Link
+                          to="/business-audit"
+                          className="flex-1 text-center px-4 py-2.5 bg-brand-red text-white font-semibold text-sm rounded-lg hover:bg-red-700 transition-colors duration-300"
+                        >
+                          Book Discovery
+                        </Link>
+                        <a
+                          href="/#workflows"
+                          className="flex-1 text-center px-4 py-2.5 bg-brand-black text-white font-semibold text-sm rounded-lg hover:bg-gray-800 transition-colors duration-300"
+                        >
+                          View Workflows
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -303,30 +289,60 @@ export function Navigation() {
 
               {mobileSoftwareOpen && (
                 <div className="mt-2 pl-4 space-y-4 animate-in max-h-[60vh] overflow-y-auto">
-                  <Link
-                    to="/services"
-                    className="block text-sm font-bold text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease py-2"
-                  >
-                    View All Services →
-                  </Link>
                   {Object.values(servicesMenu).map((category) => {
                     const IconComponent = category.icon;
                     return (
-                      <div key={category.title} className="space-y-2">
+                      <div key={category.title} className="space-y-3 pb-4 border-b border-gray-100 last:border-0">
                         <div className="flex items-center gap-2">
                           <IconComponent className="w-4 h-4 text-brand-red" />
-                          <span className="text-xs font-bold text-brand-black uppercase tracking-wide">
+                          <span className="text-sm font-bold text-brand-black">
                             {category.title}
                           </span>
+                          {category.badge && (
+                            <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+                              {category.badge}
+                            </span>
+                          )}
                         </div>
-                        {category.items.map((item) => (
-                          <div key={item.name} className="pl-6 text-sm text-brand-gray py-1">
-                            {item.name}
-                          </div>
-                        ))}
+                        <p className="text-xs text-brand-gray pl-6">{category.description}</p>
+                        <div className="space-y-2">
+                          {category.items.map((item) => (
+                            <Link
+                              key={item.name}
+                              to={item.href}
+                              className="block pl-6 py-1.5"
+                            >
+                              <div className="text-sm font-medium text-brand-black">
+                                {item.name}
+                              </div>
+                              <div className="text-xs text-brand-gray">
+                                {item.description}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     );
                   })}
+                  <div className="bg-brand-light-gray rounded-xl p-4 mt-4">
+                    <p className="text-sm font-semibold text-brand-black mb-3">
+                      Ready to see results?
+                    </p>
+                    <div className="space-y-2">
+                      <Link
+                        to="/business-audit"
+                        className="block text-center px-4 py-2.5 bg-brand-red text-white font-semibold text-sm rounded-lg"
+                      >
+                        Book Discovery
+                      </Link>
+                      <a
+                        href="/#workflows"
+                        className="block text-center px-4 py-2.5 bg-brand-black text-white font-semibold text-sm rounded-lg"
+                      >
+                        View Workflows
+                      </a>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
