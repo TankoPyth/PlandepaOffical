@@ -22,64 +22,41 @@ import { Modal } from './ui/Modal';
 import { ContactForm } from './ContactForm';
 
 /**
- * SERVICES DROPDOWN - FULL SERVICE SHOWCASE
- * All Plandepa service offerings
+ * SERVICES DROPDOWN - SIMPLIFIED SERVICE MENU
+ * Main service offerings with partnered solutions
  */
-const servicesMenu = {
-  operationsReview: {
-    title: 'Operations Review',
-    icon: ClipboardCheck,
-    badge: '10 Days',
-    description: 'Diagnose control issues & get an execution plan',
-    items: [
-      { name: 'View OSR Details', description: 'How it works', href: '/operations-review' },
-      { name: 'See Deliverables', description: 'What you get', href: '/operations-review#deliverables' },
-      { name: 'Request Review', description: 'Start the process', href: '/operations-review' },
-    ]
+const servicesMenu = [
+  {
+    name: 'Training & Education',
+    description: 'Upskill your team on systems & processes',
+    icon: BookOpen,
+    href: '/training'
   },
-  pilotProgram: {
-    title: '28-Day Pilot',
+  {
+    name: '28-Day Pilot Program',
+    description: 'Prove value fast with one workflow',
     icon: Zap,
     badge: 'Risk-Free',
-    description: 'Prove value fast with one workflow',
-    items: [
-      { name: 'View Program Details', description: 'How the pilot works', href: '/pilot-program' },
-      { name: 'See Workflow Options', description: '6 proven solutions', href: '/pilot-program#workflows' },
-      { name: 'Book Discovery Call', description: 'Start the conversation', href: '/business-audit' },
-    ]
+    href: '/pilot-program'
   },
-  buildxactPartner: {
-    title: 'Buildxact Partner',
-    icon: Settings,
-    badge: 'Official',
-    description: 'Expert implementation & support',
-    items: [
-      { name: 'Buildxact Setup', description: 'Complete implementation', href: '/buildxact' },
-      { name: 'View Packages', description: 'Pricing & options', href: '/buildxact#packages' },
-      { name: 'Book a Demo', description: 'See it in action', href: '/buildxact' },
-    ]
-  },
-  training: {
-    title: 'Training & Education',
-    icon: BookOpen,
-    description: 'Upskill your team on systems & processes',
-    items: [
-      { name: 'Training Programs', description: 'Software & business training', href: '/training' },
-      { name: 'Buildxact Training', description: 'Master estimating', href: '/training#training-tracks' },
-      { name: 'Team Onboarding', description: 'Get everyone up to speed', href: '/training' },
-    ]
-  },
-  ongoingSupport: {
-    title: 'Ongoing Support',
-    icon: Network,
-    description: 'Monthly retainer & maintenance',
-    items: [
-      { name: 'Support Tiers', description: 'Essential to Enterprise', href: '/ongoing-support#tiers' },
-      { name: 'What We Support', description: 'System maintenance & optimization', href: '/ongoing-support' },
-      { name: 'Get a Quote', description: 'Discuss your needs', href: '/ongoing-support' },
-    ]
+  {
+    name: 'Plandepa Systems Review',
+    description: 'Diagnose control issues & get execution plan',
+    icon: ClipboardCheck,
+    badge: '10 Days',
+    href: '/operations-review'
   }
-};
+];
+
+const partneredServices = [
+  {
+    name: 'Buildxact',
+    description: 'Official partner - Expert implementation',
+    icon: Settings,
+    badge: 'Partner',
+    href: '/buildxact'
+  }
+];
 
 const resourcesMenu = [
   {
@@ -143,6 +120,90 @@ export function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             <div
               className="relative"
+              onMouseEnter={() => setSoftwareOpen(true)}
+              onMouseLeave={() => setSoftwareOpen(false)}
+            >
+              <button
+                className="flex items-center gap-1 text-body-md text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease font-medium group/software"
+              >
+                Services
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 apple-ease ${softwareOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {softwareOpen && (
+                <div className="absolute top-full right-0 mt-1 w-[380px] bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
+                  <div className="space-y-2">
+                    {servicesMenu.map((item) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.href}
+                          className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease group/item"
+                        >
+                          <IconComponent className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                              <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
+                                {item.name}
+                              </div>
+                              {item.badge && (
+                                <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-xs text-brand-gray mt-0.5">
+                              {item.description}
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <div className="mb-3">
+                      <p className="text-xs font-bold text-brand-gray uppercase tracking-wider px-4">
+                        Partnered With
+                      </p>
+                    </div>
+                    <div className="space-y-2">
+                      {partneredServices.map((item) => {
+                        const IconComponent = item.icon;
+                        return (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease group/item"
+                          >
+                            <IconComponent className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2">
+                                <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
+                                  {item.name}
+                                </div>
+                                {item.badge && (
+                                  <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+                                    {item.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="text-xs text-brand-gray mt-0.5">
+                                {item.description}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div
+              className="relative"
               onMouseEnter={() => setResourcesOpen(true)}
               onMouseLeave={() => setResourcesOpen(false)}
             >
@@ -180,85 +241,6 @@ export function Navigation() {
                 </div>
               )}
             </div>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setSoftwareOpen(true)}
-              onMouseLeave={() => setSoftwareOpen(false)}
-            >
-              <Link
-                to="/services"
-                className="flex items-center gap-1 text-body-md text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease font-medium group/software"
-              >
-                Services
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 apple-ease ${softwareOpen ? 'rotate-180' : ''}`} />
-              </Link>
-
-              {softwareOpen && (
-                <div className="absolute top-full right-0 mt-1 w-[800px] bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-8 animate-scale-in">
-                  <div className="grid grid-cols-2 gap-6">
-                    {Object.values(servicesMenu).map((category) => {
-                      const IconComponent = category.icon;
-                      return (
-                        <div key={category.title} className="space-y-4">
-                          <div>
-                            <div className="flex items-center gap-2 mb-2">
-                              <IconComponent className="w-5 h-5 text-brand-red" />
-                              <h3 className="font-bold text-base text-brand-black">
-                                {category.title}
-                              </h3>
-                              {category.badge && (
-                                <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
-                                  {category.badge}
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-xs text-brand-gray mb-3">{category.description}</p>
-                          </div>
-                          <div className="space-y-1">
-                            {category.items.map((item) => (
-                              <Link
-                                key={item.name}
-                                to={item.href}
-                                className="group/item block px-3 py-2.5 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease"
-                              >
-                                <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
-                                  {item.name}
-                                </div>
-                                <div className="text-xs text-brand-gray mt-0.5">
-                                  {item.description}
-                                </div>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <div className="bg-brand-light-gray rounded-xl p-4 text-center">
-                      <p className="text-sm font-semibold text-brand-black mb-3">
-                        Not sure where to start?
-                      </p>
-                      <div className="flex gap-3">
-                        <Link
-                          to="/business-audit"
-                          className="flex-1 text-center px-4 py-2.5 bg-brand-red text-white font-semibold text-sm rounded-lg hover:bg-red-700 transition-colors duration-300"
-                        >
-                          Free Discovery Call
-                        </Link>
-                        <Link
-                          to="/software"
-                          className="flex-1 text-center px-4 py-2.5 bg-brand-black text-white font-semibold text-sm rounded-lg hover:bg-gray-800 transition-colors duration-300"
-                        >
-                          View All Services
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
 
           <button
@@ -273,6 +255,81 @@ export function Navigation() {
       {menuOpen && (
         <div className="md:hidden bg-white/95 backdrop-blur-subtle border-t border-gray-200 shadow-lg animate-in">
           <div className="px-6 py-6 space-y-4">
+            <div>
+              <button
+                onClick={() => setMobileSoftwareOpen(!mobileSoftwareOpen)}
+                className="flex items-center justify-between w-full text-body-lg text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease font-medium py-2"
+              >
+                Services
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform duration-300 apple-ease ${
+                    mobileSoftwareOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {mobileSoftwareOpen && (
+                <div className="mt-2 pl-4 space-y-2 animate-in">
+                  {servicesMenu.map((item) => {
+                    const IconComponent = item.icon;
+                    return (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="flex items-start gap-3 py-2"
+                      >
+                        <IconComponent className="w-4 h-4 text-brand-red mt-0.5 flex-shrink-0" />
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-semibold text-brand-black">{item.name}</span>
+                            {item.badge && (
+                              <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-brand-gray mt-0.5">
+                            {item.description}
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  })}
+
+                  <div className="pt-4 mt-4 border-t border-gray-200">
+                    <p className="text-xs font-bold text-brand-gray uppercase tracking-wider mb-2">
+                      Partnered With
+                    </p>
+                    {partneredServices.map((item) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.href}
+                          className="flex items-start gap-3 py-2"
+                        >
+                          <IconComponent className="w-4 h-4 text-brand-red mt-0.5 flex-shrink-0" />
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-semibold text-brand-black">{item.name}</span>
+                              {item.badge && (
+                                <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-xs text-brand-gray mt-0.5">
+                              {item.description}
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div>
               <button
                 onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
@@ -301,79 +358,6 @@ export function Navigation() {
                       </Link>
                     );
                   })}
-                </div>
-              )}
-            </div>
-
-            <div>
-              <button
-                onClick={() => setMobileSoftwareOpen(!mobileSoftwareOpen)}
-                className="flex items-center justify-between w-full text-body-lg text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease font-medium py-2"
-              >
-                Services
-                <ChevronDown
-                  className={`w-5 h-5 transition-transform duration-300 apple-ease ${
-                    mobileSoftwareOpen ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-
-              {mobileSoftwareOpen && (
-                <div className="mt-2 pl-4 space-y-4 animate-in max-h-[60vh] overflow-y-auto">
-                  {Object.values(servicesMenu).map((category) => {
-                    const IconComponent = category.icon;
-                    return (
-                      <div key={category.title} className="space-y-3 pb-4 border-b border-gray-100 last:border-0">
-                        <div className="flex items-center gap-2">
-                          <IconComponent className="w-4 h-4 text-brand-red" />
-                          <span className="text-sm font-bold text-brand-black">
-                            {category.title}
-                          </span>
-                          {category.badge && (
-                            <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
-                              {category.badge}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-xs text-brand-gray pl-6">{category.description}</p>
-                        <div className="space-y-2">
-                          {category.items.map((item) => (
-                            <Link
-                              key={item.name}
-                              to={item.href}
-                              className="block pl-6 py-1.5"
-                            >
-                              <div className="text-sm font-medium text-brand-black">
-                                {item.name}
-                              </div>
-                              <div className="text-xs text-brand-gray">
-                                {item.description}
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                  <div className="bg-brand-light-gray rounded-xl p-4 mt-4">
-                    <p className="text-sm font-semibold text-brand-black mb-3">
-                      Not sure where to start?
-                    </p>
-                    <div className="space-y-2">
-                      <Link
-                        to="/business-audit"
-                        className="block text-center px-4 py-2.5 bg-brand-red text-white font-semibold text-sm rounded-lg"
-                      >
-                        Free Discovery Call
-                      </Link>
-                      <Link
-                        to="/software"
-                        className="block text-center px-4 py-2.5 bg-brand-black text-white font-semibold text-sm rounded-lg"
-                      >
-                        View All Services
-                      </Link>
-                    </div>
-                  </div>
                 </div>
               )}
             </div>
