@@ -16,7 +16,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Target, MessageSquare, Inbox, RotateCcw, FileText, Camera, BookOpen, FileText as FileTextIcon, Settings, Brain, Network, Zap, ClipboardCheck } from 'lucide-react';
+import { Menu, X, ChevronDown, FileText, BookOpen, Settings, Zap, ClipboardCheck } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Modal } from './ui/Modal';
 import { ContactForm } from './ContactForm';
@@ -371,7 +371,7 @@ export function Navigation() {
         title="Get in Touch"
       >
         <ContactForm
-          source="navigation_dropdown"
+          source="contact"
           onSuccess={() => {
             setTimeout(() => {
               setIsContactModalOpen(false);
