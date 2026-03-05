@@ -470,31 +470,19 @@ export function HomePage() {
               What We Do
             </h2>
             <p className="text-lg md:text-xl text-brand-gray max-w-3xl mx-auto">
-              From software implementation to custom automation, we handle the full spectrum of construction technology needs
+              Our proven process: Learn → Plan → Implement → Support
             </p>
           </motion.div>
 
-          <motion.div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" variants={staggerItem}>
-            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
+          {/* Main Services - The Core Workflow */}
+          <motion.div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8" variants={staggerItem}>
+            {/* Step 1: Training */}
+            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group relative" variants={fadeInUp}>
+              <div className="absolute -top-3 -left-3 w-10 h-10 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                1
+              </div>
               <motion.div
                 className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-blue-500/20"
-                whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Settings className="w-7 h-7 text-white" strokeWidth={2} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Buildxact Partner</h3>
-              <p className="text-brand-gray mb-4 text-sm">
-                Official partner for Buildxact implementation, training, and ongoing support
-              </p>
-              <Link to="/buildxact" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
-                Learn More <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
-
-            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
-              <motion.div
-                className="w-14 h-14 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-purple-500/20"
                 whileHover={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 0.6, repeat: 0 }}
               >
@@ -509,24 +497,32 @@ export function HomePage() {
               </Link>
             </motion.div>
 
-            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
+            {/* Step 2: Planning */}
+            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group relative" variants={fadeInUp}>
+              <div className="absolute -top-3 -left-3 w-10 h-10 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                2
+              </div>
               <motion.div
                 className="w-14 h-14 bg-gradient-to-br from-green-600 to-green-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-green-500/20"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.3 }}
               >
-                <Network className="w-7 h-7 text-white" strokeWidth={2} />
+                <Target className="w-7 h-7 text-white" strokeWidth={2} />
               </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Ongoing Support</h3>
+              <h3 className="text-xl font-bold text-brand-black mb-3">Planning & Strategy</h3>
               <p className="text-brand-gray mb-4 text-sm">
-                Monthly retainer support with proactive monitoring, optimization, and priority help
+                Business audits, process mapping, and strategic roadmaps for construction automation
               </p>
-              <Link to="/ongoing-support" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+              <Link to="/business-audit" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
                 Learn More <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
 
+            {/* Step 3: Implementation */}
             <motion.div className="bg-gradient-to-br from-brand-red to-red-700 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 relative overflow-hidden group" variants={fadeInUp}>
+              <div className="absolute -top-3 -left-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand-red font-bold shadow-lg">
+                3
+              </div>
               <motion.div
                 className="absolute top-2 right-2 bg-white text-brand-red text-xs font-bold px-2 py-1 rounded shadow-sm"
                 animate={{ scale: [1, 1.05, 1] }}
@@ -547,6 +543,43 @@ export function HomePage() {
               </p>
               <Link to="/pilot-program" className="inline-flex items-center gap-2 text-white font-semibold text-sm hover:gap-3 transition-all duration-300">
                 See Pilots <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Supplementary Services */}
+          <motion.div className="grid md:grid-cols-2 gap-6 md:gap-8" variants={staggerItem}>
+            <motion.div className="bg-white border-2 border-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
+              <motion.div
+                className="w-14 h-14 bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-gray-500/20"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Network className="w-7 h-7 text-white" strokeWidth={2} />
+              </motion.div>
+              <h3 className="text-xl font-bold text-brand-black mb-3">Ongoing Support</h3>
+              <p className="text-brand-gray mb-4 text-sm">
+                Monthly retainer support with proactive monitoring, optimization, and priority help
+              </p>
+              <Link to="/ongoing-support" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+                Learn More <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            <motion.div className="bg-white border-2 border-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
+              <motion.div
+                className="w-14 h-14 bg-gradient-to-br from-orange-600 to-orange-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-orange-500/20"
+                whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Settings className="w-7 h-7 text-white" strokeWidth={2} />
+              </motion.div>
+              <h3 className="text-xl font-bold text-brand-black mb-3">Buildxact Partner</h3>
+              <p className="text-brand-gray mb-4 text-sm">
+                Official partner for Buildxact implementation, training, and ongoing support
+              </p>
+              <Link to="/buildxact" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+                Learn More <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
           </motion.div>
