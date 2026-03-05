@@ -377,7 +377,80 @@ export function HomePage() {
         </motion.div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
+      {/* ============================================
+          ROI CALCULATOR BANNER
+          ============================================ */}
+      <motion.section
+        className="bg-white py-12 md:py-16 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={staggerContainer}
+      >
+        <motion.div
+          className="max-w-6xl mx-auto"
+          variants={fadeInUp}
+        >
+          <div className="bg-gradient-to-br from-brand-light-gray to-white rounded-2xl shadow-xl border-2 border-brand-red/10 p-8 md:p-12 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="flex flex-col items-start">
+                <motion.div
+                  className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-brand-red to-red-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-red/30"
+                  whileHover={{ rotate: [0, -5, 5, -5, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Calculator className="w-8 h-8 md:w-10 md:h-10 text-white" strokeWidth={2.5} />
+                </motion.div>
+
+                <h2 className="text-2xl md:text-4xl font-bold text-brand-black mb-4">
+                  Calculate Your Potential Savings
+                </h2>
+
+                <p className="text-lg md:text-xl text-brand-gray mb-6">
+                  See if you can save <span className="font-bold text-brand-red">$50K+ per year</span> with automation
+                </p>
+
+                <div className="flex flex-wrap items-center gap-3 text-sm text-brand-gray mb-2">
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-brand-accent-green" />
+                    Free Tool
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-brand-accent-green" />
+                    No Email Required
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-brand-accent-green" />
+                    2 Minutes
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-start md:items-end justify-center">
+                <Link
+                  to="/roi-calculator"
+                  className="group w-full md:w-auto"
+                >
+                  <motion.button
+                    className="w-full md:w-auto bg-brand-red text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-bold text-lg md:text-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 hover:gap-4"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Try ROI Calculator
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
+                </Link>
+
+                <p className="text-sm text-brand-gray mt-4 text-center md:text-right">
+                  Used by 30+ construction companies to identify automation opportunities
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </motion.section>
+
+      <AngleDivider direction="down-right" fromColor="#FFFFFF" toColor="#FFFFFF" height={100} />
 
       {/* ============================================
           SERVICES OVERVIEW SECTION
