@@ -26,15 +26,15 @@ export function PathCard({
   const [isHovered, setIsHovered] = useState(false);
 
   const iconColorMap = {
-    green: 'from-emerald-500 to-green-600',
-    red: 'from-brand-red to-red-700',
-    blue: 'from-blue-500 to-blue-700',
+    green: 'bg-brand-red',
+    red: 'bg-brand-red',
+    blue: 'bg-brand-black',
   };
 
   const iconShadowMap = {
-    green: 'shadow-emerald-500/30',
-    red: 'shadow-red-500/30',
-    blue: 'shadow-blue-500/30',
+    green: 'shadow-lg',
+    red: 'shadow-lg',
+    blue: 'shadow-lg',
   };
 
   return (
@@ -63,7 +63,7 @@ export function PathCard({
       <div className="relative px-6 py-5 border-b border-gray-300/70">
         {Icon && (
           <motion.div
-            className={`w-16 h-16 bg-gradient-to-br ${iconColorMap[badgeColor]} rounded-2xl flex items-center justify-center mb-4 shadow-lg ${iconShadowMap[badgeColor]}`}
+            className={`w-16 h-16 ${iconColorMap[badgeColor]} rounded-2xl flex items-center justify-center mb-4 ${iconShadowMap[badgeColor]}`}
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
@@ -78,15 +78,7 @@ export function PathCard({
             <span className="w-1.5 h-1.5 bg-brand-red rounded-full animate-pulse" />
             {label}
           </span>
-          <span
-            className={`px-3 py-1.5 rounded-full text-xs font-bold backdrop-blur-sm ${
-              badgeColor === 'green'
-                ? 'bg-emerald-500/20 text-emerald-800 border border-emerald-500/40'
-                : badgeColor === 'blue'
-                ? 'bg-blue-500/20 text-blue-800 border border-blue-500/40'
-                : 'bg-red-500/20 text-red-800 border border-red-500/40'
-            }`}
-          >
+          <span className="px-3 py-1.5 rounded-full text-xs font-bold backdrop-blur-sm bg-brand-red/20 text-brand-red border border-brand-red/40">
             {badge}
           </span>
         </div>
@@ -107,7 +99,7 @@ export function PathCard({
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-brand-red to-red-700 flex items-center justify-center mt-0.5 shadow-lg shadow-brand-red/20">
+              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-red flex items-center justify-center mt-0.5 shadow-lg">
                 <Check className="w-3 h-3 text-white" strokeWidth={3} />
               </div>
               <span className="leading-relaxed font-medium">{benefit}</span>

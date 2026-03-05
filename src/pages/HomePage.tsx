@@ -290,20 +290,20 @@ export function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.3 }}
             >
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-black text-white font-semibold text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-              >
-                <Settings className="w-5 h-5" />
-                Explore Solutions
-              </a>
               <Link
                 to="/business-audit"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-brand-black font-semibold text-base rounded-lg border-2 border-brand-black hover:bg-brand-black hover:text-white transition-all duration-300 apple-ease"
+                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-brand-red text-white font-semibold text-lg rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
               >
                 Book Free Discovery
                 <ArrowRight className="w-5 h-5" />
               </Link>
+              <a
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 px-8 py-5 bg-transparent text-brand-black font-semibold text-base rounded-lg border-2 border-brand-black hover:bg-brand-black hover:text-white transition-all duration-300 apple-ease"
+              >
+                <Settings className="w-5 h-5" />
+                Explore Solutions
+              </a>
             </motion.div>
             <motion.div
               className="flex flex-wrap items-center justify-center gap-6"
@@ -450,8 +450,6 @@ export function HomePage() {
         </motion.div>
       </motion.section>
 
-      <AngleDivider direction="down-right" fromColor="#FFFFFF" toColor="#FFFFFF" height={100} />
-
       {/* ============================================
           SERVICES OVERVIEW SECTION
           ============================================ */}
@@ -478,11 +476,8 @@ export function HomePage() {
           <motion.div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8" variants={staggerItem}>
             {/* Step 1: Training */}
             <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group relative" variants={fadeInUp}>
-              <div className="absolute -top-3 -left-3 w-10 h-10 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg">
-                1
-              </div>
               <motion.div
-                className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-blue-500/20"
+                className="w-14 h-14 bg-brand-black rounded-xl flex items-center justify-center mb-4 shadow-lg"
                 whileHover={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 0.6, repeat: 0 }}
               >
@@ -499,11 +494,8 @@ export function HomePage() {
 
             {/* Step 2: Planning */}
             <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group relative" variants={fadeInUp}>
-              <div className="absolute -top-3 -left-3 w-10 h-10 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg">
-                2
-              </div>
               <motion.div
-                className="w-14 h-14 bg-gradient-to-br from-green-600 to-green-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-green-500/20"
+                className="w-14 h-14 bg-brand-black rounded-xl flex items-center justify-center mb-4 shadow-lg"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.3 }}
               >
@@ -520,9 +512,6 @@ export function HomePage() {
 
             {/* Step 3: Implementation */}
             <motion.div className="bg-gradient-to-br from-brand-red to-red-700 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 relative overflow-hidden group" variants={fadeInUp}>
-              <div className="absolute -top-3 -left-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand-red font-bold shadow-lg">
-                3
-              </div>
               <motion.div
                 className="absolute top-2 right-2 bg-white text-brand-red text-xs font-bold px-2 py-1 rounded shadow-sm"
                 animate={{ scale: [1, 1.05, 1] }}
@@ -551,7 +540,7 @@ export function HomePage() {
           <motion.div className="grid md:grid-cols-2 gap-6 md:gap-8" variants={staggerItem}>
             <motion.div className="bg-white border-2 border-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
               <motion.div
-                className="w-14 h-14 bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-gray-500/20"
+                className="w-14 h-14 bg-brand-black rounded-xl flex items-center justify-center mb-4 shadow-lg"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.3 }}
               >
@@ -568,7 +557,7 @@ export function HomePage() {
 
             <motion.div className="bg-white border-2 border-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
               <motion.div
-                className="w-14 h-14 bg-gradient-to-br from-orange-600 to-orange-800 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-orange-500/20"
+                className="w-14 h-14 bg-brand-black rounded-xl flex items-center justify-center mb-4 shadow-lg"
                 whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                 transition={{ duration: 0.5 }}
               >
@@ -585,8 +574,6 @@ export function HomePage() {
           </motion.div>
         </div>
       </motion.section>
-
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
 
       {/* ============================================
           STATS SECTION
@@ -732,8 +719,6 @@ export function HomePage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
-
       <motion.section
         id="choose-path"
         className="bg-brand-light-gray py-10 md:py-16 px-6"
@@ -764,24 +749,10 @@ export function HomePage() {
                 'Get honest recommendations',
                 'Understand all options',
               ]}
-              badge="Most Popular"
-              badgeColor="green"
+              badge="Recommended"
+              badgeColor="red"
               href="/business-audit"
               icon={Phone}
-            />
-            <PathCard
-              label="KNOW WHAT YOU NEED?"
-              title="Direct Implementation"
-              benefits={[
-                'Software setup & training',
-                'Custom automation builds',
-                'Full system integration',
-                'Ongoing support available',
-              ]}
-              badge="Fastest"
-              badgeColor="blue"
-              href="/contact"
-              icon={Rocket}
             />
             <PathCard
               label="WANT PROOF FIRST?"
@@ -796,6 +767,20 @@ export function HomePage() {
               badgeColor="red"
               href="/pilot-program"
               icon={Award}
+            />
+            <PathCard
+              label="KNOW WHAT YOU NEED?"
+              title="Direct Implementation"
+              benefits={[
+                'Software setup & training',
+                'Custom automation builds',
+                'Full system integration',
+                'Ongoing support available',
+              ]}
+              badge="Fastest"
+              badgeColor="blue"
+              href="/contact"
+              icon={Rocket}
             />
           </motion.div>
 
@@ -857,8 +842,6 @@ export function HomePage() {
         />
       )}
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={80} />
-
       <motion.section
         className="bg-brand-light-gray py-12 md:py-20 px-6"
         style={{ position: 'relative', zIndex: 10 }}
@@ -885,7 +868,7 @@ export function HomePage() {
               transition={{ duration: 0.3, ease: appleEasing }}
             >
               <motion.div
-                className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/30"
+                className="w-20 h-20 bg-brand-red rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                 initial={{ scale: 0, rotate: -180 }}
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
@@ -907,7 +890,7 @@ export function HomePage() {
               transition={{ duration: 0.3, ease: appleEasing }}
             >
               <motion.div
-                className="w-20 h-20 bg-gradient-to-br from-brand-red to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-red-500/30"
+                className="w-20 h-20 bg-brand-red rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                 initial={{ scale: 0, y: -50 }}
                 whileInView={{ scale: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -929,7 +912,7 @@ export function HomePage() {
               transition={{ duration: 0.3, ease: appleEasing }}
             >
               <motion.div
-                className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/30"
+                className="w-20 h-20 bg-brand-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
@@ -951,7 +934,7 @@ export function HomePage() {
               transition={{ duration: 0.3, ease: appleEasing }}
             >
               <motion.div
-                className="w-20 h-20 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-orange-500/30"
+                className="w-20 h-20 bg-brand-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
                 initial={{ scale: 0, rotate: 180 }}
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
@@ -968,8 +951,6 @@ export function HomePage() {
           </motion.div>
         </div>
       </motion.section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={80} />
 
       <motion.section
         className="bg-white py-12 md:py-20 px-6"
@@ -1063,8 +1044,6 @@ export function HomePage() {
           </motion.div>
         </div>
       </motion.section>
-
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={80} />
 
       <motion.section
         className="bg-brand-light-gray py-12 md:py-16 px-6"
@@ -1198,8 +1177,6 @@ export function HomePage() {
           </motion.p>
         </div>
       </motion.section>
-
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
 
       <motion.section
         id="faq"
