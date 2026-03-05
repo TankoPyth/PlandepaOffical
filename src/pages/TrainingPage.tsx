@@ -84,6 +84,11 @@ export function TrainingPage() {
         'One workflow fully mapped and approved by the team',
         'Pilot plan with metrics and responsibilities',
       ],
+      whatItIsNot: [
+        'Not a generic team-building exercise',
+        'Not a software selection workshop',
+        'Not implementation work',
+      ],
       cta: 'Request Team Session',
     },
   ];
