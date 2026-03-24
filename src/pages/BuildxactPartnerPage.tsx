@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Check, Award, Zap, Users, Target, TrendingUp, FileText, DollarSign, Clock, Shield, Rocket, Settings, BarChart } from 'lucide-react';
+import { ArrowLeft, Check, Award, Zap, Users, Target, TrendingUp, FileText, DollarSign, Clock, Shield, Rocket, Settings, BarChart, ExternalLink, Library, Wrench, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
@@ -77,55 +77,76 @@ export function BuildxactPartnerPage() {
 
   const packages = [
     {
-      name: 'Buildxact Subscription',
-      description: 'Pure software subscription through our partnership',
-      price: 'From $149/month',
+      name: 'Template Library Access',
+      description: 'Pre-built templates for existing Buildxact subscribers',
+      price: '$150/month',
+      icon: Library,
       features: [
-        'Buildxact software license',
-        'All core features included',
-        'Regular software updates',
-        'Buildxact support team access',
-        'Australian compliance tools',
+        'Access to comprehensive library of pre-built templates',
+        'Industry-specific templates: carpentry, plumbing, renovations',
+        'Specialized templates: bathrooms, kitchens, extensions',
+        'Regularly updated and maintained by Plandepa team',
+        'New templates added monthly based on industry trends',
+        'Templates refined from real-world construction projects',
+        'Download and customize for your specific needs',
       ],
-      note: 'Software only - no implementation or training',
+      note: 'Requires active Buildxact subscription (sign up above for 5% discount)',
     },
     {
       name: 'Complete Implementation',
-      description: 'Software + full setup and training',
-      price: 'From $3,500 + subscription',
+      description: 'Full setup and training to get you running confidently',
+      price: 'From $3,500',
+      icon: Wrench,
       features: [
-        'Everything in Buildxact Subscription',
-        'Complete system configuration',
-        'Custom templates and workflows',
-        'Cost database setup',
-        'Comprehensive team training',
-        '4-week hands-on implementation',
-        '30-day post-launch support',
+        'Complete Buildxact system setup and configuration',
+        'Initial business process assessment and optimization',
+        'Software implementation tailored to your trade',
+        'Comprehensive team training program',
+        'Access to exclusive support video library',
+        'Direct support line to Plandepa implementation team',
+        'Ensure system is properly running and optimized',
+        '30-day post-launch support included',
       ],
-      note: 'One-time implementation fee + monthly subscription',
+      note: 'One-time implementation fee',
       popular: true,
     },
     {
-      name: 'Implementation + Support',
-      description: 'Complete package with ongoing optimization',
-      price: 'Custom pricing',
+      name: 'Premium Custom Package',
+      description: 'Complete business transformation with custom templates and ongoing support',
+      price: '$5,000 - $25,000',
+      icon: Sparkles,
       features: [
-        'Everything in Complete Implementation',
-        'Ongoing monthly support retainer',
-        'Continuous optimization',
-        'Priority support access',
-        'Regular training refreshers',
-        'Advanced workflow automation',
-        'Integration with other tools',
+        'Everything included in Complete Implementation',
+        'Fully custom templates built for your business workflows',
+        'Custom job scheduling and project management setup',
+        'One-on-one personalized training sessions for key team members',
+        'Ongoing monthly support retainer included in package',
+        'Regular business process optimization walkthroughs',
+        'Streamline entire business operations using Buildxact',
+        'Priority direct access to senior Plandepa consultants',
+        'Quarterly strategy and optimization reviews',
+        'Advanced automation and integration setup',
       ],
-      note: 'One-time implementation + monthly subscription + support retainer',
+      note: 'Total package price varies based on business size, complexity, and customization requirements',
     },
   ];
 
   const faqItems = [
     {
+      question: 'Do I need a Buildxact subscription to use Plandepa\'s services?',
+      answer: 'Yes. Our Template Library Access requires an active Buildxact subscription. For our Complete Implementation and Premium Custom packages, we can set you up with a new Buildxact subscription (with 5% discount through our referral link above) or work with your existing subscription.',
+    },
+    {
+      question: 'What\'s the difference between the Buildxact software and Plandepa\'s templates?',
+      answer: 'Buildxact is the estimating and project management software itself. Our templates are pre-built estimating templates, workflows, and configurations that save you hundreds of hours of setup time. Think of Buildxact as the platform, and our templates as professionally designed shortcuts for your specific trade.',
+    },
+    {
+      question: 'How do I get the 5% Buildxact discount?',
+      answer: 'Simply sign up through our referral link at the top of this page. The 5% discount is applied automatically when you use our reseller code. This discount is separate from our service packages and comes directly from Buildxact.',
+    },
+    {
       question: 'Why buy through Plandepa instead of directly from Buildxact?',
-      answer: 'You get the same pricing but with the advantage of local Brisbane/Sydney expertise. We know construction, we know Buildxact inside-out, and we can customize it specifically for your business type. Buildxact provides the software, we make sure you actually use it properly.',
+      answer: 'You get the same software pricing (actually 5% cheaper through our link!) plus the advantage of local Brisbane/Sydney expertise. We know construction, we know Buildxact inside-out, and we can customize it specifically for your business type. Buildxact provides the software, we make sure you actually use it properly.',
     },
     {
       question: 'How long does implementation take?',
@@ -232,7 +253,7 @@ export function BuildxactPartnerPage() {
                 Get Started with Buildxact
               </button>
               <a
-                href="#packages"
+                href="#referral"
                 className="bg-white text-brand-black px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-md border-2 border-brand-black"
               >
                 See Packages & Pricing
@@ -312,8 +333,63 @@ export function BuildxactPartnerPage() {
       <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
-        id="packages"
+        id="referral"
         className="bg-white py-16 md:py-24 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            variants={staggerItem}
+            className="bg-gradient-to-br from-brand-red to-brand-red/80 text-white p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                <Award className="w-4 h-4" />
+                Exclusive Partner Discount
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                Get 5% Off Your Buildxact Subscription
+              </h2>
+
+              <p className="text-lg md:text-xl text-white/90 mb-6 max-w-3xl">
+                Sign up for Buildxact through our partnership link and receive an automatic 5% discount on your subscription. This is for signing up to the Buildxact software directly.
+              </p>
+
+              <p className="text-base text-white/80 mb-8">
+                This discount is separate from Plandepa's service packages below. First, get your Buildxact subscription with 5% off, then choose how we can help you get the most out of it.
+              </p>
+
+              <a
+                href="https://app.buildxact.com/au/signup.html?resellercode=11538"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                Sign Up to Buildxact with 5% Discount
+                <ExternalLink className="w-5 h-5" />
+              </a>
+
+              <p className="text-sm text-white/70 mt-6 flex items-center gap-2">
+                <Shield className="w-4 h-4" />
+                Secure signup through official Buildxact partner portal
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
+
+      <motion.section
+        id="packages"
+        className="bg-brand-light-gray py-16 md:py-24 px-6"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -322,10 +398,10 @@ export function BuildxactPartnerPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Packages & Pricing
+              Plandepa Services & Support
             </h2>
             <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
-              Choose the package that matches your needs and budget.
+              Professional implementation and support services to maximize your Buildxact investment.
             </p>
           </motion.div>
 
@@ -343,6 +419,9 @@ export function BuildxactPartnerPage() {
                   </div>
                 )}
                 <div className="p-8">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-red/10 text-brand-red rounded-xl mb-4">
+                    <pkg.icon className="w-7 h-7" />
+                  </div>
                   <h3 className="text-2xl font-bold text-brand-black mb-2">{pkg.name}</h3>
                   <p className="text-brand-gray mb-4">{pkg.description}</p>
                   <div className="text-3xl font-bold text-brand-red mb-6">{pkg.price}</div>
@@ -351,7 +430,7 @@ export function BuildxactPartnerPage() {
                     {pkg.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
-                        <span className="text-brand-gray">{feature}</span>
+                        <span className="text-brand-gray text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -377,10 +456,10 @@ export function BuildxactPartnerPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
+      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
-        className="bg-brand-light-gray py-16 md:py-24 px-6"
+        className="bg-white py-16 md:py-24 px-6"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -393,13 +472,14 @@ export function BuildxactPartnerPage() {
                 What Makes Us Different
               </h2>
               <p className="text-lg text-brand-gray mb-8">
-                We're not just software resellers. We're construction process experts who happen to be Buildxact specialists.
+                We're not just software resellers. We're construction process experts specializing in custom templates and business streamlining.
               </p>
               <ul className="space-y-4">
                 {[
                   'Construction industry background - we understand your business',
                   'Local Brisbane & Sydney presence for on-site support',
-                  'Custom configuration for your specific trade or building type',
+                  'Custom templates built for your specific trade or building type',
+                  'Business process streamlining and workflow optimization',
                   'Integration with your existing tools and processes',
                   'Ongoing support after implementation',
                   'Real-world practical training, not generic software tutorials',
@@ -411,14 +491,14 @@ export function BuildxactPartnerPage() {
                 ))}
               </ul>
             </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="bg-brand-light-gray p-8 rounded-2xl shadow-lg">
               <Award className="w-16 h-16 text-brand-red mb-6" />
               <h3 className="text-2xl font-bold text-brand-black mb-4">Official Partner Status</h3>
               <p className="text-brand-gray mb-6">
                 We're an accredited Buildxact partner with advanced training and certification. We work directly with Buildxact to ensure our clients get the best possible experience.
               </p>
               <p className="text-brand-gray">
-                You get the same software pricing as going direct, but with expert local implementation and support included.
+                Sign up through our referral link for 5% off, then let us help you maximize your investment with expert implementation and custom templates.
               </p>
             </div>
           </motion.div>
