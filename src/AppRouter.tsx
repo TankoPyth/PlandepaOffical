@@ -18,6 +18,7 @@ import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { ScrollProgress } from './components/ui/ScrollProgress';
 import { StickyContactButton } from './components/ui/StickyContactButton';
+import { ScrollToTop } from './components/ScrollToTop';
 
 // Analytics
 import { trackChatOpened, trackChatClosed } from './utils/analytics';
@@ -118,6 +119,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 export function AppRouter() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Layout>
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center">
