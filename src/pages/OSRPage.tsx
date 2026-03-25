@@ -260,7 +260,7 @@ export function OSRPage() {
               'Finance visibility and job profitability tracking'
             ].map((workflow, index) => (
               <div key={index} className="bg-brand-light-gray p-6 rounded-lg border-l-4 border-brand-red flex items-start gap-4">
-                <div className="bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                <div className="bg-brand-cta-orange text-white w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">
                   {index + 1}
                 </div>
                 <p className="text-brand-black font-semibold">{workflow}</p>
@@ -292,7 +292,7 @@ export function OSRPage() {
           <div className="space-y-8 max-w-5xl mx-auto">
             <motion.div variants={staggerItem} className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-start gap-4 mb-4">
-                <div className="bg-brand-red text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
+                <div className="bg-brand-cta-orange text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
                   1
                 </div>
                 <div>
@@ -335,7 +335,7 @@ export function OSRPage() {
 
             <motion.div variants={staggerItem} className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-start gap-4 mb-4">
-                <div className="bg-brand-red text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
+                <div className="bg-brand-cta-orange text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
                   2
                 </div>
                 <div>
@@ -373,7 +373,7 @@ export function OSRPage() {
 
             <motion.div variants={staggerItem} className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-start gap-4 mb-4">
-                <div className="bg-brand-red text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
+                <div className="bg-brand-cta-orange text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
                   3
                 </div>
                 <div>
@@ -412,7 +412,7 @@ export function OSRPage() {
 
             <motion.div variants={staggerItem} className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-start gap-4 mb-4">
-                <div className="bg-brand-red text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
+                <div className="bg-brand-cta-orange text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
                   4
                 </div>
                 <div>
@@ -450,7 +450,7 @@ export function OSRPage() {
 
             <motion.div variants={staggerItem} className="bg-white p-8 rounded-lg shadow-lg">
               <div className="flex items-start gap-4 mb-4">
-                <div className="bg-brand-red text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
+                <div className="bg-brand-cta-orange text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl flex-shrink-0">
                   5
                 </div>
                 <div>
@@ -561,47 +561,6 @@ export function OSRPage() {
       <AngleDivider direction="up-left" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
-        className="bg-brand-light-gray py-16 md:py-24 px-6"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-6xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Pricing
-            </h2>
-            <p className="text-lg md:text-xl text-brand-gray">
-              By business size bracket
-            </p>
-          </motion.div>
-
-          <motion.div variants={staggerItem} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {[
-              { size: '2–5 staff', price: '$2,500' },
-              { size: '5–10 staff', price: '$3,500' },
-              { size: '10–16 staff', price: '$5,000' },
-              { size: '16–25 staff', price: '$6,500' }
-            ].map((tier, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-lg text-center border-2 border-gray-100 hover:border-brand-red transition-colors">
-                <p className="text-brand-gray font-semibold mb-2">{tier.size}</p>
-                <p className="text-4xl font-bold text-brand-black">{tier.price}</p>
-              </div>
-            ))}
-          </motion.div>
-
-          <motion.div variants={staggerItem} className="mt-12 bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto border-l-4 border-brand-red">
-            <p className="text-lg text-brand-gray">
-              <span className="font-semibold text-brand-black">Optional:</span> OSR fee credited toward implementation if proceeding within an agreed timeframe.
-            </p>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
-
-      <motion.section
         className="bg-white py-16 md:py-24 px-6"
         initial="hidden"
         whileInView="visible"
@@ -620,32 +579,26 @@ export function OSRPage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <motion.div variants={staggerItem} className="bg-brand-light-gray p-8 rounded-lg">
-              <div className="bg-brand-red text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+              <div className="bg-brand-cta-orange text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl mb-4">
                 1
               </div>
               <h3 className="text-2xl font-bold text-brand-black mb-4">
                 Move into phased implementation plus governance retainer
               </h3>
-              <p className="text-brand-gray mb-4">
-                We execute the roadmap in phases and protect against regression.
-              </p>
-              <p className="text-brand-black font-semibold">
-                Pricing: $10,000–$50,000 depending on phases and complexity
+              <p className="text-brand-gray">
+                We execute the roadmap in phases and protect against regression. This ensures your business systems remain optimized and continue to evolve with your needs.
               </p>
             </motion.div>
 
             <motion.div variants={staggerItem} className="bg-brand-light-gray p-8 rounded-lg">
-              <div className="bg-brand-red text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl mb-4">
+              <div className="bg-brand-cta-orange text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xl mb-4">
                 2
               </div>
               <h3 className="text-2xl font-bold text-brand-black mb-4">
                 Run the One Workflow Pilot first
               </h3>
-              <p className="text-brand-gray mb-4">
-                We prove value on one workflow, then scale.
-              </p>
-              <p className="text-brand-black font-semibold">
-                Pricing: Custom based on chosen workflow
+              <p className="text-brand-gray">
+                We prove value on one workflow, then scale. This lower-risk approach lets you see results before committing to larger changes.
               </p>
             </motion.div>
           </div>

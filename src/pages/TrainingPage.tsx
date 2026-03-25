@@ -22,7 +22,6 @@ export function TrainingPage() {
       title: 'Automation Possibilities Webinar',
       subtitle: 'What is Possible With Automation in a Construction Business',
       duration: '90 minutes',
-      price: 'Free',
       whoFor: 'Owners, directors, and admin or ops leads who keep hearing about AI but do not know what is real, what is safe, or what applies to their business.',
       whatYouGet: [
         'The 5 most common admin and management bottlenecks in construction, and why they keep repeating',
@@ -44,7 +43,6 @@ export function TrainingPage() {
       title: 'Automation Clarity Session',
       subtitle: 'Turn AI confusion into a clear, practical first-step plan',
       duration: '90 minutes remote',
-      price: '$500 - $1,500',
       whoFor: 'Construction businesses that want clarity on what to automate first, without committing to a major project.',
       whatYouGet: [
         'Identify where work is getting stuck, duplicated, or lost',
@@ -71,7 +69,6 @@ export function TrainingPage() {
       title: 'Half-Day Team Clarity Workshop',
       subtitle: 'Align your team so changes actually stick',
       duration: 'Half-day (remote or on-site)',
-      price: '$2,500 - $7,500',
       whoFor: 'Teams who need alignment across admin, ops, and leadership so changes actually stick.',
       whatYouGet: [
         'What changes first',
@@ -221,7 +218,7 @@ export function TrainingPage() {
             <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className="bg-brand-cta-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Register for Free Webinar
               </button>
@@ -322,15 +319,11 @@ export function TrainingPage() {
                           <Clock className="w-4 h-4 text-brand-red" />
                           {offer.duration}
                         </div>
-                        <div className="flex items-center gap-2 font-bold text-brand-red">
-                          <DollarSign className="w-4 h-4" />
-                          {offer.price}
-                        </div>
                       </div>
                     </div>
                     <button
                       onClick={() => setIsContactModalOpen(true)}
-                      className="bg-brand-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand-red/90 transition-all duration-300 shadow-lg whitespace-nowrap"
+                      className="bg-brand-cta-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 shadow-lg whitespace-nowrap"
                     >
                       {offer.cta}
                     </button>
@@ -479,7 +472,7 @@ export function TrainingPage() {
         variants={staggerContainer}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-2xl text-center">
+          <motion.div variants={staggerItem} className="bg-brand-cta-orange text-white p-8 md:p-12 rounded-2xl text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Ready to Understand What is Possible?
             </h3>

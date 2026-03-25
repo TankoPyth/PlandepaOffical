@@ -61,7 +61,7 @@ export function Footer() {
               Blog
             </Link>
             <Link
-              to="/business-audit"
+              to="/operations-review"
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
             >
               Free Discovery

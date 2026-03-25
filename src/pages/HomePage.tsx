@@ -291,7 +291,7 @@ export function HomePage() {
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.3 }}
             >
               <Link
-                to="/business-audit"
+                to="/operations-review"
                 className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-brand-red text-white font-semibold text-lg rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
               >
                 Book Free Discovery
@@ -505,7 +505,7 @@ export function HomePage() {
               <p className="text-brand-gray mb-4 text-sm">
                 Business audits, process mapping, and strategic roadmaps for construction automation
               </p>
-              <Link to="/business-audit" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+              <Link to="/operations-review" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
                 Learn More <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -751,7 +751,7 @@ export function HomePage() {
               ]}
               badge="Recommended"
               badgeColor="red"
-              href="/business-audit"
+              href="/operations-review"
               icon={Phone}
             />
             <PathCard
@@ -814,7 +814,7 @@ export function HomePage() {
               Pick one bottleneck. We'll build control around it in 28 days. Prove value before scaling.
             </p>
             <p className="text-sm md:text-base text-brand-gray max-w-2xl mx-auto">
-              Want something different? We can pilot any workflow in your business. <Link to="/business-audit" className="text-brand-red font-semibold hover:underline">Book a discovery call</Link> to discuss your specific needs.
+              Want something different? We can pilot any workflow in your business. <Link to="/operations-review" className="text-brand-red font-semibold hover:underline">Book a discovery call</Link> to discuss your specific needs.
             </p>
           </motion.div>
 
@@ -1032,7 +1032,7 @@ export function HomePage() {
 
           <motion.div className="mt-12 text-center" variants={fadeInUp}>
             <a
-              href="/business-audit"
+              href="/operations-review"
               className="inline-flex items-center gap-2 px-10 py-4 bg-brand-black text-white font-semibold text-lg rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
             >
               Apply for Pilot Slot
