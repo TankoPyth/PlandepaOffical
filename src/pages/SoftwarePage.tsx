@@ -1,8 +1,14 @@
-import { ArrowLeft, Settings, Zap, Network, TrendingUp, CheckCircle } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowLeft, Settings, Zap, Network, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { AngleDivider } from '../components/ui/AngleDivider';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
+import { Modal } from '../components/ui/Modal';
+import { ContactForm } from '../components/ContactForm';
+import { ThankYouModal } from '../components/ThankYouModal';
+import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 
 const serviceCategories = [
   {
@@ -136,6 +142,9 @@ const serviceCategories = [
 ];
 
 export function SoftwarePage() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+
   const softwareBreadcrumb = breadcrumbSchema([
     { name: 'Home', url: 'https://plandepa.com/' },
     { name: 'Services', url: 'https://plandepa.com/software' },
@@ -149,37 +158,55 @@ export function SoftwarePage() {
         keywords="Buildxact partner Brisbane, construction software implementation Sydney, Buildxact setup Brisbane, construction AI automation Australia, ClickUp construction setup, construction software consultant Brisbane, builder software integration Sydney"
       />
       <StructuredData data={[softwareBreadcrumb]} />
-      <section className="bg-brand-off-white py-12 md:py-16 px-6">
+
+      <motion.section
+        className="bg-brand-off-white py-12 md:py-16 px-6"
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+      >
         <div className="max-w-7xl mx-auto">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm md:text-base text-brand-gray hover:text-brand-black mb-8 md:mb-12 group transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
-            Back to home
-          </Link>
+          <motion.div variants={staggerItem}>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-sm md:text-base text-brand-gray hover:text-brand-black mb-8 md:mb-12 group transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
+              Back to home
+            </Link>
+          </motion.div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-black mb-4 md:mb-6">
+          <motion.h1 variants={staggerItem} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-black mb-4 md:mb-6">
             Everything We Do For Construction Companies
-          </h1>
-          <p className="text-base md:text-lg text-brand-gray max-w-3xl mb-8 md:mb-12 leading-relaxed">
+          </motion.h1>
+          <motion.p variants={staggerItem} className="text-base md:text-lg text-brand-gray max-w-3xl mb-8 md:mb-12 leading-relaxed">
             From software setup to AI automation, lead generation to ongoing support - we handle all the tech stuff so you can focus on building. Here's the complete picture of what we can help you with.
-          </p>
+          </motion.p>
         </div>
-      </section>
+      </motion.section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
+      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={80} />
 
-      <section className="bg-white py-16 md:py-24 px-6">
+      <motion.section
+        className="bg-white py-16 md:py-24 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
         <div className="max-w-7xl mx-auto space-y-24">
           {serviceCategories.map((category, categoryIndex) => {
             const IconComponent = category.icon;
             return (
-              <div key={category.title} className="space-y-8">
+              <motion.div key={category.title} className="space-y-8" variants={staggerItem}>
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-16 h-16 bg-brand-red/10 rounded-2xl flex items-center justify-center">
+                  <motion.div
+                    className="flex-shrink-0 w-16 h-16 bg-brand-red/10 rounded-2xl flex items-center justify-center"
+                    whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <IconComponent className="w-8 h-8 text-brand-red" />
-                  </div>
+                  </motion.div>
                   <div>
                     <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-3">
                       {category.title}
@@ -192,9 +219,11 @@ export function SoftwarePage() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   {category.services.map((service) => (
-                    <div
+                    <motion.div
                       key={service.name}
-                      className="group bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-brand-red transition-all duration-500 apple-ease hover:shadow-2xl hover:-translate-y-1"
+                      className="group bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-brand-red transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
+                      whileHover={{ y: -5 }}
+                      variants={fadeInUp}
                     >
                       <h3 className="text-xl font-bold text-brand-black mb-3 group-hover:text-brand-red transition-colors">
                         {service.name}
@@ -210,18 +239,30 @@ export function SoftwarePage() {
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
                 {categoryIndex < serviceCategories.length - 1 && (
-                  <div className="border-t border-gray-200 mt-12"></div>
+                  <AngleDivider direction="up-left" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
                 )}
-              </div>
+              </motion.div>
             );
           })}
+        </div>
+      </motion.section>
 
-          <div className="mt-16 text-center bg-brand-off-white rounded-2xl p-12">
+      <AngleDivider direction="down-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={80} />
+
+      <motion.section
+        className="bg-brand-light-gray py-16 md:py-24 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center bg-white rounded-2xl p-12 shadow-lg" variants={fadeInUp}>
             <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-4">
               Not Sure Where To Start?
             </h2>
@@ -229,22 +270,37 @@ export function SoftwarePage() {
               Book a free audit and we'll walk you through exactly what would help your business most. No pressure, no sales pitch - just honest advice from tradies who get it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/free-audit"
-                className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-brand-red text-white font-bold text-base rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg hover:scale-105 active:scale-95"
+              <motion.button
+                onClick={() => setIsContactModalOpen(true)}
+                className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-brand-cta-orange text-white font-bold text-base rounded-lg hover:bg-orange-600 transition-all duration-300 shadow-lg hover:scale-105 active:scale-95"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Book Free Audit
-              </Link>
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
               <Link
                 to="/roi-calculator"
-                className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-brand-black text-white font-bold text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-lg hover:scale-105 active:scale-95"
+                className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-brand-black text-white font-bold text-base rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-lg hover:scale-105 active:scale-95"
               >
                 Calculate Your ROI
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
+
+      <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} title="Book Free Audit">
+        <ContactForm
+          onSuccess={() => {
+            setIsContactModalOpen(false);
+            setShowThankYou(true);
+          }}
+        />
+      </Modal>
+
+      <ThankYouModal isOpen={showThankYou} onClose={() => setShowThankYou(false)} />
     </>
   );
 }

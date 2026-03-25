@@ -106,10 +106,10 @@ export default function BlogPostPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-brand-off-white flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-slate-600 mt-4">Loading article...</p>
+          <div className="inline-block w-12 h-12 border-4 border-brand-red border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-brand-gray mt-4">Loading article...</p>
         </div>
       </div>
     );
@@ -117,13 +117,13 @@ export default function BlogPostPage() {
 
   if (notFound || !post) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-brand-off-white flex items-center justify-center">
         <div className="text-center px-6">
-          <h1 className="text-4xl font-bold text-slate-900 mb-4">Article Not Found</h1>
-          <p className="text-slate-600 mb-8">The article you're looking for doesn't exist or has been removed.</p>
+          <h1 className="text-4xl font-bold text-brand-black mb-4">Article Not Found</h1>
+          <p className="text-brand-gray mb-8">The article you're looking for doesn't exist or has been removed.</p>
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-brand-red text-white rounded-lg hover:bg-red-700 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Blog
@@ -187,7 +187,7 @@ export default function BlogPostPage() {
     : 'Jump to AI6 Checklist';
 
   return (
-    <article className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-16">
+    <article className="min-h-screen bg-brand-off-white py-16">
       <ScrollProgress />
 
       <div className={`mx-auto px-6 ${showTableOfContents ? 'max-w-7xl' : 'max-w-4xl'}`}>
@@ -200,7 +200,7 @@ export default function BlogPostPage() {
         <div className={`${showTableOfContents ? 'lg:ml-72 max-w-4xl' : ''}`}>
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-red-600 transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-brand-gray hover:text-brand-red transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Blog
@@ -212,16 +212,16 @@ export default function BlogPostPage() {
             transition={{ duration: 0.6 }}
           >
             {post.category && (
-              <span className="inline-block px-4 py-1 bg-red-600 text-white text-sm font-semibold rounded-full mb-4">
+              <span className="inline-block px-4 py-1 bg-brand-red text-white text-sm font-semibold rounded-full mb-4">
                 {post.category.name}
               </span>
             )}
 
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-brand-black mb-6">
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-slate-600 mb-6">
+            <div className="flex flex-wrap items-center gap-6 text-brand-gray mb-6">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 <span>{formattedDate}</span>
@@ -234,7 +234,7 @@ export default function BlogPostPage() {
                 <img
                   src="/linkedin_profile_picture_(1).png"
                   alt={post.author_name}
-                  className="w-8 h-8 rounded-full object-cover border-2 border-slate-200"
+                  className="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
                   loading="lazy"
                 />
                 <span>By {post.author_name}</span>
@@ -244,14 +244,14 @@ export default function BlogPostPage() {
             {showTableOfContents && (
               <button
                 onClick={scrollToInteractive}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-red text-white rounded-lg hover:bg-red-700 transition-colors mb-6 font-medium"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-cta-orange text-white rounded-lg hover:bg-orange-600 transition-colors mb-6 font-medium"
               >
                 <Calculator className="w-4 h-4" />
                 {quickActionLabel}
               </button>
             )}
 
-            <div className="mb-8 pb-8 border-b border-slate-200">
+            <div className="mb-8 pb-8 border-b border-gray-200">
               <SocialProofBar />
             </div>
 
@@ -265,8 +265,8 @@ export default function BlogPostPage() {
             </div>
           )}
 
-          <div className="prose prose-lg prose-slate max-w-none mb-8">
-            <p className="text-xl text-slate-600 leading-relaxed mb-8">
+          <div className="prose prose-lg max-w-none mb-8">
+            <p className="text-xl text-brand-gray leading-relaxed mb-8">
               {post.excerpt}
             </p>
 
@@ -276,19 +276,19 @@ export default function BlogPostPage() {
               <ConstructionAIBusinessCasePost />
             ) : (
               <div
-                className="text-slate-700 leading-relaxed"
+                className="text-brand-gray leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             )}
           </div>
 
           {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap items-center gap-3 pt-8 border-t border-slate-200">
-              <Tag className="w-5 h-5 text-slate-600" />
+            <div className="flex flex-wrap items-center gap-3 pt-8 border-t border-gray-200">
+              <Tag className="w-5 h-5 text-brand-gray" />
               {post.tags.map((tag) => (
                 <span
                   key={tag.slug}
-                  className="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full"
+                  className="px-3 py-1 bg-brand-light-gray text-brand-black text-sm rounded-full"
                 >
                   {tag.name}
                 </span>
@@ -301,7 +301,7 @@ export default function BlogPostPage() {
 
       {relatedPosts.length > 0 && (
         <div className="max-w-6xl mx-auto px-6 mt-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">Related Articles</h2>
+          <h2 className="text-3xl font-bold text-brand-black mb-8">Related Articles</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {relatedPosts.map((relatedPost) => (
               <Link
@@ -309,7 +309,7 @@ export default function BlogPostPage() {
                 to={`/blog/${relatedPost.slug}`}
                 className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all"
               >
-                <div className="relative h-48 bg-slate-100">
+                <div className="relative h-48 bg-brand-light-gray">
                   {relatedPost.featured_image ? (
                     <img
                       src={relatedPost.featured_image}
@@ -318,18 +318,18 @@ export default function BlogPostPage() {
                       loading="lazy"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-                      <span className="text-slate-400 text-2xl font-bold">
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-brand-light-gray to-gray-200">
+                      <span className="text-brand-gray text-2xl font-bold">
                         {relatedPost.title.charAt(0)}
                       </span>
                     </div>
                   )}
                 </div>
                 <div className="p-4">
-                  <h3 className="font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors line-clamp-2">
+                  <h3 className="font-bold text-brand-black mb-2 group-hover:text-brand-red transition-colors line-clamp-2">
                     {relatedPost.title}
                   </h3>
-                  <p className="text-sm text-slate-600 line-clamp-2">
+                  <p className="text-sm text-brand-gray line-clamp-2">
                     {relatedPost.excerpt}
                   </p>
                 </div>

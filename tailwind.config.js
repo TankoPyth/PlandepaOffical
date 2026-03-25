@@ -12,6 +12,7 @@ export default {
           'off-white': '#FAFAFA',
           white: '#FFFFFF',
           'accent-green': '#10B981',
+          'cta-orange': '#FF6B35',
         },
       },
       fontFamily: {

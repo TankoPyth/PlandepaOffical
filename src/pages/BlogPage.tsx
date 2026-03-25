@@ -4,6 +4,10 @@ import { motion } from 'framer-motion';
 import BlogCard from '../components/BlogCard';
 import CategoryFilter from '../components/CategoryFilter';
 import { supabase } from '../lib/supabase';
+import { AngleDivider } from '../components/ui/AngleDivider';
+import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
+import { SEO } from '../components/SEO';
+import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 
 interface BlogPost {
   id: string;
@@ -92,82 +96,113 @@ export default function BlogPage() {
     setFilteredPosts(filtered);
   };
 
+  const blogBreadcrumb = breadcrumbSchema([
+    { name: 'Home', url: 'https://plandepa.com/' },
+    { name: 'Blog', url: 'https://plandepa.com/blog' },
+  ]);
+
   return (
-    <section className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-16 px-6">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-            Construction Industry{' '}
-            <span className="text-red-600">Insights</span>
-          </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-            Expert advice, industry trends, and practical tips to help your construction business thrive
-          </p>
+    <>
+      <SEO
+        title="Construction Industry Blog - AI Automation & Business Tips | Brisbane Sydney"
+        description="Expert construction business advice, AI automation tips, and industry insights for Australian builders. Learn how to improve efficiency and grow your construction company."
+        keywords="construction blog Australia, construction AI blog, construction business tips, builder automation advice, construction industry insights Brisbane Sydney"
+      />
+      <StructuredData data={[blogBreadcrumb]} />
 
-          <div className="max-w-2xl mx-auto relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search articles..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-full border border-slate-200 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20 transition-all"
-            />
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <CategoryFilter
-            categories={categories}
-            activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
-          />
-        </motion.div>
-
-        {loading ? (
-          <div className="text-center py-16">
-            <div className="inline-block w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-slate-600 mt-4">Loading articles...</p>
-          </div>
-        ) : filteredPosts.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
-          >
-            <p className="text-xl text-slate-600">
-              {searchQuery || activeCategory
-                ? 'No articles found matching your criteria'
-                : 'No articles available yet'}
+      <motion.section
+        className="bg-brand-off-white py-16 px-6"
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.div variants={staggerItem} className="text-center mb-16">
+            <h1 className="text-5xl md:text-6xl font-bold text-brand-black mb-6">
+              Construction Industry{' '}
+              <span className="text-brand-red">Insights</span>
+            </h1>
+            <p className="text-xl text-brand-gray max-w-3xl mx-auto mb-8">
+              Expert advice, industry trends, and practical tips to help your construction business thrive
             </p>
-          </motion.div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post) => (
-              <BlogCard
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                slug={post.slug}
-                excerpt={post.excerpt}
-                featuredImage={post.featured_image || undefined}
-                authorName={post.author_name}
-                publishedAt={post.published_at}
-                categoryName={post.category?.name}
+
+            <div className="max-w-2xl mx-auto relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-gray" />
+              <motion.input
+                type="text"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-200 focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/20 transition-all"
+                variants={fadeInUp}
               />
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+            </div>
+          </motion.div>
+
+          <motion.div variants={staggerItem}>
+            <CategoryFilter
+              categories={categories}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+            />
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={80} />
+
+      <motion.section
+        className="bg-white py-16 px-6 min-h-screen"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
+        <div className="max-w-7xl mx-auto">
+          {loading ? (
+            <div className="text-center py-16">
+              <div className="inline-block w-12 h-12 border-4 border-brand-red border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-brand-gray mt-4">Loading articles...</p>
+            </div>
+          ) : filteredPosts.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <p className="text-xl text-brand-gray">
+                {searchQuery || activeCategory
+                  ? 'No articles found matching your criteria'
+                  : 'No articles available yet'}
+              </p>
+            </motion.div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
+                <motion.div
+                  key={post.id}
+                  variants={fadeInUp}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <BlogCard
+                    id={post.id}
+                    title={post.title}
+                    slug={post.slug}
+                    excerpt={post.excerpt}
+                    featuredImage={post.featured_image || undefined}
+                    authorName={post.author_name}
+                    publishedAt={post.published_at}
+                    categoryName={post.category?.name}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
+      </motion.section>
+    </>
   );
 }

@@ -1,7 +1,13 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { AngleDivider } from '../components/ui/AngleDivider';
 import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
+import { Modal } from '../components/ui/Modal';
+import { ContactForm } from '../components/ContactForm';
+import { ThankYouModal } from '../components/ThankYouModal';
+import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 
 interface CaseStudy {
   id: string;
@@ -77,6 +83,9 @@ const caseStudiesData: CaseStudy[] = [
 
 export function CaseStudiesPage() {
   const [selectedId, setSelectedId] = useState(caseStudiesData[0].id);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+
   const selectedCase = caseStudiesData.find((c) => c.id === selectedId)!;
 
   const caseStudiesBreadcrumb = breadcrumbSchema([
@@ -92,125 +101,177 @@ export function CaseStudiesPage() {
         keywords="construction case studies Australia, construction automation results Brisbane, construction efficiency improvement Sydney, builder automation success stories, Buildxact case studies, construction ROI examples"
       />
       <StructuredData data={[caseStudiesBreadcrumb]} />
-      <section className="bg-brand-off-white py-12 md:py-16 px-6">
+
+      <motion.section
+        className="bg-brand-off-white py-12 md:py-16 px-6"
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+      >
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl md:text-display-md font-bold text-brand-black mb-4">
+          <motion.h1 variants={staggerItem} className="text-3xl md:text-display-md font-bold text-brand-black mb-4">
             Case Studies
-          </h1>
-          <p className="text-body-xl text-brand-gray max-w-3xl">
+          </motion.h1>
+          <motion.p variants={staggerItem} className="text-body-xl text-brand-gray max-w-3xl">
             Real results from construction companies just like yours
-          </p>
+          </motion.p>
         </div>
-      </section>
+      </motion.section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
+      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={80} />
 
-      <section className="bg-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
+      <motion.section
+        className="bg-white py-12 md:py-16 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-12">
             <aside className="lg:w-64 flex-shrink-0">
               <div className="sticky top-24 space-y-3">
                 {caseStudiesData.map((caseStudy) => (
-                  <button
+                  <motion.button
                     key={caseStudy.id}
                     onClick={() => setSelectedId(caseStudy.id)}
-                    className={`w-full text-left px-6 py-4 rounded-full transition-all duration-300 apple-ease ${
+                    className={`w-full text-left px-6 py-4 rounded-full transition-all duration-300 ${
                       selectedId === caseStudy.id
                         ? 'bg-brand-black text-white scale-105'
                         : 'bg-brand-light-gray text-brand-gray hover:bg-gray-200 hover:scale-105'
                     }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    variants={fadeInUp}
                   >
                     <span className="font-semibold">{caseStudy.companyType}</span>
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </aside>
 
-            <div className="flex-1">
-              <div className="aspect-video bg-brand-light-gray rounded-2xl mb-12 flex items-center justify-center">
+            <motion.div className="flex-1" variants={staggerItem}>
+              <motion.div
+                key={selectedCase.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="aspect-video bg-brand-light-gray rounded-2xl mb-12 flex items-center justify-center"
+              >
                 <span className="text-heading-md text-brand-gray">
                   {selectedCase.companyType}
                 </span>
-              </div>
+              </motion.div>
 
-              <div className="mb-8">
-                <h2 className="text-heading-xl font-bold text-brand-black mb-2">
-                  {selectedCase.companyType}
-                </h2>
-                <p className="text-body-lg text-brand-gray">{selectedCase.location}</p>
-              </div>
-
-              <div className="space-y-16">
-                <div>
-                  <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                    Challenge
-                  </h3>
-                  <p className="mt-6 text-body-lg text-brand-gray leading-relaxed">
-                    {selectedCase.problem}
-                  </p>
+              <motion.div
+                key={`${selectedCase.id}-content`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <div className="mb-8">
+                  <h2 className="text-heading-xl font-bold text-brand-black mb-2">
+                    {selectedCase.companyType}
+                  </h2>
+                  <p className="text-body-lg text-brand-gray">{selectedCase.location}</p>
                 </div>
 
-                <div>
-                  <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                    Solution
-                  </h3>
-                  <p className="mt-6 text-body-lg text-brand-gray leading-relaxed">
-                    {selectedCase.solution}
-                  </p>
-                </div>
+                <div className="space-y-16">
+                  <div>
+                    <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
+                      Challenge
+                    </h3>
+                    <p className="mt-6 text-body-lg text-brand-gray leading-relaxed">
+                      {selectedCase.problem}
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                    Impact
-                  </h3>
-                  <ul className="mt-6 space-y-4">
-                    {selectedCase.results.map((result, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed"
-                      >
-                        <span className="text-brand-black text-2xl">•</span>
-                        <span>{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <div>
+                    <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
+                      Solution
+                    </h3>
+                    <p className="mt-6 text-body-lg text-brand-gray leading-relaxed">
+                      {selectedCase.solution}
+                    </p>
+                  </div>
 
-                <div className="bg-brand-light-gray rounded-2xl p-12">
-                  <p className="text-heading-sm text-brand-black italic mb-6 leading-relaxed">
-                    "{selectedCase.testimonial}"
-                  </p>
-                  <p className="text-body-lg text-brand-gray">
-                    <span className="font-semibold text-brand-black">
-                      {selectedCase.clientName}
-                    </span>
-                    , {selectedCase.clientRole}
-                  </p>
+                  <div>
+                    <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
+                      Impact
+                    </h3>
+                    <ul className="mt-6 space-y-4">
+                      {selectedCase.results.map((result, index) => (
+                        <motion.li
+                          key={index}
+                          className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                        >
+                          <span className="text-brand-black text-2xl">•</span>
+                          <span>{result}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="bg-brand-light-gray rounded-2xl p-12">
+                    <p className="text-heading-sm text-brand-black italic mb-6 leading-relaxed">
+                      "{selectedCase.testimonial}"
+                    </p>
+                    <p className="text-body-lg text-brand-gray">
+                      <span className="font-semibold text-brand-black">
+                        {selectedCase.clientName}
+                      </span>
+                      , {selectedCase.clientRole}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
+      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={80} />
 
-      <section className="bg-brand-light-gray py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
+      <motion.section
+        className="bg-brand-light-gray py-12 md:py-16 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-8">
+          <motion.h2 variants={staggerItem} className="text-3xl md:text-display-sm font-bold text-brand-black mb-8">
             Ready for similar results?
-          </h2>
-          <p className="text-body-xl text-brand-gray mb-12 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p variants={staggerItem} className="text-body-xl text-brand-gray mb-12 max-w-2xl mx-auto">
             Start with a free check-up to see what we can do for your business.
-          </p>
-          <a
-            href="/free-audit"
-            className="inline-flex items-center gap-3 px-12 py-5 bg-brand-black text-white font-semibold text-body-lg rounded-full hover:bg-gray-800 transition-all duration-300 apple-ease shadow-xl hover:scale-105 active:scale-95"
+          </motion.p>
+          <motion.button
+            onClick={() => setIsContactModalOpen(true)}
+            className="inline-flex items-center gap-3 px-12 py-5 bg-brand-cta-orange text-white font-semibold text-body-lg rounded-full hover:bg-orange-600 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Book your free audit
-          </a>
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
         </div>
-      </section>
+      </motion.section>
+
+      <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} title="Book Free Audit">
+        <ContactForm
+          onSuccess={() => {
+            setIsContactModalOpen(false);
+            setShowThankYou(true);
+          }}
+        />
+      </Modal>
+
+      <ThankYouModal isOpen={showThankYou} onClose={() => setShowThankYou(false)} />
     </>
   );
 }

@@ -603,7 +603,7 @@ export function ROICalculatorPage() {
                       <button
                         type="submit"
                         disabled={!validateStep(currentStep)}
-                        className="inline-flex items-center gap-2 px-8 py-3 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-brand-cta-orange text-white font-semibold rounded-lg hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200"
                       >
                         Calculate ROI
                         <Calculator className="w-4 h-4" />
@@ -674,7 +674,7 @@ export function ROICalculatorPage() {
                         <div className="flex flex-col gap-3">
                           <button
                             onClick={() => setShowCalendly(true)}
-                            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-cta-orange text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
                           >
                             <Calendar className="w-5 h-5" />
                             Book a Call Now
