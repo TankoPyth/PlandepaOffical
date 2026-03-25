@@ -257,51 +257,48 @@ export function Navigation() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-subtle border-t border-gray-200 shadow-lg animate-in">
-          <div className="px-6 py-6 space-y-4">
+        <div className="md:hidden bg-white/95 backdrop-blur-subtle border-t border-gray-200 shadow-lg animate-in max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <div className="px-4 py-4 space-y-3">
             <div>
               <button
                 onClick={() => setMobileSoftwareOpen(!mobileSoftwareOpen)}
-                className="flex items-center justify-between w-full text-body-lg text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease font-medium py-2"
+                className="flex items-center justify-between w-full text-base text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease font-semibold py-2"
               >
                 Services
                 <ChevronDown
-                  className={`w-5 h-5 transition-transform duration-300 apple-ease ${
+                  className={`w-4 h-4 transition-transform duration-300 apple-ease ${
                     mobileSoftwareOpen ? 'rotate-180' : ''
                   }`}
                 />
               </button>
 
               {mobileSoftwareOpen && (
-                <div className="mt-2 pl-4 space-y-2 animate-in">
+                <div className="mt-1 pl-2 space-y-1 animate-in">
                   {servicesMenu.map((item) => {
                     const IconComponent = item.icon;
                     return (
                       <Link
                         key={item.name}
                         to={item.href}
-                        className="flex items-start gap-3 py-2"
+                        className="flex items-center gap-2 py-2 px-2 hover:bg-gray-50 rounded-lg transition-colors"
                       >
-                        <IconComponent className="w-4 h-4 text-brand-red mt-0.5 flex-shrink-0" />
-                        <div>
-                          <div className="flex items-center gap-2">
+                        <IconComponent className="w-4 h-4 text-brand-red flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5 flex-wrap">
                             <span className="text-sm font-semibold text-brand-black">{item.name}</span>
                             {item.badge && (
-                              <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+                              <span className="text-[10px] font-semibold text-brand-red bg-red-50 px-1.5 py-0.5 rounded-full">
                                 {item.badge}
                               </span>
                             )}
-                          </div>
-                          <div className="text-xs text-brand-gray mt-0.5">
-                            {item.description}
                           </div>
                         </div>
                       </Link>
                     );
                   })}
 
-                  <div className="pt-4 mt-4 border-t border-gray-200">
-                    <p className="text-xs font-bold text-brand-gray uppercase tracking-wider mb-2">
+                  <div className="pt-2 mt-2 border-t border-gray-200">
+                    <p className="text-[10px] font-bold text-brand-gray uppercase tracking-wider mb-1 px-2">
                       Partnered With
                     </p>
                     {partneredServices.map((item) => {
@@ -310,20 +307,17 @@ export function Navigation() {
                         <Link
                           key={item.name}
                           to={item.href}
-                          className="flex items-start gap-3 py-2"
+                          className="flex items-center gap-2 py-2 px-2 hover:bg-gray-50 rounded-lg transition-colors"
                         >
-                          <IconComponent className="w-4 h-4 text-brand-red mt-0.5 flex-shrink-0" />
-                          <div>
-                            <div className="flex items-center gap-2">
+                          <IconComponent className="w-4 h-4 text-brand-red flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5 flex-wrap">
                               <span className="text-sm font-semibold text-brand-black">{item.name}</span>
                               {item.badge && (
-                                <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+                                <span className="text-[10px] font-semibold text-brand-red bg-red-50 px-1.5 py-0.5 rounded-full">
                                   {item.badge}
                                 </span>
                               )}
-                            </div>
-                            <div className="text-xs text-brand-gray mt-0.5">
-                              {item.description}
                             </div>
                           </div>
                         </Link>
@@ -337,27 +331,27 @@ export function Navigation() {
             <div>
               <button
                 onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
-                className="flex items-center justify-between w-full text-body-lg text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease font-medium py-2"
+                className="flex items-center justify-between w-full text-base text-brand-black hover:text-brand-red transition-colors duration-300 apple-ease font-semibold py-2"
               >
                 Resources
                 <ChevronDown
-                  className={`w-5 h-5 transition-transform duration-300 apple-ease ${
+                  className={`w-4 h-4 transition-transform duration-300 apple-ease ${
                     mobileResourcesOpen ? 'rotate-180' : ''
                   }`}
                 />
               </button>
 
               {mobileResourcesOpen && (
-                <div className="mt-2 pl-4 space-y-2 animate-in">
+                <div className="mt-1 pl-2 space-y-1 animate-in">
                   {resourcesMenu.map((item) => {
                     const IconComponent = item.icon;
                     return (
                       <Link
                         key={item.name}
                         to={item.href}
-                        className="flex items-center gap-3 py-2 text-sm text-brand-gray hover:text-brand-black transition-colors"
+                        className="flex items-center gap-2 py-2 px-2 hover:bg-gray-50 rounded-lg transition-colors text-sm text-brand-black font-medium"
                       >
-                        <IconComponent className="w-4 h-4 text-brand-red" />
+                        <IconComponent className="w-4 h-4 text-brand-red flex-shrink-0" />
                         <span>{item.name}</span>
                       </Link>
                     );
