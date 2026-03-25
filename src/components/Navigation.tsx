@@ -131,7 +131,8 @@ export function Navigation() {
               </button>
 
               {softwareOpen && (
-                <div className="absolute top-full right-0 mt-1 w-[380px] bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
+                <div className="absolute top-full right-0 pt-2 w-[380px]">
+                  <div className="bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
                   <div className="space-y-2">
                     {servicesMenu.map((item) => {
                       const IconComponent = item.icon;
@@ -199,6 +200,7 @@ export function Navigation() {
                     </div>
                   </div>
                 </div>
+                </div>
               )}
             </div>
 
@@ -215,7 +217,8 @@ export function Navigation() {
               </button>
 
               {resourcesOpen && (
-                <div className="absolute top-full right-0 mt-1 w-[320px] bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
+                <div className="absolute top-full right-0 pt-2 w-[320px]">
+                  <div className="bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
                   <div className="space-y-2">
                     {resourcesMenu.map((item) => {
                       const IconComponent = item.icon;
@@ -238,6 +241,7 @@ export function Navigation() {
                       );
                     })}
                   </div>
+                </div>
                 </div>
               )}
             </div>
