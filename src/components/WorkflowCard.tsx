@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Video as LucideIcon } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useRef, useState, memo, useCallback } from 'react';
 
 interface WorkflowCardProps {
   icon: LucideIcon;
@@ -11,7 +11,7 @@ interface WorkflowCardProps {
   onClick: () => void;
 }
 
-export function WorkflowCard({ icon: Icon, title, painPoint, hoursSaved, isPopular, onClick }: WorkflowCardProps) {
+export const WorkflowCard = memo(function WorkflowCard({ icon: Icon, title, painPoint, hoursSaved, isPopular, onClick }: WorkflowCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -24,7 +24,7 @@ export function WorkflowCard({ icon: Icon, title, painPoint, hoursSaved, isPopul
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['7.5deg', '-7.5deg']);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7.5deg', '7.5deg']);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
@@ -39,13 +39,17 @@ export function WorkflowCard({ icon: Icon, title, painPoint, hoursSaved, isPopul
 
     x.set(xPct);
     y.set(yPct);
-  };
+  }, [x, y]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     x.set(0);
     y.set(0);
     setIsHovered(false);
-  };
+  }, [x, y]);
+
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
+  }, []);
 
   return (
     <motion.div
@@ -61,7 +65,7 @@ export function WorkflowCard({ icon: Icon, title, painPoint, hoursSaved, isPopul
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
     >
@@ -180,4 +184,4 @@ export function WorkflowCard({ icon: Icon, title, painPoint, hoursSaved, isPopul
       </motion.div>
     </motion.div>
   );
-}
+});

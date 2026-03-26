@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft, Tag, Calculator } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { supabase } from '../lib/supabase';
-import AustralianAIPolicyPost from '../components/blog/AustralianAIPolicyPost';
-import ConstructionAIBusinessCasePost from '../components/blog/ConstructionAIBusinessCasePost';
 import { ScrollProgress } from '../components/ui/ScrollProgress';
 import { SocialProofBar } from '../components/ui/SocialProofBar';
 import { TableOfContents } from '../components/ui/TableOfContents';
+
+const AustralianAIPolicyPost = lazy(() => import('../components/blog/AustralianAIPolicyPost'));
+const ConstructionAIBusinessCasePost = lazy(() => import('../components/blog/ConstructionAIBusinessCasePost'));
 
 interface BlogPost {
   id: string;
@@ -271,9 +272,13 @@ export default function BlogPostPage() {
             </p>
 
             {post.slug === 'australian-ai-policy-2025' ? (
-              <AustralianAIPolicyPost />
+              <Suspense fallback={<div className="text-center py-8 text-brand-gray">Loading...</div>}>
+                <AustralianAIPolicyPost />
+              </Suspense>
             ) : post.slug === 'ai-business-case-construction' ? (
-              <ConstructionAIBusinessCasePost />
+              <Suspense fallback={<div className="text-center py-8 text-brand-gray">Loading...</div>}>
+                <ConstructionAIBusinessCasePost />
+              </Suspense>
             ) : (
               <div
                 className="text-brand-gray leading-relaxed"

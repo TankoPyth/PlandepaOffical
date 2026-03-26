@@ -21,7 +21,6 @@ declare global {
 export function trackEvent(eventName: string, eventParams?: Record<string, any>) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, eventParams);
-    console.log('[Analytics]', eventName, eventParams);
   }
 }
 

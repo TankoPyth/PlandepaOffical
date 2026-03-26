@@ -1,5 +1,5 @@
-import { LucideIcon } from 'lucide-react';
-import { useState } from 'react';
+import { Video as LucideIcon } from 'lucide-react';
+import { useState, memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 interface MinimalServiceCardProps {
@@ -8,18 +8,21 @@ interface MinimalServiceCardProps {
   description: string;
 }
 
-export function MinimalServiceCard({
+export const MinimalServiceCard = memo(function MinimalServiceCard({
   icon: Icon,
   title,
   description,
 }: MinimalServiceCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
+
   return (
     <div
       className="relative bg-brand-light-gray rounded-lg md:rounded-xl p-5 md:p-6 hover:bg-white hover:shadow-lg transition-all duration-500 apple-ease h-full flex flex-col hover:-translate-y-1 will-animate border border-transparent hover:border-gray-200 overflow-hidden"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <motion.div
         className="absolute top-0 left-0 w-full h-[2px] bg-brand-red origin-left"
@@ -42,4 +45,4 @@ export function MinimalServiceCard({
       </p>
     </div>
   );
-}
+});

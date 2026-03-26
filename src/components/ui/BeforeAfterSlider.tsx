@@ -1,35 +1,43 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { FileText, Mail, Search, Sparkles, BarChart3, CheckCircle2 } from 'lucide-react';
 
 export function BeforeAfterSlider() {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
 
-  const handleMove = (clientX: number) => {
+  const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
 
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const percentage = (x / rect.width) * 100;
-    setSliderPosition(Math.max(0, Math.min(100, percentage)));
-  };
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+    }
 
-  const handleMouseMove = (e: MouseEvent) => {
+    rafRef.current = requestAnimationFrame(() => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const percentage = (x / rect.width) * 100;
+      setSliderPosition(Math.max(0, Math.min(100, percentage)));
+    });
+  }, []);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (isDragging) handleMove(e.clientX);
-  };
+  }, [isDragging, handleMove]);
 
-  const handleTouchMove = (e: TouchEvent) => {
+  const handleTouchMove = useCallback((e: TouchEvent) => {
     if (isDragging && e.touches[0]) handleMove(e.touches[0].clientX);
-  };
+  }, [isDragging, handleMove]);
 
-  const handleEnd = () => setIsDragging(false);
+  const handleEnd = useCallback(() => setIsDragging(false), []);
 
   useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleEnd);
-      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener('touchmove', handleTouchMove, { passive: true });
       document.addEventListener('touchend', handleEnd);
 
       return () => {
@@ -37,16 +45,22 @@ export function BeforeAfterSlider() {
         document.removeEventListener('mouseup', handleEnd);
         document.removeEventListener('touchmove', handleTouchMove);
         document.removeEventListener('touchend', handleEnd);
+        if (rafRef.current !== null) {
+          cancelAnimationFrame(rafRef.current);
+        }
       };
     }
-  }, [isDragging]);
+  }, [isDragging, handleMouseMove, handleTouchMove, handleEnd]);
+
+  const handleMouseDown = useCallback(() => setIsDragging(true), []);
+  const handleTouchStart = useCallback(() => setIsDragging(true), []);
 
   return (
     <div
       ref={containerRef}
       className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-2xl cursor-grab active:cursor-grabbing select-none"
-      onMouseDown={() => setIsDragging(true)}
-      onTouchStart={() => setIsDragging(true)}
+      onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-slate-100 flex items-center justify-center p-8">
         <div className="text-center">

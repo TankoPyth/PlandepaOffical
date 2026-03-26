@@ -15,16 +15,12 @@
  * - Add service: Edit servicesMenu object
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, memo } from 'react';
 import { Menu, X, ChevronDown, FileText, BookOpen, Settings, Zap, ClipboardCheck } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Modal } from './ui/Modal';
 import { ContactForm } from './ContactForm';
 
-/**
- * SERVICES DROPDOWN - SIMPLIFIED SERVICE MENU
- * Main service offerings with partnered solutions
- */
 const servicesMenu = [
   {
     name: 'Training & Education',
@@ -73,6 +69,57 @@ const resourcesMenu = [
   }
 ];
 
+const MenuItemLink = memo(({ item }: { item: typeof servicesMenu[0] | typeof partneredServices[0] }) => {
+  const IconComponent = item.icon;
+  return (
+    <Link
+      to={item.href}
+      className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease group/item"
+    >
+      <IconComponent className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
+      <div className="flex-1">
+        <div className="flex items-center gap-2">
+          <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
+            {item.name}
+          </div>
+          {'badge' in item && item.badge && (
+            <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
+              {item.badge}
+            </span>
+          )}
+        </div>
+        <div className="text-xs text-brand-gray mt-0.5">
+          {item.description}
+        </div>
+      </div>
+    </Link>
+  );
+});
+
+MenuItemLink.displayName = 'MenuItemLink';
+
+const ResourceMenuItemLink = memo(({ item }: { item: typeof resourcesMenu[0] }) => {
+  const IconComponent = item.icon;
+  return (
+    <Link
+      to={item.href}
+      className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease group/item"
+    >
+      <IconComponent className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
+      <div>
+        <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
+          {item.name}
+        </div>
+        <div className="text-xs text-brand-gray mt-0.5">
+          {item.description}
+        </div>
+      </div>
+    </Link>
+  );
+});
+
+ResourceMenuItemLink.displayName = 'ResourceMenuItemLink';
+
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -84,11 +131,19 @@ export function Navigation() {
   const location = useLocation();
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -134,33 +189,9 @@ export function Navigation() {
                 <div className="absolute top-full right-0 pt-2 w-[380px]">
                   <div className="bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
                   <div className="space-y-2">
-                    {servicesMenu.map((item) => {
-                      const IconComponent = item.icon;
-                      return (
-                        <Link
-                          key={item.name}
-                          to={item.href}
-                          className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease group/item"
-                        >
-                          <IconComponent className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2">
-                              <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
-                                {item.name}
-                              </div>
-                              {item.badge && (
-                                <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
-                                  {item.badge}
-                                </span>
-                              )}
-                            </div>
-                            <div className="text-xs text-brand-gray mt-0.5">
-                              {item.description}
-                            </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
+                    {servicesMenu.map((item) => (
+                      <MenuItemLink key={item.name} item={item} />
+                    ))}
                   </div>
 
                   <div className="mt-6 pt-6 border-t border-gray-200">
@@ -170,33 +201,9 @@ export function Navigation() {
                       </p>
                     </div>
                     <div className="space-y-2">
-                      {partneredServices.map((item) => {
-                        const IconComponent = item.icon;
-                        return (
-                          <Link
-                            key={item.name}
-                            to={item.href}
-                            className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease group/item"
-                          >
-                            <IconComponent className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2">
-                                <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
-                                  {item.name}
-                                </div>
-                                {item.badge && (
-                                  <span className="text-xs font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded-full">
-                                    {item.badge}
-                                  </span>
-                                )}
-                              </div>
-                              <div className="text-xs text-brand-gray mt-0.5">
-                                {item.description}
-                              </div>
-                            </div>
-                          </Link>
-                        );
-                      })}
+                      {partneredServices.map((item) => (
+                        <MenuItemLink key={item.name} item={item} />
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -220,26 +227,9 @@ export function Navigation() {
                 <div className="absolute top-full right-0 pt-2 w-[320px]">
                   <div className="bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
                   <div className="space-y-2">
-                    {resourcesMenu.map((item) => {
-                      const IconComponent = item.icon;
-                      return (
-                        <Link
-                          key={item.name}
-                          to={item.href}
-                          className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-all duration-200 apple-ease group/item"
-                        >
-                          <IconComponent className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
-                          <div>
-                            <div className="text-sm font-semibold text-brand-black group-hover/item:text-brand-red transition-colors">
-                              {item.name}
-                            </div>
-                            <div className="text-xs text-brand-gray mt-0.5">
-                              {item.description}
-                            </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
+                    {resourcesMenu.map((item) => (
+                      <ResourceMenuItemLink key={item.name} item={item} />
+                    ))}
                   </div>
                 </div>
                 </div>
