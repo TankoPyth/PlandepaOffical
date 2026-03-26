@@ -42,6 +42,8 @@ const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const ThankYouPage = lazy(() => import('./pages/ThankYouPage').then(m => ({ default: m.ThankYouPage })));
+const AdCampaignLandingPage = lazy(() => import('./pages/AdCampaignLandingPage').then(m => ({ default: m.default })));
+const BuildxactAdLandingPage = lazy(() => import('./pages/BuildxactAdLandingPage').then(m => ({ default: m.default })));
 
 /**
  * Layout Component
@@ -120,15 +122,22 @@ export function AppRouter() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Layout>
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-pulse text-gray-600">Loading...</div>
-          </div>
-        }>
-          <Routes>
-            {/* Home page - shows at www.plandepa.com/ */}
-            <Route path="/" element={<HomePage />} />
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-pulse text-gray-600">Loading...</div>
+        </div>
+      }>
+        <Routes>
+          {/* Landing pages without Layout (have their own header/footer) */}
+          <Route path="/lp/ad-campaign" element={<AdCampaignLandingPage />} />
+          <Route path="/lp/buildxact-ad" element={<BuildxactAdLandingPage />} />
+
+          {/* All other routes wrapped in Layout */}
+          <Route path="*" element={
+            <Layout>
+              <Routes>
+                {/* Home page - shows at www.plandepa.com/ */}
+                <Route path="/" element={<HomePage />} />
 
             {/* Service pages */}
             <Route path="/business-audit" element={<BusinessAuditPage />} />
@@ -149,15 +158,17 @@ export function AppRouter() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/contact/thank-you" element={<ThankYouPage />} />
 
-            {/* Blog pages */}
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} />  {/* :slug = post URL name */}
+                {/* Blog pages */}
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />  {/* :slug = post URL name */}
 
-            {/* 404 catch-all route - MUST be last */}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </Layout>
+                {/* 404 catch-all route - MUST be last */}
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Layout>
+          } />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
