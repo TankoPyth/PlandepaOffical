@@ -9,7 +9,7 @@ import { trackContactFormSubmit } from '../utils/analytics';
 const CONTACT_WEBHOOK_URL = import.meta.env.VITE_CONTACT_WEBHOOK_URL || '';
 
 interface ContactFormProps {
-  source?: 'contact' | 'homepage' | 'sticky_button' | 'business_audit' | 'lead_generation';
+  source?: 'contact' | 'homepage' | 'sticky_button' | 'business_audit' | 'lead_generation' | 'buildxact_ad';
   onSuccess?: () => void;
 }
 

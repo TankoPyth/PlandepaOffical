@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { Shield, Clock, Hammer, BookOpen, Zap, CheckCircle2, ArrowRight, Linkedin, Calendar } from 'lucide-react';
+import { Shield, Clock, Hammer, BookOpen, Zap, CheckCircle2, ArrowRight, Linkedin } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { fadeInUp, staggerContainer } from '../utils/animations';
+import { ContactForm } from '../components/ContactForm';
 
 export default function BuildxactAdLandingPage() {
   const handleBookCall = () => {
@@ -326,7 +327,43 @@ export default function BuildxactAdLandingPage() {
           </div>
         </section>
 
-        {/* Final CTA and Calendly Placeholder */}
+        {/* Contact Form Section */}
+        <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-white to-brand-light-gray">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+              className="text-center mb-12"
+            >
+              <motion.h2
+                variants={fadeInUp}
+                className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-black mb-6"
+              >
+                Can't Find a Time? <span className="text-brand-red">Send Us a Message</span>
+              </motion.h2>
+
+              <motion.p
+                variants={fadeInUp}
+                className="text-xl text-brand-gray max-w-2xl mx-auto"
+              >
+                Fill out the form below and we'll get back to you within 24 hours to discuss your custom Buildxact template.
+              </motion.p>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeInUp}
+            >
+              <ContactForm source="buildxact_ad" />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Calendly Section */}
         <section id="calendly-section" className="py-16 md:py-24 px-4 bg-gradient-to-b from-brand-light-gray to-white">
           <div className="max-w-5xl mx-auto">
             <motion.div
@@ -352,22 +389,13 @@ export default function BuildxactAdLandingPage() {
 
               <motion.div
                 variants={fadeInUp}
-                className="bg-white border-2 border-dashed border-brand-black/20 rounded-xl p-12 mb-8 min-h-[500px] flex flex-col items-center justify-center"
+                className="bg-white rounded-xl shadow-lg overflow-hidden mb-8"
               >
-                <Calendar className="w-16 h-16 text-brand-black/30 mb-4" />
-                <p className="text-brand-black/60 font-medium mb-2">Calendly Embed Placeholder</p>
-                <p className="text-sm text-brand-black/40 max-w-md">Replace this div with your Calendly inline embed code</p>
-                <p className="text-xs text-brand-black/30 mt-2">Recommended height: 500-700px</p>
-              </motion.div>
-
-              <motion.div variants={fadeInUp}>
-                <button
-                  onClick={handleBookCall}
-                  className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-xl text-lg inline-flex items-center gap-2 group"
-                >
-                  Get Your Custom Template
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                <div
+                  className="calendly-inline-widget"
+                  data-url="https://calendly.com/admin-plandepa/30min?hide_event_type_details=1&hide_gdpr_banner=1"
+                  style={{ minWidth: '320px', height: '700px' }}
+                ></div>
               </motion.div>
 
               <motion.p
