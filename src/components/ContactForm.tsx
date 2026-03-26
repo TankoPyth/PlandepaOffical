@@ -48,12 +48,19 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
     setErrorMessage('');
 
     try {
+      // Validate all fields are filled
+      if (!formData.full_name.trim() || !formData.email.trim() ||
+          !formData.company_name.trim() || !formData.phone_number.trim() ||
+          !formData.message.trim()) {
+        throw new Error('Please fill out all fields');
+      }
+
       const submissionData = {
-        full_name: formData.full_name,
-        email: formData.email,
-        company_name: formData.company_name || null,
-        phone_number: formData.phone_number || null,
-        message: formData.message,
+        full_name: formData.full_name.trim(),
+        email: formData.email.trim(),
+        company_name: formData.company_name.trim(),
+        phone_number: formData.phone_number.trim(),
+        message: formData.message.trim(),
         source_page: source,
         status: 'new',
         submitted_at: new Date().toISOString(),
@@ -139,7 +146,7 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
 
       <div className="space-y-2">
         <label htmlFor="company_name" className="block text-sm font-semibold text-brand-black">
-          Company Name
+          Company Name <span className="text-brand-red">*</span>
         </label>
         <input
           id="company_name"
@@ -147,15 +154,16 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
           type="text"
           value={formData.company_name}
           onChange={handleInputChange}
+          required
           disabled={isSubmitting}
           className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-black placeholder-gray-400 focus:border-brand-black focus:outline-none transition-colors duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
-          placeholder="ABC Construction (optional)"
+          placeholder="ABC Construction"
         />
       </div>
 
       <div className="space-y-2">
         <label htmlFor="phone_number" className="block text-sm font-semibold text-brand-black">
-          Phone Number
+          Phone Number <span className="text-brand-red">*</span>
         </label>
         <input
           id="phone_number"
@@ -163,9 +171,10 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
           type="tel"
           value={formData.phone_number}
           onChange={handleInputChange}
+          required
           disabled={isSubmitting}
           className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-black placeholder-gray-400 focus:border-brand-black focus:outline-none transition-colors duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
-          placeholder="+61 400 000 000 (optional)"
+          placeholder="+61 400 000 000"
         />
       </div>
 
