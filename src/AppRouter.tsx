@@ -44,6 +44,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ defaul
 const ThankYouPage = lazy(() => import('./pages/ThankYouPage').then(m => ({ default: m.ThankYouPage })));
 const AdCampaignLandingPage = lazy(() => import('./pages/AdCampaignLandingPage').then(m => ({ default: m.default })));
 const BuildxactAdLandingPage = lazy(() => import('./pages/BuildxactAdLandingPage').then(m => ({ default: m.default })));
+const PipelineRecoveryReviewPage = lazy(() => import('./pages/PipelineRecoveryReviewPage').then(m => ({ default: m.PipelineRecoveryReviewPage })));
 
 /**
  * Layout Component
@@ -150,6 +151,8 @@ export function AppRouter() {
             <Route path="/buildxact" element={<BuildxactPartnerPage />} />
             <Route path="/lead-generation" element={<LeadGenerationPage />} />
             <Route path="/roi-calculator" element={<ROICalculatorPage />} />
+            <Route path="/pipeline-recovery-review" element={<PipelineRecoveryReviewPage />} />
+            <Route path="/revenue-leak-scorecard" element={<Navigate to="/pipeline-recovery-review" replace />} />
 
             {/* Information pages */}
             <Route path="/case-studies" element={<CaseStudiesPage />} />

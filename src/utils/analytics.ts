@@ -10,6 +10,7 @@ declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
+    fbq?: (...args: any[]) => void;
   }
 }
 
@@ -22,6 +23,17 @@ export function trackEvent(eventName: string, eventParams?: Record<string, any>)
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, eventParams);
   }
+}
+
+export function trackMetaCustomEvent(eventName: string, eventParams?: Record<string, any>) {
+  if (typeof window !== 'undefined' && window.fbq) {
+    window.fbq('trackCustom', eventName, eventParams);
+  }
+}
+
+export function trackMarketingEvent(eventName: string, eventParams?: Record<string, any>) {
+  trackEvent(eventName, eventParams);
+  trackMetaCustomEvent(eventName, eventParams);
 }
 
 /**
@@ -196,5 +208,61 @@ export function trackChatMessageSent(messageCount: number) {
   trackEvent('chat_message_sent', {
     widget_type: 'voiceflow',
     message_count: messageCount,
+  });
+}
+
+export type PipelineScorecardResultBand = 'controlled' | 'leaking' | 'bleeding';
+
+export function trackScorecardPageView() {
+  trackMarketingEvent('scorecard_page_view', {
+    page: 'pipeline_recovery_review',
+  });
+}
+
+export function trackScorecardStart() {
+  trackMarketingEvent('scorecard_start', {
+    page: 'pipeline_recovery_review',
+  });
+}
+
+export function trackScorecardQuestionAnswered(questionId: string, answerScore: number) {
+  trackMarketingEvent('scorecard_question_answered', {
+    question_id: questionId,
+    answer_score: answerScore,
+  });
+}
+
+export function trackScorecardComplete(totalScore: number, resultBand: PipelineScorecardResultBand) {
+  trackMarketingEvent('scorecard_complete', {
+    total_score: totalScore,
+    result_band: resultBand,
+  });
+}
+
+export function trackScorecardResultView(totalScore: number, resultBand: PipelineScorecardResultBand) {
+  trackMarketingEvent('scorecard_result_view', {
+    total_score: totalScore,
+    result_band: resultBand,
+  });
+}
+
+export function trackPipelineReviewCtaClick(location: string, resultBand?: PipelineScorecardResultBand) {
+  trackMarketingEvent('pipeline_review_cta_click', {
+    location,
+    ...(resultBand ? { result_band: resultBand } : {}),
+  });
+}
+
+export function trackCalendlyOpen(source: string, resultBand?: PipelineScorecardResultBand) {
+  trackMarketingEvent('calendly_open', {
+    source,
+    ...(resultBand ? { result_band: resultBand } : {}),
+  });
+}
+
+export function trackCalendlyBooked(source: string, resultBand?: PipelineScorecardResultBand) {
+  trackMarketingEvent('calendly_booked', {
+    source,
+    ...(resultBand ? { result_band: resultBand } : {}),
   });
 }

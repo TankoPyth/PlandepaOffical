@@ -1,8 +1,10 @@
-export const appleEasing = [0.16, 1, 0.3, 1];
-export const quickEasing = [0.4, 0, 0.2, 1];
-export const smoothEasing = [0.25, 0.1, 0.25, 1];
+import { type Variants } from 'framer-motion';
 
-export const fadeInUp = {
+export const appleEasing: [number, number, number, number] = [0.16, 1, 0.3, 1];
+export const quickEasing: [number, number, number, number] = [0.4, 0, 0.2, 1];
+export const smoothEasing: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
+
+export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,
     y: 40,
@@ -17,7 +19,7 @@ export const fadeInUp = {
   },
 };
 
-export const fadeIn = {
+export const fadeIn: Variants = {
   hidden: {
     opacity: 0,
   },
@@ -30,7 +32,7 @@ export const fadeIn = {
   },
 };
 
-export const scaleIn = {
+export const scaleIn: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.95,
@@ -45,7 +47,7 @@ export const scaleIn = {
   },
 };
 
-export const staggerContainer = {
+export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -56,7 +58,7 @@ export const staggerContainer = {
   },
 };
 
-export const staggerItem = {
+export const staggerItem: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
