@@ -3,7 +3,6 @@ import { ArrowLeft, Check, Award, Zap, Users, Target, TrendingUp, FileText, Doll
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -242,7 +241,7 @@ export function BuildxactPartnerPage() {
             <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg"
               >
                 Get Started with Buildxact
               </button>
@@ -257,7 +256,6 @@ export function BuildxactPartnerPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -278,7 +276,7 @@ export function BuildxactPartnerPage() {
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {buildxactBenefits.map((benefit, index) => (
-              <div key={index} className="bg-brand-light-gray p-6 rounded-xl">
+              <div key={index} className="bg-brand-light-gray p-6 rounded-lg">
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-red/10 text-brand-red rounded-lg mb-4">
                   <benefit.icon className="w-6 h-6" />
                 </div>
@@ -290,7 +288,6 @@ export function BuildxactPartnerPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         className="bg-brand-light-gray py-16 md:py-24 px-6"
@@ -311,7 +308,7 @@ export function BuildxactPartnerPage() {
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {implementationSteps.map((step, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-md">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-red text-white rounded-lg mb-4">
                   <step.icon className="w-6 h-6" />
                 </div>
@@ -324,7 +321,6 @@ export function BuildxactPartnerPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         id="referral"
@@ -337,7 +333,7 @@ export function BuildxactPartnerPage() {
         <div className="max-w-5xl mx-auto">
           <motion.div
             variants={staggerItem}
-            className="bg-gradient-to-br from-brand-red to-brand-red/80 text-white p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden"
+            className="bg-brand-red text-white p-8 md:p-12 rounded-lg relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
@@ -364,7 +360,7 @@ export function BuildxactPartnerPage() {
                 href="https://app.buildxact.com/au/signup.html?resellercode=11538"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className="inline-flex items-center gap-3 bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg"
               >
                 Sign Up to Buildxact with 5% Discount
                 <ExternalLink className="w-5 h-5" />
@@ -379,7 +375,6 @@ export function BuildxactPartnerPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         id="packages"
@@ -403,7 +398,7 @@ export function BuildxactPartnerPage() {
             {packages.map((pkg, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-2xl shadow-lg overflow-hidden ${
+                className={`bg-white rounded-lg shadow-lg overflow-hidden ${
                   pkg.popular ? 'ring-2 ring-brand-red' : ''
                 }`}
               >
@@ -413,7 +408,7 @@ export function BuildxactPartnerPage() {
                   </div>
                 )}
                 <div className="p-8">
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-red/10 text-brand-red rounded-xl mb-4">
+                  <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-red/10 text-brand-red rounded-lg mb-4">
                     <pkg.icon className="w-7 h-7" />
                   </div>
                   <h3 className="text-2xl font-bold text-brand-black mb-2">{pkg.name}</h3>
@@ -450,7 +445,6 @@ export function BuildxactPartnerPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -485,7 +479,7 @@ export function BuildxactPartnerPage() {
                 ))}
               </ul>
             </div>
-            <div className="bg-brand-light-gray p-8 rounded-2xl shadow-lg">
+            <div className="bg-brand-light-gray p-8 rounded-lg shadow-lg">
               <Award className="w-16 h-16 text-brand-red mb-6" />
               <h3 className="text-2xl font-bold text-brand-black mb-4">Official Partner Status</h3>
               <p className="text-brand-gray mb-6">
@@ -499,7 +493,6 @@ export function BuildxactPartnerPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -509,7 +502,7 @@ export function BuildxactPartnerPage() {
         variants={staggerContainer}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-2xl text-center">
+          <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-lg text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Ready to Transform Your Estimating?
             </h3>
@@ -518,7 +511,7 @@ export function BuildxactPartnerPage() {
             </p>
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg"
             >
               Book Your Buildxact Demo
             </button>
@@ -526,7 +519,6 @@ export function BuildxactPartnerPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <SimpleFAQ items={faqItems} />
 

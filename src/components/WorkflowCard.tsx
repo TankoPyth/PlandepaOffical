@@ -86,7 +86,7 @@ export const WorkflowCard = memo(function WorkflowCard({ icon: Icon, title, pain
       )}
 
       <motion.div
-        className="relative bg-white rounded-2xl p-8 h-full border-2 border-brand-light-gray overflow-hidden"
+        className="relative bg-white rounded-lg p-8 h-full border-2 border-brand-light-gray overflow-hidden"
         style={{
           transformStyle: 'preserve-3d',
           boxShadow: isHovered
@@ -118,7 +118,7 @@ export const WorkflowCard = memo(function WorkflowCard({ icon: Icon, title, pain
 
         <div className="relative z-10" style={{ transform: 'translateZ(50px)' }}>
           <motion.div
-            className="w-16 h-16 bg-brand-red/10 rounded-2xl flex items-center justify-center mb-6"
+            className="w-16 h-16 bg-brand-red/10 rounded-lg flex items-center justify-center mb-6"
             animate={{
               rotate: isHovered ? [0, -5, 5, -5, 0] : 0,
             }}
@@ -175,7 +175,7 @@ export const WorkflowCard = memo(function WorkflowCard({ icon: Icon, title, pain
         </div>
 
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-red via-red-400 to-brand-red"
+          className="absolute bottom-0 left-0 right-0 h-1 bg-brand-red"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}

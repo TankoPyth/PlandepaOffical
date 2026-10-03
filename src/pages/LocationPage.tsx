@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, Inbox, FileText, Wrench, ClipboardList, Camera, BarChart3 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowRight, MapPin } from 'lucide-react';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
-import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
+import { fadeInUp } from '../utils/animations';
+import { motion } from 'framer-motion';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
@@ -12,12 +11,12 @@ import { LOCATIONS } from '../seo/site';
 import { OFFER_PATH } from '../seo/offer';
 
 const USE_CASES = [
-  { icon: Inbox, name: 'Enquiry capture & follow-up', desc: 'Every enquiry from web, phone, email and social lands in one pipeline, gets assigned, and is followed up automatically. No lead goes cold.' },
-  { icon: FileText, name: 'Quoting & estimating', desc: 'Templated quotes that go out the same day, with automatic follow-ups. Works alongside Buildxact or your existing estimating tool.' },
-  { icon: Wrench, name: 'Variations & approvals', desc: 'Variations captured on site, priced, sent for sign-off and escalated if they stall, before the work starts, not after.' },
-  { icon: ClipboardList, name: 'Job handover', desc: 'A structured handover from sales to delivery with required fields and owners, so nothing is lost between the contract and day one on site.' },
-  { icon: Camera, name: 'Site capture & admin', desc: 'Photos, notes and site diaries captured once, tagged to the right job, and routed to the right person. AI drafts the paperwork.' },
-  { icon: BarChart3, name: 'Reporting', desc: 'Revenue, pipeline, job progress and costs in one live view, not a Monday morning phone call.' },
+  { name: 'Enquiry capture & follow-up', desc: 'Every enquiry from web, phone, email and social lands in one pipeline, gets assigned, and is followed up automatically. No lead goes cold.' },
+  { name: 'Quoting & estimating', desc: 'Templated quotes that go out the same day, with automatic follow-ups. Works alongside Buildxact or your existing estimating tool.' },
+  { name: 'Variations & approvals', desc: 'Variations captured on site, priced, sent for sign-off and escalated if they stall, before the work starts, not after.' },
+  { name: 'Job handover', desc: 'A structured handover from sales to delivery with required fields and owners, so nothing is lost between the contract and day one on site.' },
+  { name: 'Site capture & admin', desc: 'Photos, notes and site diaries captured once, tagged to the right job, and routed to the right person. AI drafts the paperwork.' },
+  { name: 'Reporting', desc: 'Revenue, pipeline, job progress and costs in one live view, not a Monday morning phone call.' },
 ];
 
 export function LocationPage({ location }: { location: keyof typeof LOCATIONS }) {
@@ -41,7 +40,7 @@ export function LocationPage({ location }: { location: keyof typeof LOCATIONS })
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={open}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               Book a fit call <ArrowRight className="w-5 h-5" />
             </button>
@@ -56,7 +55,6 @@ export function LocationPage({ location }: { location: keyof typeof LOCATIONS })
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
 
       <section className="bg-white py-12 md:py-16 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
@@ -64,7 +62,7 @@ export function LocationPage({ location }: { location: keyof typeof LOCATIONS })
             <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-4">More work. Same office team.</h2>
             <p className="text-brand-gray leading-relaxed">{loc.context}</p>
           </div>
-          <div className="bg-brand-light-gray rounded-2xl p-8">
+          <div className="bg-brand-light-gray rounded-lg p-8">
             <h3 className="text-xl font-bold text-brand-black mb-4">Areas we work with</h3>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-brand-gray">
               {[loc.city, ...loc.nearby].map((place) => (
@@ -80,23 +78,17 @@ export function LocationPage({ location }: { location: keyof typeof LOCATIONS })
       <section id="what-we-automate" className="bg-brand-light-gray py-12 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black text-center mb-12">Where AI actually helps a builder</h2>
-          <motion.div
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
-          >
-            {USE_CASES.map((u) => (
-              <motion.div key={u.name} variants={staggerItem} className="bg-white rounded-xl p-6 hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 bg-brand-black rounded-xl flex items-center justify-center mb-4">
-                  <u.icon className="w-6 h-6 text-white" />
+          <div className="grid md:grid-cols-2 gap-x-16">
+            {USE_CASES.map((u, i) => (
+              <div key={u.name} className="border-t border-gray-300 py-6 flex gap-6">
+                <span className="text-sm font-bold text-brand-red pt-1">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 className="text-xl font-bold text-brand-black mb-1">{u.name}</h3>
+                  <p className="text-brand-gray leading-relaxed">{u.desc}</p>
                 </div>
-                <h3 className="text-lg font-bold text-brand-black mb-2">{u.name}</h3>
-                <p className="text-sm text-brand-gray leading-relaxed">{u.desc}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -129,7 +121,7 @@ export function LocationPage({ location }: { location: keyof typeof LOCATIONS })
           </p>
           <button
             onClick={open}
-            className="inline-flex items-center gap-3 px-10 py-4 bg-brand-black text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-3 px-10 py-4 bg-brand-black text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300"
           >
             Book a fit call <ArrowRight className="w-5 h-5" />
           </button>

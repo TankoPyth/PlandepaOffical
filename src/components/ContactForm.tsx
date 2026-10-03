@@ -236,7 +236,7 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
       <button
         type="submit"
         disabled={isSubmitting || submitStatus === 'success'}
-        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-black text-white font-semibold text-base rounded-lg hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 disabled:hover:scale-100 disabled:hover:shadow-lg"
+        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-black text-white font-semibold text-base rounded-lg hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-300 apple-ease shadow-lg disabled: disabled:hover:shadow-lg"
       >
         {isSubmitting ? (
           <>

@@ -59,7 +59,7 @@ export function SocialShare({ postSlug, title, url, description }: SocialSharePr
   };
 
   return (
-    <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+    <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
       <h4 className="text-lg font-bold text-brand-black mb-4">Share Your Results</h4>
       <div className="flex flex-wrap gap-3">
         <button

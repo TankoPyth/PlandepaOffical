@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -112,7 +111,6 @@ export function CaseStudiesPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={80} />
 
       <motion.section
         className="bg-white py-12 md:py-16 px-6"
@@ -132,7 +130,7 @@ export function CaseStudiesPage() {
                     className={`w-full text-left px-6 py-4 rounded-full transition-all duration-300 ${
                       selectedId === caseStudy.id
                         ? 'bg-brand-black text-white scale-105'
-                        : 'bg-brand-light-gray text-brand-gray hover:bg-gray-200 hover:scale-105'
+                        : 'bg-brand-light-gray text-brand-gray hover:bg-gray-200'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -150,7 +148,7 @@ export function CaseStudiesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="aspect-video bg-brand-light-gray rounded-2xl mb-12 flex items-center justify-center"
+                className="aspect-video bg-brand-light-gray rounded-lg mb-12 flex items-center justify-center"
               >
                 <span className="text-heading-md text-brand-gray">
                   {selectedCase.companyType}
@@ -209,7 +207,7 @@ export function CaseStudiesPage() {
                     </ul>
                   </div>
 
-                  <div className="bg-brand-light-gray rounded-2xl p-12">
+                  <div className="bg-brand-light-gray rounded-lg p-12">
                     <p className="text-heading-sm text-brand-black italic mb-6 leading-relaxed">
                       "{selectedCase.testimonial}"
                     </p>
@@ -227,7 +225,6 @@ export function CaseStudiesPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={80} />
 
       <motion.section
         className="bg-brand-light-gray py-12 md:py-16 px-6"
@@ -245,7 +242,7 @@ export function CaseStudiesPage() {
           </motion.p>
           <motion.button
             onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center gap-3 px-12 py-5 bg-brand-cta-orange text-white font-semibold text-body-lg rounded-full hover:bg-orange-600 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-3 px-12 py-5 bg-brand-cta-orange text-white font-semibold text-body-lg rounded-full hover:bg-orange-600 transition-all duration-300"
             variants={fadeInUp}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

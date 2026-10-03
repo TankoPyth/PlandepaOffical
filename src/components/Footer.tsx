@@ -10,7 +10,7 @@
  * - Copyright notice
  *
  * To modify:
- * - Change logo: Edit line 25-29 (src="/plandepa_logo_slim.png")
+ * - Change logo: Edit line 25-29 (src="/plandepa_logo_clean.png")
  * - Add/remove links: Edit the <nav> section below (starting line 32)
  * - Change email: Edit line 48 (href="mailto:...")
  */
@@ -27,9 +27,9 @@ export function Footer() {
           {/* Footer Logo */}
           <Link to="/" className="flex items-center group">
             <img
-              src="/plandepa_logo_slim.png"
+              src="/plandepa_logo_clean.png"
               alt="PlanDepa - AI & systems for construction companies"
-              className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+              className="h-10 w-auto"
               loading="lazy"
             />
           </Link>

@@ -39,7 +39,7 @@ export function Tooltip({ term, definition, children }: TooltipProps) {
       {isVisible && (
         <div
           ref={tooltipRef}
-          className={`absolute left-1/2 -translate-x-1/2 z-50 w-64 md:w-80 bg-slate-900 text-white text-sm rounded-lg shadow-xl p-4 ${
+          className={`absolute left-1/2 -translate-x-1/2 z-50 w-64 md:w-80 bg-slate-900 text-white text-sm rounded-lg p-4 ${
             position === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'
           }`}
         >

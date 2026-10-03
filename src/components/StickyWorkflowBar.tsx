@@ -1,79 +1,75 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Target, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { X } from 'lucide-react';
+import { OFFER_PATH } from '../seo/offer';
 
-export function StickyWorkflowBar() {
+const DISMISS_KEY = 'pd_blueprint_prompt_dismissed';
+
+interface StickyWorkflowBarProps {
+  /** Kept so existing callers still type-check; the prompt now always links to the Clarity Blueprint. */
+  onBookCall?: () => void;
+  show?: boolean;
+}
+
+/**
+ * One quiet prompt for the main offer. Appears once, after the visitor has read
+ * a good way down the page, sits bottom-left so it never covers the chat bubble,
+ * and stays dismissed for the rest of the session.
+ */
+export function StickyWorkflowBar(_props: StickyWorkflowBarProps = {}) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
-    let ticking = false;
-    const heroHeight = window.innerHeight * 0.8;
+    let dismissed = false;
+    try {
+      dismissed = sessionStorage.getItem(DISMISS_KEY) === '1';
+    } catch {
+      // storage unavailable: fall through and show normally
+    }
+    if (dismissed) return;
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const shouldShow = window.scrollY > heroHeight;
-          setIsVisible(shouldShow && !isDismissed);
-          ticking = false;
-        });
-        ticking = true;
-      }
+      const scrolled = window.scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight);
+      setIsVisible(scrolled > 0.45);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isDismissed]);
+  }, []);
 
   const handleDismiss = () => {
-    setIsDismissed(true);
     setIsVisible(false);
+    try {
+      sessionStorage.setItem(DISMISS_KEY, '1');
+    } catch {
+      // ignore
+    }
   };
 
+  if (!isVisible) return null;
+
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 w-full max-w-md px-4"
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        >
-          <motion.div
-            className="bg-brand-black text-white rounded-2xl shadow-2xl p-4 flex items-center justify-between gap-4"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="flex items-center gap-3 flex-1">
-              <div className="w-10 h-10 bg-brand-red rounded-full flex items-center justify-center flex-shrink-0">
-                <Target className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-semibold">Find Your Bottleneck</p>
-                <p className="text-xs text-gray-300">28 days to results</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <a
-                href="#workflows"
-                className="px-4 py-2 bg-brand-red text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 whitespace-nowrap"
-              >
-                View Options
-              </a>
-              <button
-                onClick={handleDismiss}
-                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-200"
-                aria-label="Dismiss"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div
+      className="fixed bottom-6 left-6 z-40 hidden md:flex items-center gap-4 bg-brand-black text-white rounded-lg pl-5 pr-3 py-3 max-w-md"
+      role="complementary"
+      aria-label="Clarity Blueprint"
+    >
+      <div className="flex-1">
+        <p className="text-sm font-semibold leading-tight">Not sure what is breaking?</p>
+        <p className="text-xs text-gray-300 mt-0.5">The Clarity Blueprint, from $990 + GST</p>
+      </div>
+      <Link
+        to={OFFER_PATH}
+        className="px-4 py-2 bg-brand-red text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-colors whitespace-nowrap"
+      >
+        See how
+      </Link>
+      <button
+        onClick={handleDismiss}
+        className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
+        aria-label="Dismiss"
+      >
+        <X className="w-4 h-4" />
+      </button>
+    </div>
   );
 }

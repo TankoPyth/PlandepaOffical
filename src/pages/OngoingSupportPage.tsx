@@ -3,7 +3,6 @@ import { ArrowLeft, Check, Shield, Clock, Zap, Headphones as HeadphonesIcon, Tre
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -195,7 +194,7 @@ export function OngoingSupportPage() {
             <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg"
               >
                 Discuss Support Needs
               </button>
@@ -210,7 +209,6 @@ export function OngoingSupportPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -230,21 +228,21 @@ export function OngoingSupportPage() {
           </motion.div>
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-3 gap-8">
-            <div className="bg-brand-light-gray p-8 rounded-xl">
+            <div className="bg-brand-light-gray p-8 rounded-lg">
               <Shield className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Prevent Problems</h3>
               <p className="text-brand-gray">
                 Catch issues before they disrupt your business. Proactive monitoring means fewer emergencies.
               </p>
             </div>
-            <div className="bg-brand-light-gray p-8 rounded-xl">
+            <div className="bg-brand-light-gray p-8 rounded-lg">
               <TrendingUp className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Continuous Improvement</h3>
               <p className="text-brand-gray">
                 Regular optimization means your systems get better over time instead of slowly degrading.
               </p>
             </div>
-            <div className="bg-brand-light-gray p-8 rounded-xl">
+            <div className="bg-brand-light-gray p-8 rounded-lg">
               <Clock className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Save Time</h3>
               <p className="text-brand-gray">
@@ -255,7 +253,6 @@ export function OngoingSupportPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         className="bg-brand-light-gray py-16 md:py-24 px-6"
@@ -273,7 +270,7 @@ export function OngoingSupportPage() {
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {supportServices.map((service, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-md">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-red/10 text-brand-red rounded-lg mb-4">
                   <service.icon className="w-6 h-6" />
                 </div>
@@ -285,7 +282,6 @@ export function OngoingSupportPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         id="tiers"
@@ -309,7 +305,7 @@ export function OngoingSupportPage() {
             {supportTiers.map((tier, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-2xl shadow-lg overflow-hidden ${
+                className={`bg-white rounded-lg shadow-lg overflow-hidden ${
                   tier.popular ? 'ring-2 ring-brand-red' : ''
                 }`}
               >
@@ -357,7 +353,6 @@ export function OngoingSupportPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         className="bg-brand-light-gray py-16 md:py-24 px-6"
@@ -389,7 +384,7 @@ export function OngoingSupportPage() {
                 ))}
               </ul>
             </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="bg-white p-8 rounded-lg shadow-lg">
               <Award className="w-16 h-16 text-brand-red mb-6" />
               <h3 className="text-2xl font-bold text-brand-black mb-4">Our Guarantee</h3>
               <p className="text-brand-gray mb-6">
@@ -403,7 +398,6 @@ export function OngoingSupportPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -413,7 +407,7 @@ export function OngoingSupportPage() {
         variants={staggerContainer}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-2xl text-center">
+          <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-lg text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Ready for Reliable Support?
             </h3>
@@ -422,7 +416,7 @@ export function OngoingSupportPage() {
             </p>
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg"
             >
               Book a Support Consultation
             </button>
@@ -430,7 +424,6 @@ export function OngoingSupportPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <SimpleFAQ items={faqItems} />
 

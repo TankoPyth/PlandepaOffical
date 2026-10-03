@@ -27,14 +27,14 @@ export default function AdCampaignLandingPage() {
             </a>
             <button
               onClick={handleBookCall}
-              className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-6 md:px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
+              className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-6 md:px-8 py-3 rounded-lg transition-all duration-300 shadow-lg"
             >
               Book a Call
             </button>
           </div>
         </header>
 
-        <section className="py-12 md:py-20 px-4 bg-gradient-to-b from-white to-brand-light-gray/30">
+        <section className="py-12 md:py-20 px-4 bg-brand-light-gray">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <motion.div
@@ -60,7 +60,7 @@ export default function AdCampaignLandingPage() {
                 <motion.div variants={fadeInUp}>
                   <button
                     onClick={handleBookCall}
-                    className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-xl text-lg inline-flex items-center gap-2 group"
+                    className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 text-lg inline-flex items-center gap-2 group"
                   >
                     See How It Works
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -82,7 +82,7 @@ export default function AdCampaignLandingPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="relative"
               >
-                <div className="bg-brand-light-gray border-2 border-dashed border-brand-black/20 rounded-xl p-8 md:p-12 aspect-video flex flex-col items-center justify-center text-center">
+                <div className="bg-brand-light-gray border-2 border-dashed border-brand-black/20 rounded-lg p-8 md:p-12 aspect-video flex flex-col items-center justify-center text-center">
                   <FileText className="w-16 h-16 text-brand-black/30 mb-4" />
                   <p className="text-brand-black/60 font-medium mb-2">Dashboard Graphic Placeholder</p>
                   <p className="text-sm text-brand-black/40">Replace with product screenshot or demo video</p>
@@ -148,7 +148,7 @@ export default function AdCampaignLandingPage() {
                 <motion.div
                   key={index}
                   variants={fadeInUp}
-                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-brand-black/5"
+                  className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:-translate-y-1 border border-brand-black/5"
                 >
                   <div className="w-14 h-14 bg-brand-red/10 rounded-lg flex items-center justify-center mb-4">
                     <pain.icon className="w-7 h-7 text-brand-red" />
@@ -257,7 +257,7 @@ export default function AdCampaignLandingPage() {
               className="grid md:grid-cols-2 gap-8 md:gap-12"
             >
               <motion.div variants={fadeInUp} className="flex flex-col items-center text-center">
-                <div className="w-32 h-32 rounded-full overflow-hidden bg-white border-4 border-brand-red shadow-xl mb-6">
+                <div className="w-32 h-32 rounded-full overflow-hidden bg-white border-4 border-brand-red mb-6">
                   <img
                     src="/mitch_profile_picture.png"
                     alt="Mitch Humphries"
@@ -274,7 +274,7 @@ export default function AdCampaignLandingPage() {
                   href="https://www.linkedin.com/in/mitchell-humphries-8436ab37b/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 hover:scale-105 group"
+                  className="inline-flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 group"
                 >
                   <Linkedin className="w-5 h-5 group-hover:fill-[#0077B5]" />
                   <span className="font-medium">Connect on LinkedIn</span>
@@ -282,7 +282,7 @@ export default function AdCampaignLandingPage() {
               </motion.div>
 
               <motion.div variants={fadeInUp} className="flex flex-col items-center text-center">
-                <div className="w-32 h-32 rounded-full overflow-hidden bg-white border-4 border-brand-red shadow-xl mb-6">
+                <div className="w-32 h-32 rounded-full overflow-hidden bg-white border-4 border-brand-red mb-6">
                   <img
                     src="/linkedin_profile_picture_(1).png"
                     alt="Jarrod Tanko"
@@ -299,7 +299,7 @@ export default function AdCampaignLandingPage() {
                   href="https://www.linkedin.com/in/jarrod-tanko-104943267/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 hover:scale-105 group"
+                  className="inline-flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 group"
                 >
                   <Linkedin className="w-5 h-5 group-hover:fill-[#0077B5]" />
                   <span className="font-medium">Connect on LinkedIn</span>
@@ -316,7 +316,7 @@ export default function AdCampaignLandingPage() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="relative bg-gradient-to-br from-white to-brand-light-gray border-4 border-brand-red rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden"
+              className="relative bg-brand-light-gray border-4 border-brand-red rounded-lg p-8 md:p-12 overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-red/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
@@ -356,7 +356,7 @@ export default function AdCampaignLandingPage() {
           </div>
         </section>
 
-        <section id="calendly-section" className="py-16 md:py-24 px-4 bg-gradient-to-b from-brand-light-gray to-white">
+        <section id="calendly-section" className="py-16 md:py-24 px-4 bg-brand-light-gray">
           <div className="max-w-5xl mx-auto">
             <motion.div
               initial="hidden"
@@ -381,7 +381,7 @@ export default function AdCampaignLandingPage() {
 
               <motion.div
                 variants={fadeInUp}
-                className="bg-white border-2 border-dashed border-brand-black/20 rounded-xl p-12 mb-8 min-h-[500px] flex flex-col items-center justify-center"
+                className="bg-white border-2 border-dashed border-brand-black/20 rounded-lg p-12 mb-8 min-h-[500px] flex flex-col items-center justify-center"
               >
                 <Calendar className="w-16 h-16 text-brand-black/30 mb-4" />
                 <p className="text-brand-black/60 font-medium mb-2">Calendly Embed Placeholder</p>
@@ -392,7 +392,7 @@ export default function AdCampaignLandingPage() {
               <motion.div variants={fadeInUp}>
                 <button
                   onClick={handleBookCall}
-                  className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-xl text-lg inline-flex items-center gap-2 group"
+                  className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 text-lg inline-flex items-center gap-2 group"
                 >
                   Book Your Free Call Now
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

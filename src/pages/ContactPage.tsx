@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { ContactForm } from '../components/ContactForm';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { SectionNumber } from '../components/SectionNumber';
 import { ThankYouModal } from '../components/ThankYouModal';
 import { fadeInUp, staggerContainer, staggerItem, appleEasing } from '../utils/animations';
@@ -90,7 +89,6 @@ export function ContactPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
 
       <section className="bg-white py-12 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
@@ -167,7 +165,7 @@ export function ContactPage() {
                   </div>
                 </div>
 
-                <div className="mt-12 p-6 bg-brand-light-gray rounded-xl">
+                <div className="mt-12 p-6 bg-brand-light-gray rounded-lg">
                   <h3 className="font-bold text-brand-black mb-3">Prefer to book a call?</h3>
                   <p className="text-sm text-brand-gray mb-4">
                     Jump straight to our discovery call booking and we'll set up a time to chat.
@@ -185,7 +183,6 @@ export function ContactPage() {
         </div>
       </section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
 
       <section className="bg-brand-light-gray py-12 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">

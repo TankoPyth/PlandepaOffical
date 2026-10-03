@@ -38,7 +38,7 @@ export default function BlogCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+      className="group bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
     >
       <Link to={`/blog/${slug}`} className="block">
         <div className="relative h-64 overflow-hidden bg-slate-100">
@@ -46,11 +46,11 @@ export default function BlogCard({
             <img
               src={featuredImage}
               alt={title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover transition-transform duration-500"
               loading="lazy"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
+            <div className="w-full h-full flex items-center justify-center bg-brand-light-gray">
               <span className="text-slate-400 text-4xl font-bold">
                 {title.charAt(0)}
               </span>

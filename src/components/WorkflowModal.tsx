@@ -55,7 +55,7 @@ export function WorkflowModal({
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto"
+              className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto"
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
@@ -63,7 +63,7 @@ export function WorkflowModal({
             >
               <div className="sticky top-0 bg-white border-b border-brand-light-gray px-8 py-6 flex items-center justify-between z-10">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-brand-red/10 rounded-2xl flex items-center justify-center">
+                  <div className="w-14 h-14 bg-brand-red/10 rounded-lg flex items-center justify-center">
                     <Icon className="w-7 h-7 text-brand-red" />
                   </div>
                   <div>
@@ -95,11 +95,11 @@ export function WorkflowModal({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <div className="bg-red-50 rounded-2xl p-6">
+                  <div className="bg-red-50 rounded-lg p-6">
                     <h4 className="text-lg font-bold text-brand-black mb-3">Before</h4>
                     <p className="text-brand-gray">{beforeAfter.before}</p>
                   </div>
-                  <div className="bg-green-50 rounded-2xl p-6">
+                  <div className="bg-green-50 rounded-lg p-6">
                     <h4 className="text-lg font-bold text-brand-black mb-3">After</h4>
                     <p className="text-brand-gray">{beforeAfter.after}</p>
                   </div>
@@ -139,7 +139,7 @@ export function WorkflowModal({
                     {whatImproves.map((item, index) => (
                       <motion.div
                         key={index}
-                        className="bg-brand-light-gray rounded-xl p-5"
+                        className="bg-brand-light-gray rounded-lg p-5"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.6 + index * 0.05 }}
@@ -159,13 +159,13 @@ export function WorkflowModal({
                 >
                   <a
                     href="/pilot-program"
-                    className="flex-1 bg-brand-black text-white text-center px-8 py-4 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+                    className="flex-1 bg-brand-black text-white text-center px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg"
                   >
                     Apply for This Pilot
                   </a>
                   <a
                     href="/clarity-blueprint"
-                    className="flex-1 bg-white text-brand-black text-center px-8 py-4 rounded-xl font-semibold border-2 border-brand-black hover:bg-brand-black hover:text-white transition-all duration-300"
+                    className="flex-1 bg-white text-brand-black text-center px-8 py-4 rounded-lg font-semibold border-2 border-brand-black hover:bg-brand-black hover:text-white transition-all duration-300"
                   >
                     See the Clarity Blueprint
                   </a>

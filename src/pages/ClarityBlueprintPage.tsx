@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ArrowRight, Check, X, Shield, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -34,7 +33,7 @@ export function ClarityBlueprintPage() {
           </p>
           <button
             onClick={open}
-            className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg"
           >
             Book a fit call
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
@@ -43,7 +42,6 @@ export function ClarityBlueprintPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
 
       <section className="bg-white py-12 md:py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -53,7 +51,7 @@ export function ClarityBlueprintPage() {
 
       <section className="bg-brand-light-gray py-12 md:py-16 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-2xl p-8">
+          <div className="bg-white rounded-lg p-8">
             <h2 className="text-2xl font-bold text-brand-black mb-4">Built for you if…</h2>
             <ul className="space-y-3">
               {FIT.yes.map((item) => (
@@ -64,7 +62,7 @@ export function ClarityBlueprintPage() {
               ))}
             </ul>
           </div>
-          <div className="bg-white rounded-2xl p-8">
+          <div className="bg-white rounded-lg p-8">
             <h2 className="text-2xl font-bold text-brand-black mb-4">Not the right fit…</h2>
             <ul className="space-y-3">
               {FIT.no.map((item) => (
@@ -96,8 +94,8 @@ export function ClarityBlueprintPage() {
               <motion.div
                 key={tier.id}
                 variants={staggerItem}
-                className={`relative rounded-2xl p-8 flex flex-col ${
-                  tier.recommended ? 'bg-brand-black text-white shadow-2xl md:scale-105' : 'bg-brand-light-gray text-brand-black'
+                className={`relative rounded-lg p-8 flex flex-col ${
+                  tier.recommended ? 'bg-brand-black text-white' : 'bg-brand-light-gray text-brand-black'
                 }`}
               >
                 {tier.recommended && (
@@ -132,7 +130,6 @@ export function ClarityBlueprintPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
 
       <section className="bg-brand-light-gray py-12 md:py-16 px-6">
         <div className="max-w-5xl mx-auto">
@@ -141,11 +138,11 @@ export function ClarityBlueprintPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-brand-black">The risk is ours</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-2xl p-8">
+            <div className="bg-white rounded-lg p-8">
               <h3 className="text-xl font-bold text-brand-black mb-3">The fee comes off the invoice</h3>
               <p className="text-brand-gray leading-relaxed">{RISK_REVERSAL}</p>
             </div>
-            <div className="bg-white rounded-2xl p-8">
+            <div className="bg-white rounded-lg p-8">
               <h3 className="text-xl font-bold text-brand-black mb-3">We deliver, or we keep going</h3>
               <p className="text-brand-gray leading-relaxed">{DELIVERY_GUARANTEE}</p>
             </div>
@@ -181,7 +178,7 @@ export function ClarityBlueprintPage() {
           <p className="text-base md:text-lg text-brand-gray mb-8">A 30-minute fit call with Jarrod or Mitch. If the Blueprint isn't right for you, we'll tell you.</p>
           <button
             onClick={open}
-            className="inline-flex items-center gap-3 px-10 py-4 bg-brand-black text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-3 px-10 py-4 bg-brand-black text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300"
           >
             Book a fit call
             <ArrowRight className="w-5 h-5" />

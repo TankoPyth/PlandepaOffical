@@ -20,7 +20,7 @@ export const MinimalServiceCard = memo(function MinimalServiceCard({
 
   return (
     <div
-      className="relative bg-brand-light-gray rounded-lg md:rounded-xl p-5 md:p-6 hover:bg-white hover:shadow-lg transition-all duration-500 apple-ease h-full flex flex-col hover:-translate-y-1 will-animate border border-transparent hover:border-gray-200 overflow-hidden"
+      className="relative bg-brand-light-gray rounded-lg md:rounded-lg p-5 md:p-6 hover:bg-white hover:shadow-lg transition-all duration-500 apple-ease h-full flex flex-col hover:-translate-y-1 will-animate border border-transparent hover:border-gray-200 overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -36,7 +36,7 @@ export const MinimalServiceCard = memo(function MinimalServiceCard({
         animate={{ scaleX: isHovered ? 1 : 0 }}
         transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1], delay: 0.1 }}
       />
-      <Icon className="w-6 h-6 md:w-8 md:h-8 text-brand-black mb-3 md:mb-4 transition-transform duration-300 apple-ease group-hover:scale-110" />
+      <Icon className="w-6 h-6 md:w-8 md:h-8 text-brand-black mb-3 md:mb-4 transition-transform duration-300 apple-ease" />
       <h3 className="text-lg md:text-xl font-bold text-brand-black mb-2 md:mb-3 transition-colors duration-300 apple-ease">
         {title}
       </h3>

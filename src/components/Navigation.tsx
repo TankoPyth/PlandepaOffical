@@ -15,7 +15,7 @@
  * - Add service: Edit servicesMenu object
  */
 
-import { useState, useEffect, useCallback, memo } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { Menu, X, ChevronDown, FileText, BookOpen, Settings, Zap, ClipboardCheck } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Modal } from './ui/Modal';
@@ -172,9 +172,9 @@ export function Navigation() {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center group">
             <img
-              src="/plandepa_logo_slim.png"
+              src="/plandepa_logo_clean.png"
               alt="Plandepa - Build Smart, Grow Simple"
-              className="h-12 w-auto transition-transform duration-300 apple-ease group-hover:scale-105"
+              className="h-10 w-auto"
             />
           </Link>
 
@@ -193,7 +193,7 @@ export function Navigation() {
 
               {softwareOpen && (
                 <div className="absolute top-full right-0 pt-2 w-[380px]">
-                  <div className="bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
+                  <div className="bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-lg p-6 animate-scale-in">
                   <div className="space-y-2">
                     {servicesMenu.map((item) => (
                       <MenuItemLink key={item.name} item={item} />
@@ -231,7 +231,7 @@ export function Navigation() {
 
               {resourcesOpen && (
                 <div className="absolute top-full right-0 pt-2 w-[320px]">
-                  <div className="bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-2xl shadow-2xl p-6 animate-scale-in">
+                  <div className="bg-white/95 backdrop-blur-subtle border border-gray-200 rounded-lg p-6 animate-scale-in">
                   <div className="space-y-2">
                     {resourcesMenu.map((item) => (
                       <ResourceMenuItemLink key={item.name} item={item} />
@@ -241,6 +241,13 @@ export function Navigation() {
                 </div>
               )}
             </div>
+
+            <Link
+              to="/clarity-blueprint"
+              className="px-5 py-2.5 bg-brand-black text-white text-sm font-semibold rounded-lg hover:bg-brand-red transition-colors duration-200"
+            >
+              Clarity Blueprint
+            </Link>
           </div>
 
           <button

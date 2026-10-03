@@ -50,7 +50,7 @@ export function StickyContactButton() {
             exit={{ opacity: 0, scale: 0.8, x: 20 }}
             transition={{ duration: 0.3, ease: appleEasing }}
             onClick={handleOpenModal}
-            className="hidden sm:flex fixed bottom-28 right-8 z-40 items-center gap-3 px-6 py-4 bg-brand-red text-white font-semibold rounded-full shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 transition-all duration-300 apple-ease group"
+            className="hidden sm:flex fixed bottom-28 right-8 z-40 items-center gap-3 px-6 py-4 bg-brand-red text-white font-semibold rounded-full hover:shadow-3xl transition-all duration-300 apple-ease group"
             aria-label="Contact us"
           >
             <MessageCircle className="w-5 h-5 group-hover:animate-pulse" />

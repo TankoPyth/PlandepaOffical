@@ -2,7 +2,6 @@ import { useState, FormEvent } from 'react';
 import { ArrowLeft, ArrowRight, Calculator, Clock, DollarSign, TrendingUp, RotateCcw, Check, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { appleEasing } from '../utils/animations';
 import { SocialShare } from '../components/ui/SocialShare';
 import { trackROICalculatorComplete } from '../utils/analytics';
@@ -249,7 +248,7 @@ function ResultCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: appleEasing }}
-      className={`p-4 rounded-xl ${highlight ? 'bg-brand-black text-white' : 'bg-gray-50 border border-gray-200'}`}
+      className={`p-4 rounded-lg ${highlight ? 'bg-brand-black text-white' : 'bg-gray-50 border border-gray-200'}`}
     >
       <div className={`w-10 h-10 rounded-full ${highlight ? 'bg-white/20' : 'bg-white'} flex items-center justify-center mb-3`}>
         <Icon className={`w-5 h-5 ${highlight ? 'text-white' : 'text-brand-black'}`} />
@@ -429,7 +428,7 @@ export function ROICalculatorPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, ease: appleEasing }}
-                className="bg-white rounded-2xl shadow-xl p-6 md:p-10"
+                className="bg-white rounded-lg p-6 md:p-10"
               >
                 <StepIndicator currentStep={currentStep} totalSteps={3} />
 
@@ -608,7 +607,7 @@ export function ROICalculatorPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: appleEasing }}
               >
-                <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                <div className="bg-white rounded-lg p-6 md:p-8">
                   <div className="text-center mb-6">
                     <div className="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Check className="w-7 h-7 text-emerald-600" />
@@ -648,7 +647,7 @@ export function ROICalculatorPage() {
                         />
                       </div>
 
-                      <div className="bg-gradient-to-r from-brand-red to-red-600 rounded-xl p-6 text-center text-white mb-6">
+                      <div className="bg-brand-red rounded-lg p-6 text-center text-white mb-6">
                         <p className="text-sm opacity-90 mb-1">Total ROI</p>
                         <p className="text-4xl md:text-5xl font-bold">{results.roiPercent}%</p>
                       </div>
@@ -663,7 +662,7 @@ export function ROICalculatorPage() {
                         <div className="flex flex-col gap-3">
                           <button
                             onClick={() => setShowCalendly(true)}
-                            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-cta-orange text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+                            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-cta-orange text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-200 shadow-lg"
                           >
                             <Calendar className="w-5 h-5" />
                             Book a Call Now

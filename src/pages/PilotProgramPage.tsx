@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowRight, Check, Inbox, RotateCcw, FileText, Camera, Truck
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { SectionNumber } from '../components/SectionNumber';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
@@ -262,7 +261,7 @@ export function PilotProgramPage() {
             <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg"
               >
                 Book Discovery Call
               </button>
@@ -282,17 +281,17 @@ export function PilotProgramPage() {
             viewport={{ once: true }}
             className="grid md:grid-cols-3 gap-6 mb-12"
           >
-            <motion.div variants={staggerItem} className="bg-white p-6 rounded-xl shadow-md">
+            <motion.div variants={staggerItem} className="bg-white p-6 rounded-lg shadow-md">
               <Shield className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-2">Zero Risk</h3>
               <p className="text-brand-gray">Pay only after we prove results. No deposit, no retainer required.</p>
             </motion.div>
-            <motion.div variants={staggerItem} className="bg-white p-6 rounded-xl shadow-md">
+            <motion.div variants={staggerItem} className="bg-white p-6 rounded-lg shadow-md">
               <Clock className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-2">28 Days</h3>
               <p className="text-brand-gray">From kickoff to measurable results in under a month.</p>
             </motion.div>
-            <motion.div variants={staggerItem} className="bg-white p-6 rounded-xl shadow-md">
+            <motion.div variants={staggerItem} className="bg-white p-6 rounded-lg shadow-md">
               <TrendingUp className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-2">Real Results</h3>
               <p className="text-brand-gray">Measurable time savings and efficiency gains, not vague improvements.</p>
@@ -301,7 +300,6 @@ export function PilotProgramPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         id="how-it-works"
@@ -349,7 +347,7 @@ export function PilotProgramPage() {
               },
             ].map((step, index) => (
               <div key={index} className="relative">
-                <div className="bg-brand-light-gray p-6 rounded-xl h-full">
+                <div className="bg-brand-light-gray p-6 rounded-lg h-full">
                   <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-red text-white rounded-lg mb-4">
                     <step.icon className="w-6 h-6" />
                   </div>
@@ -363,7 +361,6 @@ export function PilotProgramPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         id="workflows"
@@ -400,7 +397,7 @@ export function PilotProgramPage() {
           <motion.div variants={staggerItem} className="mt-12 text-center">
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg"
             >
               Discuss Your Workflow Challenge
             </button>
@@ -416,7 +413,6 @@ export function PilotProgramPage() {
         />
       )}
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -452,7 +448,6 @@ export function PilotProgramPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         className="bg-brand-light-gray py-16 md:py-24 px-6"
@@ -469,24 +464,24 @@ export function PilotProgramPage() {
           </motion.div>
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-white p-8 rounded-xl shadow-md">
+            <div className="bg-white p-8 rounded-lg shadow-md">
               <div className="text-4xl font-bold text-brand-red mb-2">$0</div>
               <div className="text-xl font-bold text-brand-black mb-3">Upfront Cost</div>
               <p className="text-brand-gray">No deposit or retainer. We prove value before you pay anything.</p>
             </div>
-            <div className="bg-white p-8 rounded-xl shadow-md">
+            <div className="bg-white p-8 rounded-lg shadow-md">
               <div className="text-4xl font-bold text-brand-red mb-2">28</div>
               <div className="text-xl font-bold text-brand-black mb-3">Days to Results</div>
               <p className="text-brand-gray">Fast enough to prove value, long enough to do it properly.</p>
             </div>
-            <div className="bg-white p-8 rounded-xl shadow-md">
+            <div className="bg-white p-8 rounded-lg shadow-md">
               <div className="text-4xl font-bold text-brand-red mb-2">100%</div>
               <div className="text-xl font-bold text-brand-black mb-3">Risk-Free</div>
               <p className="text-brand-gray">If we don't deliver the agreed results, you don't pay.</p>
             </div>
           </motion.div>
 
-          <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-2xl text-center">
+          <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-lg text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Ready to Fix Your Biggest Bottleneck?
             </h3>
@@ -495,7 +490,7 @@ export function PilotProgramPage() {
             </p>
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg"
             >
               Book Your Discovery Call
             </button>
@@ -503,7 +498,6 @@ export function PilotProgramPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <SimpleFAQ items={faqItems} />
 

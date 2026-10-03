@@ -58,11 +58,11 @@ export function BeforeAfterSlider() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-2xl cursor-grab active:cursor-grabbing select-none"
+      className="relative w-full h-80 md:h-96 rounded-lg overflow-hidden cursor-grab active:cursor-grabbing select-none"
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-slate-100 flex items-center justify-center p-8">
+      <div className="absolute inset-0 bg-brand-light-gray flex items-center justify-center p-8">
         <div className="text-center">
           <div className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Manual Process</div>
           <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
@@ -84,7 +84,7 @@ export function BeforeAfterSlider() {
       </div>
 
       <div
-        className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-blue-100 flex items-center justify-center p-8"
+        className="absolute inset-0 bg-brand-light-gray flex items-center justify-center p-8"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <div className="text-center">
@@ -111,7 +111,7 @@ export function BeforeAfterSlider() {
         className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center border-4 border-brand-red">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center border-4 border-brand-red">
           <div className="flex gap-0.5">
             <div className="w-1 h-4 bg-brand-red rounded-full"></div>
             <div className="w-1 h-4 bg-brand-red rounded-full"></div>

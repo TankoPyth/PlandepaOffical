@@ -42,7 +42,7 @@ export function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
           </p>
 
           {/* What Happens Next */}
-          <div className="bg-gray-50 rounded-xl p-6 mb-8 text-left">
+          <div className="bg-gray-50 rounded-lg p-6 mb-8 text-left">
             <h3 className="text-lg font-semibold text-brand-black mb-4">What happens next:</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
@@ -82,7 +82,7 @@ export function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
             </button>
             <button
               onClick={() => setShowCalendly(true)}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-200 shadow-lg"
             >
               <Calendar className="w-5 h-5" />
               Book a Call to Lock in a Time

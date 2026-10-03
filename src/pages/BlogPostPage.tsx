@@ -297,7 +297,7 @@ export default function BlogPostPage() {
 
 
           {post.featured_image && (
-            <div className="relative h-96 rounded-xl overflow-hidden mb-8">
+            <div className="relative h-96 rounded-lg overflow-hidden mb-8">
               <img
                 src={post.featured_image}
                 alt={post.title}
@@ -339,7 +339,7 @@ export default function BlogPostPage() {
             </section>
           )}
 
-          <div className="bg-brand-black text-white rounded-2xl p-8 my-10 text-center">
+          <div className="bg-brand-black text-white rounded-lg p-8 my-10 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-3">Know exactly where your business is breaking.</h2>
             <p className="text-white/80 mb-6">A paid diagnostic for construction businesses with 10-50 staff. From $990 + GST, and the fee comes off the invoice if we implement the fix.</p>
             <Link to={OFFER_PATH} className="inline-block bg-brand-red text-white font-semibold px-8 py-3 rounded-lg hover:bg-red-700 transition-colors">
@@ -372,18 +372,18 @@ export default function BlogPostPage() {
               <Link
                 key={relatedPost.id}
                 to={`/blog/${relatedPost.slug}`}
-                className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all"
+                className="group bg-white rounded-lg overflow-hidden shadow-md transition-all"
               >
                 <div className="relative h-48 bg-brand-light-gray">
                   {relatedPost.featured_image ? (
                     <img
                       src={relatedPost.featured_image}
                       alt={relatedPost.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover transition-transform duration-500"
                       loading="lazy"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-brand-light-gray to-gray-200">
+                    <div className="w-full h-full flex items-center justify-center bg-brand-light-gray">
                       <span className="text-brand-gray text-2xl font-bold">
                         {relatedPost.title.charAt(0)}
                       </span>

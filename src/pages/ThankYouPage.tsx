@@ -9,14 +9,14 @@ export function ThankYouPage() {
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-off-white to-white flex items-center justify-center px-6 py-12">
+    <div className="min-h-screen bg-brand-light-gray flex items-center justify-center px-6 py-12">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: appleEasing }}
         className="max-w-2xl w-full"
       >
-        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
           <div className="p-8 md:p-12 text-center">
             <motion.div
               initial={{ scale: 0 }}
@@ -49,7 +49,7 @@ export function ThankYouPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5, ease: appleEasing }}
-              className="bg-brand-light-gray rounded-xl p-6 mb-8"
+              className="bg-brand-light-gray rounded-lg p-6 mb-8"
             >
               <p className="text-sm text-brand-gray mb-4">
                 Want to skip the wait? Book a call with us right now.
@@ -57,7 +57,7 @@ export function ThankYouPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={() => setIsCalendlyOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg"
                 >
                   <Calendar className="w-5 h-5" />
                   Book a Call Now

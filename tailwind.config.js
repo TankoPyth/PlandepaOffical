@@ -17,6 +17,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Archivo', 'Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'display-xl': ['110px', { lineHeight: '1.1', fontWeight: '800' }],

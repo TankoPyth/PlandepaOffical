@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { SectionNumber } from '../components/SectionNumber';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
@@ -86,7 +85,7 @@ export function BusinessAuditPage() {
           </p>
           <button
             onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg"
           >
             Book your discovery call
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 apple-ease" />
@@ -94,7 +93,6 @@ export function BusinessAuditPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
 
       <section className="bg-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 2 }}>
         <div className="max-w-7xl mx-auto">
@@ -236,7 +234,6 @@ export function BusinessAuditPage() {
         </div>
       </section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
 
       <section className="bg-brand-light-gray py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
         <div className="max-w-7xl mx-auto">
@@ -301,7 +298,6 @@ export function BusinessAuditPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
 
       <section className="bg-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
         <div className="max-w-7xl mx-auto">
@@ -376,7 +372,6 @@ export function BusinessAuditPage() {
         </div>
       </section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
 
       <section className="bg-brand-light-gray py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
         <div className="max-w-7xl mx-auto">
@@ -390,7 +385,6 @@ export function BusinessAuditPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
 
       <section id="contact" className="bg-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
         <div className="max-w-4xl mx-auto text-center">
@@ -402,7 +396,7 @@ export function BusinessAuditPage() {
           </p>
           <button
             onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg mb-6 md:mb-8 hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg mb-6 md:mb-8"
           >
             Book your discovery call
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 apple-ease" />

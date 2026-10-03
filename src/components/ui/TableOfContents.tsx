@@ -65,7 +65,7 @@ export function TableOfContents({ sections }: TableOfContentsProps) {
     <>
       <button
         onClick={toggleOpen}
-        className="lg:hidden fixed bottom-6 left-6 z-40 w-14 h-14 bg-brand-black text-white rounded-full shadow-xl flex items-center justify-center hover:bg-gray-800 transition-colors"
+        className="lg:hidden fixed bottom-6 left-6 z-40 w-14 h-14 bg-brand-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
         aria-label="Toggle Table of Contents"
       >
         <List className="w-6 h-6" />

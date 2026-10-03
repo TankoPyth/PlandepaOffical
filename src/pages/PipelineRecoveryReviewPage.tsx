@@ -261,7 +261,7 @@ export function PipelineRecoveryReviewPage() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={handlePrimaryCta}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-black px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-gray-800"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-black px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-gray-800"
                 >
                   Check your pipeline
                   <ArrowRight className="h-4 w-4" />
@@ -270,8 +270,8 @@ export function PipelineRecoveryReviewPage() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-brand-black/10 bg-white p-5 shadow-sm">
-                <div className="mb-4 inline-flex rounded-xl bg-brand-red/10 p-3 text-brand-red">
+              <div className="rounded-lg border border-brand-black/10 bg-white p-5 shadow-sm">
+                <div className="mb-4 inline-flex rounded-lg bg-brand-red/10 p-3 text-brand-red">
                   <Gauge className="h-5 w-5" />
                 </div>
                 <h2 className="text-lg font-bold text-brand-black">See the blind spots</h2>
@@ -280,8 +280,8 @@ export function PipelineRecoveryReviewPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-brand-black/10 bg-white p-5 shadow-sm">
-                <div className="mb-4 inline-flex rounded-xl bg-brand-red/10 p-3 text-brand-red">
+              <div className="rounded-lg border border-brand-black/10 bg-white p-5 shadow-sm">
+                <div className="mb-4 inline-flex rounded-lg bg-brand-red/10 p-3 text-brand-red">
                   <LayoutList className="h-5 w-5" />
                 </div>
                 <h2 className="text-lg font-bold text-brand-black">No guesswork</h2>
@@ -290,8 +290,8 @@ export function PipelineRecoveryReviewPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-brand-black/10 bg-white p-5 shadow-sm sm:col-span-2">
-                <div className="mb-4 inline-flex rounded-xl bg-brand-red/10 p-3 text-brand-red">
+              <div className="rounded-lg border border-brand-black/10 bg-white p-5 shadow-sm sm:col-span-2">
+                <div className="mb-4 inline-flex rounded-lg bg-brand-red/10 p-3 text-brand-red">
                   <TimerReset className="h-5 w-5" />
                 </div>
                 <h2 className="text-lg font-bold text-brand-black">Practical next step</h2>
@@ -316,7 +316,7 @@ export function PipelineRecoveryReviewPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-brand-black/10 bg-brand-off-white p-5 shadow-sm md:p-8">
+          <div className="rounded-lg border border-brand-black/10 bg-brand-off-white p-5 shadow-sm md:p-8">
             {!hasStarted && !resultBand && (
               <div className="space-y-6 text-center">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
@@ -328,7 +328,7 @@ export function PipelineRecoveryReviewPage() {
                 </p>
                 <button
                   onClick={handleStart}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-black px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-gray-800"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-black px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-gray-800"
                 >
                   Check your pipeline
                   <ArrowRight className="h-4 w-4" />
@@ -355,7 +355,7 @@ export function PipelineRecoveryReviewPage() {
                     <button
                       key={option.label}
                       onClick={() => handleAnswer(option.score)}
-                      className="flex items-start gap-3 rounded-2xl border border-brand-black/10 bg-white p-4 text-left transition-all duration-200 hover:border-brand-red hover:shadow-sm"
+                      className="flex items-start gap-3 rounded-lg border border-brand-black/10 bg-white p-4 text-left transition-all duration-200 hover:border-brand-red hover:shadow-sm"
                     >
                       <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
                         <CheckCircle2 className="h-4 w-4" />
@@ -369,7 +369,7 @@ export function PipelineRecoveryReviewPage() {
 
             {resultBand && (
               <div className="space-y-6">
-                <div className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm">
+                <div className="flex items-center gap-3 rounded-lg bg-white p-4 shadow-sm">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
                     <AlertCircle className="h-6 w-6" />
                   </div>
@@ -379,12 +379,12 @@ export function PipelineRecoveryReviewPage() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <div className="rounded-lg bg-white p-5 shadow-sm">
                   <p className="text-lg leading-relaxed text-brand-gray">{resultCopy[resultBand].message}</p>
                   <p className="mt-4 text-sm font-semibold text-brand-black">Score: {totalScore} / 21</p>
                 </div>
 
-                <div className="rounded-3xl bg-gradient-to-br from-brand-black via-gray-950 to-brand-red p-6 text-white shadow-lg md:p-8">
+                <div className="rounded-lg bg-brand-black p-6 text-white shadow-lg md:p-8">
                   <p className="text-xs font-bold uppercase tracking-[0.2em] text-red-100">Next action</p>
                   <h3 className="mt-3 text-2xl font-black md:text-3xl">Book the Pipeline Recovery Review</h3>
                   <p className="mt-3 max-w-2xl text-sm leading-relaxed text-red-50 md:text-base">
@@ -394,7 +394,7 @@ export function PipelineRecoveryReviewPage() {
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                     <button
                       onClick={() => handleBookingCta('score_result')}
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-red px-7 py-3.5 text-sm font-bold text-white shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-brand-darkred"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-red px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-brand-darkred"
                     >
                       {resultCopy[resultBand].cta}
                       <ArrowRight className="h-4 w-4" />
@@ -417,19 +417,19 @@ export function PipelineRecoveryReviewPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-black text-brand-black md:text-4xl">What the review includes</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl bg-white p-5 shadow-sm">
+            <div className="rounded-lg bg-white p-5 shadow-sm">
               <p className="text-lg font-bold text-brand-black">1. Revenue leak mapping</p>
               <p className="mt-2 text-sm leading-relaxed text-brand-gray">
                 We’ll identify where enquiries, quotes, approvals, and follow-ups are being lost.
               </p>
             </div>
-            <div className="rounded-2xl bg-white p-5 shadow-sm">
+            <div className="rounded-lg bg-white p-5 shadow-sm">
               <p className="text-lg font-bold text-brand-black">2. 30-day recovery plan</p>
               <p className="mt-2 text-sm leading-relaxed text-brand-gray">
                 You’ll get a practical plan for tightening the flow and rebuilding visibility.
               </p>
             </div>
-            <div className="rounded-2xl bg-white p-5 shadow-sm">
+            <div className="rounded-lg bg-white p-5 shadow-sm">
               <p className="text-lg font-bold text-brand-black">3. AI/automation fit check</p>
               <p className="mt-2 text-sm leading-relaxed text-brand-gray">
                 We’ll help decide where automation or AI genuinely makes sense, instead of adding more noise.

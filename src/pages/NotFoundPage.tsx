@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Home, Search, FileQuestion, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { SubtleWaveBackground } from '../components/ui/SubtleWaveBackground';
 import { appleEasing } from '../utils/animations';
 
@@ -57,7 +56,7 @@ export function NotFoundPage() {
           >
             <Link
               to="/"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-black text-white font-semibold text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-black text-white font-semibold text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-lg"
             >
               <Home className="w-5 h-5" />
               Back to Home
@@ -113,7 +112,6 @@ export function NotFoundPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
 
       <section className="bg-white py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">

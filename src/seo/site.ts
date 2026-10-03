@@ -5,7 +5,6 @@
  * that users see.
  */
 
-import { faqItems } from '../data/workflows';
 import { OFFER_FAQS, OFFER_NAME, OFFER_PATH, OFFER_SUMMARY, TIERS } from './offer';
 import { LOCAL_POSTS, type LocalPost } from '../content/blog';
 
@@ -358,7 +357,7 @@ export const ROUTES: RouteMeta[] = [
       'AI and operational systems for construction companies in Brisbane, Newcastle and Australia-wide. Start with the Clarity Blueprint, from $990 + GST.',
     priority: 1.0,
     changefreq: 'weekly',
-    schema: [organizationSchema, websiteSchema, faqSchema(faqItems.map((f) => ({ q: f.question, a: f.answer })))],
+    schema: [organizationSchema, websiteSchema, faqSchema(HOME_FAQS)],
   },
   {
     path: LOCATIONS.brisbane.slug,

@@ -190,7 +190,7 @@ export function VerticalRedAccent({
       style={{ height }}
     >
       <motion.div
-        className="w-[3px] h-full bg-gradient-to-b from-transparent via-brand-red to-transparent"
+        className="w-[3px] h-full bg-brand-light-gray"
         initial={{ scaleY: 0, opacity: 0 }}
         animate={isInView ? { scaleY: 1, opacity: 0.4 } : {}}
         transition={{

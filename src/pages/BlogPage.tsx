@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import BlogCard from '../components/BlogCard';
 import CategoryFilter from '../components/CategoryFilter';
 import { supabase } from '../lib/supabase';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 import { LOCAL_POSTS } from '../content/blog';
 
@@ -157,7 +156,6 @@ export default function BlogPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={80} />
 
       <motion.section
         className="bg-white py-16 px-6 min-h-screen"

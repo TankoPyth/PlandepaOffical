@@ -29,7 +29,7 @@ export function References({ references }: ReferencesProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden">
+    <div className="bg-slate-50 border border-slate-200 rounded-lg overflow-hidden">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-100 transition-colors"

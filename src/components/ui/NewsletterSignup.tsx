@@ -39,13 +39,13 @@ export function NewsletterSignup({ source = 'blog-article' }: NewsletterSignupPr
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-brand-black rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden">
+    <div className="relative bg-brand-light-gray rounded-lg p-8 md:p-12 overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 bg-brand-red/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
 
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-brand-red/20 rounded-xl flex items-center justify-center">
+          <div className="w-12 h-12 bg-brand-red/20 rounded-lg flex items-center justify-center">
             <Sparkles className="w-6 h-6 text-brand-red" />
           </div>
           <h3 className="text-2xl md:text-3xl font-bold text-white">
@@ -84,7 +84,7 @@ export function NewsletterSignup({ source = 'blog-article' }: NewsletterSignupPr
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="px-8 py-4 bg-brand-red hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 whitespace-nowrap"
+              className="px-8 py-4 bg-brand-red hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled: whitespace-nowrap"
             >
               {status === 'loading' ? 'Subscribing...' : 'Subscribe Free'}
             </button>

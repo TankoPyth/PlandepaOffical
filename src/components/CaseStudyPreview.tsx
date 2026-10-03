@@ -18,7 +18,7 @@ export function CaseStudyPreview({
   return (
     <a
       href={href}
-      className="group block relative bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 apple-ease hover:-translate-y-2 will-animate"
+      className="group block relative bg-white rounded-lg md:rounded-lg overflow-hidden shadow-lg transition-all duration-500 apple-ease hover:-translate-y-2 will-animate"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -39,7 +39,7 @@ export function CaseStudyPreview({
           <img
             src={imageUrl}
             alt={companyType}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 apple-ease"
+            className="w-full h-full object-cover transition-transform duration-700 apple-ease"
             loading="lazy"
           />
         ) : (

@@ -58,7 +58,7 @@ export function Modal({ isOpen, onClose, children, title, size = 'default' }: Mo
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3, ease: appleEasing }}
-                className={`relative bg-white rounded-2xl shadow-2xl w-full mx-auto ${
+                className={`relative bg-white rounded-lg w-full mx-auto ${
                   size === 'large' ? 'max-w-3xl' : 'max-w-lg'
                 }`}
                 onClick={(e) => e.stopPropagation()}

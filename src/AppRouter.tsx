@@ -17,7 +17,6 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { ScrollProgress } from './components/ui/ScrollProgress';
-import { StickyContactButton } from './components/ui/StickyContactButton';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SEO } from './components/SEO';
 import { LOCATIONS } from './seo/site';
@@ -108,7 +107,6 @@ function Layout({ children }: { children: React.ReactNode }) {
       <Navigation />      {/* Header with logo and menu */}
       <main className="flex-1 pt-20">{children}</main>  {/* Page content goes here */}
       <Footer />          {/* Footer with links and copyright */}
-      <StickyContactButton />  {/* Floating contact button that appears on scroll */}
     </div>
   );
 }

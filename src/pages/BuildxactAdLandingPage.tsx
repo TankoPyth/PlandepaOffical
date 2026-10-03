@@ -29,7 +29,7 @@ export default function BuildxactAdLandingPage() {
             </a>
             <button
               onClick={handleBookCall}
-              className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-6 md:px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
+              className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-6 md:px-8 py-3 rounded-lg transition-all duration-300 shadow-lg"
             >
               Book a Call
             </button>
@@ -37,7 +37,7 @@ export default function BuildxactAdLandingPage() {
         </header>
 
         {/* Hero Section */}
-        <section className="py-12 md:py-20 px-4 bg-gradient-to-b from-white to-brand-light-gray/30">
+        <section className="py-12 md:py-20 px-4 bg-brand-light-gray">
           <div className="max-w-7xl mx-auto">
             <div className="max-w-4xl mx-auto text-center">
               <motion.div
@@ -71,7 +71,7 @@ export default function BuildxactAdLandingPage() {
                 <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                   <button
                     onClick={handleBookCall}
-                    className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-xl text-lg inline-flex items-center justify-center gap-2 group"
+                    className="bg-brand-red hover:bg-brand-darkred text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 text-lg inline-flex items-center justify-center gap-2 group"
                   >
                     Get Your Custom Template
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -125,9 +125,9 @@ export default function BuildxactAdLandingPage() {
               {/* Card 1: 8 Hours Down to 2 Hours */}
               <motion.div
                 variants={fadeInUp}
-                className="bg-gradient-to-br from-white to-brand-light-gray/30 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-brand-black/5"
+                className="bg-brand-light-gray p-8 rounded-lg shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 border-brand-black/5"
               >
-                <div className="w-16 h-16 bg-brand-red/10 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-brand-red/10 rounded-lg flex items-center justify-center mb-6">
                   <Clock className="w-8 h-8 text-brand-red" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-brand-black mb-4">
@@ -141,9 +141,9 @@ export default function BuildxactAdLandingPage() {
               {/* Card 2: Built For Your Exact Workflow */}
               <motion.div
                 variants={fadeInUp}
-                className="bg-gradient-to-br from-white to-brand-light-gray/30 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-brand-black/5"
+                className="bg-brand-light-gray p-8 rounded-lg shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 border-brand-black/5"
               >
-                <div className="w-16 h-16 bg-brand-red/10 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-brand-red/10 rounded-lg flex items-center justify-center mb-6">
                   <Zap className="w-8 h-8 text-brand-red" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-brand-black mb-4">
@@ -157,9 +157,9 @@ export default function BuildxactAdLandingPage() {
               {/* Card 3: Built By Builders, Not Software Reps */}
               <motion.div
                 variants={fadeInUp}
-                className="bg-gradient-to-br from-white to-brand-light-gray/30 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-brand-black/5"
+                className="bg-brand-light-gray p-8 rounded-lg shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 border-brand-black/5"
               >
-                <div className="w-16 h-16 bg-brand-red/10 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-brand-red/10 rounded-lg flex items-center justify-center mb-6">
                   <Hammer className="w-8 h-8 text-brand-red" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-brand-black mb-4">
@@ -173,9 +173,9 @@ export default function BuildxactAdLandingPage() {
               {/* Card 4: Unlock Buildxact's Full Potential */}
               <motion.div
                 variants={fadeInUp}
-                className="bg-gradient-to-br from-white to-brand-light-gray/30 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-brand-black/5"
+                className="bg-brand-light-gray p-8 rounded-lg shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 border-brand-black/5"
               >
-                <div className="w-16 h-16 bg-brand-red/10 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-brand-red/10 rounded-lg flex items-center justify-center mb-6">
                   <BookOpen className="w-8 h-8 text-brand-red" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-brand-black mb-4">
@@ -197,7 +197,7 @@ export default function BuildxactAdLandingPage() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="relative bg-gradient-to-br from-white via-white to-brand-red/5 border-4 border-brand-red rounded-2xl p-8 md:p-12 shadow-2xl overflow-hidden"
+              className="relative bg-brand-light-gray border-4 border-brand-red rounded-lg p-8 md:p-12 overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-red/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-red/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
@@ -274,7 +274,7 @@ export default function BuildxactAdLandingPage() {
               className="grid md:grid-cols-2 gap-8 md:gap-12"
             >
               <motion.div variants={fadeInUp} className="flex flex-col items-center text-center">
-                <div className="w-32 h-32 rounded-full overflow-hidden bg-white border-4 border-brand-red shadow-xl mb-6">
+                <div className="w-32 h-32 rounded-full overflow-hidden bg-white border-4 border-brand-red mb-6">
                   <img
                     src="/mitch_profile_picture.png"
                     alt="Mitch Humphries"
@@ -291,7 +291,7 @@ export default function BuildxactAdLandingPage() {
                   href="https://www.linkedin.com/in/mitchell-humphries-8436ab37b/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 hover:scale-105 group"
+                  className="inline-flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 group"
                 >
                   <Linkedin className="w-5 h-5 group-hover:fill-[#0077B5]" />
                   <span className="font-medium">Connect on LinkedIn</span>
@@ -299,7 +299,7 @@ export default function BuildxactAdLandingPage() {
               </motion.div>
 
               <motion.div variants={fadeInUp} className="flex flex-col items-center text-center">
-                <div className="w-32 h-32 rounded-full overflow-hidden bg-white border-4 border-brand-red shadow-xl mb-6">
+                <div className="w-32 h-32 rounded-full overflow-hidden bg-white border-4 border-brand-red mb-6">
                   <img
                     src="/linkedin_profile_picture_(1).png"
                     alt="Jarrod Tanko"
@@ -316,7 +316,7 @@ export default function BuildxactAdLandingPage() {
                   href="https://www.linkedin.com/in/jarrod-tanko-104943267/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 hover:scale-105 group"
+                  className="inline-flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 group"
                 >
                   <Linkedin className="w-5 h-5 group-hover:fill-[#0077B5]" />
                   <span className="font-medium">Connect on LinkedIn</span>
@@ -327,7 +327,7 @@ export default function BuildxactAdLandingPage() {
         </section>
 
         {/* Contact Form Section */}
-        <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-white to-brand-light-gray">
+        <section className="py-16 md:py-24 px-4 bg-brand-light-gray">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial="hidden"
@@ -363,7 +363,7 @@ export default function BuildxactAdLandingPage() {
         </section>
 
         {/* Calendly Section */}
-        <section id="calendly-section" className="py-16 md:py-24 px-4 bg-gradient-to-b from-brand-light-gray to-white">
+        <section id="calendly-section" className="py-16 md:py-24 px-4 bg-brand-light-gray">
           <div className="max-w-5xl mx-auto">
             <motion.div
               initial="hidden"
@@ -388,7 +388,7 @@ export default function BuildxactAdLandingPage() {
 
               <motion.div
                 variants={fadeInUp}
-                className="bg-white rounded-xl shadow-lg overflow-hidden mb-8"
+                className="bg-white rounded-lg shadow-lg overflow-hidden mb-8"
               >
                 <div
                   className="calendly-inline-widget"

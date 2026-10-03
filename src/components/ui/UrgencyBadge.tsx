@@ -60,7 +60,7 @@ export function UrgencyBadge({
 
   if (type === 'competitor-adoption') {
     return (
-      <div className="bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-300 rounded-xl p-6">
+      <div className="bg-brand-light-gray border-2 border-orange-300 rounded-lg p-6">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
             <TrendingUp className="w-6 h-6 text-white" />

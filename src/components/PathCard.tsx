@@ -39,17 +39,17 @@ export function PathCard({
 
   return (
     <motion.div
-      className="relative bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 rounded-2xl shadow-2xl hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-all duration-500 apple-ease flex flex-col overflow-hidden border border-gray-300 hover:border-brand-red/60 group"
+      className="relative bg-brand-light-gray rounded-lg hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-all duration-500 apple-ease flex flex-col overflow-hidden border border-gray-300 hover:border-brand-red/60 group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] }}
     >
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-brand-red/5 via-transparent to-brand-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute inset-0 bg-brand-red opacity-0 group-hover:opacity-100 transition-opacity duration-500"
       />
 
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-red to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-brand-light-gray" />
 
       <motion.div
         className="absolute top-0 right-0 w-32 h-32 bg-brand-red/10 rounded-full blur-3xl"
@@ -63,7 +63,7 @@ export function PathCard({
       <div className="relative px-6 py-5 border-b border-gray-300/70">
         {Icon && (
           <motion.div
-            className={`w-16 h-16 ${iconColorMap[badgeColor]} rounded-2xl flex items-center justify-center mb-4 ${iconShadowMap[badgeColor]}`}
+            className={`w-16 h-16 ${iconColorMap[badgeColor]} rounded-lg flex items-center justify-center mb-4 ${iconShadowMap[badgeColor]}`}
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
@@ -87,7 +87,7 @@ export function PathCard({
         </h3>
       </div>
 
-      <div className="relative flex-1 px-6 py-6 bg-gradient-to-b from-transparent to-gray-300/20">
+      <div className="relative flex-1 px-6 py-6 bg-brand-light-gray">
         <p className="text-xs font-bold text-gray-600 mb-4 uppercase tracking-widest">PERFECT IF YOU:</p>
 
         <ul className="space-y-3.5">
@@ -112,10 +112,10 @@ export function PathCard({
         <a
           href={href}
           onClick={onClick}
-          className="group/btn w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-brand-red to-red-700 text-white font-bold text-sm rounded-xl hover:from-red-700 hover:to-brand-red transition-all duration-300 apple-ease shadow-lg shadow-brand-red/30 hover:shadow-xl hover:shadow-brand-red/50 active:scale-95 relative overflow-hidden"
+          className="group/btn w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-red text-white font-bold text-sm rounded-lg hover:from-red-700 hover:to-brand-red transition-all duration-300 apple-ease shadow-lg shadow-brand-red/30 hover:shadow-brand-red/50 relative overflow-hidden"
         >
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
+            className="absolute inset-0 bg-brand-light-gray"
             initial={{ x: '-100%' }}
             whileHover={{ x: '100%' }}
             transition={{ duration: 0.6 }}

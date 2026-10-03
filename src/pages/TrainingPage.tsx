@@ -3,7 +3,6 @@ import { ArrowLeft, Check, Lightbulb, Users, Video, Calendar, DollarSign, Clock,
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -212,7 +211,7 @@ export function TrainingPage() {
             <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-brand-cta-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className="bg-brand-cta-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-all duration-300 shadow-lg"
               >
                 Register for Free Webinar
               </button>
@@ -227,7 +226,6 @@ export function TrainingPage() {
         </div>
       </section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -247,21 +245,21 @@ export function TrainingPage() {
           </motion.div>
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-3 gap-8">
-            <div className="bg-brand-light-gray p-8 rounded-xl">
+            <div className="bg-brand-light-gray p-8 rounded-lg">
               <Lightbulb className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Clarity Over Hype</h3>
               <p className="text-brand-gray">
                 No ChatGPT tutorials or generic AI theory. Only real construction workflows and practical automation examples.
               </p>
             </div>
-            <div className="bg-brand-light-gray p-8 rounded-xl">
+            <div className="bg-brand-light-gray p-8 rounded-lg">
               <Target className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Construction-Specific</h3>
               <p className="text-brand-gray">
                 Every example is from builders, renovators, and trade contractors. Real bottlenecks, real solutions.
               </p>
             </div>
-            <div className="bg-brand-light-gray p-8 rounded-xl">
+            <div className="bg-brand-light-gray p-8 rounded-lg">
               <TrendingUp className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">From Concept to Action</h3>
               <p className="text-brand-gray">
@@ -272,7 +270,6 @@ export function TrainingPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         id="offerings"
@@ -294,12 +291,12 @@ export function TrainingPage() {
 
           <motion.div variants={staggerItem} className="space-y-8">
             {educationOffers.map((offer, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="p-8 md:p-12">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
                     <div className="flex-1">
                       <div className="flex items-center gap-4 mb-4">
-                        <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-red/10 text-brand-red rounded-xl">
+                        <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-red/10 text-brand-red rounded-lg">
                           <offer.icon className="w-7 h-7" />
                         </div>
                         <div className="inline-flex items-center gap-2 bg-brand-red text-white px-3 py-1 rounded-full text-xs font-bold">
@@ -371,7 +368,6 @@ export function TrainingPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -392,7 +388,7 @@ export function TrainingPage() {
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {learningPath.map((item, index) => (
-              <div key={index} className="bg-brand-light-gray p-6 rounded-xl relative">
+              <div key={index} className="bg-brand-light-gray p-6 rounded-lg relative">
                 <div className="absolute -top-4 -left-4 w-10 h-10 bg-brand-red text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
                   {item.step}
                 </div>
@@ -407,7 +403,6 @@ export function TrainingPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         className="bg-brand-light-gray py-16 md:py-24 px-6"
@@ -442,7 +437,7 @@ export function TrainingPage() {
                 ))}
               </ul>
             </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="bg-white p-8 rounded-lg shadow-lg">
               <Award className="w-16 h-16 text-brand-red mb-6" />
               <h3 className="text-2xl font-bold text-brand-black mb-4">From Unsure to Clear</h3>
               <p className="text-brand-gray mb-6">
@@ -456,7 +451,6 @@ export function TrainingPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="down-left" fromColor="#F5F5F5" toColor="#FFFFFF" height={60} />
 
       <motion.section
         className="bg-white py-16 md:py-24 px-6"
@@ -466,7 +460,7 @@ export function TrainingPage() {
         variants={staggerContainer}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.div variants={staggerItem} className="bg-brand-cta-orange text-white p-8 md:p-12 rounded-2xl text-center">
+          <motion.div variants={staggerItem} className="bg-brand-cta-orange text-white p-8 md:p-12 rounded-lg text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Ready to Understand What is Possible?
             </h3>
@@ -475,7 +469,7 @@ export function TrainingPage() {
             </p>
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="bg-white text-brand-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-light-gray transition-all duration-300 shadow-lg"
             >
               Register for Next Webinar
             </button>
@@ -483,7 +477,6 @@ export function TrainingPage() {
         </div>
       </motion.section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={60} />
 
       <motion.section
         className="bg-brand-light-gray py-16 md:py-24 px-6"
