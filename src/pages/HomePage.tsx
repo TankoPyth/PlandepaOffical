@@ -1,1267 +1,411 @@
-/**
- * HomePage.tsx
- *
- * This is the MAIN LANDING PAGE (home page) of the website.
- *
- * PAGE SECTIONS (in order):
- * 1. Hero Section - Main headline, description, and CTA buttons
- * 2. Stats Section - Company statistics (clients served, projects completed, etc.)
- * 3. Services Section - Main services offered
- * 4. How It Works - Step-by-step process
- * 5. Founder Section - About Jarrod (with his photo)
- * 6. Case Studies - Customer success stories
- * 7. FAQ Section - Frequently asked questions
- * 8. CTA Section - Final call-to-action
- *
- * To modify:
- * - Hero text: Line ~51 and ~59
- * - FAQ questions: faqItems array below (line ~30)
- * - Stats: Search for "StatCard" component usage
- * - Services: Search for "MinimalServiceCard" component usage
- */
-
-import { useState } from 'react';
-import { Settings, Brain, DollarSign, Network, RefreshCw, Wrench, ArrowRight, Calculator, Facebook, Instagram, Linkedin, Mail, Inbox, RotateCcw, FileText, Camera, Truck, ArrowLeftRight, Target, Zap, Shield, TrendingUp, Clock, CheckCircle2, Phone, Rocket, Award } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { SectionNumber } from '../components/SectionNumber';
-import { PathCard } from '../components/PathCard';
-import { MinimalServiceCard } from '../components/MinimalServiceCard';
-import { CaseStudyPreview } from '../components/CaseStudyPreview';
-import { SimpleFAQ } from '../components/SimpleFAQ';
-import { StatCard } from '../components/StatCard';
-import { SubtleWaveBackground } from '../components/ui/SubtleWaveBackground';
-import { AngleDivider } from '../components/ui/AngleDivider';
-import { Modal } from '../components/ui/Modal';
-import { ContactForm } from '../components/ContactForm';
-import { ThankYouModal } from '../components/ThankYouModal';
-import { WorkflowCard } from '../components/WorkflowCard';
-import { WorkflowModal } from '../components/WorkflowModal';
-import { StickyWorkflowBar } from '../components/StickyWorkflowBar';
-import { fadeInUp, staggerContainer, staggerItem, appleEasing } from '../utils/animations';
-import { SEO } from '../components/SEO';
-import { StructuredData, organizationSchema, localBusinessBrisbane, localBusinessSydney, websiteSchema, serviceSchemas, breadcrumbSchema } from '../components/StructuredData';
+import { CalendlyPopup } from '../components/ui/CalendlyPopup';
+import { HOME_FAQS } from '../seo/site';
+import { OFFER_PATH, RISK_REVERSAL, TIERS, formatPrice } from '../seo/offer';
 
+// ─── Data ──────────────────────────────────────────────────────────────────────
+const PAINS = [
+  "Every quote, decision and problem still routes through you.",
+  "Four tools, and none of them agree on what's happening.",
+  "No-one knows the job status until someone calls.",
+  "You can't leave for a week without it slipping.",
+];
+
+const MODULES = [
+  { id: 'SYS.01', name: 'Pipeline & CRM',         desc: 'Your sales process from first call to signed contract. No lead lost in email, no follow-up missed.' },
+  { id: 'SYS.02', name: 'Quoting Infrastructure', desc: 'Templated, fast, consistent. Quotes that go out the same day and follow up themselves.' },
+  { id: 'SYS.03', name: 'Project Handover',       desc: 'The moment sales hands to delivery. Documented, signed off, and nothing falling through the gap.' },
+  { id: 'SYS.04', name: 'SOPs & Playbooks',       desc: 'How your business actually runs — written down, in one place, kept current.' },
+  { id: 'SYS.05', name: 'Reporting & Dashboards', desc: 'Revenue, pipeline, project progress, costs. One view. Updated automatically.' },
+  { id: 'SYS.06', name: 'AI & Automation Layer',  desc: 'Admin that runs itself. AI-drafted replies, follow-ups, reminders, document generation, status updates.' },
+];
+
+const STEPS = [
+  { num: '①', title: 'Blueprint', body: 'We map where the business is leaking and name the first workflow to fix. Sprint, Day or Intensive.' },
+  { num: '②', title: 'Build',     body: 'We implement that workflow, then the rest of your stack, in 30–60 days. Your team trained to use it.' },
+  { num: '③', title: 'Run',       body: 'We stay on as your operational partner. Monthly reviews, continuous builds, nothing decaying.' },
+];
+
+const PLANS = [
+  {
+    name: 'Foundations',
+    price: '$2,800',
+    unit: '/mo',
+    commitment: '3-month minimum',
+    tagline: 'The start line.',
+    desc: 'Core systems built and your team using them.',
+    features: ['CRM & pipeline', '3 core SOPs', '2 automation workflows', 'Monthly strategy call', 'Async Slack support'],
+    featured: false,
+  },
+  {
+    name: 'Growth',
+    price: '$4,800',
+    unit: '/mo',
+    commitment: 'Month-to-month',
+    tagline: 'Your whole business, built and running.',
+    desc: '',
+    features: ['Everything in Foundations', 'Full reporting suite', 'Unlimited SOPs', 'Up to 8 workflows', 'Handover system', 'Fortnightly calls', 'Priority support'],
+    featured: true,
+  },
+  {
+    name: 'Custom',
+    price: 'Custom',
+    unit: '',
+    commitment: 'Scoped per engagement',
+    tagline: 'For complex businesses with non-standard needs.',
+    desc: '',
+    features: ['Multi-entity support', 'Custom integrations', 'Dedicated PM', 'Weekly exec reporting', 'Custom architecture'],
+    featured: false,
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: '"We went from chasing quotes in spreadsheets to a live pipeline within five weeks. The team actually uses it."',
+    attr: 'JAMES K. · DIRECTOR · MID-TIER BUILDER · SYDNEY',
+  },
+  {
+    quote: '"The handover system alone saved us two hours per job. Multiply that across twenty projects and it\'s a different business."',
+    attr: 'RACHEL T. · OPERATIONS MANAGER · RESIDENTIAL BUILDER · BRISBANE',
+  },
+];
+
+const STATS = [
+  { num: '10–50', label: 'Staff' },
+  { num: '30 days', label: 'First workflow live' },
+  { num: '2', label: 'Founders, not a firm' },
+];
+
+const sectionPad = (size: string): React.CSSProperties => ({ paddingTop: size, paddingBottom: size });
+const monoLabel: React.CSSProperties = { fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.1em', color: 'var(--ink-3)', textTransform: 'uppercase', marginBottom: '12px' };
+const smallCaps: React.CSSProperties = { fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)' };
+
+// ─── Component ────────────────────────────────────────────────────────────────
 export function HomePage() {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
-  const [selectedWorkflow, setSelectedWorkflow] = useState<number | null>(null);
-  const [showStickyBar, setShowStickyBar] = useState(false);
+  const [calendlyOpen, setCalendlyOpen] = useState(false);
+  const open = () => setCalendlyOpen(true);
 
-  const workflows = [
-    {
-      icon: Inbox,
-      title: 'Inbound Black Hole',
-      painPoint: 'Enquiries disappear into email chaos, nothing gets tracked properly',
-      hoursSaved: 8,
-      isPopular: true,
-      fullDescription: 'You get enquiries from multiple channels - email, phone, Facebook, walk-ins. Some get answered fast, others sit for days. Nobody knows who\'s following up what, and hot leads go cold because they fell through the cracks.',
-      whatWeInstall: [
-        'Single inbox that captures every enquiry from every channel',
-        'Automatic assignment to the right person',
-        'Follow-up reminders that actually work',
-        'Response time tracking',
-        'Lead scoring to prioritize hot prospects',
-      ],
-      whatImproves: [
-        { metric: 'Response Time', improvement: '< 1 hour' },
-        { metric: 'Lost Leads', improvement: '-95%' },
-        { metric: 'Admin Time', improvement: '-8 hrs/week' },
-      ],
-      beforeAfter: {
-        before: 'Enquiries scattered across email, phone logs, Facebook. Some answered in minutes, others never seen. No idea who\'s doing what.',
-        after: 'Every enquiry lands in one system, gets assigned instantly, follow-ups automated. Nothing slips through.',
-      },
-    },
-    {
-      icon: RotateCcw,
-      title: 'Follow-Up Nightmare',
-      painPoint: 'Hours wasted chasing the same updates from site, clients, suppliers',
-      hoursSaved: 12,
-      isPopular: true,
-      fullDescription: 'You spend hours every day asking for updates. "Where are we at with that variation?" "Did the client approve?" "When are materials arriving?" Same questions to the same people, every single day.',
-      whatWeInstall: [
-        'Automated status update requests',
-        'Smart reminders that escalate if ignored',
-        'Pre-filled update forms for fast responses',
-        'Dashboard showing everything overdue',
-        'Client portal for self-service updates',
-      ],
-      whatImproves: [
-        { metric: 'Follow-up Time', improvement: '-70%' },
-        { metric: 'Response Rate', improvement: '+85%' },
-        { metric: 'Admin Hours', improvement: '-12/week' },
-      ],
-      beforeAfter: {
-        before: 'Constant calls and texts asking for updates. Chasing the same people daily. Updates arrive late or incomplete.',
-        after: 'Updates come to you automatically. System handles reminders and escalations. Dashboard shows everything at a glance.',
-      },
-    },
-    {
-      icon: FileText,
-      title: 'Variation Delays',
-      painPoint: 'Approvals stuck, margin getting chewed while you wait',
-      hoursSaved: 10,
-      fullDescription: 'Variations sit waiting for approval for days or weeks. You\'re doing the work anyway, hoping it gets approved later. By the time it\'s official, you\'ve lost track of actual costs and your margin is toast.',
-      whatWeInstall: [
-        'Quick variation creation from mobile or desktop',
-        'Automatic client notification with approval link',
-        'Reminder sequences for unapproved variations',
-        'Cost tracking that links to actual invoices',
-        'Approval history and audit trail',
-      ],
-      whatImproves: [
-        { metric: 'Approval Time', improvement: '-60%' },
-        { metric: 'Margin Recovery', improvement: '+15%' },
-        { metric: 'Admin Time', improvement: '-10 hrs/week' },
-      ],
-      beforeAfter: {
-        before: 'Variations written on paper, sent via email, approval takes weeks. No tracking of costs. Margin disappears.',
-        after: 'Variations created and sent in 2 minutes. Client approves via link. Costs tracked automatically against approval.',
-      },
-    },
-    {
-      icon: Camera,
-      title: 'Site-to-Office Gap',
-      painPoint: 'Photos everywhere, office reconstructing what happened on site',
-      hoursSaved: 15,
-      fullDescription: 'Your team takes hundreds of photos but they live in personal phones or random WhatsApp threads. Office staff spend hours asking "which job was that?", "when was this taken?", "what am I looking at?"',
-      whatWeInstall: [
-        'Site diary app that links photos to jobs automatically',
-        'Voice-to-text notes while on site',
-        'Automatic GPS and timestamp on every photo',
-        'Instant sync to office dashboard',
-        'Organized photo library by job and date',
-      ],
-      whatImproves: [
-        { metric: 'Photo Sorting Time', improvement: '-90%' },
-        { metric: 'Site Communication', improvement: '+80%' },
-        { metric: 'Admin Hours', improvement: '-15/week' },
-      ],
-      beforeAfter: {
-        before: 'Photos scattered across phones. Office calls site asking for context. Hours wasted sorting and organizing.',
-        after: 'Photos captured on site, automatically tagged and organized. Office sees everything in real-time with context.',
-      },
-    },
-    {
-      icon: Truck,
-      title: 'Supplier Chaos',
-      painPoint: 'Materials late or wrong, nobody knows what\'s outstanding',
-      hoursSaved: 8,
-      fullDescription: 'You order materials via email and phone calls. Half the time you\'re not sure if it was ordered, when it\'s arriving, or if it\'s the right spec. Jobs get delayed because materials don\'t show up.',
-      whatWeInstall: [
-        'Centralized ordering system with supplier integration',
-        'Automatic delivery tracking and notifications',
-        'Outstanding order dashboard',
-        'Spec matching to prevent wrong orders',
-        'Delivery confirmation workflow',
-      ],
-      whatImproves: [
-        { metric: 'Delayed Deliveries', improvement: '-75%' },
-        { metric: 'Wrong Orders', improvement: '-85%' },
-        { metric: 'Ordering Time', improvement: '-8 hrs/week' },
-      ],
-      beforeAfter: {
-        before: 'Orders scattered across email and phone. No visibility on what\'s outstanding. Delays and wrong materials common.',
-        after: 'All orders in one system. Real-time tracking. Alerts when deliveries are late. Wrong orders caught before they ship.',
-      },
-    },
-    {
-      icon: ArrowLeftRight,
-      title: 'Messy Handovers',
-      painPoint: 'Job details lost between quote and delivery',
-      hoursSaved: 6,
-      fullDescription: 'Sales wins the job, but half the details never make it to the site team. Scope creep starts on day one because nobody really knows what was promised. Clients get frustrated and your team is flying blind.',
-      whatWeInstall: [
-        'Structured handover checklist',
-        'Automatic transfer of quote details to job system',
-        'Client expectation documentation',
-        'Site access to full job history',
-        'Change tracking from day one',
-      ],
-      whatImproves: [
-        { metric: 'Handover Errors', improvement: '-80%' },
-        { metric: 'Scope Clarity', improvement: '+90%' },
-        { metric: 'Admin Time', improvement: '-6 hrs/week' },
-      ],
-      beforeAfter: {
-        before: 'Sales hands over a quote and a prayer. Site team guesses at scope. Client expectations don\'t match reality.',
-        after: 'Complete job details flow from quote to site automatically. Everyone works from the same playbook.',
-      },
-    },
-  ];
-
-  /**
-   * FAQ ITEMS
-   * These questions and answers appear in the FAQ section
-   * To add a new FAQ: Add a new object with question and answer
-   */
-  const faqItems = [
-    {
-      question: 'What if the pilot doesn\'t hit the metrics?',
-      answer: 'Simple: you don\'t pay. We only get paid when we deliver measurable results. If we don\'t hit the agreed numbers in 28 days, we eat the cost. That\'s our risk, not yours.',
-    },
-    {
-      question: 'How much team time does a pilot need?',
-      answer: 'Minimal. About 2-3 hours total across the whole month. We do the heavy lifting. Your team just needs to give us 30 minutes at the start to understand the workflow, then quick check-ins as we build.',
-    },
-    {
-      question: 'Can we pilot multiple workflows at once?',
-      answer: 'We don\'t recommend it. Better to prove value on one bottleneck first, then expand. Trying to fix everything at once usually means nothing gets done properly.',
-    },
-    {
-      question: 'What happens after the pilot?',
-      answer: 'You\'ll have clear data on what improved. Then you decide: stop here, extend to more workflows, or scale across your whole operation. No lock-in, no surprises. We only continue if you want us to.',
-    },
-  ];
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
-
-  const homeBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-  ]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal, .reveal-group').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      <SEO
-        title="Plandepa - Construction AI Automation Brisbane, Sydney | ISO Certified Business Consultants"
-        description="Brisbane & Sydney ISO certified construction business consultants. Diplomas in project management, building & construction. Cut paperwork 60%, increase leads 85%. Buildxact partner serving Australia."
-        keywords="construction automation Brisbane, construction business consultant Sydney, AI automation construction Australia, construction consultant Newcastle, Buildxact partner Brisbane, ISO certified construction consultant, construction lead generation Australia, project management construction Queensland, construction automation NSW"
-      />
-      <StructuredData data={[
-        organizationSchema,
-        localBusinessBrisbane,
-        localBusinessSydney,
-        websiteSchema,
-        ...serviceSchemas,
-        faqSchema,
-        homeBreadcrumb,
-      ]} />
-      {/* ============================================
-          SECTION 1: HERO SECTION
-          Main headline, description, and CTA buttons
-          ============================================ */}
-      <section className="relative bg-brand-off-white py-12 md:py-20 px-6 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col">
-        <SubtleWaveBackground />
-        <div className="relative z-10 max-w-4xl mx-auto w-full flex-1 flex flex-col justify-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: appleEasing }}
-          >
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-brand-black mb-5 md:mb-6 leading-tight"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: appleEasing, delay: 0.1 }}
-            >
-              Construction Systems That Actually Work
-            </motion.h1>
-            <motion.p
-              className="text-lg sm:text-xl md:text-2xl text-brand-black font-semibold mb-3 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: appleEasing, delay: 0.15 }}
-            >
-              Your Technology Partner Built By Builders
-            </motion.p>
-            <motion.p
-              className="text-base sm:text-lg md:text-xl text-brand-gray mb-8 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: appleEasing, delay: 0.2 }}
-            >
-              ISO certified team with real construction experience. We implement software, build automation, and optimize your business systems. Start with a risk-free 28-day pilot or go straight to full implementation.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: appleEasing, delay: 0.3 }}
-            >
-              <Link
-                to="/business-audit"
-                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-brand-red text-white font-semibold text-lg rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-              >
-                Book Free Discovery
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center gap-2 px-8 py-5 bg-transparent text-brand-black font-semibold text-base rounded-lg border-2 border-brand-black hover:bg-brand-black hover:text-white transition-all duration-300 apple-ease"
-              >
-                <Settings className="w-5 h-5" />
-                Explore Solutions
-              </a>
-            </motion.div>
-            <motion.div
-              className="flex flex-wrap items-center justify-center gap-6"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: appleEasing, delay: 0.4 }}
-            >
-              <motion.a
-                href="https://www.facebook.com/profile.php?id=61581827105862"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#1877F2] transition-all duration-300 group"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center group-hover:bg-[#1877F2] transition-colors duration-300"
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <Facebook className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
-                </motion.div>
-                <span className="text-sm font-medium">Facebook</span>
-              </motion.a>
-              <motion.a
-                href="https://www.instagram.com/plandepa/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#E4405F] transition-all duration-300 group"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-[#F58529] group-hover:via-[#E4405F] group-hover:to-[#C13584] transition-all duration-300"
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <Instagram className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
-                </motion.div>
-                <span className="text-sm font-medium">Instagram</span>
-              </motion.a>
-              <motion.a
-                href="https://www.linkedin.com/company/107528755/admin/dashboard/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-brand-gray hover:text-[#0077B5] transition-all duration-300 group"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center group-hover:bg-[#0077B5] transition-colors duration-300"
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <Linkedin className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
-                </motion.div>
-                <span className="text-sm font-medium">LinkedIn</span>
-              </motion.a>
-            </motion.div>
-          </motion.div>
-        </div>
-        <motion.div
-          className="relative z-10 text-center pb-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: appleEasing, delay: 0.5 }}
-        >
-          <p className="text-sm md:text-base text-brand-gray">
-            Trusted by 30+ construction companies across Australia • ISO Certified • Buildxact Partner
-          </p>
-        </motion.div>
-      </section>
+      <div style={{ background: 'var(--bg)', color: 'var(--ink)' }}>
 
-      {/* ============================================
-          ROI CALCULATOR BANNER
-          ============================================ */}
-      <motion.section
-        className="bg-white py-12 md:py-16 px-6"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={staggerContainer}
-      >
-        <motion.div
-          className="max-w-6xl mx-auto"
-          variants={fadeInUp}
-        >
-          <div className="bg-gradient-to-br from-brand-light-gray to-white rounded-2xl shadow-xl border-2 border-brand-red/10 p-8 md:p-12 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="flex flex-col items-start">
-                <motion.div
-                  className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-brand-red to-red-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-red/30"
-                  whileHover={{ rotate: [0, -5, 5, -5, 0], scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Calculator className="w-8 h-8 md:w-10 md:h-10 text-white" strokeWidth={2.5} />
-                </motion.div>
+        {/* ── HERO ─────────────────────────────────────────── */}
+        <section style={{ minHeight: '100svh', display: 'flex', alignItems: 'center', padding: '0 var(--gutter)', position: 'relative', overflow: 'hidden' }}>
+          <div aria-hidden="true" className="hidden md:block" style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '50%', pointerEvents: 'none', overflow: 'hidden' }}>
+            {[0, 1, 2, 3, 4].map((i) => (
+              <div key={i} style={{ position: 'absolute', left: '-100vw', right: 0, top: `calc(22% + ${i * 56}px)`, borderTop: '1px solid var(--rule)', opacity: 0.6 }} />
+            ))}
+          </div>
 
-                <h2 className="text-2xl md:text-4xl font-bold text-brand-black mb-4">
-                  Calculate Your Potential Savings
+          <div className="pd-container" style={{ padding: 0, paddingTop: 'var(--sp-20)', paddingBottom: 'var(--sp-20)', position: 'relative', zIndex: 1, width: '100%' }}>
+            <span className="pd-eyebrow hero-animate hero-animate-1">AI Implementation for Construction · Brisbane &amp; Newcastle</span>
+
+            <h1 className="pd-h1 hero-animate hero-animate-2" style={{ marginBottom: 'var(--sp-4)', marginTop: '4px' }}>
+              Get your
+              <br />
+              business <em>back.</em>
+            </h1>
+
+            <p className="pd-lead hero-animate hero-animate-3" style={{ maxWidth: '54ch', marginBottom: 'var(--sp-6)' }}>
+              PlanDepa implements AI and operational systems for construction companies with 10–50 staff — so the business stops
+              running through you. It starts with the Clarity Blueprint: a paid diagnostic that shows exactly where it's breaking.
+            </p>
+
+            <div className="hero-animate hero-animate-4" style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-4)', flexWrap: 'wrap', marginBottom: '12px' }}>
+              <Link to={OFFER_PATH} className="pd-btn pd-btn-primary" style={{ padding: '14px 36px' }}>See the Clarity Blueprint</Link>
+              <button onClick={open} className="pd-body" style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'var(--ink)' }}>
+                Book a fit call →
+              </button>
+            </div>
+
+            <p className="pd-caption hero-animate hero-animate-5" style={{ marginBottom: 'var(--sp-8)' }}>
+              From $990 + GST. Fee credited if we implement the fix.
+            </p>
+
+            <p className="pd-eyebrow hero-animate hero-animate-6">Working with construction businesses across Australia</p>
+          </div>
+        </section>
+
+        {/* ── PROBLEM ──────────────────────────────────────── */}
+        <section className="pd-section" style={sectionPad('var(--sp-20)')}>
+          <div className="pd-container" style={{ padding: 0 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--sp-8)' }}>
+              <div className="reveal">
+                <h2 className="pd-h3" style={{ marginBottom: 'var(--sp-4)' }}>
+                  "You're running a 30-person business on WhatsApp threads, spreadsheets and your own memory."
                 </h2>
-
-                <p className="text-lg md:text-xl text-brand-gray mb-6">
-                  See if you can save <span className="font-bold text-brand-red">$50K+ per year</span> with automation
+                <p className="pd-body" style={{ maxWidth: '42ch', marginBottom: '20px' }}>
+                  Most construction businesses with 10–50 staff have outgrown their systems without realising it. The work gets done,
+                  the money is decent — but it all runs on individual memory, group chats, and manual follow-ups.
                 </p>
-
-                <div className="flex flex-wrap items-center gap-3 text-sm text-brand-gray mb-2">
-                  <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-brand-accent-green" />
-                    Free Tool
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-brand-accent-green" />
-                    No Email Required
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-brand-accent-green" />
-                    2 Minutes
-                  </span>
-                </div>
+                <p className="pd-body" style={{ maxWidth: '42ch' }}>
+                  The owner ends up as the operating system — which means the business can't grow. It can only stretch.
+                </p>
               </div>
-
-              <div className="flex flex-col items-start md:items-end justify-center">
-                <Link
-                  to="/roi-calculator"
-                  className="group w-full md:w-auto"
-                >
-                  <motion.button
-                    className="w-full md:w-auto bg-brand-red text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-bold text-lg md:text-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 hover:gap-4"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Try ROI Calculator
-                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
-                </Link>
-
-                <p className="text-sm text-brand-gray mt-4 text-center md:text-right">
-                  Used by 30+ construction companies to identify automation opportunities
-                </p>
+              <div className="reveal-group">
+                {PAINS.map((pain) => (
+                  <div key={pain} style={{ borderBottom: '1px solid var(--rule)', padding: '20px 0' }}>
+                    <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--ink)', margin: 0 }}>
+                      "{pain}"
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </motion.div>
-      </motion.section>
+        </section>
 
-      {/* ============================================
-          SERVICES OVERVIEW SECTION
-          ============================================ */}
-      <motion.section
-        id="services"
-        className="bg-white py-12 md:py-20 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="text-center mb-12 md:mb-16" variants={fadeInUp}>
-            <h2 className="text-3xl sm:text-4xl md:text-display-md font-bold text-brand-black mb-4">
-              What We Do
-            </h2>
-            <p className="text-lg md:text-xl text-brand-gray max-w-3xl mx-auto">
-              Our proven process: Learn → Plan → Implement → Support
-            </p>
-          </motion.div>
-
-          {/* Main Services - The Core Workflow */}
-          <motion.div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8" variants={staggerItem}>
-            {/* Step 1: Training */}
-            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group relative" variants={fadeInUp}>
-              <motion.div
-                className="w-14 h-14 bg-brand-black rounded-xl flex items-center justify-center mb-4 shadow-lg"
-                whileHover={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 0.6, repeat: 0 }}
-              >
-                <Brain className="w-7 h-7 text-white" strokeWidth={2} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Training & Education</h3>
-              <p className="text-brand-gray mb-4 text-sm">
-                Professional training programs for software, systems, and construction business processes
+        {/* ── THE CLARITY BLUEPRINT ────────────────────────── */}
+        <section id="clarity-blueprint" className="pd-section" style={{ ...sectionPad('var(--sp-20)'), background: 'var(--bg-alt)' }}>
+          <div className="pd-container" style={{ padding: 0 }}>
+            <div className="reveal" style={{ marginBottom: 'var(--sp-8)', maxWidth: '640px' }}>
+              <span className="pd-eyebrow" style={{ color: 'var(--accent)' }}>Where It Starts</span>
+              <h2 className="pd-h2" style={{ marginBottom: 'var(--sp-3)' }}>
+                The Clarity <em>Blueprint.</em>
+              </h2>
+              <p className="pd-lead" style={{ maxWidth: '56ch' }}>
+                Pay for the truth. A paid diagnostic that exposes exactly where your business is breaking — where time, margin, missed
+                work and your own hours are leaking — and names the first workflow to fix. Three sizes.
               </p>
-              <Link to="/training" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
-                Learn More <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
+            </div>
 
-            {/* Step 2: Planning */}
-            <motion.div className="bg-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group relative" variants={fadeInUp}>
-              <motion.div
-                className="w-14 h-14 bg-brand-black rounded-xl flex items-center justify-center mb-4 shadow-lg"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Target className="w-7 h-7 text-white" strokeWidth={2} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Planning & Strategy</h3>
-              <p className="text-brand-gray mb-4 text-sm">
-                Business audits, process mapping, and strategic roadmaps for construction automation
-              </p>
-              <Link to="/business-audit" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
-                Learn More <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
-
-            {/* Step 3: Implementation */}
-            <motion.div className="bg-gradient-to-br from-brand-red to-red-700 p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 relative overflow-hidden group" variants={fadeInUp}>
-              <motion.div
-                className="absolute top-2 right-2 bg-white text-brand-red text-xs font-bold px-2 py-1 rounded shadow-sm"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                RISK-FREE
-              </motion.div>
-              <motion.div
-                className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-4 shadow-lg"
-                whileHover={{ rotate: [0, -15, 15, 0], scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Zap className="w-7 h-7 text-brand-red" strokeWidth={2.5} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-white mb-3">28-Day Pilot</h3>
-              <p className="text-white/90 mb-4 text-sm">
-                Prove value fast with one workflow. Pay only on measurable results. Perfect starting point.
-              </p>
-              <Link to="/pilot-program" className="inline-flex items-center gap-2 text-white font-semibold text-sm hover:gap-3 transition-all duration-300">
-                See Pilots <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Supplementary Services */}
-          <motion.div className="grid md:grid-cols-2 gap-6 md:gap-8" variants={staggerItem}>
-            <motion.div className="bg-white border-2 border-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
-              <motion.div
-                className="w-14 h-14 bg-brand-black rounded-xl flex items-center justify-center mb-4 shadow-lg"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Network className="w-7 h-7 text-white" strokeWidth={2} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Ongoing Support</h3>
-              <p className="text-brand-gray mb-4 text-sm">
-                Monthly retainer support with proactive monitoring, optimization, and priority help
-              </p>
-              <Link to="/ongoing-support" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
-                Learn More <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
-
-            <motion.div className="bg-white border-2 border-brand-light-gray p-6 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 group" variants={fadeInUp}>
-              <motion.div
-                className="w-14 h-14 bg-brand-black rounded-xl flex items-center justify-center mb-4 shadow-lg"
-                whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Settings className="w-7 h-7 text-white" strokeWidth={2} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Buildxact Partner</h3>
-              <p className="text-brand-gray mb-4 text-sm">
-                Official partner for Buildxact implementation, training, and ongoing support
-              </p>
-              <Link to="/buildxact" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
-                Learn More <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* ============================================
-          STATS SECTION
-          ============================================ */}
-      <motion.section
-        className="bg-brand-light-gray py-12 md:py-16 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12" variants={staggerItem}>
-            <motion.div className="text-center" variants={fadeInUp}>
-              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">30+</div>
-              <div className="text-sm md:text-base text-brand-gray font-medium">Construction Companies</div>
-            </motion.div>
-            <motion.div className="text-center" variants={fadeInUp}>
-              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">50+</div>
-              <div className="text-sm md:text-base text-brand-gray font-medium">Systems Implemented</div>
-            </motion.div>
-            <motion.div className="text-center" variants={fadeInUp}>
-              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">1000+</div>
-              <div className="text-sm md:text-base text-brand-gray font-medium">Hours Saved Monthly</div>
-            </motion.div>
-            <motion.div className="text-center" variants={fadeInUp}>
-              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">100%</div>
-              <div className="text-sm md:text-base text-brand-gray font-medium">ISO Certified Team</div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <motion.section
-        className="bg-white py-12 md:py-16 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="mb-8 md:mb-16" variants={staggerItem}>
-            <SectionNumber number="00" label="About" className="mb-6 md:mb-8" />
-            <h2 className="text-3xl sm:text-4xl md:text-display-md font-bold text-brand-black">
-              Two Tradies Who Know Your Struggle
-            </h2>
-          </motion.div>
-
-          <motion.div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-8 md:mb-12" variants={staggerItem}>
-            <motion.div className="flex gap-4 md:gap-6" variants={fadeInUp}>
-              <div className="flex-shrink-0">
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden bg-brand-light-gray border-4 border-brand-red shadow-lg">
-                  <img
-                    src="/mitch_profile_picture.png"
-                    alt="Mitch"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+            <div className="pd-pricing-grid reveal-group">
+              {TIERS.map((tier) => (
+                <div key={tier.id} className={`pd-plan${tier.recommended ? ' pd-plan-featured' : ''}`}>
+                  <div className="pd-eyebrow" style={{ color: tier.recommended ? 'var(--accent)' : undefined }}>
+                    {tier.recommended ? 'Recommended' : ' '}
+                  </div>
+                  <h3 className="pd-h4" style={{ marginBottom: '8px' }}>{tier.name}</h3>
+                  <div style={{ display: 'flex', alignItems: 'flex-end', gap: '6px', marginBottom: '8px' }}>
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: '48px', lineHeight: 1, color: 'var(--ink)' }}>{formatPrice(tier.price)}</span>
+                    <span className="pd-caption" style={{ paddingBottom: '6px' }}>+ GST</span>
+                  </div>
+                  <p className="pd-caption" style={{ margin: 0, minHeight: '40px' }}>{tier.format}</p>
                 </div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl md:text-2xl font-bold text-brand-black mb-2">Mitch</h3>
-                <p className="text-sm md:text-base text-brand-gray leading-relaxed mb-3">
-                  Carpenter to State Manager in building and restoration. Ran multiple crews and learned that systems make or break scaling.
-                </p>
-                <a
-                  href="https://www.linkedin.com/in/mitchell-humphries-8436ab37b/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-brand-gray hover:text-[#0077B5] transition-all duration-300 hover:scale-105 group"
-                >
-                  <Linkedin className="w-4 h-4 group-hover:fill-[#0077B5]" />
-                  <span className="font-medium">Let's connect</span>
-                </a>
-              </div>
-            </motion.div>
+              ))}
+            </div>
 
-            <motion.div className="flex gap-4 md:gap-6" variants={fadeInUp}>
-              <div className="flex-shrink-0">
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden bg-brand-light-gray border-4 border-brand-red shadow-lg">
-                  <img
-                    src="/linkedin_profile_picture_(1).png"
-                    alt="Jarrod"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl md:text-2xl font-bold text-brand-black mb-2">Jarrod</h3>
-                <p className="text-sm md:text-base text-brand-gray leading-relaxed mb-3">
-                  Ran his own construction company at 21, then site management for Tier 1 mining companies. Seen it all from startup chaos to enterprise scale.
-                </p>
-                <a
-                  href="https://www.linkedin.com/in/jarrod-tanko-104943267/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-brand-gray hover:text-[#0077B5] transition-all duration-300 hover:scale-105 group"
-                >
-                  <Linkedin className="w-4 h-4 group-hover:fill-[#0077B5]" />
-                  <span className="font-medium">Let's connect</span>
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          <motion.div className="bg-brand-light-gray p-6 md:p-8 rounded-2xl text-center max-w-3xl mx-auto" variants={fadeInUp}>
-            <h3 className="text-xl md:text-2xl font-bold text-brand-black mb-4">Why We Started Plandepa</h3>
-            <p className="text-base md:text-lg text-brand-gray leading-relaxed mb-4">
-              We've been there: trying to grow your construction business but drowning in paperwork, missing leads, and spending more time in the office than on site. Every software company promises the world, but nobody speaks your language.
-            </p>
-            <p className="text-base md:text-lg text-brand-black font-semibold leading-relaxed mb-4">
-              We bring real construction know-how plus the tech smarts to fix your systems. From quick workflow pilots to complete business transformation, we handle everything from software implementation to custom AI automation.
-            </p>
-            <p className="text-sm md:text-base text-brand-gray leading-relaxed mb-4">
-              Our promise: what we build saves you more money than it costs within 6 months. Whether you start with a pilot or go straight to full implementation, we prove value fast.
-            </p>
-            <div className="pt-4 border-t border-brand-gray/20">
-              <p className="text-sm md:text-base text-brand-gray mb-2 font-semibold">ISO Certified & Qualified Team</p>
-              <p className="text-xs md:text-sm text-brand-gray mb-3">
-                Our team holds Diplomas in Project Management, Health & Safety, Building & Construction, plus ISO Auditing Accreditation
+            <div className="reveal" style={{ display: 'flex', gap: 'var(--sp-6)', flexWrap: 'wrap', alignItems: 'flex-start', marginTop: 'var(--sp-8)', borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-4)' }}>
+              <p className="pd-body" style={{ flex: '1 1 320px', margin: 0 }}>
+                <strong style={{ fontWeight: 500, color: 'var(--ink)' }}>The fee comes off the invoice.</strong> {RISK_REVERSAL}
               </p>
-              <div className="flex flex-wrap justify-center gap-4 text-xs text-brand-gray">
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 className="w-4 h-4 text-brand-red" />
-                  Buildxact Partner
-                </span>
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 className="w-4 h-4 text-brand-red" />
-                  30+ Companies Served
-                </span>
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 className="w-4 h-4 text-brand-red" />
-                  Software to AI Automation
-                </span>
+              <Link to={OFFER_PATH} className="pd-btn pd-btn-primary" style={{ padding: '14px 36px' }}>See what's included</Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── WHAT WE BUILD ────────────────────────────────── */}
+        <section id="what-we-build" className="pd-section">
+          <div className="pd-container" style={{ padding: 0 }}>
+            <div className="reveal" style={{ marginBottom: 'var(--sp-8)' }}>
+              <span className="pd-eyebrow">Then We Build It</span>
+              <h2 className="pd-h2">
+                One operating system
+                <br />
+                for your entire <em>business.</em>
+              </h2>
+            </div>
+            <div className="pd-module-grid reveal-group">
+              {MODULES.map((mod) => (
+                <div key={mod.id} className="pd-module-cell">
+                  <div style={monoLabel}>{mod.id}</div>
+                  <h3 className="pd-h4" style={{ marginBottom: '12px' }}>{mod.name}</h3>
+                  <p className="pd-body" style={{ fontSize: '14px', maxWidth: '36ch', margin: 0 }}>{mod.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── HOW IT WORKS ─────────────────────────────────── */}
+        <section id="how-it-works" className="pd-section">
+          <div className="pd-container" style={{ padding: 0 }}>
+            <div className="reveal" style={{ marginBottom: 'var(--sp-8)' }}>
+              <span className="pd-eyebrow">The Process</span>
+              <h2 className="pd-h2">
+                Three stages.
+                <br />
+                No 12-month <em>projects.</em>
+              </h2>
+            </div>
+            <div className="pd-stepper reveal-group">
+              {STEPS.map((step) => (
+                <div key={step.title} style={{ paddingTop: 'var(--sp-3)' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-3xl)', color: 'var(--ink-3)', lineHeight: 1, marginBottom: '20px' }}>{step.num}</div>
+                  <div style={{ ...smallCaps, fontSize: '14px', color: 'var(--ink)', marginBottom: '12px' }}>{step.title}</div>
+                  <p className="pd-body" style={{ fontSize: '14px', maxWidth: '28ch', margin: 0 }}>{step.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── IMPLEMENTATION PRICING ───────────────────────── */}
+        <section className="pd-section" style={sectionPad('var(--sp-20)')}>
+          <div className="pd-container" style={{ padding: 0 }}>
+            <div className="reveal" style={{ marginBottom: 'var(--sp-8)' }}>
+              <span className="pd-eyebrow">After the Blueprint</span>
+              <h2 className="pd-h2" style={{ marginBottom: '16px' }}>
+                Implementation.
+                <br />
+                No <em>surprises.</em>
+              </h2>
+              <p className="pd-body" style={{ maxWidth: '50ch' }}>
+                Once the Blueprint has named what to fix, we build and run it on a flat monthly fee. Everything included. Pause or cancel
+                anytime after your minimum.
+              </p>
+            </div>
+
+            <div className="pd-pricing-grid reveal-group">
+              {PLANS.map((plan) => (
+                <div key={plan.name} className={`pd-plan${plan.featured ? ' pd-plan-featured' : ''}`}>
+                  <div style={{ ...smallCaps, marginBottom: '12px' }}>{plan.name}</div>
+                  <div style={{ display: 'flex', alignItems: 'flex-end', gap: '4px', marginBottom: '4px' }}>
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: '56px', lineHeight: 1, color: 'var(--ink)' }}>{plan.price}</span>
+                    {plan.unit && <span className="pd-body" style={{ paddingBottom: '8px' }}>{plan.unit}</span>}
+                  </div>
+                  <div className="pd-caption" style={{ fontSize: '12px', marginBottom: 'var(--sp-3)' }}>{plan.commitment}</div>
+
+                  <div style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-3)', marginBottom: 'var(--sp-3)' }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontStyle: 'italic', color: 'var(--ink)', marginBottom: '8px' }}>{plan.tagline}</div>
+                    {plan.desc && <p className="pd-body" style={{ fontSize: '14px', maxWidth: '36ch', margin: 0 }}>{plan.desc}</p>}
+                  </div>
+
+                  <div style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-2)', marginBottom: 'var(--sp-3)' }}>
+                    {plan.features.map((feat) => (
+                      <div key={feat} className="pd-feature-item"><span className="pd-feature-dash">—</span>{feat}</div>
+                    ))}
+                  </div>
+
+                  <div style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-3)' }}>
+                    <Link to={OFFER_PATH} className={`pd-btn pd-btn-full ${plan.featured ? 'pd-btn-primary' : 'pd-btn-outline'}`}>
+                      Start with a Blueprint
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="pd-caption" style={{ textAlign: 'center', marginTop: 'var(--sp-6)' }}>
+              All prices exclude GST. Minimum period then month-to-month. Cancel with 30 days notice.
+            </p>
+          </div>
+        </section>
+
+        {/* ── SOCIAL PROOF ─────────────────────────────────── */}
+        <section className="pd-section">
+          <div className="pd-container" style={{ padding: 0 }}>
+            <div className="reveal" style={{ marginBottom: 'var(--sp-8)' }}>
+              <span className="pd-eyebrow">From the Field</span>
+              <h2 className="pd-h2">
+                Directors who've
+                <br />
+                stopped <em>guessing.</em>
+              </h2>
+            </div>
+            <div className="pd-testimonial-grid reveal-group">
+              {TESTIMONIALS.map((t) => (
+                <div key={t.attr} style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-6)' }}>
+                  <p style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontStyle: 'italic', lineHeight: 1.45, color: 'var(--ink)', maxWidth: '42ch', marginBottom: 'var(--sp-3)' }}>
+                    {t.quote}
+                  </p>
+                  <p style={{ ...smallCaps, fontSize: 'var(--text-xs)', margin: 0 }}>{t.attr}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── ABOUT ────────────────────────────────────────── */}
+        <section className="pd-section">
+          <div className="pd-container" style={{ padding: 0 }}>
+            <div className="reveal">
+              <span className="pd-eyebrow">Who We Are</span>
+              <h2 className="pd-h2" style={{ marginBottom: 'var(--sp-4)' }}>
+                Two people.
+                <br />
+                One <em>focus.</em>
+              </h2>
+            </div>
+            <div style={{ maxWidth: '600px' }}>
+              <div className="reveal" style={{ marginBottom: 'var(--sp-6)' }}>
+                {[
+                  "PlanDepa is Jarrod and Mitch. We don't have a team of consultants billing hours. We have two people who've spent years inside construction businesses learning what actually breaks, and building systems that fix it.",
+                  'Jarrod owns the front — finding the right clients and understanding what they need. Mitch owns the back — designing the systems and making sure they hold.',
+                  "We're based in Brisbane, work in person across Brisbane and Newcastle, and take on a limited number of clients so we can actually do the work properly.",
+                ].map((para) => (
+                  <p key={para} className="pd-lead" style={{ marginBottom: 'var(--sp-3)' }}>{para}</p>
+                ))}
+              </div>
+              <div className="reveal-group" style={{ display: 'flex', gap: 'var(--sp-6)', flexWrap: 'wrap' }}>
+                {STATS.map((stat) => (
+                  <div key={stat.label}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: '48px', lineHeight: 1, color: 'var(--ink)', marginBottom: '8px' }}>{stat.num}</div>
+                    <div style={smallCaps}>{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
-          </motion.div>
-        </div>
-      </motion.section>
+          </div>
+        </section>
 
-      <motion.section
-        id="choose-path"
-        className="bg-brand-light-gray py-10 md:py-16 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="mb-8 md:mb-16 text-center" variants={staggerItem}>
-            <SectionNumber number="01" label="Next Step" className="mb-6 md:mb-8 justify-center" />
-            <h2 className="text-3xl sm:text-4xl md:text-display-md font-bold text-brand-black">
-              How Do You Want To Get Started?
-            </h2>
-            <p className="text-base md:text-lg text-brand-gray max-w-2xl mx-auto mt-4">
-              Choose the path that fits your situation. No wrong answers.
-            </p>
-          </motion.div>
-
-          <motion.div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12" variants={staggerItem}>
-            <PathCard
-              label="NOT SURE WHERE TO START?"
-              title="Free Discovery Call"
-              benefits={[
-                'No obligation, no cost',
-                'Identify biggest opportunities',
-                'Get honest recommendations',
-                'Understand all options',
-              ]}
-              badge="Recommended"
-              badgeColor="red"
-              href="/business-audit"
-              icon={Phone}
-            />
-            <PathCard
-              label="WANT PROOF FIRST?"
-              title="28-Day Pilot Program"
-              benefits={[
-                'One workflow fixed in 28 days',
-                'Measurable results guaranteed',
-                'Pay only on success',
-                'Limited to 3 per month',
-              ]}
-              badge="Risk-Free"
-              badgeColor="red"
-              href="/pilot-program"
-              icon={Award}
-            />
-            <PathCard
-              label="KNOW WHAT YOU NEED?"
-              title="Direct Implementation"
-              benefits={[
-                'Software setup & training',
-                'Custom automation builds',
-                'Full system integration',
-                'Ongoing support available',
-              ]}
-              badge="Fastest"
-              badgeColor="blue"
-              href="/contact"
-              icon={Rocket}
-            />
-          </motion.div>
-
-          <motion.p className="text-center text-base md:text-body-lg text-brand-gray" variants={fadeInUp}>
-            Questions?{' '}
-            <a href="#faq" className="text-brand-red hover:underline font-semibold transition-colors duration-300 apple-ease">
-              Check our FAQ →
-            </a>
-          </motion.p>
-        </div>
-      </motion.section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <motion.section
-        id="workflows"
-        className="bg-white py-12 md:py-20 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="mb-12 md:mb-16 text-center" variants={staggerItem}>
-            <SectionNumber number="02" label="Quick-Win Pilots" className="mb-6 md:mb-8 justify-center" />
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-brand-black mb-4 md:mb-6">
-              Popular 28-Day Pilot Programs
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-brand-gray max-w-3xl mx-auto mb-4">
-              Pick one bottleneck. We'll build control around it in 28 days. Prove value before scaling.
-            </p>
-            <p className="text-sm md:text-base text-brand-gray max-w-2xl mx-auto">
-              Want something different? We can pilot any workflow in your business. <Link to="/business-audit" className="text-brand-red font-semibold hover:underline">Book a discovery call</Link> to discuss your specific needs.
-            </p>
-          </motion.div>
-
-          <motion.div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" variants={staggerItem}>
-            {workflows.map((workflow, index) => (
-              <WorkflowCard
-                key={index}
-                icon={workflow.icon}
-                title={workflow.title}
-                painPoint={workflow.painPoint}
-                hoursSaved={workflow.hoursSaved}
-                isPopular={workflow.isPopular}
-                onClick={() => setSelectedWorkflow(index)}
-              />
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {selectedWorkflow !== null && (
-        <WorkflowModal
-          isOpen={selectedWorkflow !== null}
-          onClose={() => setSelectedWorkflow(null)}
-          {...workflows[selectedWorkflow]}
-        />
-      )}
-
-      <motion.section
-        className="bg-brand-light-gray py-12 md:py-20 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="mb-12 md:mb-16 text-center" variants={staggerItem}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4 md:mb-6">
-              Why Companies Choose The Pilot First
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
-              Prove value before scaling. Fast results, zero risk, minimal disruption.
-            </p>
-          </motion.div>
-
-          <motion.div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" variants={staggerItem}>
-            <motion.div
-              className="bg-white rounded-2xl p-8 text-center"
-              variants={fadeInUp}
-              whileHover={{ y: -5, boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)' }}
-              transition={{ duration: 0.3, ease: appleEasing }}
-            >
-              <motion.div
-                className="w-20 h-20 bg-brand-red rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
-                initial={{ scale: 0, rotate: -180 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-              >
-                <Shield className="w-10 h-10 text-white" strokeWidth={2} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Zero Risk</h3>
-              <p className="text-brand-gray">
-                Pay only if we hit agreed metrics in 28 days. We eat the risk, you get the results.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="bg-white rounded-2xl p-8 text-center"
-              variants={fadeInUp}
-              whileHover={{ y: -5, boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)' }}
-              transition={{ duration: 0.3, ease: appleEasing }}
-            >
-              <motion.div
-                className="w-20 h-20 bg-brand-red rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
-                initial={{ scale: 0, y: -50 }}
-                whileInView={{ scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <Zap className="w-10 h-10 text-white" strokeWidth={2.5} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Fast Proof</h3>
-              <p className="text-brand-gray">
-                See measurable improvement in one workflow within a month. No long commitments.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="bg-white rounded-2xl p-8 text-center"
-              variants={fadeInUp}
-              whileHover={{ y: -5, boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)' }}
-              transition={{ duration: 0.3, ease: appleEasing }}
-            >
-              <motion.div
-                className="w-20 h-20 bg-brand-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <Clock className="w-10 h-10 text-white" strokeWidth={2} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">No Disruption</h3>
-              <p className="text-brand-gray">
-                We work around your schedule, minimal team involvement. Just 2-3 hours total.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="bg-white rounded-2xl p-8 text-center"
-              variants={fadeInUp}
-              whileHover={{ y: -5, boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)' }}
-              transition={{ duration: 0.3, ease: appleEasing }}
-            >
-              <motion.div
-                className="w-20 h-20 bg-brand-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
-                initial={{ scale: 0, rotate: 180 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                whileHover={{ scale: 1.1, y: -5 }}
-              >
-                <TrendingUp className="w-10 h-10 text-white" strokeWidth={2} />
-              </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Clear Next Step</h3>
-              <p className="text-brand-gray">
-                After proof, you decide to scale or stop. No pressure, no lock-in.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        className="bg-white py-12 md:py-20 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-6xl mx-auto">
-          <motion.div className="mb-12 md:mb-16 text-center" variants={staggerItem}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4 md:mb-6">
-              How The Pilot Works
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
-              Four weeks from bottleneck to breakthrough
-            </p>
-          </motion.div>
-
-          <motion.div className="relative" variants={staggerItem}>
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-brand-red/20 transform md:-translate-x-1/2" />
-
-            <div className="space-y-12">
-              <motion.div
-                className="relative flex flex-col md:flex-row items-start md:items-center gap-6"
-                variants={fadeInUp}
-              >
-                <div className="flex items-center gap-6 w-full md:w-1/2 md:justify-end md:pr-12">
-                  <div className="flex-shrink-0 w-16 h-16 bg-brand-red rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 shadow-lg">
-                    1
-                  </div>
-                  <div className="flex-1 md:text-right">
-                    <h3 className="text-2xl font-bold text-brand-black mb-2">Map & Measure</h3>
-                    <p className="text-brand-gray">
-                      Week 1: Identify bottleneck, set baseline metrics, define success
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:block w-1/2" />
-              </motion.div>
-
-              <motion.div
-                className="relative flex flex-col md:flex-row-reverse items-start md:items-center gap-6"
-                variants={fadeInUp}
-              >
-                <div className="flex items-center gap-6 w-full md:w-1/2 md:pl-12">
-                  <div className="flex-shrink-0 w-16 h-16 bg-brand-red rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 shadow-lg">
-                    2
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-brand-black mb-2">Build & Install</h3>
-                    <p className="text-brand-gray">
-                      Week 2-3: Create control layer, test with team, refine based on feedback
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:block w-1/2" />
-              </motion.div>
-
-              <motion.div
-                className="relative flex flex-col md:flex-row items-start md:items-center gap-6"
-                variants={fadeInUp}
-              >
-                <div className="flex items-center gap-6 w-full md:w-1/2 md:justify-end md:pr-12">
-                  <div className="flex-shrink-0 w-16 h-16 bg-brand-red rounded-full flex items-center justify-center text-white font-bold text-2xl z-10 shadow-lg">
-                    3
-                  </div>
-                  <div className="flex-1 md:text-right">
-                    <h3 className="text-2xl font-bold text-brand-black mb-2">Prove & Deliver</h3>
-                    <p className="text-brand-gray">
-                      Week 4: Measure results against baseline, deliver proof artifacts, you decide next step
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:block w-1/2" />
-              </motion.div>
+        {/* ── FAQ ──────────────────────────────────────────── */}
+        <section className="pd-section" style={sectionPad('var(--sp-12)')}>
+          <div className="pd-container" style={{ padding: 0 }}>
+            <div className="reveal" style={{ marginBottom: 'var(--sp-8)' }}>
+              <span className="pd-eyebrow">Common Questions</span>
+              <h2 className="pd-h2">
+                Everything you'd
+                <br />
+                want to <em>ask.</em>
+              </h2>
             </div>
-          </motion.div>
+            <div style={{ maxWidth: 'var(--max-w-tight)' }}>
+              {HOME_FAQS.map((faq) => (
+                <div key={faq.q} className="reveal">
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: '22px', color: 'var(--ink)', borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-4)', marginBottom: 'var(--sp-2)', letterSpacing: '-0.01em' }}>
+                    {faq.q}
+                  </h3>
+                  <p className="pd-body" style={{ marginBottom: 'var(--sp-4)', maxWidth: 'none' }}>{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <motion.div className="mt-12 text-center" variants={fadeInUp}>
-            <a
-              href="/business-audit"
-              className="inline-flex items-center gap-2 px-10 py-4 bg-brand-black text-white font-semibold text-lg rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-            >
-              Apply for Pilot Slot
-              <ArrowRight className="w-5 h-5" />
-            </a>
-            <p className="mt-4 text-sm text-brand-gray">
-              Limited to 3 pilots per month
+        {/* ── FINAL CTA ────────────────────────────────────── */}
+        <section className="pd-section" style={{ ...sectionPad('var(--sp-20)'), background: 'var(--bg-alt)', textAlign: 'center' }}>
+          <div className="reveal" style={{ maxWidth: '560px', margin: '0 auto' }}>
+            <span className="pd-eyebrow">Get Started</span>
+            <h2 className="pd-h2" style={{ marginBottom: 'var(--sp-4)' }}>
+              Find out what's
+              <br />
+              actually <em>breaking.</em>
+            </h2>
+            <p className="pd-lead" style={{ margin: '0 auto var(--sp-6)', maxWidth: '48ch' }}>
+              Start with the Clarity Blueprint, or book a 30-minute fit call first. If we're not the right fit, we'll say so.
             </p>
-          </motion.div>
-        </div>
-      </motion.section>
+            <div style={{ display: 'flex', gap: 'var(--sp-3)', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to={OFFER_PATH} className="pd-btn pd-btn-primary" style={{ padding: '14px 36px' }}>See the Clarity Blueprint</Link>
+              <button onClick={open} className="pd-btn pd-btn-outline" style={{ padding: '13px 32px' }}>Book a Fit Call</button>
+            </div>
+            <p className="pd-caption" style={{ marginTop: '12px' }}>No obligation. No pitch deck. A real conversation.</p>
+          </div>
+        </section>
 
-      <motion.section
-        className="bg-brand-light-gray py-12 md:py-16 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-6xl mx-auto">
-          <motion.div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12" variants={staggerItem}>
-            <motion.div
-              className="text-center"
-              variants={fadeInUp}
-            >
-              <motion.div
-                className="text-5xl md:text-6xl font-bold text-brand-red mb-3"
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.4 }}
-                >
-                  100%
-                </motion.span>
-              </motion.div>
-              <p className="text-base md:text-lg text-brand-gray font-medium">
-                Capture Within 1 Hour
-              </p>
-            </motion.div>
+      </div>
 
-            <motion.div
-              className="text-center"
-              variants={fadeInUp}
-            >
-              <motion.div
-                className="text-5xl md:text-6xl font-bold text-brand-red mb-3"
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                >
-                  40-70%
-                </motion.span>
-              </motion.div>
-              <p className="text-base md:text-lg text-brand-gray font-medium">
-                Follow-ups Reduced
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="text-center"
-              variants={fadeInUp}
-            >
-              <motion.div
-                className="text-5xl md:text-6xl font-bold text-brand-red mb-3"
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.6 }}
-                >
-                  28 Days
-                </motion.span>
-              </motion.div>
-              <p className="text-base md:text-lg text-brand-gray font-medium">
-                To Measurable Results
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <motion.section
-        className="bg-white py-12 md:py-16 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="mb-8 md:mb-16" variants={staggerItem}>
-            <SectionNumber number="03" label="Case Studies" className="mb-6 md:mb-8" />
-            <h2 className="text-3xl sm:text-4xl md:text-display-sm font-bold text-brand-black mb-4 md:mb-6">
-              See what we've built
-            </h2>
-          </motion.div>
-
-          <motion.div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12" variants={staggerItem}>
-            <CaseStudyPreview
-              companyType="Custom Home Builder"
-              href="/case-studies"
-            />
-            <CaseStudyPreview
-              companyType="Commercial Electrical"
-              href="/case-studies"
-            />
-            <CaseStudyPreview
-              companyType="Renovation Specialist"
-              href="/case-studies"
-            />
-          </motion.div>
-
-          <motion.p className="text-center" variants={fadeInUp}>
-            <a
-              href="/case-studies"
-              className="inline-flex items-center gap-2 text-base md:text-body-lg text-brand-red font-semibold hover:gap-3 transition-all duration-300 apple-ease"
-            >
-              View all case studies
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
-            </a>
-          </motion.p>
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="faq"
-        className="bg-brand-light-gray py-12 md:py-16 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="mb-8 md:mb-16" variants={staggerItem}>
-            <SectionNumber number="04" label="FAQ" className="mb-6 md:mb-8" />
-            <h2 className="text-3xl sm:text-4xl md:text-display-sm font-bold text-brand-black mb-4 md:mb-6">
-              Pilot Program Questions
-            </h2>
-          </motion.div>
-
-          <motion.div variants={staggerItem}>
-            <SimpleFAQ items={faqItems} />
-          </motion.div>
-
-          <motion.p className="text-center text-base md:text-body-lg text-brand-gray mt-8 md:mt-12" variants={fadeInUp}>
-            Still have questions?{' '}
-            <a href="#contact" className="text-brand-red hover:underline font-semibold transition-colors duration-300 apple-ease">
-              Let's talk →
-            </a>
-          </motion.p>
-        </div>
-      </motion.section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <motion.section
-        id="contact"
-        className="bg-white py-12 md:py-16 px-6"
-        style={{ position: 'relative', zIndex: 10 }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2 className="text-3xl sm:text-4xl md:text-display-md font-bold text-brand-black mb-6 md:mb-8" variants={fadeInUp}>
-            Ready to build a better business?
-          </motion.h2>
-          <motion.p className="text-base sm:text-lg md:text-body-xl text-brand-gray mb-8 md:mb-12 max-w-2xl mx-auto" variants={fadeInUp}>
-            Book your discovery call or have a chat about growing your business.
-          </motion.p>
-          <motion.button
-            onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center gap-2 md:gap-3 px-8 py-4 md:px-12 md:py-5 bg-brand-black text-white font-semibold text-base md:text-body-lg rounded-full hover:bg-gray-800 transition-all duration-300 apple-ease shadow-xl mb-6 md:mb-8 hover:scale-105 active:scale-95"
-            variants={fadeInUp}
-          >
-            Book discovery call
-            <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
-          </motion.button>
-          <motion.p className="text-sm md:text-body-md text-brand-gray" variants={fadeInUp}>
-            Or email us:{' '}
-            <a href="mailto:admin@plandepa.com" className="text-brand-black hover:text-brand-red font-semibold transition-colors duration-300 apple-ease">
-              admin@plandepa.com
-            </a>
-          </motion.p>
-        </div>
-      </motion.section>
-
-      <Modal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-        title="Get in Touch"
-      >
-        <ContactForm
-          source="homepage"
-          onSuccess={() => {
-            setTimeout(() => {
-              setIsContactModalOpen(false);
-              setShowThankYou(true);
-            }, 1500);
-          }}
-        />
-      </Modal>
-
-      <ThankYouModal isOpen={showThankYou} onClose={() => setShowThankYou(false)} />
-
-      <StickyWorkflowBar />
+      <CalendlyPopup isOpen={calendlyOpen} onClose={() => setCalendlyOpen(false)} />
     </>
   );
 }

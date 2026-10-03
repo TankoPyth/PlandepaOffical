@@ -16,8 +16,9 @@ import { useEffect, lazy, Suspense } from 'react';
 // Layout components (appear on every page)
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
-import { ScrollProgress } from './components/ui/ScrollProgress';
-import { StickyContactButton } from './components/ui/StickyContactButton';
+import { SEO } from './components/SEO';
+import { LOCATIONS } from './seo/site';
+import { OFFER_PATH } from './seo/offer';
 
 // Analytics
 import { trackChatOpened, trackChatClosed } from './utils/analytics';
@@ -27,15 +28,15 @@ import { HomePage } from './pages/HomePage';
 
 // All other pages lazy loaded (code splitting)
 const BusinessAuditPage = lazy(() => import('./pages/BusinessAuditPage').then(m => ({ default: m.BusinessAuditPage })));
-const LeadGenerationPage = lazy(() => import('./pages/LeadGenerationPage').then(m => ({ default: m.LeadGenerationPage })));
+const EnquiryAutomationPage = lazy(() => import('./pages/EnquiryAutomationPage').then(m => ({ default: m.EnquiryAutomationPage })));
 const CaseStudiesPage = lazy(() => import('./pages/CaseStudiesPage').then(m => ({ default: m.CaseStudiesPage })));
-const SoftwarePage = lazy(() => import('./pages/SoftwarePage').then(m => ({ default: m.SoftwarePage })));
 const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m => ({ default: m.ROICalculatorPage })));
 const PilotProgramPage = lazy(() => import('./pages/PilotProgramPage').then(m => ({ default: m.PilotProgramPage })));
 const TrainingPage = lazy(() => import('./pages/TrainingPage').then(m => ({ default: m.TrainingPage })));
 const OngoingSupportPage = lazy(() => import('./pages/OngoingSupportPage').then(m => ({ default: m.OngoingSupportPage })));
 const BuildxactPartnerPage = lazy(() => import('./pages/BuildxactPartnerPage').then(m => ({ default: m.BuildxactPartnerPage })));
-const OSRPage = lazy(() => import('./pages/OSRPage').then(m => ({ default: m.OSRPage })));
+const ClarityBlueprintPage = lazy(() => import('./pages/ClarityBlueprintPage').then(m => ({ default: m.ClarityBlueprintPage })));
+const LocationPage = lazy(() => import('./pages/LocationPage').then(m => ({ default: m.LocationPage })));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
@@ -96,11 +97,10 @@ function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <ScrollProgress />  {/* Reading progress bar at top */}
-      <Navigation />      {/* Header with logo and menu */}
-      <main className="flex-1 pt-20">{children}</main>  {/* Page content goes here */}
-      <Footer />          {/* Footer with links and copyright */}
-      <StickyContactButton />  {/* Floating contact button that appears on scroll */}
+      <SEO />
+      <Navigation />
+      <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   );
 }
@@ -118,6 +118,17 @@ function Layout({ children }: { children: React.ReactNode }) {
 export function AppRouter() {
   return (
     <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}
+
+/**
+ * Router-agnostic routes. Rendered inside <BrowserRouter> in the browser and
+ * inside <StaticRouter> by src/entry-server.tsx when prerendering.
+ */
+export function AppRoutes() {
+  return (
       <Layout>
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center">
@@ -131,19 +142,27 @@ export function AppRouter() {
             {/* Service pages */}
             <Route path="/business-audit" element={<BusinessAuditPage />} />
             <Route path="/free-audit" element={<Navigate to="/business-audit" replace />} />
-            <Route path="/operations-review" element={<OSRPage />} />
-            <Route path="/osr" element={<Navigate to="/operations-review" replace />} />
+            <Route path={OFFER_PATH} element={<ClarityBlueprintPage />} />
+            <Route path="/operations-review" element={<Navigate to={OFFER_PATH} replace />} />
+            <Route path="/osr" element={<Navigate to={OFFER_PATH} replace />} />
             <Route path="/pilot-program" element={<PilotProgramPage />} />
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/ongoing-support" element={<OngoingSupportPage />} />
             <Route path="/buildxact" element={<BuildxactPartnerPage />} />
-            <Route path="/lead-generation" element={<LeadGenerationPage />} />
+            <Route path="/enquiry-automation" element={<EnquiryAutomationPage />} />
+            <Route path="/lead-generation" element={<Navigate to="/enquiry-automation" replace />} />
+
+            {/* Location landing pages */}
+            <Route path={LOCATIONS.brisbane.slug} element={<LocationPage location="brisbane" />} />
+            <Route path={LOCATIONS.newcastle.slug} element={<LocationPage location="newcastle" />} />
+            <Route path="/brisbane" element={<Navigate to={LOCATIONS.brisbane.slug} replace />} />
+            <Route path="/newcastle" element={<Navigate to={LOCATIONS.newcastle.slug} replace />} />
             <Route path="/roi-calculator" element={<ROICalculatorPage />} />
 
             {/* Information pages */}
             <Route path="/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/software" element={<SoftwarePage />} />
-            <Route path="/services" element={<SoftwarePage />} />
+            <Route path="/software" element={<Navigate to={OFFER_PATH} replace />} />
+            <Route path="/services" element={<Navigate to={OFFER_PATH} replace />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/contact/thank-you" element={<ThankYouPage />} />
 
@@ -156,6 +175,5 @@ export function AppRouter() {
           </Routes>
         </Suspense>
       </Layout>
-    </BrowserRouter>
   );
 }

@@ -1,6 +1,45 @@
-# Allow all user agents to crawl the site
+# PlanDepa — AI implementation for construction companies (Brisbane, Newcastle, Australia)
+# All crawlers welcome, including AI assistants and answer engines.
+
 User-agent: *
 Allow: /
+Disallow: /contact/thank-you
 
-# Sitemap location
+# AI / LLM crawlers — explicitly allowed so PlanDepa can be cited in AI answers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://plandepa.com/sitemap.xml

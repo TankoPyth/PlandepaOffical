@@ -36,6 +36,9 @@ export function Modal({ isOpen, onClose, children, title, size = 'default' }: Mo
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
+  // No document during prerender; the portal mounts client-side
+  if (typeof document === 'undefined') return null;
+
   return createPortal(
     <AnimatePresence>
       {isOpen && (

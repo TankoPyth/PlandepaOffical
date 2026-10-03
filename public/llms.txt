@@ -1,0 +1,57 @@
+# PlanDepa
+
+> PlanDepa is an AI implementation and operational systems consultancy for construction companies in Brisbane, Newcastle and across Australia. We design, build and support the CRM, quoting, handover, reporting and admin automation that lets builders and trade contractors take on more work without adding office headcount. Construction is all we do.
+
+- Based in Brisbane, Queensland. Serving Brisbane, Gold Coast, Sunshine Coast and South East Queensland, plus Newcastle, Lake Macquarie, Maitland, Port Stephens and the Hunter region in NSW. We also work with construction businesses elsewhere in Australia.
+- Founded by Jarrod Tanko (construction company founder and site manager, from startup operations to Tier 1 mining projects) and Mitch Humphries (former carpenter and State Manager in building and restoration).
+- Tool-agnostic: we implement whatever fits the business (for example Buildxact, HubSpot, Monday, Notion, Airtable, or tools a client already uses). Official Buildxact implementation partner.
+- Typical timeline: a working CRM and first documented processes within about four weeks; a full operational system in 8–12 weeks.
+- Contact: admin@plandepa.com · +61 447 733 216 · https://plandepa.com/contact
+
+## What we implement
+
+- Enquiry capture and automated follow-up across web, phone, email and social
+- Quoting and estimating workflows with same-day quotes and automatic follow-ups
+- Variation capture, approval and escalation
+- Structured sales-to-delivery job handovers
+- Site photo, note and diary capture routed to the right job and person
+- Live reporting on revenue, pipeline, job progress and costs
+- Documented standard operating procedures (SOPs)
+
+## Main offer: The Clarity Blueprint
+
+[The Clarity Blueprint](https://plandepa.com/clarity-blueprint) is a paid diagnostic that exposes exactly where a construction business is breaking — where time, margin, missed work and owner capacity are leaking — and names the first workflow to fix. It turns straight into implementation. All prices are in AUD and exclude GST.
+
+- Clarity Sprint — $990 + GST — 3-hour virtual working session: high-level Business Clarity Map, Top Three Leak Register, First Workflow Decision, 30-day priority plan, review/readout call.
+- Clarity Day — $1,990 + GST (recommended) — one-day in-person review in Brisbane or Newcastle: owner and team conversations, live workflow mapping, systems and information-flow review, Owner Bottleneck Map, priority board, first-workflow implementation outline, 30-day plan, 90-minute decision session, 14-day clarification window.
+- Clarity Intensive — $4,990 + GST — up to two in-person days, Australia-wide, travel included: deeper department or location review, work/sample data review, handoff and owner-dependence analysis, SOP and source-of-truth review, implementation economics, 90-day roadmap, leadership alignment session, implementation scope, 30-day post-review check-in.
+- Fee credit: if the client chooses PlanDepa to implement the agreed first workflow within 30 days of the Blueprint readout, the full Blueprint fee is credited against that approved implementation scope.
+- Delivery guarantee: if the client provides the agreed information, access and decision-maker time and PlanDepa does not deliver the named Blueprint outputs by the agreed date, PlanDepa continues the review at no additional professional fee until delivered, or refunds the fee.
+- Best fit: construction business owners with 10–50 staff, running four or more disconnected tools, who are still the bottleneck in their own business. Not a fit for businesses under 10 staff.
+
+## Other services
+
+- [AI enquiry capture & follow-up](https://plandepa.com/enquiry-automation): One enquiry pipeline across web, email, phone and social, AI-drafted first responses, qualification, site-visit booking, automated quote follow-up and source reporting. No lead-volume guarantees — it makes sure existing enquiries are answered and followed up.
+- [Pilot Program](https://plandepa.com/pilot-program): Fix the single highest-impact operational bottleneck first; scoped, built, tested and handed over with training.
+- [Buildxact Implementation](https://plandepa.com/buildxact): Setup, configuration, training and ongoing optimisation of Buildxact.
+- [Training](https://plandepa.com/training): Education on what AI, automation and operational systems look like in practice for construction businesses.
+- [Ongoing Support](https://plandepa.com/ongoing-support): Monthly reviews, continuous improvement and support after the build.
+- [Admin cost calculator](https://plandepa.com/roi-calculator): Free estimate of what manual quoting and admin costs a construction business each year.
+
+## Locations
+
+- [AI for construction companies in Brisbane](https://plandepa.com/construction-ai-brisbane)
+- [AI for construction companies in Newcastle](https://plandepa.com/construction-ai-newcastle)
+
+## Guides
+
+- [What AI can actually do for a 20-person builder in 2026](https://plandepa.com/blog/ai-for-construction-companies): Workflow-by-workflow guide to AI for construction companies — what works today and what is still hype.
+- [The Can't-Leave-For-A-Week Test](https://plandepa.com/blog/cant-leave-for-a-week-test): 12-question self-test for construction business owners who are still the bottleneck.
+- [Four tools, zero answers](https://plandepa.com/blog/construction-software-source-of-truth): Why Buildxact, Xero, spreadsheets and WhatsApp don't talk, and how to design a single source of truth.
+- [Pete's Tuesday: a Clarity Day, mapped](https://plandepa.com/blog/clarity-day-walkthrough): What happens during a one-day Clarity Blueprint review and what the owner receives.
+
+## More
+
+- [Case studies](https://plandepa.com/case-studies)
+- [Blog](https://plandepa.com/blog)
+- [Contact](https://plandepa.com/contact)

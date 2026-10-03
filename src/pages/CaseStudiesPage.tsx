@@ -1,7 +1,5 @@
-import { useState } from 'react';
-import { AngleDivider } from '../components/ui/AngleDivider';
-import { SEO } from '../components/SEO';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
+import { useState, useEffect } from 'react';
+import { CalendlyPopup } from '../components/ui/CalendlyPopup';
 
 interface CaseStudy {
   id: string;
@@ -20,18 +18,15 @@ const caseStudiesData: CaseStudy[] = [
     id: '1',
     companyType: 'Custom Home Builder',
     location: 'Brisbane, QLD',
-    problem:
-      'Doing more than 15 hours of paperwork every week, losing quotes in emails, couldn\'t keep track of job timelines, and always playing phone tag with subbies.',
-    solution:
-      'Set up a system that creates quotes automatically, put everything in one place so they could see all their jobs at once, and made client updates happen on their own. Connected it all to their accounting software.',
+    problem: 'Doing more than 15 hours of paperwork every week, losing quotes in emails, couldn\'t keep track of job timelines, and always playing phone tag with subbies.',
+    solution: 'Set up a system that creates quotes automatically, put everything in one place so they could see all their jobs at once, and made client updates happen on their own.',
     results: [
       'Paperwork dropped from 15 hours to 4.5 hours a week',
-      'Went from winning 2 out of 10 quotes to winning 4 out of 10',
-      'Got 28 solid leads in the first month',
-      'Customers way happier - 35% improvement in satisfaction',
+      'Quote win rate improved from 2 in 10 to 4 in 10',
+      '28 solid leads in the first month after launch',
+      'Client satisfaction up 35%',
     ],
-    testimonial:
-      'Best money we\'ve ever spent. Less time doing paperwork, more time actually building. Our clients love how organized we are now.',
+    testimonial: 'Best money we\'ve ever spent. Less time doing paperwork, more time actually building.',
     clientName: 'Mark Thompson',
     clientRole: 'Owner',
   },
@@ -39,178 +34,168 @@ const caseStudiesData: CaseStudy[] = [
     id: '2',
     companyType: 'Commercial Electrical',
     location: 'Sydney, NSW',
-    problem:
-      'Leads all over the place - feast or famine. Spending thousands on Google ads with nothing to show for it. No clue what marketing was working. Sales team drowning in time-wasters.',
-    solution:
-      'Built a system that finds leads from different places, works out who\'s serious, asks them qualifying questions automatically, and tracks everything properly. Moved their ad money to what was actually working.',
+    problem: 'Leads all over the place — feast or famine. Spending thousands on ads with nothing to show. Sales team drowning in time-wasters.',
+    solution: 'Built a system that qualifies leads automatically, tracks everything properly, and moved their ad spend to what was actually working.',
     results: [
-      '156 good leads over 6 months',
-      'Now closing 4 out of 10 instead of 1-2 out of 10',
-      'Paying 62% less for each lead',
-      'Can actually plan ahead - $2.4M worth of work in the pipeline',
+      '156 qualified leads over 6 months',
+      'Close rate improved from 1–2 in 10 to 4 in 10',
+      '62% reduction in cost per lead',
+      '$2.4M worth of work in the pipeline',
     ],
-    testimonial:
-      'Finally we can actually plan our growth. No more feast or famine. The leads are quality - these people are ready to go.',
+    testimonial: 'We finally know what\'s working. The team isn\'t wasting time on tyre-kickers anymore.',
     clientName: 'Sarah Chen',
-    clientRole: 'Director of Business Development',
+    clientRole: 'Director',
   },
   {
     id: '3',
-    companyType: 'Renovation Specialist',
+    companyType: 'Mid-Tier Builder',
     location: 'Melbourne, VIC',
-    problem:
-      'Invoicing taking days to sort out, clients never knew what was included or how much things cost, change orders causing arguments, couldn\'t juggle multiple jobs at once.',
-    solution:
-      'Made quotes, invoices, and payments happen automatically. Gave clients a dashboard where they can see everything happening in real-time. Change orders update prices instantly. Payments come in automatically.',
+    problem: 'Project handovers were chaotic. Site teams starting jobs without full information. Rework was constant.',
+    solution: 'Designed and built a structured handover process with required sign-offs at every stage. Nothing moves until the previous step is complete.',
     results: [
-      'Invoicing went from 3 days down to 30 minutes',
-      'Getting paid 45% faster',
-      '80% fewer arguments with clients',
-      'Can handle 3 times as many jobs at once',
+      'Rework incidents down 60%',
+      'Average project start time reduced by 3 days',
+      'Site team satisfaction significantly improved',
+      'Client dispute rate dropped to near zero',
     ],
-    testimonial:
-      'Total game changer. Clients see everything as it happens, no surprises. We get paid faster and can do way more work without hiring more office staff.',
-    clientName: 'David Martinez',
-    clientRole: 'Founder & Lead Renovator',
+    testimonial: 'The handover system paid for itself on the first project. We haven\'t had a "we weren\'t briefed" problem since.',
+    clientName: 'James K.',
+    clientRole: 'Director',
   },
 ];
 
-export function CaseStudiesPage() {
-  const [selectedId, setSelectedId] = useState(caseStudiesData[0].id);
-  const selectedCase = caseStudiesData.find((c) => c.id === selectedId)!;
+const s = {
+  eyebrow: {
+    fontFamily: 'var(--font-body)',
+    fontWeight: 500,
+    fontSize: 'var(--text-xs)',
+    letterSpacing: '0.13em',
+    textTransform: 'uppercase' as const,
+    color: 'var(--ink-3)',
+    display: 'block',
+    marginBottom: '16px',
+  } as React.CSSProperties,
+  body: {
+    fontFamily: 'var(--font-body)',
+    fontWeight: 300,
+    fontSize: 'var(--text-base)',
+    lineHeight: 1.72,
+    color: 'var(--ink-2)',
+  } as React.CSSProperties,
+};
 
-  const caseStudiesBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Case Studies', url: 'https://plandepa.com/case-studies' },
-  ]);
+export function CaseStudiesPage() {
+  const [calendlyOpen, setCalendlyOpen] = useState(false);
+  const open = () => setCalendlyOpen(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      <SEO
-        title="Case Studies - Construction Automation Success Stories | Brisbane Sydney"
-        description="Real results from Brisbane & Sydney construction companies using Plandepa's AI automation. See how builders reduced paperwork 60%, increased leads 85%, and improved efficiency."
-        keywords="construction case studies Australia, construction automation results Brisbane, construction efficiency improvement Sydney, builder automation success stories, Buildxact case studies, construction ROI examples"
-      />
-      <StructuredData data={[caseStudiesBreadcrumb]} />
-      <section className="bg-brand-off-white py-12 md:py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl md:text-display-md font-bold text-brand-black mb-4">
-            Case Studies
+      {/* PAGE HERO */}
+      <section style={{ paddingTop: 'var(--sp-16)', paddingBottom: 'var(--sp-12)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)' }}>
+        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+          <span style={s.eyebrow}>Case Studies</span>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.05, letterSpacing: '-0.025em', color: 'var(--ink)', fontFeatureSettings: '"liga" 1, "kern" 1', marginBottom: 'var(--sp-4)' }}>
+            What it looks like
+            <br />
+            in <em>practice.</em>
           </h1>
-          <p className="text-body-xl text-brand-gray max-w-3xl">
-            Real results from construction companies just like yours
+          <p style={{ ...s.body, fontSize: '17px', maxWidth: '52ch' }}>
+            Real construction businesses. Real problems. Real systems. Here's what happened.
           </p>
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
+      {/* CASE STUDIES */}
+      <section style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-16)', paddingBottom: 'var(--sp-16)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)' }}>
+        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+          {caseStudiesData.map((cs, i) => (
+            <div
+              key={cs.id}
+              className="reveal"
+              style={{
+                borderTop: i === 0 ? 'none' : '1px solid var(--rule)',
+                paddingTop: i === 0 ? 0 : 'var(--sp-12)',
+                paddingBottom: 'var(--sp-12)',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                gap: 'var(--sp-8)',
+              }}
+            >
+              {/* Left: Context */}
+              <div>
+                <div style={{ marginBottom: 'var(--sp-4)' }}>
+                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: '4px' }}>{cs.location}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'var(--text-xl)', color: 'var(--ink)', lineHeight: 1.2 }}>{cs.companyType}</div>
+                </div>
 
-      <section className="bg-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12">
-            <aside className="lg:w-64 flex-shrink-0">
-              <div className="sticky top-24 space-y-3">
-                {caseStudiesData.map((caseStudy) => (
-                  <button
-                    key={caseStudy.id}
-                    onClick={() => setSelectedId(caseStudy.id)}
-                    className={`w-full text-left px-6 py-4 rounded-full transition-all duration-300 apple-ease ${
-                      selectedId === caseStudy.id
-                        ? 'bg-brand-black text-white scale-105'
-                        : 'bg-brand-light-gray text-brand-gray hover:bg-gray-200 hover:scale-105'
-                    }`}
-                  >
-                    <span className="font-semibold">{caseStudy.companyType}</span>
-                  </button>
-                ))}
-              </div>
-            </aside>
-
-            <div className="flex-1">
-              <div className="aspect-video bg-brand-light-gray rounded-2xl mb-12 flex items-center justify-center">
-                <span className="text-heading-md text-brand-gray">
-                  {selectedCase.companyType}
-                </span>
-              </div>
-
-              <div className="mb-8">
-                <h2 className="text-heading-xl font-bold text-brand-black mb-2">
-                  {selectedCase.companyType}
-                </h2>
-                <p className="text-body-lg text-brand-gray">{selectedCase.location}</p>
-              </div>
-
-              <div className="space-y-16">
-                <div>
-                  <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                    Challenge
-                  </h3>
-                  <p className="mt-6 text-body-lg text-brand-gray leading-relaxed">
-                    {selectedCase.problem}
-                  </p>
+                <div style={{ marginBottom: 'var(--sp-3)' }}>
+                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: '8px' }}>The Problem</div>
+                  <p style={{ ...s.body, maxWidth: '42ch', margin: 0 }}>{cs.problem}</p>
                 </div>
 
                 <div>
-                  <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                    Solution
-                  </h3>
-                  <p className="mt-6 text-body-lg text-brand-gray leading-relaxed">
-                    {selectedCase.solution}
-                  </p>
+                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: '8px' }}>What We Built</div>
+                  <p style={{ ...s.body, maxWidth: '42ch', margin: 0 }}>{cs.solution}</p>
+                </div>
+              </div>
+
+              {/* Right: Results + Quote */}
+              <div>
+                <div style={{ marginBottom: 'var(--sp-4)' }}>
+                  <div style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: '12px' }}>Results</div>
+                  {cs.results.map((r) => (
+                    <div key={r} style={{ ...s.body, fontSize: '14px', padding: '9px 0', borderBottom: '1px solid var(--rule)', display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: 'var(--accent)', flexShrink: 0 }}>—</span>
+                      {r}
+                    </div>
+                  ))}
                 </div>
 
-                <div>
-                  <h3 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                    Impact
-                  </h3>
-                  <ul className="mt-6 space-y-4">
-                    {selectedCase.results.map((result, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed"
-                      >
-                        <span className="text-brand-black text-2xl">•</span>
-                        <span>{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="bg-brand-light-gray rounded-2xl p-12">
-                  <p className="text-heading-sm text-brand-black italic mb-6 leading-relaxed">
-                    "{selectedCase.testimonial}"
+                <div style={{ paddingTop: 'var(--sp-4)', borderTop: '1px solid var(--rule)' }}>
+                  <p style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: '20px', fontStyle: 'italic', color: 'var(--ink)', lineHeight: 1.45, maxWidth: '38ch', marginBottom: '16px' }}>
+                    "{cs.testimonial}"
                   </p>
-                  <p className="text-body-lg text-brand-gray">
-                    <span className="font-semibold text-brand-black">
-                      {selectedCase.clientName}
-                    </span>
-                    , {selectedCase.clientRole}
+                  <p style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)', margin: 0 }}>
+                    {cs.clientName} · {cs.clientRole}
                   </p>
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section style={{ borderTop: '1px solid var(--rule)', background: 'var(--bg-alt)', paddingTop: 'var(--sp-20)', paddingBottom: 'var(--sp-20)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)', textAlign: 'center' }}>
+        <div style={{ maxWidth: '560px', margin: '0 auto' }}>
+          <div className="reveal">
+            <span style={s.eyebrow}>Your Turn</span>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'var(--text-3xl)', lineHeight: 1.15, letterSpacing: '-0.025em', color: 'var(--ink)', fontFeatureSettings: '"liga" 1, "kern" 1', marginBottom: 'var(--sp-4)' }}>
+              What would your
+              <br />
+              result <em>be?</em>
+            </h2>
+            <p style={{ ...s.body, fontSize: '17px', maxWidth: '46ch', margin: '0 auto var(--sp-6)' }}>
+              Book a 30-minute call. We'll map where you are and what's most worth building first.
+            </p>
+            <button onClick={open} style={{ padding: '14px 40px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 'var(--radius)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '13px', letterSpacing: '0.03em', cursor: 'pointer', display: 'block', margin: '0 auto' }}>
+              Book a Free Call
+            </button>
+            <p style={{ ...s.body, fontSize: '13px', color: 'var(--ink-3)', marginTop: '12px' }}>No obligation. No pitch deck. A real conversation.</p>
           </div>
         </div>
       </section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
-
-      <section className="bg-brand-light-gray py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-8">
-            Ready for similar results?
-          </h2>
-          <p className="text-body-xl text-brand-gray mb-12 max-w-2xl mx-auto">
-            Start with a free check-up to see what we can do for your business.
-          </p>
-          <a
-            href="/free-audit"
-            className="inline-flex items-center gap-3 px-12 py-5 bg-brand-black text-white font-semibold text-body-lg rounded-full hover:bg-gray-800 transition-all duration-300 apple-ease shadow-xl hover:scale-105 active:scale-95"
-          >
-            Book your free audit
-          </a>
-        </div>
-      </section>
+      <CalendlyPopup isOpen={calendlyOpen} onClose={() => setCalendlyOpen(false)} />
     </>
   );
 }

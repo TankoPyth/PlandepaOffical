@@ -1,5 +1,5 @@
 [build]
-command = "npx vite build"
+command = "npm run build"
 publish = "dist"
 
 [build.environment]
@@ -12,14 +12,50 @@ status = 301
 force = true
 
 [[redirects]]
+from = "/brisbane"
+to = "/construction-ai-brisbane"
+status = 301
+force = true
+
+[[redirects]]
+from = "/newcastle"
+to = "/construction-ai-newcastle"
+status = 301
+force = true
+
+[[redirects]]
+from = "/osr"
+to = "/clarity-blueprint"
+status = 301
+force = true
+
+[[redirects]]
+from = "/operations-review"
+to = "/clarity-blueprint"
+status = 301
+force = true
+
+[[redirects]]
 from = "/services"
-to = "/software"
+to = "/clarity-blueprint"
+status = 301
+force = true
+
+[[redirects]]
+from = "/software"
+to = "/clarity-blueprint"
+status = 301
+force = true
+
+[[redirects]]
+from = "/lead-generation"
+to = "/enquiry-automation"
 status = 301
 force = true
 
 [[redirects]]
 from = "/*"
-to = "/index.html"
+to = "/app.html"
 status = 200
 
 [[headers]]
@@ -74,6 +110,13 @@ for = "/sitemap.xml"
 [headers.values]
 Cache-Control = "public, max-age=3600"
 Content-Type = "application/xml; charset=utf-8"
+
+[[headers]]
+for = "/llms.txt"
+
+[headers.values]
+Cache-Control = "public, max-age=3600"
+Content-Type = "text/plain; charset=utf-8"
 
 [[headers]]
 for = "/robots.txt"

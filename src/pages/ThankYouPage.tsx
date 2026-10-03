@@ -1,109 +1,53 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { CheckCircle2, Home, Calendar } from 'lucide-react';
 import { CalendlyPopup } from '../components/ui/CalendlyPopup';
-import { appleEasing } from '../utils/animations';
 
 export function ThankYouPage() {
-  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  const [calendlyOpen, setCalendlyOpen] = useState(false);
+
+  const body: React.CSSProperties = {
+    fontFamily: 'var(--font-body)',
+    fontWeight: 300,
+    fontSize: 'var(--text-base)',
+    lineHeight: 1.72,
+    color: 'var(--ink-2)',
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-off-white to-white flex items-center justify-center px-6 py-12">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, ease: appleEasing }}
-        className="max-w-2xl w-full"
-      >
-        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
-          <div className="p-8 md:p-12 text-center">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5, ease: appleEasing }}
-              className="inline-flex items-center justify-center w-20 h-20 mb-6 bg-emerald-100 rounded-full"
-            >
-              <CheckCircle2 className="w-12 h-12 text-emerald-600" />
-            </motion.div>
+    <div style={{ minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'var(--sp-16) var(--gutter)', background: 'var(--bg)' }}>
+      <div style={{ textAlign: 'center', maxWidth: '520px' }}>
+        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: '52px', color: 'var(--ink-3)', marginBottom: 'var(--sp-3)' }}>
+          ✓
+        </div>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'var(--text-2xl)', lineHeight: 1.15, letterSpacing: '-0.02em', color: 'var(--ink)', marginBottom: 'var(--sp-3)' }}>
+          Message received.
+        </h1>
+        <p style={{ ...body, maxWidth: '42ch', margin: '0 auto var(--sp-6)' }}>
+          We'll get back to you within one business day. If you'd rather not wait, book a call directly.
+        </p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5, ease: appleEasing }}
-              className="text-3xl md:text-4xl font-bold text-brand-black mb-4"
-            >
-              Thank You!
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5, ease: appleEasing }}
-              className="text-lg text-brand-gray mb-8 max-w-lg mx-auto"
-            >
-              We've received your message and will get back to you within 24 hours.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5, ease: appleEasing }}
-              className="bg-brand-light-gray rounded-xl p-6 mb-8"
-            >
-              <p className="text-sm text-brand-gray mb-4">
-                Want to skip the wait? Book a call with us right now.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={() => setIsCalendlyOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-                >
-                  <Calendar className="w-5 h-5" />
-                  Book a Call Now
-                </button>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.5, ease: appleEasing }}
-              className="pt-6 border-t border-gray-200"
-            >
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-brand-gray hover:text-brand-black transition-colors group"
-              >
-                <Home className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                Return to Website
-              </Link>
-            </motion.div>
-          </div>
+        <div style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-6)', marginBottom: 'var(--sp-6)' }}>
+          <p style={{ ...body, fontSize: '13px', color: 'var(--ink-3)', marginBottom: '16px' }}>
+            Skip the wait — book a 30-minute call now.
+          </p>
+          <button
+            onClick={() => setCalendlyOpen(true)}
+            style={{ padding: '14px 36px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 'var(--radius)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '13px', letterSpacing: '0.03em', cursor: 'pointer', display: 'block', margin: '0 auto 12px' }}
+          >
+            Book a Call
+          </button>
+          <p style={{ ...body, fontSize: '13px', color: 'var(--ink-3)' }}>No obligation. No pitch deck.</p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.5, ease: appleEasing }}
-          className="text-center mt-8"
+        <Link
+          to="/"
+          style={{ ...body, fontSize: '13px', color: 'var(--ink-3)', textDecoration: 'none' }}
         >
-          <p className="text-sm text-brand-gray">
-            Need immediate assistance?{' '}
-            <a
-              href="mailto:admin@plandepa.com"
-              className="text-brand-red hover:text-red-700 font-semibold transition-colors"
-            >
-              Email us directly
-            </a>
-          </p>
-        </motion.div>
-      </motion.div>
+          ← Return to website
+        </Link>
+      </div>
 
-      <CalendlyPopup
-        isOpen={isCalendlyOpen}
-        onClose={() => setIsCalendlyOpen(false)}
-      />
+      <CalendlyPopup isOpen={calendlyOpen} onClose={() => setCalendlyOpen(false)} />
     </div>
   );
 }

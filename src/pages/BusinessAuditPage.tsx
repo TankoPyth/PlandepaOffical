@@ -1,444 +1,180 @@
-import { useState } from 'react';
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { SimpleFAQ } from '../components/SimpleFAQ';
-import { AngleDivider } from '../components/ui/AngleDivider';
-import { SectionNumber } from '../components/SectionNumber';
-import { SEO } from '../components/SEO';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
-import { Modal } from '../components/ui/Modal';
-import { ContactForm } from '../components/ContactForm';
-import { ThankYouModal } from '../components/ThankYouModal';
+import { useState, useEffect } from 'react';
+import { CalendlyPopup } from '../components/ui/CalendlyPopup';
+
+const s = {
+  eyebrow: {
+    fontFamily: 'var(--font-body)',
+    fontWeight: 500,
+    fontSize: 'var(--text-xs)',
+    letterSpacing: '0.13em',
+    textTransform: 'uppercase' as const,
+    color: 'var(--ink-3)',
+    display: 'block',
+    marginBottom: '16px',
+  } as React.CSSProperties,
+  body: {
+    fontFamily: 'var(--font-body)',
+    fontWeight: 300,
+    fontSize: 'var(--text-base)',
+    lineHeight: 1.72,
+    color: 'var(--ink-2)',
+  } as React.CSSProperties,
+  h2: {
+    fontFamily: 'var(--font-display)',
+    fontWeight: 400,
+    fontSize: 'var(--text-3xl)',
+    lineHeight: 1.15,
+    letterSpacing: '-0.025em',
+    color: 'var(--ink)',
+    fontFeatureSettings: '"liga" 1, "kern" 1',
+  } as React.CSSProperties,
+};
+
+const FAQS = [
+  { q: 'What happens in the discovery call?', a: 'We have a 30-minute conversation to understand your business, what\'s frustrating you, and what you\'re trying to achieve. No sales pitch — just a genuine conversation to see if we can help.' },
+  { q: 'Is there any obligation after the call?', a: 'None at all. After the call we\'ll let you know if we think we can add value. If it\'s not a good fit, we\'ll tell you honestly.' },
+  { q: 'Do I need to prepare anything?', a: 'Not really. If you want, jot down what\'s frustrating you right now and what you\'re trying to achieve. But we\'ll walk you through everything.' },
+  { q: 'Can I bring my team?', a: 'Yes. It\'s actually better if you bring the people who deal with the day-to-day — your ops manager, admin person, whoever. The more context, the better.' },
+];
 
 export function BusinessAuditPage() {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
-  const faqItems = [
-    {
-      question: 'What happens in the discovery call?',
-      answer: 'We have a quick chat to understand your business, what\'s frustrating you, and what you\'re trying to achieve. No sales pitch, just a genuine conversation to see if we can help.',
-    },
-    {
-      question: 'Is there any obligation after the call?',
-      answer: 'None at all. After the discovery call, we\'ll let you know if we think the full audit would be valuable for you. If it\'s not a good fit, we\'ll tell you honestly.',
-    },
-    {
-      question: 'Do I need to prepare anything?',
-      answer: 'Not really. If you want, jot down what\'s frustrating you right now and what you\'re trying to achieve. But we\'ll walk you through everything anyway.',
-    },
-    {
-      question: 'Can I bring my team to the call?',
-      answer: 'Definitely. Actually it\'s better if you bring the people who deal with the day-to-day stuff - your operations manager, admin person, whoever.',
-    },
-  ];
+  const [calendlyOpen, setCalendlyOpen] = useState(false);
+  const open = () => setCalendlyOpen(true);
 
-  const auditBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Business Audit', url: 'https://plandepa.com/business-audit' },
-  ]);
-
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Construction Business Strategy Audit',
-    provider: {
-      '@type': 'Organization',
-      name: 'Plandepa',
-    },
-    areaServed: ['Brisbane', 'Sydney', 'Newcastle', 'Australia'],
-    description: 'Free no-obligation business strategy audit and discovery call for construction companies in Brisbane, Sydney, and across Australia. ISO certified consultants with construction industry expertise.',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'AUD',
-    },
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      <SEO
-        title="Free Construction Business Audit Brisbane Sydney | ISO Certified Consultants"
-        description="Free no-obligation business strategy audit for construction companies in Brisbane, Sydney & Newcastle. ISO certified consultants with diplomas in project management & construction. Book discovery call today."
-        keywords="construction business audit Brisbane, construction consultant Sydney, free business audit construction, construction strategy audit Australia, ISO certified construction consultant, construction business consultant Newcastle, Buildxact consultation"
-      />
-      <StructuredData data={[auditBreadcrumb, serviceSchema, faqSchema]} />
-      <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="max-w-7xl mx-auto">
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 text-sm md:text-base text-brand-gray hover:text-brand-black mb-8 md:mb-12 group transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
-            Back to home
-          </a>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-black mb-4 md:mb-6">
-            Business Strategy Audit
+      {/* HERO */}
+      <section style={{ paddingTop: 'var(--sp-16)', paddingBottom: 'var(--sp-12)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)' }}>
+        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+          <span style={s.eyebrow}>Business Audit</span>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.05, letterSpacing: '-0.025em', color: 'var(--ink)', fontFeatureSettings: '"liga" 1, "kern" 1', marginBottom: 'var(--sp-4)' }}>
+            Find out what's
+            <br />
+            actually <em>breaking.</em>
           </h1>
-          <p className="text-base md:text-lg text-brand-gray max-w-3xl mb-8 md:mb-12 leading-relaxed">
-            Book a no-obligation discovery call to explore how we can help your construction business run smarter. We'll discuss your challenges, identify opportunities, and determine if our full Business Strategy Audit is right for you.
+          <p style={{ ...s.body, fontSize: '17px', maxWidth: '52ch', marginBottom: 'var(--sp-6)' }}>
+            A structured audit of your construction business — how it runs today, where it's losing control, and what to fix first. Honest assessment. No upsell.
           </p>
-          <button
-            onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
-          >
-            Book your discovery call
-            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 apple-ease" />
+          <button onClick={open} style={{ padding: '14px 36px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 'var(--radius)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '13px', letterSpacing: '0.03em', cursor: 'pointer' }}>
+            Book a Call
           </button>
+          <p style={{ ...s.body, fontSize: '13px', color: 'var(--ink-3)', marginTop: '12px' }}>No pitch. No obligation. 30 minutes.</p>
         </div>
       </section>
 
-      <AngleDivider direction="down-right" fromColor="#FAFAFA" toColor="#FFFFFF" height={100} />
-
-      <section className="bg-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 2 }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            <div>
-              <div className="mb-6 md:mb-8">
-                <SectionNumber number="00" label="Challenge" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-6 md:mb-8">
-                The Problem
+      {/* WHAT IT IS */}
+      <section style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-16)', paddingBottom: 'var(--sp-16)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)' }}>
+        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--sp-8)' }}>
+            <div className="reveal">
+              <span style={s.eyebrow}>What We Look At</span>
+              <h2 style={{ ...s.h2, fontSize: 'var(--text-2xl)', marginBottom: 'var(--sp-4)' }}>
+                Every system that runs your business.
               </h2>
-              <ul className="space-y-3 md:space-y-4">
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>You're buried in paperwork instead of being on the tools</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>You keep hearing about tech that could help but don't know where to start</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Sick of salespeople trying to sell you stuff you don't need</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>You want to see the dollars and cents before spending anything</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Your crew hates learning new systems</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="mb-6 md:mb-8">
-                <SectionNumber number="01" label="Solution" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-4 md:mb-6">
-                What We Do
-              </h2>
-              <p className="text-sm md:text-base text-brand-gray mb-6 leading-relaxed">
-                Our Business Strategy Audit process:
+              <p style={{ ...s.body, maxWidth: '42ch', marginBottom: '20px' }}>
+                Most construction businesses have never had someone look at how the whole thing fits together. Sales to delivery. Office to site. Tools to people.
               </p>
-              <ul className="space-y-3 md:space-y-4">
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Look at how you're doing things now and spot the time-wasters</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Find at least 10 hours a week you can get back straight away</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Make a simple plan that fits exactly what you do</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Tell you honestly what tools are worth it (and which aren't)</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Show you exactly what to do next and how long it'll take</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Work out how much money this will save you based on your real costs</span>
-                </li>
-              </ul>
+              <p style={{ ...s.body, maxWidth: '42ch' }}>
+                We map it, assess it, and tell you what's costing you most — time, margin, or both.
+              </p>
             </div>
-          </div>
-
-          <div className="mt-12 lg:mt-20 flex justify-center">
-            <div className="max-w-2xl w-full">
-              <div className="mb-6 md:mb-8 flex justify-center">
-                <SectionNumber number="02" label="Impact" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-6 md:mb-8 text-center">
-                The Results
-              </h2>
-              <ul className="space-y-3 md:space-y-4">
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Over 200 construction companies have worked with us</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Most clients save about 500 hours every year</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Most go from losing 8 out of 10 quotes to winning 4 out of 10</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>No-obligation discovery call to start</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm md:text-base text-brand-gray leading-relaxed">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-black flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
-                  <span>Get a clear roadmap whether you work with us or not</span>
-                </li>
-              </ul>
+            <div className="reveal">
+              {[
+                { area: 'Sales & Pipeline',     desc: 'How leads enter, how they\'re followed up, how quotes are managed, and where you\'re losing jobs you should win.' },
+                { area: 'Project Operations',   desc: 'How jobs are handed over, managed, and closed. Where delays happen and why.' },
+                { area: 'Admin & Reporting',    desc: 'The weekly work that happens in the background. What\'s manual, what\'s duplicated, what\'s missing.' },
+                { area: 'Team & Communication', desc: 'How information moves between people. Where it gets lost or distorted.' },
+              ].map((item) => (
+                <div key={item.area} style={{ borderBottom: '1px solid var(--rule)', padding: '20px 0' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: '20px', color: 'var(--ink)', marginBottom: '6px' }}>{item.area}</div>
+                  <p style={{ ...s.body, fontSize: '14px', margin: 0, maxWidth: '38ch' }}>{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
-
-      <section className="bg-brand-light-gray py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-6 md:mb-8">
-            <SectionNumber number="03" label="For You" />
+      {/* PROCESS */}
+      <section style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-16)', paddingBottom: 'var(--sp-16)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)' }}>
+        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+          <div className="reveal" style={{ marginBottom: 'var(--sp-8)' }}>
+            <span style={s.eyebrow}>The Process</span>
+            <h2 style={s.h2}>
+              Simple.
+              <br />
+              No <em>overhead.</em>
+            </h2>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-8 md:mb-12">
-            This is perfect if you:
-          </h2>
-          <div className="space-y-4 md:space-y-6 mb-8 md:mb-12">
-            <div className="flex items-start gap-3 md:gap-4">
-              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Check className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={3} />
+          <div className="pd-stepper">
+            {[
+              { num: '①', title: 'Discovery call', body: 'A 30-minute call to understand your business, your pain points, and whether an audit is the right next step.' },
+              { num: '②', title: 'Audit sessions', body: 'We work through your business systematically — typically two or three sessions across two weeks.' },
+              { num: '③', title: 'Findings report', body: 'A clear document: what\'s working, what\'s breaking, and a prioritised list of what to fix first.' },
+            ].map((step) => (
+              <div key={step.title} className="reveal" style={{ paddingTop: 'var(--sp-3)' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: 'var(--text-3xl)', color: 'var(--ink-3)', lineHeight: 1, marginBottom: '20px' }}>{step.num}</div>
+                <div style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink)', marginBottom: '12px' }}>{step.title}</div>
+                <p style={{ ...s.body, fontSize: '14px', maxWidth: '28ch', margin: 0 }}>{step.body}</p>
               </div>
-              <p className="text-sm md:text-base text-brand-gray leading-relaxed">
-                You've got between 5 and 50 people working for you
-              </p>
-            </div>
-            <div className="flex items-start gap-3 md:gap-4">
-              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Check className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={3} />
-              </div>
-              <p className="text-sm md:text-base text-brand-gray leading-relaxed">
-                You're doing more than 10 hours of paperwork every week
-              </p>
-            </div>
-            <div className="flex items-start gap-3 md:gap-4">
-              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Check className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={3} />
-              </div>
-              <p className="text-sm md:text-base text-brand-gray leading-relaxed">
-                You've heard about new tech but have no idea where to begin
-              </p>
-            </div>
-            <div className="flex items-start gap-3 md:gap-4">
-              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Check className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={3} />
-              </div>
-              <p className="text-sm md:text-base text-brand-gray leading-relaxed">
-                You want straight talk, not some salesman's pitch
-              </p>
-            </div>
-            <div className="flex items-start gap-3 md:gap-4">
-              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Check className="w-3 h-3 md:w-4 md:h-4 text-white" strokeWidth={3} />
-              </div>
-              <p className="text-sm md:text-base text-brand-gray leading-relaxed">
-                You'll act on it if the numbers make sense
-              </p>
-            </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <p className="text-sm md:text-base text-brand-gray text-center">
-            Not sure if this is for you?{' '}
-            <button
-              onClick={() => setIsContactModalOpen(true)}
-              className="text-brand-red hover:underline font-semibold transition-colors"
-            >
-              Book a quick 15-minute call →
+      {/* FAQ */}
+      <section style={{ borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-12)', paddingBottom: 'var(--sp-12)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)' }}>
+        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+          <div className="reveal" style={{ marginBottom: 'var(--sp-6)' }}>
+            <span style={s.eyebrow}>Questions</span>
+            <h2 style={{ ...s.h2, fontSize: 'var(--text-2xl)' }}>
+              Before you book.
+            </h2>
+          </div>
+          <div style={{ maxWidth: 'var(--max-w-tight)' }}>
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="reveal">
+                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 400, fontSize: '22px', color: 'var(--ink)', borderTop: '1px solid var(--rule)', paddingTop: 'var(--sp-4)', marginBottom: 'var(--sp-2)', letterSpacing: '-0.01em' }}>
+                  {faq.q}
+                </h3>
+                <p style={{ ...s.body, marginBottom: 'var(--sp-4)' }}>{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section style={{ borderTop: '1px solid var(--rule)', background: 'var(--bg-alt)', paddingTop: 'var(--sp-20)', paddingBottom: 'var(--sp-20)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)', textAlign: 'center' }}>
+        <div style={{ maxWidth: '560px', margin: '0 auto' }}>
+          <div className="reveal">
+            <span style={s.eyebrow}>Get Started</span>
+            <h2 style={{ ...s.h2, marginBottom: 'var(--sp-4)' }}>
+              Book a call.
+              <br />
+              Find out what's <em>costing you.</em>
+            </h2>
+            <p style={{ ...s.body, fontSize: '17px', maxWidth: '46ch', margin: '0 auto var(--sp-6)' }}>
+              30 minutes. We'll tell you honestly whether we think we can help.
+            </p>
+            <button onClick={open} style={{ padding: '14px 40px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 'var(--radius)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '13px', letterSpacing: '0.03em', cursor: 'pointer', display: 'block', margin: '0 auto' }}>
+              Book a Free Call
             </button>
-          </p>
-        </div>
-      </section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <section className="bg-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-6 md:mb-8">
-            <SectionNumber number="04" label="Process" />
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-10 md:mb-16">
-            How it works
-          </h2>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <div className="text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand-black text-white flex items-center justify-center text-xl md:text-2xl font-bold mx-auto mb-4 md:mb-6">
-                1
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-brand-black mb-2 md:mb-3">
-                Book Discovery Call
-              </h3>
-              <p className="text-xs md:text-sm text-brand-gray font-semibold">
-                15 seconds
-              </p>
-              <p className="text-xs md:text-sm text-brand-gray mt-2">
-                Book a time that works for you
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand-black text-white flex items-center justify-center text-xl md:text-2xl font-bold mx-auto mb-4 md:mb-6">
-                2
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-brand-black mb-2 md:mb-3">
-                Initial Conversation
-              </h3>
-              <p className="text-xs md:text-sm text-brand-gray font-semibold">
-                15-30 minutes
-              </p>
-              <p className="text-xs md:text-sm text-brand-gray mt-2">
-                Tell us what's slowing you down and what you want to achieve
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand-black text-white flex items-center justify-center text-xl md:text-2xl font-bold mx-auto mb-4 md:mb-6">
-                3
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-brand-black mb-2 md:mb-3">
-                Right Fit Check
-              </h3>
-              <p className="text-xs md:text-sm text-brand-gray font-semibold">
-                During the call
-              </p>
-              <p className="text-xs md:text-sm text-brand-gray mt-2">
-                We decide together if the full audit makes sense
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand-black text-white flex items-center justify-center text-xl md:text-2xl font-bold mx-auto mb-4 md:mb-6">
-                4
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-brand-black mb-2 md:mb-3">
-                Full Strategy Audit
-              </h3>
-              <p className="text-xs md:text-sm text-brand-gray font-semibold">
-                If it's a good fit
-              </p>
-              <p className="text-xs md:text-sm text-brand-gray mt-2">
-                We do the complete analysis and give you a clear roadmap
-              </p>
-            </div>
+            <p style={{ ...s.body, fontSize: '13px', color: 'var(--ink-3)', marginTop: '12px' }}>No obligation. No pitch deck. A real conversation.</p>
           </div>
         </div>
       </section>
 
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
-
-      <section className="bg-brand-light-gray py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-6 md:mb-8">
-            <SectionNumber number="05" label="FAQ" />
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-8 md:mb-12">
-            Common questions
-          </h2>
-          <SimpleFAQ items={faqItems} />
-        </div>
-      </section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <section id="contact" className="bg-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 10 }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-black mb-4 md:mb-6">
-            Ready to explore what's possible?
-          </h2>
-          <p className="text-base md:text-lg text-brand-gray mb-8 md:mb-12 max-w-2xl mx-auto">
-            Book your discovery call and let's discuss your business
-          </p>
-          <button
-            onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg mb-6 md:mb-8 hover:scale-105 active:scale-95"
-          >
-            Book your discovery call
-            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 apple-ease" />
-          </button>
-          <p className="text-xs md:text-sm text-brand-gray">
-            No obligation. No pressure.
-          </p>
-        </div>
-      </section>
-
-      <Modal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-        title="Book Your Discovery Call"
-      >
-        <ContactForm
-          source="business_audit"
-          onSuccess={() => {
-            setTimeout(() => {
-              setIsContactModalOpen(false);
-              setShowThankYou(true);
-            }, 1000);
-          }}
-        />
-      </Modal>
-
-      <ThankYouModal
-        isOpen={showThankYou}
-        onClose={() => setShowThankYou(false)}
-      />
+      <CalendlyPopup isOpen={calendlyOpen} onClose={() => setCalendlyOpen(false)} />
     </>
   );
 }
