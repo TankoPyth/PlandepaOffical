@@ -11,7 +11,7 @@ import { DELIVERY_GUARANTEE, FIT, GST_NOTE, OFFER_FAQS, OFFER_PROMISE, RISK_REVE
 
 const STEPS = [
   { n: '1', name: 'Fit call', desc: 'A 30-minute call. We check the Blueprint is right for your business and agree which size fits.' },
-  { n: '2', name: 'The Blueprint', desc: 'We map how the business actually runs — people, workflows, tools and information flow — and find where it leaks.' },
+  { n: '2', name: 'The Blueprint', desc: 'We map how the business actually runs: people, workflows, tools and information flow, and find where it leaks.' },
   { n: '3', name: 'Readout & decision', desc: 'You get the named outputs and a clear first workflow to fix. Implement it with us, or take it and run.' },
 ];
 
@@ -29,8 +29,8 @@ export function ClarityBlueprintPage() {
             Pay for the truth. Then fix it.
           </h1>
           <p className="text-base md:text-lg text-brand-gray max-w-3xl mb-8 leading-relaxed">
-            A paid diagnostic that exposes exactly where your construction business is breaking — where time, margin, missed work and your own
-            hours are leaking — and what to fix first. Three sizes. It turns straight into implementation.
+            A paid diagnostic that exposes exactly where your construction business is breaking: where time, margin, missed work and your own
+            hours are leaking, and what to fix first. Three sizes. It turns straight into implementation.
           </p>
           <button
             onClick={open}
@@ -170,7 +170,7 @@ export function ClarityBlueprintPage() {
 
       <section className="bg-brand-light-gray py-12 md:py-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-8">Clarity Blueprint — FAQ</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-8">Clarity Blueprint: FAQ</h2>
           <SimpleFAQ items={OFFER_FAQS.map((f) => ({ question: f.q, answer: f.a }))} />
         </div>
       </section>

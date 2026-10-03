@@ -119,12 +119,12 @@ const questions: ScorecardQuestion[] = [
 const resultCopy: Record<ScorecardResultBand, { label: string; message: string; cta: string }> = {
   controlled: {
     label: 'Controlled',
-    message: 'Your pipeline looks mostly controlled. The next step is not a big AI rollout — it’s finding the one bottleneck that would give the highest return if tightened.',
+    message: 'Your pipeline looks mostly controlled. The next step is not a big AI rollout. It’s finding the one bottleneck that would give the highest return if tightened.',
     cta: 'Sanity-check your pipeline',
   },
   leaking: {
     label: 'Leaking',
-    message: 'Your pipeline is probably leaking through follow-up, quote silence, missed messages, or unclear ownership. You don’t need more noise — you need visibility and a recovery plan.',
+    message: 'Your pipeline is probably leaking through follow-up, quote silence, missed messages, or unclear ownership. You don’t need more noise. You need visibility and a recovery plan.',
     cta: 'Book a Pipeline Recovery Review',
   },
   bleeding: {
@@ -251,7 +251,7 @@ export function PipelineRecoveryReviewPage() {
               </h1>
 
               <p className="mt-5 max-w-3xl text-lg leading-relaxed text-brand-gray md:text-xl">
-                PlanDepa helps construction businesses find where enquiries, quotes, approvals, and follow-ups are getting stuck — then gives you a 30-day recovery plan and shows where automation or AI actually makes sense.
+                PlanDepa helps construction businesses find where enquiries, quotes, approvals, and follow-ups are getting stuck, then gives you a 30-day recovery plan and shows where automation or AI actually makes sense.
               </p>
 
               <p className="mt-4 max-w-2xl text-lg font-semibold text-brand-black">
@@ -296,7 +296,7 @@ export function PipelineRecoveryReviewPage() {
                 </div>
                 <h2 className="text-lg font-bold text-brand-black">Practical next step</h2>
                 <p className="mt-2 text-sm leading-relaxed text-brand-gray">
-                  We’ll show you where enquiries, quotes, approvals, and follow-ups are getting lost — then give you a practical 30-day plan to recover revenue and decide what automation or AI is actually worth implementing first.
+                  We’ll show you where enquiries, quotes, approvals, and follow-ups are getting lost, then give you a practical 30-day plan to recover revenue and decide what automation or AI is actually worth implementing first.
                 </p>
               </div>
             </div>

@@ -14,10 +14,10 @@ import { OFFER_PATH } from '../seo/offer';
 const USE_CASES = [
   { icon: Inbox, name: 'Enquiry capture & follow-up', desc: 'Every enquiry from web, phone, email and social lands in one pipeline, gets assigned, and is followed up automatically. No lead goes cold.' },
   { icon: FileText, name: 'Quoting & estimating', desc: 'Templated quotes that go out the same day, with automatic follow-ups. Works alongside Buildxact or your existing estimating tool.' },
-  { icon: Wrench, name: 'Variations & approvals', desc: 'Variations captured on site, priced, sent for sign-off and escalated if they stall — before the work starts, not after.' },
+  { icon: Wrench, name: 'Variations & approvals', desc: 'Variations captured on site, priced, sent for sign-off and escalated if they stall, before the work starts, not after.' },
   { icon: ClipboardList, name: 'Job handover', desc: 'A structured handover from sales to delivery with required fields and owners, so nothing is lost between the contract and day one on site.' },
   { icon: Camera, name: 'Site capture & admin', desc: 'Photos, notes and site diaries captured once, tagged to the right job, and routed to the right person. AI drafts the paperwork.' },
-  { icon: BarChart3, name: 'Reporting', desc: 'Revenue, pipeline, job progress and costs in one live view — not a Monday morning phone call.' },
+  { icon: BarChart3, name: 'Reporting', desc: 'Revenue, pipeline, job progress and costs in one live view, not a Monday morning phone call.' },
 ];
 
 export function LocationPage({ location }: { location: keyof typeof LOCATIONS }) {
@@ -105,8 +105,8 @@ export function LocationPage({ location }: { location: keyof typeof LOCATIONS })
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-4">Construction only. Tool-agnostic.</h2>
             <p className="text-brand-gray leading-relaxed mb-6">
-              Start with the <Link to={OFFER_PATH} className="text-brand-red font-semibold hover:underline">Clarity Blueprint</Link> — from $990 + GST, with the
-              fee credited if we implement — or go straight to{' '}
+              Start with the <Link to={OFFER_PATH} className="text-brand-red font-semibold hover:underline">Clarity Blueprint</Link>, from $990 + GST, with the
+              fee credited if we implement, or go straight to{' '}
               <Link to="/enquiry-automation" className="text-brand-red font-semibold hover:underline">enquiry automation</Link> or{' '}
               <Link to="/buildxact" className="text-brand-red font-semibold hover:underline">Buildxact set up properly</Link>.
             </p>
@@ -116,7 +116,7 @@ export function LocationPage({ location }: { location: keyof typeof LOCATIONS })
 
       <section className="bg-brand-light-gray py-12 md:py-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-8">AI for {loc.city} builders — FAQ</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-8">AI for {loc.city} builders: FAQ</h2>
           <SimpleFAQ items={loc.faqs.map((f) => ({ question: f.q, answer: f.a }))} />
         </div>
       </section>
@@ -125,7 +125,7 @@ export function LocationPage({ location }: { location: keyof typeof LOCATIONS })
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-4">Talk to us about your business</h2>
           <p className="text-base md:text-lg text-brand-gray mb-8">
-            A 30-minute call with Jarrod or Mitch. We'll tell you honestly where AI and better systems would make a difference — and where they won't.
+            A 30-minute call with Jarrod or Mitch. We'll tell you honestly where AI and better systems would make a difference, and where they won't.
           </p>
           <button
             onClick={open}

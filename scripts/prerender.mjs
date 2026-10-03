@@ -3,7 +3,7 @@
  *
  * 1. Renders every route in src/seo/site.ts to static HTML (dist/<route>.html)
  *    with route-specific <title>, description, canonical, OG tags and JSON-LD.
- * 2. Writes dist/app.html — the empty SPA shell used as the Netlify fallback.
+ * 2. Writes dist/app.html: the empty SPA shell used as the Netlify fallback.
  * 3. Generates dist/sitemap.xml from the same route list (+ published blog posts
  *    if Supabase env vars are available at build time).
  *
@@ -73,7 +73,7 @@ async function fetchBlogPosts() {
   const url = process.env.VITE_SUPABASE_URL;
   const key = process.env.VITE_SUPABASE_ANON_KEY;
   if (!url || !key) {
-    console.warn('[prerender] Supabase env not set — blog posts skipped in sitemap/prerender');
+    console.warn('[prerender] Supabase env not set: blog posts skipped in sitemap/prerender');
     return [];
   }
   try {

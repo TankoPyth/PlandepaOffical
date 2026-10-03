@@ -165,7 +165,7 @@ const offerSchema = {
 export const HOME_FAQS = [
   {
     q: 'Where do we start?',
-    a: 'With the Clarity Blueprint — a paid diagnostic that shows exactly where your business is leaking time, margin, missed work and owner capacity, and names the first workflow to fix. Clarity Sprint $990, Clarity Day $1,990 or Clarity Intensive $4,990 (all ex. GST). If we implement the agreed first workflow within 30 days of the readout, the full fee is credited.',
+    a: 'With the Clarity Blueprint: a paid diagnostic that shows exactly where your business is leaking time, margin, missed work and owner capacity, and names the first workflow to fix. Clarity Sprint $990, Clarity Day $1,990 or Clarity Intensive $4,990 (all ex. GST). If we implement the agreed first workflow within 30 days of the readout, the full fee is credited.',
   },
   {
     q: 'Who do you work with?',
@@ -173,7 +173,7 @@ export const HOME_FAQS = [
   },
   {
     q: 'What tools do you build in?',
-    a: "Whatever fits your business — Notion, Monday, Airtable, HubSpot, Buildxact, or tools you already use. We're tool-agnostic. We recommend what's right for your size and team, not what's convenient for us.",
+    a: "Whatever fits your business: Notion, Monday, Airtable, HubSpot, Buildxact, or tools you already use. We're tool-agnostic. We recommend what's right for your size and team, not what's convenient for us.",
   },
   {
     q: 'How long does it take to see results?',
@@ -196,11 +196,11 @@ export const ENQUIRY_FAQS = [
   },
   {
     q: 'Which enquiry sources can you connect?',
-    a: 'Website forms, email, phone and missed-call capture, Facebook and Instagram, and lead platforms such as hipages — anything that sends a notification can usually be routed into one pipeline.',
+    a: 'Website forms, email, phone and missed-call capture, Facebook and Instagram, and lead platforms such as hipages. Anything that sends a notification can usually be routed into one pipeline.',
   },
   {
     q: 'Do we need a new CRM?',
-    a: "Not necessarily. We're tool-agnostic and build on what fits your business — often the tools you already pay for — and connect it to Buildxact or your estimating software.",
+    a: "Not necessarily. We're tool-agnostic and build on what fits your business, often the tools you already pay for, and connect it to Buildxact or your estimating software.",
   },
   {
     q: 'How long does it take?',
@@ -235,7 +235,7 @@ export const LOCATIONS: Record<'brisbane' | 'newcastle', LocationContent> = {
     intro:
       'PlanDepa implements AI and operational systems for construction companies in Brisbane and South East Queensland. We map how your business runs, then build the CRM, quoting, handover, reporting and admin automation that lets you take on more work without adding office headcount.',
     context:
-      "South East Queensland has one of the busiest construction pipelines in the country — sustained housing demand, major infrastructure, and the run-up to the Brisbane 2032 Olympic and Paralympic Games. For builders that means more enquiries, more subcontractors to coordinate, and more QBCC-related paperwork, all handled by the same small office team. That's where practical AI earns its keep: capturing every enquiry, getting quotes out the same day, and keeping job status visible without a phone call.",
+      "South East Queensland has one of the busiest construction pipelines in the country: sustained housing demand, major infrastructure, and the run-up to the Brisbane 2032 Olympic and Paralympic Games. For builders that means more enquiries, more subcontractors to coordinate, and more QBCC-related paperwork, all handled by the same small office team. That's where practical AI earns its keep: capturing every enquiry, getting quotes out the same day, and keeping job status visible without a phone call.",
     faqs: [
       {
         q: 'Do you work with construction companies in Brisbane?',
@@ -255,7 +255,7 @@ export const LOCATIONS: Record<'brisbane' | 'newcastle', LocationContent> = {
       },
       {
         q: 'Where do we start?',
-        a: 'With the Clarity Blueprint: a paid diagnostic that shows exactly where your business is leaking time, margin and owner capacity, and names the first workflow to fix. It comes in three sizes — Clarity Sprint ($990, virtual), Clarity Day ($1,990, in person) and Clarity Intensive ($4,990), all ex. GST — and the fee is credited if we implement the first workflow.',
+        a: 'With the Clarity Blueprint: a paid diagnostic that shows exactly where your business is leaking time, margin and owner capacity, and names the first workflow to fix. It comes in three sizes: Clarity Sprint ($990, virtual), Clarity Day ($1,990, in person) and Clarity Intensive ($4,990), all ex. GST, and the fee is credited if we implement the first workflow.',
       },
     ],
   },
@@ -268,7 +268,7 @@ export const LOCATIONS: Record<'brisbane' | 'newcastle', LocationContent> = {
     intro:
       'PlanDepa implements AI and operational systems for construction companies in Newcastle and the Hunter. We map how your business runs, then build the CRM, quoting, handover, reporting and admin automation that lets you take on more work without adding office headcount.',
     context:
-      "Newcastle and the Hunter are growing fast — new housing across Lake Macquarie, Maitland and Port Stephens, plus infrastructure and energy-transition projects across the region. Builders here are winning more work while dealing with NSW compliance requirements and tight trade availability, usually with a lean office team. Practical AI helps by making sure no enquiry is lost, quotes and variations move quickly, and every job has a clear handover and a live status.",
+      "Newcastle and the Hunter are growing fast: new housing across Lake Macquarie, Maitland and Port Stephens, plus infrastructure and energy-transition projects across the region. Builders here are winning more work while dealing with NSW compliance requirements and tight trade availability, usually with a lean office team. Practical AI helps by making sure no enquiry is lost, quotes and variations move quickly, and every job has a clear handover and a live status.",
     faqs: [
       {
         q: 'Do you work with construction companies in Newcastle and the Hunter?',
@@ -288,7 +288,7 @@ export const LOCATIONS: Record<'brisbane' | 'newcastle', LocationContent> = {
       },
       {
         q: 'Where do we start?',
-        a: 'With the Clarity Blueprint: a paid diagnostic that shows exactly where your business is leaking time, margin and owner capacity, and names the first workflow to fix. It comes in three sizes — Clarity Sprint ($990, virtual), Clarity Day ($1,990, in person) and Clarity Intensive ($4,990), all ex. GST — and the fee is credited if we implement the first workflow.',
+        a: 'With the Clarity Blueprint: a paid diagnostic that shows exactly where your business is leaking time, margin and owner capacity, and names the first workflow to fix. It comes in three sizes: Clarity Sprint ($990, virtual), Clarity Day ($1,990, in person) and Clarity Intensive ($4,990), all ex. GST, and the fee is credited if we implement the first workflow.',
       },
     ],
   },
@@ -302,7 +302,7 @@ const locationSchemas = (loc: LocationContent) => [
     [loc.city, ...loc.nearby]
   ),
   faqSchema(loc.faqs),
-  breadcrumb(`AI for construction — ${loc.city}`, loc.slug),
+  breadcrumb(`AI for construction: ${loc.city}`, loc.slug),
 ];
 
 /* ---------- Blog posts in the codebase ---------- */
@@ -380,7 +380,7 @@ export const ROUTES: RouteMeta[] = [
   },
   {
     path: OFFER_PATH,
-    title: 'The Clarity Blueprint — Construction Business Diagnostic | PlanDepa',
+    title: 'The Clarity Blueprint: Construction Business Diagnostic | PlanDepa',
     description:
       'A paid diagnostic that shows exactly where your construction business is breaking. Clarity Sprint $990, Clarity Day $1,990, Clarity Intensive $4,990 (ex. GST). Fee credited on implementation.',
     priority: 1.0,
@@ -391,7 +391,7 @@ export const ROUTES: RouteMeta[] = [
     path: '/pilot-program',
     title: 'AI Automation Pilot for Construction Businesses | PlanDepa',
     description:
-      'Fix your single biggest operational bottleneck first. We scope, build and test one system — enquiries, follow-ups, variations or handovers — and train your team on it.',
+      'Fix your single biggest operational bottleneck first. We scope, build and test one system: enquiries, follow-ups, variations or handovers, and train your team on it.',
     priority: 0.8,
     changefreq: 'monthly',
     schema: [breadcrumb('Pilot Program', '/pilot-program')],
@@ -400,7 +400,7 @@ export const ROUTES: RouteMeta[] = [
     path: '/training',
     title: 'AI & Systems Training for Construction Teams | PlanDepa',
     description:
-      'Education for construction businesses that want to understand what AI, automation and operational systems look like in practice — before making any commitments.',
+      'Education for construction businesses that want to understand what AI, automation and operational systems look like in practice, before making any commitments.',
     priority: 0.7,
     changefreq: 'monthly',
     schema: [breadcrumb('Training', '/training')],
@@ -409,7 +409,7 @@ export const ROUTES: RouteMeta[] = [
     path: '/ongoing-support',
     title: 'Ongoing Systems & AI Support for Builders | PlanDepa',
     description:
-      'We stay on as your operational partner after the build — monthly reviews, continuous improvement and support as your construction business changes.',
+      'We stay on as your operational partner after the build: monthly reviews, continuous improvement and support as your construction business changes.',
     priority: 0.7,
     changefreq: 'monthly',
     schema: [breadcrumb('Ongoing Support', '/ongoing-support')],
@@ -530,7 +530,7 @@ export const ROUTES: RouteMeta[] = [
   },
 ];
 
-// Unknown paths render the 404 page — keep them out of the index
+// Unknown paths render the 404 page: keep them out of the index
 const FALLBACK: RouteMeta = {
   path: '',
   title: 'Page Not Found | PlanDepa',

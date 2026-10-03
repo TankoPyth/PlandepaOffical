@@ -84,7 +84,7 @@ export function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.2 }}
             >
-              We implement AI, software and automation for construction businesses with 10-50 staff, so the business stops running through you. Start with the Clarity Blueprint — a paid diagnostic that shows exactly where it's breaking — from $990 + GST, credited if we implement the fix.
+              We implement AI, software and automation for construction businesses with 10-50 staff, so the business stops running through you. Start with the Clarity Blueprint: a paid diagnostic that shows exactly where it's breaking, from $990 + GST, credited if we implement the fix.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
@@ -404,7 +404,7 @@ export function HomePage() {
             </motion.div>
             <motion.div className="text-center" variants={fadeInUp}>
               <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">10-50</div>
-              <div className="text-sm md:text-base text-brand-gray font-medium">Staff — Who We Work Best With</div>
+              <div className="text-sm md:text-base text-brand-gray font-medium">Staff: Who We Work Best With</div>
             </motion.div>
           </motion.div>
         </div>

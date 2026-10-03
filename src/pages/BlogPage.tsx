@@ -131,7 +131,7 @@ export default function BlogPage() {
               <span className="text-brand-red">Construction Businesses</span>
             </h1>
             <p className="text-xl text-brand-gray max-w-3xl mx-auto mb-8">
-              Practical, honest guides for construction business owners — on AI, operational systems, and getting your business to run without you
+              Practical, honest guides for construction business owners on AI, operational systems, and getting your business to run without you
             </p>
 
             <div className="max-w-2xl mx-auto relative">

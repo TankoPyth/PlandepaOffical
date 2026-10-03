@@ -1,8 +1,8 @@
 /**
- * DRAFT — NOT PUBLISHED. Not imported by src/content/blog/index.ts.
+ * DRAFT: NOT PUBLISHED. Not imported by src/content/blog/index.ts.
  *
  * Original research post: needs real data before it can go live. Do not fill
- * the [PLACEHOLDER]s with estimates — the value of this post (for Google, local
+ * the [PLACEHOLDER]s with estimates: the value of this post (for Google, local
  * media and AI answer engines) is that the numbers are first-hand and true.
  *
  * HOW TO RUN THE STUDY (≈1 week)
@@ -17,7 +17,7 @@
  *    they offered a call/site visit time, and whether there was any follow-up if
  *    we didn't respond. Stop counting at 7 days = "no reply".
  * 4. Politely decline every builder that replies, within 24 hours of their reply.
- *    Never name or shame individual businesses in the post — report aggregates.
+ *    Never name or shame individual businesses in the post: report aggregates.
  * 5. Fill the placeholders, update published_at, then import this file in
  *    src/content/blog/index.ts to publish.
  */
@@ -37,7 +37,7 @@ export const builderEnquiryResponseStudy: LocalPost = {
   content: `
 <p>Most builders we talk to say the same thing: <em>"We don't need more leads."</em> They're often right. The question is what happens to the leads they already get.</p>
 
-<p>So we tested it. In [PLACEHOLDER: month year], we sent the same realistic renovation enquiry to 50 builders — 25 across Greater Brisbane and 25 across Newcastle and the Hunter — and timed every response.</p>
+<p>So we tested it. In [PLACEHOLDER: month year], we sent the same realistic renovation enquiry to 50 builders: 25 across Greater Brisbane and 25 across Newcastle and the Hunter, and timed every response.</p>
 
 <h2>The headline numbers</h2>
 <ul>
@@ -61,14 +61,14 @@ export const builderEnquiryResponseStudy: LocalPost = {
 </table>
 
 <h2>What the fastest builders did differently</h2>
-<p>[PLACEHOLDER: 2-3 short paragraphs on patterns you actually observed — e.g. automated acknowledgement + a human reply, asking budget/timing up front, offering specific call times. Only describe what you saw.]</p>
+<p>[PLACEHOLDER: 2-3 short paragraphs on patterns you actually observed: e.g. automated acknowledgement + a human reply, asking budget/timing up front, offering specific call times. Only describe what you saw.]</p>
 
 <h2>How we ran the study</h2>
 <p>We selected 50 builders from Google Maps results across a spread of suburbs in each region. Each received the same enquiry for a mid-size renovation via their website form or listed email, sent on a weekday morning between [PLACEHOLDER: dates]. We recorded time to first response, whether it was automated, whether it asked qualifying questions, and whether there was any follow-up. We politely declined every builder who replied. We have not named any business.</p>
 
 <h2>What this means for your business</h2>
-<p>If you're getting enquiries but not winning enough of the work, the leak is probably between the first message and the site visit — not in your marketing. That's fixable: one pipeline for every enquiry source, an immediate first response, qualification up front and an automatic follow-up sequence. We cover how that works on our <a href="/enquiry-automation">enquiry capture and follow-up</a> page.</p>
-<p>Not sure enquiries are your biggest leak? The <a href="/clarity-blueprint">Clarity Blueprint</a> finds out — from $990 + GST, with the fee credited if we implement the fix.</p>
+<p>If you're getting enquiries but not winning enough of the work, the leak is probably between the first message and the site visit, not in your marketing. That's fixable: one pipeline for every enquiry source, an immediate first response, qualification up front and an automatic follow-up sequence. We cover how that works on our <a href="/enquiry-automation">enquiry capture and follow-up</a> page.</p>
+<p>Not sure enquiries are your biggest leak? The <a href="/clarity-blueprint">Clarity Blueprint</a> finds out. It's from $990 + GST, with the fee credited if we implement the fix.</p>
 `,
   faqs: [
     {
@@ -77,7 +77,7 @@ export const builderEnquiryResponseStudy: LocalPost = {
     },
     {
       q: 'How fast should a builder respond to a new enquiry?',
-      a: 'As fast as practical — ideally the same business day, with an immediate acknowledgement. [PLACEHOLDER: tie to what the study found about the fastest responders.]',
+      a: 'As fast as practical: ideally the same business day, with an immediate acknowledgement. [PLACEHOLDER: tie to what the study found about the fastest responders.]',
     },
   ],
 };

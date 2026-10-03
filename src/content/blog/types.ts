@@ -1,6 +1,6 @@
 /**
  * Blog posts that live in the codebase (not Supabase), so they're prerendered
- * in full for search engines and LLM crawlers. Supabase posts still work —
+ * in full for search engines and LLM crawlers. Supabase posts still work: 
  * BlogPage merges both, and a local post wins if a slug exists in both.
  */
 export interface LocalAuthor {
@@ -21,7 +21,7 @@ export interface LocalPost {
   author: LocalAuthor;
   published_at: string;
   updated_at?: string;
-  /** Article body as HTML (styled by .pd-prose). No <h1> — the page renders the title. */
+  /** Article body as HTML (styled by .pd-prose). No <h1>: the page renders the title. */
   content: string;
   /** Rendered as an FAQ block under the article and emitted as FAQPage schema */
   faqs: { q: string; a: string }[];

@@ -1,14 +1,14 @@
 /**
- * The Clarity Blueprint — PlanDepa's main offer.
+ * The Clarity Blueprint: PlanDepa's main offer.
  * Single source for the offer page, structured data, and location/other page CTAs.
- * Wording of RISK_REVERSAL and DELIVERY_GUARANTEE is approved — don't paraphrase.
+ * Wording of RISK_REVERSAL and DELIVERY_GUARANTEE is approved, don't paraphrase.
  */
 
 export const OFFER_PATH = '/clarity-blueprint';
 export const OFFER_NAME = 'The Clarity Blueprint';
 
 export const OFFER_SUMMARY =
-  'A paid diagnostic that exposes exactly where your construction business is breaking — in three sizes — and turns straight into implementation.';
+  'A paid diagnostic that exposes exactly where your construction business is breaking, in three sizes, and turns straight into implementation.';
 
 export const OFFER_PROMISE =
   'For a relatively small commitment, you get clarity on a problem that could be costing you tens of thousands in time, margin, missed work or owner capacity.';
@@ -45,7 +45,7 @@ export const TIERS: ClarityTier[] = [
     id: 'day',
     name: 'Clarity Day',
     price: 1990,
-    format: 'One-day in-person review — Brisbane or Newcastle',
+    format: 'One-day in-person review: Brisbane or Newcastle',
     recommended: true,
     includes: [
       'Owner and team conversations',
@@ -63,7 +63,7 @@ export const TIERS: ClarityTier[] = [
     id: 'intensive',
     name: 'Clarity Intensive',
     price: 4990,
-    format: 'Up to two in-person days — Australia-wide, travel included',
+    format: 'Up to two in-person days: Australia-wide, travel included',
     includes: [
       'Deeper department or location review',
       'Work / sample data review',
@@ -88,7 +88,7 @@ export const FIT = {
   yes: [
     'You run a construction business with 10-50 staff.',
     "You're juggling four or more tools that don't talk to each other.",
-    "You're still the bottleneck — decisions, quotes and problems all route through you.",
+    "You're still the bottleneck: decisions, quotes and problems all route through you.",
     "The business makes decent money, but you can't leave for a week without it slipping.",
     'You want your business back, and you are willing to be involved in fixing it.',
   ],
@@ -106,7 +106,7 @@ export const OFFER_FAQS = [
   },
   {
     q: 'Which size should I choose?',
-    a: 'The Clarity Sprint suits owners who already know roughly where the problem is and want it confirmed and prioritised. The Clarity Day is our recommended option for most construction businesses with 10-50 staff — we spend a day with you and your team in Brisbane or Newcastle. The Clarity Intensive is for multi-department or multi-location businesses anywhere in Australia.',
+    a: 'The Clarity Sprint suits owners who already know roughly where the problem is and want it confirmed and prioritised. The Clarity Day is our recommended option for most construction businesses with 10-50 staff. We spend a day with you and your team in Brisbane or Newcastle. The Clarity Intensive is for multi-department or multi-location businesses anywhere in Australia.',
   },
   {
     q: 'Do I have to implement with PlanDepa afterwards?',
@@ -122,6 +122,6 @@ export const OFFER_FAQS = [
   },
   {
     q: 'Where does AI come into it?',
-    a: 'The Blueprint shows where AI and automation will actually pay off — enquiry follow-up, quoting, variations, handovers, site admin, reporting — and where they will not. The first workflow we implement is chosen on impact, not on hype.',
+    a: 'The Blueprint shows where AI and automation will actually pay off: enquiry follow-up, quoting, variations, handovers, site admin, reporting, and where they will not. The first workflow we implement is chosen on impact, not on hype.',
   },
 ];

@@ -115,7 +115,7 @@ const faqItems = [
   },
   {
     question: 'What if we already use project management software?',
-    answer: 'Our AI Agents integrate with existing systems like Procore, Buildertrend, and Microsoft Project. We don\'t replace your current tools — we enhance them by automating data entry, extraction, and analysis. The AI works alongside your established workflows, not against them.',
+    answer: 'Our AI Agents integrate with existing systems like Procore, Buildertrend, and Microsoft Project. We don\'t replace your current tools. We enhance them by automating data entry, extraction, and analysis. The AI works alongside your established workflows, not against them.',
   },
   {
     question: 'Is this only for large construction companies?',
@@ -131,7 +131,7 @@ const faqItems = [
   },
   {
     question: 'What happens to our ROI as AI becomes more common?',
-    answer: 'Early adopters gain 12-18 months of competitive advantage. As AI becomes standard, it transitions from a differentiator to a requirement — like digital takeoffs or BIM. Companies without it will struggle to compete on speed and margins. The question isn\'t whether to adopt, but when. Starting now means you\'ll be teaching competitors in 2027 instead of catching up.',
+    answer: 'Early adopters gain 12-18 months of competitive advantage. As AI becomes standard, it transitions from a differentiator to a requirement, like digital takeoffs or BIM. Companies without it will struggle to compete on speed and margins. The question isn\'t whether to adopt, but when. Starting now means you\'ll be teaching competitors in 2027 instead of catching up.',
   },
 ];
 

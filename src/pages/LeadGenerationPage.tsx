@@ -12,7 +12,7 @@ import { ENQUIRY_FAQS } from '../seo/site';
 import { OFFER_PATH } from '../seo/offer';
 
 const LEAKS = [
-  'Enquiries land in five places — the website, email, phone, Facebook, hipages — and nobody owns them.',
+  'Enquiries land in five places: the website, email, phone, Facebook, hipages. Nobody owns them.',
   'The builder who replies first usually gets the site visit. You reply when you get off the tools.',
   'Quotes go out and are never chased. Good jobs go to whoever followed up.',
   "You can't say which enquiries turn into work, or what your marketing actually returns.",
@@ -20,11 +20,11 @@ const LEAKS = [
 
 const MODULES = [
   { icon: Inbox, name: 'One enquiry inbox', desc: 'Every channel feeds a single pipeline. Each enquiry is logged, tagged by job type and location, and assigned to an owner.' },
-  { icon: Sparkles, name: 'Instant first response', desc: 'AI drafts a reply in your voice within minutes — acknowledging the job, asking the right qualifying questions, offering a call time.' },
+  { icon: Sparkles, name: 'Instant first response', desc: 'AI drafts a reply in your voice within minutes: acknowledging the job, asking the right qualifying questions, offering a call time.' },
   { icon: Filter, name: 'Qualification', desc: 'Budget, location, timing and job type captured up front, so your time goes to the jobs you actually want.' },
-  { icon: CalendarCheck, name: 'Site visit booking', desc: 'Qualified enquiries book straight into your calendar with reminders — no phone tag.' },
+  { icon: CalendarCheck, name: 'Site visit booking', desc: 'Qualified enquiries book straight into your calendar with reminders, no phone tag.' },
   { icon: Send, name: 'Quote follow-up', desc: 'Every quote gets a follow-up sequence that stops the moment the client replies. Nothing sits unanswered.' },
-  { icon: BarChart3, name: 'Pipeline & source reporting', desc: 'See enquiries, quotes, win rate and where the work came from — in one view, updated automatically.' },
+  { icon: BarChart3, name: 'Pipeline & source reporting', desc: 'See enquiries, quotes, win rate and where the work came from, in one view, updated automatically.' },
 ];
 
 export function LeadGenerationPage() {
@@ -42,7 +42,7 @@ export function LeadGenerationPage() {
           </h1>
           <p className="text-base md:text-lg text-brand-gray max-w-3xl mb-8 leading-relaxed">
             We build AI-assisted enquiry systems for construction companies in Brisbane, Newcastle and across Australia. Every lead is captured,
-            answered, qualified and followed up — without you chasing it from the ute.
+            answered, qualified and followed up, without you chasing it from the ute.
           </p>
           <button
             onClick={open}
@@ -61,7 +61,7 @@ export function LeadGenerationPage() {
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-4">You don't have a lead problem. You have a follow-up problem.</h2>
           <p className="text-brand-gray mb-10 max-w-3xl leading-relaxed">
-            Most builders we talk to already get enough enquiries. The work is lost between the first message and the signed contract — slow replies,
+            Most builders we talk to already get enough enquiries. The work is lost between the first message and the signed contract: slow replies,
             no qualification, and quotes nobody chases.
           </p>
           <div className="space-y-6 bg-red-50 border-l-4 border-brand-red p-8 rounded-r-xl">
@@ -98,7 +98,7 @@ export function LeadGenerationPage() {
             ))}
           </motion.div>
           <motion.p className="text-center text-brand-gray max-w-3xl mx-auto mt-10 leading-relaxed" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            Tool-agnostic: we build on what fits — HubSpot, Monday, Airtable, or the CRM you already have — and connect it to Buildxact or your
+            Tool-agnostic: we build on what fits (HubSpot, Monday, Airtable, or the CRM you already have) and connect it to Buildxact or your
             estimating tool so won jobs hand over cleanly to delivery.
           </motion.p>
         </div>
@@ -109,7 +109,7 @@ export function LeadGenerationPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-4">Not sure enquiries are the real leak?</h2>
           <p className="text-brand-gray mb-8 leading-relaxed">
             The Clarity Blueprint maps where your business is actually losing time, margin and work, and names the first workflow to fix. For a lot
-            of builders it's this one — but we'll tell you if it isn't.
+            of builders it's this one, but we'll tell you if it isn't.
           </p>
           <Link
             to={OFFER_PATH}
@@ -122,7 +122,7 @@ export function LeadGenerationPage() {
 
       <section className="bg-brand-light-gray py-12 md:py-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-8">Enquiry automation — FAQ</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-8">Enquiry automation: FAQ</h2>
           <SimpleFAQ items={ENQUIRY_FAQS.map((f) => ({ question: f.q, answer: f.a }))} />
         </div>
       </section>

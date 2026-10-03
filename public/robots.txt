@@ -1,11 +1,11 @@
-# PlanDepa — AI implementation for construction companies (Brisbane, Newcastle, Australia)
+# PlanDepa: AI implementation for construction companies (Brisbane, Newcastle, Australia)
 # All crawlers welcome, including AI assistants and answer engines.
 
 User-agent: *
 Allow: /
 Disallow: /contact/thank-you
 
-# AI / LLM crawlers — explicitly allowed so PlanDepa can be cited in AI answers
+# AI / LLM crawlers: explicitly allowed so PlanDepa can be cited in AI answers
 User-agent: GPTBot
 Allow: /
 

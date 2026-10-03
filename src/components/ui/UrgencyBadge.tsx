@@ -72,7 +72,7 @@ export function UrgencyBadge({
             </div>
             <p className="text-sm text-slate-700 leading-relaxed">
               are already adopting AI for cost reduction. <span className="font-bold">Don't fall
-              behind</span> — secure your competitive advantage today.
+              behind</span>. Secure your competitive advantage today.
             </p>
           </div>
         </div>

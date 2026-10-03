@@ -14,8 +14,8 @@ const app = (
   </StrictMode>
 );
 
-// Prerendered pages (scripts/prerender.mjs) ship with HTML inside #root — hydrate it.
-// The SPA fallback shell (app.html) has an empty #root — render from scratch.
+// Prerendered pages (scripts/prerender.mjs) ship with HTML inside #root: hydrate it.
+// The SPA fallback shell (app.html) has an empty #root: render from scratch.
 if (container.hasChildNodes()) {
   hydrateRoot(container, app);
 } else {
