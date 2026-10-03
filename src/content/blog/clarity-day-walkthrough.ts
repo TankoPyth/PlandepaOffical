@@ -67,7 +67,7 @@ export const clarityDayWalkthrough: LocalPost = {
 <p>And if he provides the agreed information, access and decision-maker time and we don't deliver the named outputs by the agreed date, we keep going at no additional professional fee until they're delivered — or refund the fee.</p>
 
 <h2>Is a Clarity Day right for you?</h2>
-<p>It's built for owners like Pete: 10–50 staff, four or more tools that don't talk to each other, still the bottleneck, making decent money but unable to step away. We run Clarity Days in person in <a href="/construction-ai-brisbane">Brisbane</a> and <a href="/construction-ai-newcastle">Newcastle</a> for $1,990 + GST.</p>
+<p>It's built for owners like Pete: 10-50 staff, four or more tools that don't talk to each other, still the bottleneck, making decent money but unable to step away. We run Clarity Days in person in <a href="/construction-ai-brisbane">Brisbane</a> and <a href="/construction-ai-newcastle">Newcastle</a> for $1,990 + GST.</p>
 <p>Want something lighter first? The <strong>Clarity Sprint</strong> is a three-hour virtual session for $990 + GST. Running multiple departments or sites? The <strong>Clarity Intensive</strong> is up to two days, Australia-wide, travel included, for $4,990 + GST.</p>
 <p><a href="/clarity-blueprint">See the full Clarity Blueprint</a>, or take the <a href="/blog/cant-leave-for-a-week-test">Can't-Leave-For-A-Week Test</a> first.</p>
 `,

@@ -50,7 +50,7 @@ const questions: ScorecardQuestion[] = [
     options: [
       { label: 'Under 1 hour.', score: 0 },
       { label: 'Same day.', score: 1 },
-      { label: '1–2 days.', score: 2 },
+      { label: '1-2 days.', score: 2 },
       { label: 'Depends who sees it / sometimes missed.', score: 3 },
     ],
   },

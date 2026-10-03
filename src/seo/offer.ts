@@ -86,7 +86,7 @@ export const DELIVERY_GUARANTEE =
 
 export const FIT = {
   yes: [
-    'You run a construction business with 10–50 staff.',
+    'You run a construction business with 10-50 staff.',
     "You're juggling four or more tools that don't talk to each other.",
     "You're still the bottleneck — decisions, quotes and problems all route through you.",
     "The business makes decent money, but you can't leave for a week without it slipping.",
@@ -106,7 +106,7 @@ export const OFFER_FAQS = [
   },
   {
     q: 'Which size should I choose?',
-    a: 'The Clarity Sprint suits owners who already know roughly where the problem is and want it confirmed and prioritised. The Clarity Day is our recommended option for most construction businesses with 10–50 staff — we spend a day with you and your team in Brisbane or Newcastle. The Clarity Intensive is for multi-department or multi-location businesses anywhere in Australia.',
+    a: 'The Clarity Sprint suits owners who already know roughly where the problem is and want it confirmed and prioritised. The Clarity Day is our recommended option for most construction businesses with 10-50 staff — we spend a day with you and your team in Brisbane or Newcastle. The Clarity Intensive is for multi-department or multi-location businesses anywhere in Australia.',
   },
   {
     q: 'Do I have to implement with PlanDepa afterwards?',

@@ -55,9 +55,9 @@ export const cantLeaveForAWeekTest: LocalPost = {
 <table>
   <thead><tr><th>Score</th><th>What it usually means</th></tr></thead>
   <tbody>
-    <tr><td><strong>0–3</strong></td><td>The business can mostly run without you. You've done the hard work already — the opportunity is in automating what's documented.</td></tr>
-    <tr><td><strong>4–7</strong></td><td>Typical for a growing business. Some parts run on systems, others run on you. There are probably two or three specific leaks costing far more than they look.</td></tr>
-    <tr><td><strong>8–12</strong></td><td>You are the operating system. The business can't grow without you working more, and you're probably already at the limit. The good news: this is the most fixable stage, because the leaks are obvious once they're mapped.</td></tr>
+    <tr><td><strong>0-3</strong></td><td>The business can mostly run without you. You've done the hard work already — the opportunity is in automating what's documented.</td></tr>
+    <tr><td><strong>4-7</strong></td><td>Typical for a growing business. Some parts run on systems, others run on you. There are probably two or three specific leaks costing far more than they look.</td></tr>
+    <tr><td><strong>8-12</strong></td><td>You are the operating system. The business can't grow without you working more, and you're probably already at the limit. The good news: this is the most fixable stage, because the leaks are obvious once they're mapped.</td></tr>
   </tbody>
 </table>
 
@@ -96,7 +96,7 @@ export const cantLeaveForAWeekTest: LocalPost = {
     },
     {
       q: 'What size construction business is this most relevant for?',
-      a: 'Businesses with roughly 10–50 staff. Smaller businesses can often still run on the owner; larger ones usually already have operations managers and formal systems.',
+      a: 'Businesses with roughly 10-50 staff. Smaller businesses can often still run on the owner; larger ones usually already have operations managers and formal systems.',
     },
   ],
 };

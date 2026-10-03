@@ -341,7 +341,7 @@ export default function BlogPostPage() {
 
           <div className="bg-brand-black text-white rounded-2xl p-8 my-10 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-3">Know exactly where your business is breaking.</h2>
-            <p className="text-white/80 mb-6">A paid diagnostic for construction businesses with 10–50 staff. From $990 + GST, and the fee comes off the invoice if we implement the fix.</p>
+            <p className="text-white/80 mb-6">A paid diagnostic for construction businesses with 10-50 staff. From $990 + GST, and the fee comes off the invoice if we implement the fix.</p>
             <Link to={OFFER_PATH} className="inline-block bg-brand-red text-white font-semibold px-8 py-3 rounded-lg hover:bg-red-700 transition-colors">
               See the Clarity Blueprint
             </Link>

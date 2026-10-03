@@ -146,7 +146,7 @@ const offerSchema = {
     { '@type': 'City', name: 'Newcastle' },
     { '@type': 'Country', name: 'Australia' },
   ],
-  audience: { '@type': 'BusinessAudience', audienceType: 'Construction business owners with 10–50 staff' },
+  audience: { '@type': 'BusinessAudience', audienceType: 'Construction business owners with 10-50 staff' },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: `${OFFER_NAME} options`,
@@ -169,7 +169,7 @@ export const HOME_FAQS = [
   },
   {
     q: 'Who do you work with?',
-    a: "Construction businesses with 10–50 staff, running four or more tools that don't talk to each other, where the owner is still the bottleneck. We're based in Brisbane and work in person across Brisbane and Newcastle, and Australia-wide with the Clarity Intensive.",
+    a: "Construction businesses with 10-50 staff, running four or more tools that don't talk to each other, where the owner is still the bottleneck. We're based in Brisbane and work in person across Brisbane and Newcastle, and Australia-wide with the Clarity Intensive.",
   },
   {
     q: 'What tools do you build in?',
@@ -177,7 +177,7 @@ export const HOME_FAQS = [
   },
   {
     q: 'How long does it take to see results?',
-    a: "Most clients have a working CRM and first SOPs within four weeks of starting implementation. The full system typically takes 8–12 weeks to build well. We won't rush it.",
+    a: "Most clients have a working CRM and first SOPs within four weeks of starting implementation. The full system typically takes 8-12 weeks to build well. We won't rush it.",
   },
   {
     q: 'Do we need someone technical to maintain this?',
@@ -247,7 +247,7 @@ export const LOCATIONS: Record<'brisbane' | 'newcastle', LocationContent> = {
       },
       {
         q: 'How long does it take?',
-        a: 'Most clients have a working CRM and their first documented processes within four weeks. A full operational system typically takes 8–12 weeks to build properly.',
+        a: 'Most clients have a working CRM and their first documented processes within four weeks. A full operational system typically takes 8-12 weeks to build properly.',
       },
       {
         q: 'Do we need technical staff to run it?',
@@ -280,7 +280,7 @@ export const LOCATIONS: Record<'brisbane' | 'newcastle', LocationContent> = {
       },
       {
         q: 'How long does it take?',
-        a: 'Most clients have a working CRM and their first documented processes within four weeks. A full operational system typically takes 8–12 weeks to build properly.',
+        a: 'Most clients have a working CRM and their first documented processes within four weeks. A full operational system typically takes 8-12 weeks to build properly.',
       },
       {
         q: 'Do we need technical staff to run it?',

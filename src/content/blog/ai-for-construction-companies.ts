@@ -6,7 +6,7 @@ export const aiForConstructionCompanies: LocalPost = {
   metaDescription:
     'An honest, workflow-by-workflow guide to AI for construction companies in Brisbane, Newcastle and across Australia — what works today, what to skip, and where to start.',
   excerpt:
-    "Forget the robot project managers. Here's where AI genuinely saves a 10–50 person construction business time and margin today — enquiries, quoting, variations, site admin, reporting — and where it's still mostly a sales pitch.",
+    "Forget the robot project managers. Here's where AI genuinely saves a 10-50 person construction business time and margin today — enquiries, quoting, variations, site admin, reporting — and where it's still mostly a sales pitch.",
   category: { name: 'AI in Construction', slug: 'ai-in-construction' },
   tags: ['AI for construction', 'construction automation', 'Brisbane', 'Newcastle'],
   author: JARROD,

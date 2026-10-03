@@ -5,7 +5,7 @@
 - Based in Brisbane, Queensland. Serving Brisbane, Gold Coast, Sunshine Coast and South East Queensland, plus Newcastle, Lake Macquarie, Maitland, Port Stephens and the Hunter region in NSW. We also work with construction businesses elsewhere in Australia.
 - Founded by Jarrod Tanko (construction company founder and site manager, from startup operations to Tier 1 mining projects) and Mitch Humphries (former carpenter and State Manager in building and restoration).
 - Tool-agnostic: we implement whatever fits the business (for example Buildxact, HubSpot, Monday, Notion, Airtable, or tools a client already uses). Official Buildxact implementation partner.
-- Typical timeline: a working CRM and first documented processes within about four weeks; a full operational system in 8–12 weeks.
+- Typical timeline: a working CRM and first documented processes within about four weeks; a full operational system in 8-12 weeks.
 - Contact: admin@plandepa.com · +61 447 733 216 · https://plandepa.com/contact
 
 ## What we implement
@@ -27,7 +27,7 @@
 - Clarity Intensive — $4,990 + GST — up to two in-person days, Australia-wide, travel included: deeper department or location review, work/sample data review, handoff and owner-dependence analysis, SOP and source-of-truth review, implementation economics, 90-day roadmap, leadership alignment session, implementation scope, 30-day post-review check-in.
 - Fee credit: if the client chooses PlanDepa to implement the agreed first workflow within 30 days of the Blueprint readout, the full Blueprint fee is credited against that approved implementation scope.
 - Delivery guarantee: if the client provides the agreed information, access and decision-maker time and PlanDepa does not deliver the named Blueprint outputs by the agreed date, PlanDepa continues the review at no additional professional fee until delivered, or refunds the fee.
-- Best fit: construction business owners with 10–50 staff, running four or more disconnected tools, who are still the bottleneck in their own business. Not a fit for businesses under 10 staff.
+- Best fit: construction business owners with 10-50 staff, running four or more disconnected tools, who are still the bottleneck in their own business. Not a fit for businesses under 10 staff.
 
 ## Other services
 

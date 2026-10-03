@@ -11,7 +11,7 @@
  *    residential builders and renovators. Record name, suburb, Google rating count.
  * 2. Send one realistic enquiry to each via their website form (or email if no
  *    form): a mid-size renovation, same wording for all, real contact details,
- *    sent Tue–Thu between 9–11am. Note exact send time.
+ *    sent Tue-Thu between 9-11am. Note exact send time.
  * 3. Record: time to first reply (any human or automated response), whether the
  *    first reply was automated, whether it asked a qualifying question, whether
  *    they offered a call/site visit time, and whether there was any follow-up if
@@ -61,7 +61,7 @@ export const builderEnquiryResponseStudy: LocalPost = {
 </table>
 
 <h2>What the fastest builders did differently</h2>
-<p>[PLACEHOLDER: 2–3 short paragraphs on patterns you actually observed — e.g. automated acknowledgement + a human reply, asking budget/timing up front, offering specific call times. Only describe what you saw.]</p>
+<p>[PLACEHOLDER: 2-3 short paragraphs on patterns you actually observed — e.g. automated acknowledgement + a human reply, asking budget/timing up front, offering specific call times. Only describe what you saw.]</p>
 
 <h2>How we ran the study</h2>
 <p>We selected 50 builders from Google Maps results across a spread of suburbs in each region. Each received the same enquiry for a mid-size renovation via their website form or listed email, sent on a weekday morning between [PLACEHOLDER: dates]. We recorded time to first response, whether it was automated, whether it asked qualifying questions, and whether there was any follow-up. We politely declined every builder who replied. We have not named any business.</p>

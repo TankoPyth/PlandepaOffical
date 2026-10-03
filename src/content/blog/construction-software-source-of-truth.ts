@@ -38,7 +38,7 @@ export const constructionSoftwareSourceOfTruth: LocalPost = {
 <ul>
   <li><strong>Decisions made on stale information.</strong> If job costs only get reconciled at the end, you find out a job lost money when it's too late to do anything about it.</li>
   <li><strong>Things falling between tools.</strong> The quote was accepted in one system, but nobody created the job in the other. The variation was agreed in WhatsApp but never made it to the invoice.</li>
-  <li><strong>The owner as integration layer.</strong> When the tools don't connect, a person does — and in a 10–50 person business, that person is usually the owner or one overloaded office manager.</li>
+  <li><strong>The owner as integration layer.</strong> When the tools don't connect, a person does — and in a 10-50 person business, that person is usually the owner or one overloaded office manager.</li>
   <li><strong>AI can't help.</strong> Every AI tool depends on being able to see your information. If it's scattered across chats and spreadsheets, there's nothing for it to work with.</li>
 </ul>
 
@@ -96,7 +96,7 @@ export const constructionSoftwareSourceOfTruth: LocalPost = {
     },
     {
       q: 'Should we replace all our construction software with one system?',
-      a: 'Usually not. Most 10–50 person construction businesses get better results by deciding which tool owns which information, automating the handoffs between them, and only replacing a tool that genuinely cannot do its job.',
+      a: 'Usually not. Most 10-50 person construction businesses get better results by deciding which tool owns which information, automating the handoffs between them, and only replacing a tool that genuinely cannot do its job.',
     },
   ],
 };
