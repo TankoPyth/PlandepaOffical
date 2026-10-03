@@ -6,7 +6,7 @@ import { ContactForm } from '../components/ContactForm';
 import { SimpleFAQ } from '../components/SimpleFAQ';
 import { SectionNumber } from '../components/SectionNumber';
 import { ThankYouModal } from '../components/ThankYouModal';
-import { fadeInUp, staggerContainer, staggerItem, appleEasing } from '../utils/animations';
+import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 
 export function ContactPage() {
@@ -159,7 +159,7 @@ export function ContactPage() {
                       <p className="text-brand-gray">
                         Within 24 hours
                         <br />
-                        Monday - Friday
+                        Monday to Friday
                       </p>
                     </div>
                   </div>

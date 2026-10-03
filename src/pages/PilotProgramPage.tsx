@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, Check, Inbox, RotateCcw, FileText, Camera, Truck, ArrowLeftRight, Target, Zap, Shield, TrendingUp, Clock, CheckCircle2, Rocket } from 'lucide-react';
+import { ArrowLeft, Check, Inbox, RotateCcw, FileText, Camera, Truck, ArrowLeftRight, Target, Zap, CheckCircle2, Rocket } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { SectionNumber } from '../components/SectionNumber';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -11,7 +10,7 @@ import { ThankYouModal } from '../components/ThankYouModal';
 import { WorkflowCard } from '../components/WorkflowCard';
 import { WorkflowModal } from '../components/WorkflowModal';
 import { StickyWorkflowBar } from '../components/StickyWorkflowBar';
-import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
+import { staggerContainer, staggerItem } from '../utils/animations';
 
 export function PilotProgramPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -25,7 +24,7 @@ export function PilotProgramPage() {
       painPoint: 'Enquiries disappear into email chaos, nothing gets tracked properly',
       hoursSaved: 8,
       isPopular: true,
-      fullDescription: 'You get enquiries from multiple channels - email, phone, Facebook, walk-ins. Some get answered fast, others sit for days. Nobody knows who\'s following up what, and hot leads go cold because they fell through the cracks.',
+      fullDescription: 'You get enquiries from multiple channels: email, phone, Facebook, walk-ins. Some get answered fast, others sit for days. Nobody knows who\'s following up what, and hot leads go cold because they fell through the cracks.',
       whatWeInstall: [
         'Single inbox that captures every enquiry from every channel',
         'Automatic assignment to the right person',
@@ -172,7 +171,7 @@ export function PilotProgramPage() {
     },
     {
       question: 'Do we need to buy new software?',
-      answer: 'Usually no. We work with what you have - your existing estimating software, email, spreadsheets. If we need to add something, we discuss it first and factor it into the ROI calculation.',
+      answer: 'Usually no. We work with what you have: your existing estimating software, email, spreadsheets. If we need to add something, we discuss it first and factor it into the ROI calculation.',
     },
     {
       question: 'How much of our time does this take?',
@@ -244,7 +243,7 @@ export function PilotProgramPage() {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center mb-12 md:mb-16"
+            className="mb-12 md:mb-16"
           >
             <motion.div variants={staggerItem} className="inline-flex items-center gap-2 bg-brand-red/10 text-brand-red px-4 py-2 rounded-full text-sm font-semibold mb-6">
               <Target className="w-4 h-4" />
@@ -252,13 +251,13 @@ export function PilotProgramPage() {
             </motion.div>
 
             <motion.h1 variants={staggerItem} className="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-black mb-6">
-              28-Day Pilot Program
+              Fix your biggest bottleneck in 28 days
             </motion.h1>
-            <motion.p variants={staggerItem} className="text-xl md:text-2xl text-brand-gray max-w-3xl mx-auto mb-8">
+            <motion.p variants={staggerItem} className="text-xl md:text-2xl text-brand-gray max-w-3xl mb-8">
               Pick one broken workflow. We fix it in 28 days. You only pay if it delivers the results we promise.
             </motion.p>
 
-            <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setIsContactModalOpen(true)}
                 className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg"
@@ -282,17 +281,14 @@ export function PilotProgramPage() {
             className="grid md:grid-cols-3 gap-6 mb-12"
           >
             <motion.div variants={staggerItem} className="bg-white p-6 rounded-lg shadow-md">
-              <Shield className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-2">Zero Risk</h3>
               <p className="text-brand-gray">Pay only after we prove results. No deposit, no retainer required.</p>
             </motion.div>
             <motion.div variants={staggerItem} className="bg-white p-6 rounded-lg shadow-md">
-              <Clock className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-2">28 Days</h3>
               <p className="text-brand-gray">From kickoff to measurable results in under a month.</p>
             </motion.div>
             <motion.div variants={staggerItem} className="bg-white p-6 rounded-lg shadow-md">
-              <TrendingUp className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-2">Real Results</h3>
               <p className="text-brand-gray">Measurable time savings and efficiency gains, not vague improvements.</p>
             </motion.div>
@@ -310,11 +306,11 @@ export function PilotProgramPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              How The 28-Day Pilot Works
+              Four weeks, one workflow
             </h2>
-            <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-brand-gray max-w-2xl">
               Four weeks. One workflow. Measurable results.
             </p>
           </motion.div>
@@ -348,9 +344,6 @@ export function PilotProgramPage() {
             ].map((step, index) => (
               <div key={index} className="relative">
                 <div className="bg-brand-light-gray p-6 rounded-lg h-full">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-red text-white rounded-lg mb-4">
-                    <step.icon className="w-6 h-6" />
-                  </div>
                   <div className="text-sm font-bold text-brand-red mb-2">{step.week}</div>
                   <h3 className="text-xl font-bold text-brand-black mb-3">{step.title}</h3>
                   <p className="text-brand-gray">{step.description}</p>
@@ -371,11 +364,11 @@ export function PilotProgramPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Choose Your Pilot Workflow
+              Pick the problem that costs you most
             </h2>
-            <p className="text-lg md:text-xl text-brand-gray max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-brand-gray max-w-3xl">
               Pick the biggest pain point in your business. We'll prove we can fix it in 28 days.
             </p>
           </motion.div>
@@ -422,7 +415,7 @@ export function PilotProgramPage() {
         variants={staggerContainer}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12">
+          <motion.div variants={staggerItem} className="mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
               What You Get
             </h2>
@@ -457,9 +450,9 @@ export function PilotProgramPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Why Companies Choose The Pilot First
+              Why start with a pilot
             </h2>
           </motion.div>
 

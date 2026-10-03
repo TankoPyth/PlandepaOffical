@@ -7,7 +7,7 @@ export const workflows = [
     painPoint: 'Enquiries disappear into email chaos, nothing gets tracked properly',
     hoursSaved: 8,
     isPopular: true,
-    fullDescription: 'You get enquiries from multiple channels - email, phone, Facebook, walk-ins. Some get answered fast, others sit for days. Nobody knows who\'s following up what, and hot leads go cold because they fell through the cracks.',
+    fullDescription: 'You get enquiries from multiple channels: email, phone, Facebook, walk-ins. Some get answered fast, others sit for days. Nobody knows who\'s following up what, and hot leads go cold because they fell through the cracks.',
     whatWeInstall: [
       'Single inbox that captures every enquiry from every channel',
       'Automatic assignment to the right person',

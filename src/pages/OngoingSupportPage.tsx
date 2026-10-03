@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Check, Shield, Clock, Zap, Headphones as HeadphonesIcon, TrendingUp, Wrench, Bell, Lock, RefreshCw, Users, Target, Award } from 'lucide-react';
+import { ArrowLeft, Check, Shield, Zap, Headphones as HeadphonesIcon, TrendingUp, Wrench, Bell, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
@@ -7,7 +7,7 @@ import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
-import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
+import { staggerContainer, staggerItem } from '../utils/animations';
 
 export function OngoingSupportPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -125,7 +125,7 @@ export function OngoingSupportPage() {
     },
     {
       question: 'Can we pause support if we don\'t need it for a while?',
-      answer: 'Not for ongoing retainers - you\'re paying for availability and proactive monitoring, not just reactive support. But you can cancel with 30 days notice and re-engage when needed.',
+      answer: 'Not for ongoing retainers, you\'re paying for availability and proactive monitoring, not just reactive support. But you can cancel with 30 days notice and re-engage when needed.',
     },
   ];
 
@@ -177,7 +177,7 @@ export function OngoingSupportPage() {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center mb-12 md:mb-16"
+            className="mb-12 md:mb-16"
           >
             <motion.div variants={staggerItem} className="inline-flex items-center gap-2 bg-brand-red/10 text-brand-red px-4 py-2 rounded-full text-sm font-semibold mb-6">
               <Shield className="w-4 h-4" />
@@ -191,7 +191,7 @@ export function OngoingSupportPage() {
               Keep your systems running smoothly with proactive monitoring, regular optimization, and priority support.
             </motion.p>
 
-            <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setIsContactModalOpen(true)}
                 className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-red/90 transition-all duration-300 shadow-lg"
@@ -218,32 +218,29 @@ export function OngoingSupportPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Why Ongoing Support Matters
+              Systems decay when nobody looks after them
             </h2>
-            <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-brand-gray max-w-2xl">
               Systems don't maintain themselves. Without proper care, they degrade over time.
             </p>
           </motion.div>
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-3 gap-8">
             <div className="bg-brand-light-gray p-8 rounded-lg">
-              <Shield className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Prevent Problems</h3>
               <p className="text-brand-gray">
                 Catch issues before they disrupt your business. Proactive monitoring means fewer emergencies.
               </p>
             </div>
             <div className="bg-brand-light-gray p-8 rounded-lg">
-              <TrendingUp className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Continuous Improvement</h3>
               <p className="text-brand-gray">
                 Regular optimization means your systems get better over time instead of slowly degrading.
               </p>
             </div>
             <div className="bg-brand-light-gray p-8 rounded-lg">
-              <Clock className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Save Time</h3>
               <p className="text-brand-gray">
                 Fast expert help when you need it. No waiting days for support or figuring things out yourself.
@@ -262,7 +259,7 @@ export function OngoingSupportPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
               What We Support
             </h2>
@@ -271,9 +268,6 @@ export function OngoingSupportPage() {
           <motion.div variants={staggerItem} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {supportServices.map((service, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-red/10 text-brand-red rounded-lg mb-4">
-                  <service.icon className="w-6 h-6" />
-                </div>
                 <h3 className="text-xl font-bold text-brand-black mb-3">{service.title}</h3>
                 <p className="text-brand-gray">{service.description}</p>
               </div>
@@ -292,11 +286,11 @@ export function OngoingSupportPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
               Support Tiers
             </h2>
-            <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-brand-gray max-w-2xl">
               Choose the level of support that matches your business needs.
             </p>
           </motion.div>
@@ -385,7 +379,6 @@ export function OngoingSupportPage() {
               </ul>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <Award className="w-16 h-16 text-brand-red mb-6" />
               <h3 className="text-2xl font-bold text-brand-black mb-4">Our Guarantee</h3>
               <p className="text-brand-gray mb-6">
                 If we're not making your life easier and your business more efficient, we're not doing our job.

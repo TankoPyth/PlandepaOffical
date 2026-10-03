@@ -409,7 +409,7 @@ export default function AustralianAIPolicyPost() {
               <Doughnut data={complianceChartData} options={complianceChartOptions} />
             </div>
             <p className={`text-center mt-4 font-bold text-xl ${compliancePercent === 100 ? 'text-green-600' : 'text-slate-700'}`}>
-              {compliancePercent === 100 ? '100% - Audit Ready!' : `${compliancePercent}% Ready`}
+              {compliancePercent === 100 ? '100%: Audit Ready!' : `${compliancePercent}% Ready`}
             </p>
             <p className="text-sm text-slate-500 text-center mt-1">Check items on the left to update.</p>
           </div>

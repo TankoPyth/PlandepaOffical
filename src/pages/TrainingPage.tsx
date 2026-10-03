@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Check, Lightbulb, Users, Video, Calendar, DollarSign, Clock, Target, Brain, Zap, TrendingUp, Award, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Check, Users, Video, Clock, Target, Brain, Zap, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
@@ -7,7 +7,7 @@ import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
-import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
+import { staggerContainer, staggerItem } from '../utils/animations';
 
 export function TrainingPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -37,29 +37,29 @@ export function TrainingPage() {
     },
     {
       icon: Target,
-      badge: 'PAID ENTRY',
-      title: 'Automation Clarity Session',
-      subtitle: 'Turn AI confusion into a clear, practical first-step plan',
-      duration: '90 minutes remote',
-      whoFor: 'Construction businesses that want clarity on what to automate first, without committing to a major project.',
+      badge: 'CLARITY BLUEPRINT',
+      title: 'Clarity Sprint',
+      subtitle: 'The smallest Clarity Blueprint: find what is breaking and what to fix first',
+      duration: '3 hours, virtual',
+      whoFor: 'Construction businesses with 10 to 50 staff that want clarity on what to fix and automate first, without committing to a major project.',
       whatYouGet: [
-        'Identify where work is getting stuck, duplicated, or lost',
-        'Map one workflow end-to-end: capture, assign, SLA, escalation, reporting',
-        'Select the first automation to fix based on impact and ease',
-        'Define success metrics so outcomes are measurable',
+        'A high-level Business Clarity Map of how the business runs',
+        'Your Top Three Leak Register: where time and margin escape',
+        'A First Workflow Decision: the one thing to fix first',
+        'A 30-day priority plan and a readout call',
       ],
       outputs: [
-        'A "first automation" recommendation and why it wins',
-        'A simple workflow map for that process',
-        'Draft success metrics for a pilot',
-        'Recommended next step: either a 28-day pilot or the Clarity Blueprint',
+        'A named first workflow and why it wins',
+        'A simple map of that process',
+        'A 30-day plan you can run yourself or with us',
+        'If we implement the first workflow within 30 days, the fee is credited',
       ],
       whatItIsNot: [
         'Not generic AI training',
-        'Not a full Operational Systems Review',
+        'Not the full in-person Clarity Day',
         'Not implementation work',
       ],
-      cta: 'Book Clarity Session',
+      cta: 'Book a Clarity Sprint',
     },
     {
       icon: Users,
@@ -106,16 +106,16 @@ export function TrainingPage() {
       answer: 'Absolutely. The more people who understand what is possible, the easier implementation becomes later. Register once and share the link with your team.',
     },
     {
-      question: 'What happens after the Clarity Session?',
-      answer: 'You get a clear recommendation: either proceed with a 28-day pilot, book a full Operational Systems Review, or implement specific changes yourself. No pressure, no lock-in.',
+      question: 'What happens after the Clarity Sprint?',
+      answer: 'You get a clear recommendation: either proceed with a 28-day pilot, move up to a Clarity Day, or implement specific changes yourself. No pressure, no lock-in.',
     },
     {
-      question: 'Why should I pay for a Clarity Session when the webinar is free?',
-      answer: 'The webinar shows what is possible across construction businesses generally. The Clarity Session analyzes your specific workflows, your bottlenecks, your team, and gives you a custom roadmap.',
+      question: 'Why should I pay for a Clarity Sprint when the webinar is free?',
+      answer: 'The webinar shows what is possible across construction businesses generally. The Clarity Sprint looks at your specific workflows, your bottlenecks, your team, and gives you a custom roadmap.',
     },
     {
-      question: 'How is the Team Workshop different from the Clarity Session?',
-      answer: 'The Clarity Session is focused on the business owner or decision-maker. The Team Workshop brings everyone together - admin, ops, leadership - to get alignment so implementation actually works.',
+      question: 'How is the Team Workshop different from the Clarity Sprint?',
+      answer: 'The Clarity Sprint is focused on the business owner or decision-maker. The Team Workshop brings everyone together, admin, ops and leadership, to get alignment so implementation actually works.',
     },
   ];
 
@@ -128,7 +128,7 @@ export function TrainingPage() {
     },
     {
       step: '2',
-      title: 'Book a Clarity Session',
+      title: 'Book a Clarity Sprint',
       description: 'Get specific recommendations for your business and workflows.',
       icon: Target,
     },
@@ -194,7 +194,7 @@ export function TrainingPage() {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center mb-12 md:mb-16"
+            className="mb-12 md:mb-16"
           >
             <motion.div variants={staggerItem} className="inline-flex items-center gap-2 bg-brand-red/10 text-brand-red px-4 py-2 rounded-full text-sm font-semibold mb-6">
               <Brain className="w-4 h-4" />
@@ -208,10 +208,10 @@ export function TrainingPage() {
               From concept to clarity. Understand what AI can actually do for your construction business.
             </motion.p>
 
-            <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-brand-cta-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-all duration-300 shadow-lg"
+                className="bg-brand-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-red-700 transition-all duration-300 shadow-lg"
               >
                 Register for Free Webinar
               </button>
@@ -235,32 +235,29 @@ export function TrainingPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Why This Education Matters
+              Why learn before you build
             </h2>
-            <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-brand-gray max-w-2xl">
               You keep hearing about AI, but you do not know what is real, what is safe, or what actually applies to construction.
             </p>
           </motion.div>
 
           <motion.div variants={staggerItem} className="grid md:grid-cols-3 gap-8">
             <div className="bg-brand-light-gray p-8 rounded-lg">
-              <Lightbulb className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Clarity Over Hype</h3>
               <p className="text-brand-gray">
                 No ChatGPT tutorials or generic AI theory. Only real construction workflows and practical automation examples.
               </p>
             </div>
             <div className="bg-brand-light-gray p-8 rounded-lg">
-              <Target className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">Construction-Specific</h3>
               <p className="text-brand-gray">
                 Every example is from builders, renovators, and trade contractors. Real bottlenecks, real solutions.
               </p>
             </div>
             <div className="bg-brand-light-gray p-8 rounded-lg">
-              <TrendingUp className="w-12 h-12 text-brand-red mb-4" />
               <h3 className="text-xl font-bold text-brand-black mb-3">From Concept to Action</h3>
               <p className="text-brand-gray">
                 Learn what is possible, identify your opportunities, then get a clear path to implementation.
@@ -280,11 +277,11 @@ export function TrainingPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Education Options
+              Three ways to start
             </h2>
-            <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-brand-gray max-w-2xl">
               Start with the free webinar, then go deeper based on your needs.
             </p>
           </motion.div>
@@ -296,9 +293,6 @@ export function TrainingPage() {
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
                     <div className="flex-1">
                       <div className="flex items-center gap-4 mb-4">
-                        <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-red/10 text-brand-red rounded-lg">
-                          <offer.icon className="w-7 h-7" />
-                        </div>
                         <div className="inline-flex items-center gap-2 bg-brand-red text-white px-3 py-1 rounded-full text-xs font-bold">
                           {offer.badge}
                         </div>
@@ -314,7 +308,7 @@ export function TrainingPage() {
                     </div>
                     <button
                       onClick={() => setIsContactModalOpen(true)}
-                      className="bg-brand-cta-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 shadow-lg whitespace-nowrap"
+                      className="bg-brand-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 shadow-lg whitespace-nowrap"
                     >
                       {offer.cta}
                     </button>
@@ -377,11 +371,11 @@ export function TrainingPage() {
         variants={staggerContainer}
       >
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              The Learning Path
+              A sensible order
             </h2>
-            <p className="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-brand-gray max-w-2xl">
               From concept to implementation in four clear steps.
             </p>
           </motion.div>
@@ -391,9 +385,6 @@ export function TrainingPage() {
               <div key={index} className="bg-brand-light-gray p-6 rounded-lg relative">
                 <div className="absolute -top-4 -left-4 w-10 h-10 bg-brand-red text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
                   {item.step}
-                </div>
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-white rounded-lg mb-4 mt-2">
-                  <item.icon className="w-6 h-6 text-brand-red" />
                 </div>
                 <h3 className="text-xl font-bold text-brand-black mb-3">{item.title}</h3>
                 <p className="text-brand-gray">{item.description}</p>
@@ -418,7 +409,7 @@ export function TrainingPage() {
                 Real Experience, Not Theory
               </h2>
               <p className="text-lg text-brand-gray mb-6">
-                Our team has spent the last year immersing ourselves in everything AI - what issues can actually be solved and where real value can be provided to construction companies.
+                Our team has spent the last year immersing ourselves in everything AI: what issues can actually be solved and where real value can be provided to construction companies.
               </p>
               <p className="text-lg text-brand-gray mb-8">
                 This is not just showing you a new product or software. This is walkthroughs of real capabilities with real construction examples.
@@ -438,7 +429,6 @@ export function TrainingPage() {
               </ul>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <Award className="w-16 h-16 text-brand-red mb-6" />
               <h3 className="text-2xl font-bold text-brand-black mb-4">From Unsure to Clear</h3>
               <p className="text-brand-gray mb-6">
                 You understand that not implementing AI now means you will be left behind. But you are unsure about what is actually possible and where to start.
@@ -460,9 +450,9 @@ export function TrainingPage() {
         variants={staggerContainer}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.div variants={staggerItem} className="bg-brand-cta-orange text-white p-8 md:p-12 rounded-lg text-center">
+          <motion.div variants={staggerItem} className="bg-brand-red text-white p-8 md:p-12 rounded-lg text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to Understand What is Possible?
+              Ready to see what is possible?
             </h3>
             <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl mx-auto">
               Start with the free webinar to see real automation examples from construction businesses.
@@ -486,9 +476,9 @@ export function TrainingPage() {
         variants={staggerContainer}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.div variants={staggerItem} className="text-center mb-12 md:mb-16">
+          <motion.div variants={staggerItem} className="mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              Frequently Asked Questions
+              Questions people ask
             </h2>
             <p className="text-lg md:text-xl text-brand-gray">
               Common questions about our AI automation education programs.

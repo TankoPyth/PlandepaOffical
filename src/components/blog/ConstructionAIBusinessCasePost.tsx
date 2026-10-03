@@ -231,7 +231,7 @@ export default function ConstructionAIBusinessCasePost() {
           <h2 className="text-3xl font-bold text-slate-900">2. Financial Analysis: The Cost of Inefficiency</h2>
         </div>
         <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-          Current operational models suffer from significant "data leakage." Administrative delays, particularly regarding <Tooltip term="RFI" definition="Request for Information - formal queries from contractors to architects/engineers seeking clarification on project specifications, drawings, or requirements. Each RFI delays work and incurs administrative costs." />, and unmitigated safety risks erode potential profit margins.
+          Current operational models suffer from significant "data leakage." Administrative delays, particularly regarding <Tooltip term="RFI" definition="Request for Information, formal queries from contractors to architects/engineers seeking clarification on project specifications, drawings, or requirements. Each RFI delays work and incurs administrative costs." />, and unmitigated safety risks erode potential profit margins.
         </p>
 
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-lg">
@@ -393,7 +393,7 @@ export default function ConstructionAIBusinessCasePost() {
           <h2 className="text-3xl font-bold text-slate-900">4. Implementation Strategy</h2>
         </div>
         <p className="text-lg text-slate-600 mb-4 leading-relaxed">
-          Successful AI implementation requires a structured data strategy. Most construction data resides in unstructured formats ("<Tooltip term="Data Swamp" definition="A storage repository holding vast amounts of raw, unorganized data in various formats. Unlike a data lake (which is organized), a data swamp makes information difficult to retrieve and analyze effectively." />"). Direct usage of <Tooltip term="LLM" definition="Large Language Model - AI systems like GPT-4 or Claude that can understand and generate human-like text. They power AI Agents by processing documents, answering questions, and making recommendations." /> on raw data poses significant hallucination risks.
+          Successful AI implementation requires a structured data strategy. Most construction data resides in unstructured formats ("<Tooltip term="Data Swamp" definition="A storage repository holding vast amounts of raw, unorganized data in various formats. Unlike a data lake (which is organized), a data swamp makes information difficult to retrieve and analyze effectively." />"). Direct usage of <Tooltip term="LLM" definition="Large Language Model, AI systems like GPT-4 or Claude that can understand and generate human-like text. They power AI Agents by processing documents, answering questions, and making recommendations." /> on raw data poses significant hallucination risks.
         </p>
 
         <h3 className="text-2xl font-bold text-slate-900 mb-4 mt-8">4.1 The Agency Approach</h3>
@@ -421,7 +421,7 @@ export default function ConstructionAIBusinessCasePost() {
                 <td className="px-6 py-4 font-bold text-slate-900">Data Source</td>
                 <td className="px-6 py-4 text-slate-600">Public Internet</td>
                 <td className="px-6 py-4 font-bold text-red-900 bg-red-50">
-                  Your Server / <Tooltip term="Vector DB" definition="Vector Database - specialized storage system that organizes your documents and data so AI can quickly find relevant information. Think of it as a super-efficient filing system optimized for AI search and retrieval." />
+                  Your Server / <Tooltip term="Vector DB" definition="Vector Database, specialized storage system that organizes your documents and data so AI can quickly find relevant information. Think of it as a super-efficient filing system optimized for AI search and retrieval." />
                 </td>
               </tr>
               <tr className="hover:bg-slate-50 transition">

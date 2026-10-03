@@ -70,19 +70,9 @@ export const WorkflowCard = memo(function WorkflowCard({ icon: Icon, title, pain
       onClick={onClick}
     >
       {isPopular && (
-        <motion.div
-          className="absolute -top-3 -right-3 z-20 bg-brand-red text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg"
-          initial={{ scale: 0, rotate: -12 }}
-          animate={{ scale: 1, rotate: -12 }}
-          transition={{ delay: 0.3, type: 'spring', stiffness: 300, damping: 15 }}
-        >
-          <motion.span
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            Most Popular
-          </motion.span>
-        </motion.div>
+        <span className="absolute top-4 right-4 z-20 bg-brand-red text-white px-3 py-1 rounded-lg text-xs font-semibold uppercase tracking-wider">
+          Most popular
+        </span>
       )}
 
       <motion.div

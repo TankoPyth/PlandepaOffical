@@ -32,23 +32,23 @@ const businessTypeLabels: Record<string, string> = {
 };
 
 const projectsLabels: Record<string, string> = {
-  '1_10': '1 - 10 projects',
-  '11_30': '11 - 30 projects',
-  '31_60': '31 - 60 projects',
+  '1_10': '1-10 projects',
+  '11_30': '11-30 projects',
+  '31_60': '31-60 projects',
   '61_plus': '61+ projects',
 };
 
 const hoursLabels: Record<string, string> = {
-  '5_10': '5 - 10 hours',
-  '11_20': '11 - 20 hours',
-  '21_40': '21 - 40 hours',
+  '5_10': '5-10 hours',
+  '11_20': '11-20 hours',
+  '21_40': '21-40 hours',
   '40_plus': '40+ hours',
 };
 
 const rateLabels: Record<string, string> = {
-  '40_60': '$40 - $60',
-  '60_80': '$60 - $80',
-  '80_100': '$80 - $100',
+  '40_60': '$40, $60',
+  '60_80': '$60, $80',
+  '80_100': '$80, $100',
   '100_plus': '$100+',
 };
 
@@ -407,15 +407,15 @@ export function ROICalculatorPage() {
             Back to home
           </Link>
 
-          <div className="text-center mb-8 md:mb-12">
+          <div className="mb-8 md:mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-red/10 rounded-full mb-6">
               <Calculator className="w-4 h-4 text-brand-red" />
               <span className="text-sm font-semibold text-brand-red">ROI Calculator</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black mb-4">
-              See How Much You Could Save
+              What is the admin costing you?
             </h1>
-            <p className="text-base md:text-lg text-brand-gray max-w-xl mx-auto">
+            <p className="text-base md:text-lg text-brand-gray max-w-xl">
               Answer a few questions about your business and we'll calculate your potential savings with automation.
             </p>
           </div>
@@ -444,7 +444,7 @@ export function ROICalculatorPage() {
                         transition={{ duration: 0.3 }}
                         className="space-y-6"
                       >
-                        <div className="text-center mb-6">
+                        <div className="mb-6">
                           <h2 className="text-xl md:text-2xl font-bold text-brand-black mb-2">
                             About Your Business
                           </h2>
@@ -483,7 +483,7 @@ export function ROICalculatorPage() {
                         transition={{ duration: 0.3 }}
                         className="space-y-6"
                       >
-                        <div className="text-center mb-6">
+                        <div className="mb-6">
                           <h2 className="text-xl md:text-2xl font-bold text-brand-black mb-2">
                             Time & Costs
                           </h2>
@@ -522,7 +522,7 @@ export function ROICalculatorPage() {
                         transition={{ duration: 0.3 }}
                         className="space-y-6"
                       >
-                        <div className="text-center mb-6">
+                        <div className="mb-6">
                           <h2 className="text-xl md:text-2xl font-bold text-brand-black mb-2">
                             Your Contact Details
                           </h2>
@@ -591,7 +591,7 @@ export function ROICalculatorPage() {
                       <button
                         type="submit"
                         disabled={!validateStep(currentStep)}
-                        className="inline-flex items-center gap-2 px-8 py-3 bg-brand-cta-orange text-white font-semibold rounded-lg hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200"
                       >
                         Calculate ROI
                         <Calculator className="w-4 h-4" />
@@ -608,7 +608,7 @@ export function ROICalculatorPage() {
                 transition={{ duration: 0.5, ease: appleEasing }}
               >
                 <div className="bg-white rounded-lg p-6 md:p-8">
-                  <div className="text-center mb-6">
+                  <div className="mb-6">
                     <div className="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Check className="w-7 h-7 text-emerald-600" />
                     </div>
@@ -656,13 +656,13 @@ export function ROICalculatorPage() {
                         <h3 className="text-xl font-bold text-brand-black mb-3 text-center">
                           Ready to Unlock These Savings?
                         </h3>
-                        <p className="text-sm text-brand-gray mb-5 text-center max-w-lg mx-auto">
+                        <p className="text-sm text-brand-gray mb-5 text-center max-w-lg">
                           Book a free consultation call and we'll show you exactly how to achieve these results in your business.
                         </p>
                         <div className="flex flex-col gap-3">
                           <button
                             onClick={() => setShowCalendly(true)}
-                            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-cta-orange text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-200 shadow-lg"
+                            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-200 shadow-lg"
                           >
                             <Calendar className="w-5 h-5" />
                             Book a Call Now

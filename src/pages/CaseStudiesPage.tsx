@@ -32,7 +32,7 @@ const caseStudiesData: CaseStudy[] = [
       'Paperwork dropped from 15 hours to 4.5 hours a week',
       'Went from winning 2 out of 10 quotes to winning 4 out of 10',
       'Got 28 solid leads in the first month',
-      'Customers way happier - 35% improvement in satisfaction',
+      'Customers way happier: 35% improvement in satisfaction',
     ],
     testimonial:
       'Best money we\'ve ever spent. Less time doing paperwork, more time actually building. Our clients love how organized we are now.',
@@ -44,17 +44,17 @@ const caseStudiesData: CaseStudy[] = [
     companyType: 'Commercial Electrical',
     location: 'Sydney, NSW',
     problem:
-      'Leads all over the place - feast or famine. Spending thousands on Google ads with nothing to show for it. No clue what marketing was working. Sales team drowning in time-wasters.',
+      'Leads all over the place, feast or famine. Spending thousands on Google ads with nothing to show for it. No clue what marketing was working. Sales team drowning in time-wasters.',
     solution:
       'Built a system that finds leads from different places, works out who\'s serious, asks them qualifying questions automatically, and tracks everything properly. Moved their ad money to what was actually working.',
     results: [
       '156 good leads over 6 months',
       'Now closing 4 out of 10 instead of 1-2 out of 10',
       'Paying 62% less for each lead',
-      'Can actually plan ahead - $2.4M worth of work in the pipeline',
+      'Can actually plan ahead: $2.4M worth of work in the pipeline',
     ],
     testimonial:
-      'Finally we can actually plan our growth. No more feast or famine. The leads are quality - these people are ready to go.',
+      'Finally we can actually plan our growth. No more feast or famine. The leads are quality. These people are ready to go.',
     clientName: 'Sarah Chen',
     clientRole: 'Director of Business Development',
   },
@@ -143,17 +143,6 @@ export function CaseStudiesPage() {
             </aside>
 
             <motion.div className="flex-1" variants={staggerItem}>
-              <motion.div
-                key={selectedCase.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="aspect-video bg-brand-light-gray rounded-lg mb-12 flex items-center justify-center"
-              >
-                <span className="text-heading-md text-brand-gray">
-                  {selectedCase.companyType}
-                </span>
-              </motion.div>
 
               <motion.div
                 key={`${selectedCase.id}-content`}
@@ -242,7 +231,7 @@ export function CaseStudiesPage() {
           </motion.p>
           <motion.button
             onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center gap-3 px-12 py-5 bg-brand-cta-orange text-white font-semibold text-body-lg rounded-full hover:bg-orange-600 transition-all duration-300"
+            className="inline-flex items-center gap-3 px-12 py-5 bg-brand-red text-white font-semibold text-body-lg rounded-full hover:bg-red-700 transition-all duration-300"
             variants={fadeInUp}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

@@ -53,7 +53,7 @@ const servicesMenu = [
 const partneredServices = [
   {
     name: 'Buildxact',
-    description: 'Official partner - Expert implementation',
+    description: 'Official partner, expert implementation',
     icon: Settings,
     badge: 'Partner',
     href: '/buildxact'
@@ -173,7 +173,7 @@ export function Navigation() {
           <Link to="/" className="flex items-center group">
             <img
               src="/plandepa_logo_clean.png"
-              alt="Plandepa - Build Smart, Grow Simple"
+              alt="Plandepa, Build Smart, Grow Simple"
               className="h-10 w-auto"
             />
           </Link>

@@ -28,7 +28,7 @@ export function Footer() {
           <Link to="/" className="flex items-center group">
             <img
               src="/plandepa_logo_clean.png"
-              alt="PlanDepa - AI & systems for construction companies"
+              alt="PlanDepa, AI & systems for construction companies"
               className="h-10 w-auto"
               loading="lazy"
             />

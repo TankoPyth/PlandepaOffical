@@ -25,7 +25,7 @@ export function BusinessAuditPage() {
     },
     {
       question: 'Can I bring my team to the call?',
-      answer: 'Definitely. Actually it\'s better if you bring the people who deal with the day-to-day stuff - your operations manager, admin person, whoever.',
+      answer: 'Definitely. Actually it\'s better if you bring the people who deal with the day-to-day stuff, your operations manager, admin person, whoever.',
     },
   ];
 
@@ -391,7 +391,7 @@ export function BusinessAuditPage() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-brand-black mb-4 md:mb-6">
             Ready to explore what's possible?
           </h2>
-          <p className="text-base md:text-lg text-brand-gray mb-8 md:mb-12 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-brand-gray mb-8 md:mb-12 max-w-2xl">
             Book your discovery call and let's discuss your business
           </p>
           <button
