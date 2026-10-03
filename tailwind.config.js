@@ -25,6 +25,13 @@ export default {
           'dark-grey': '#6B6660',
           red: '#BF5B1A',
           'dark-red': '#A34D15',
+          // Still used by the ad landing pages (/lp/*, /pipeline-recovery-review)
+          gray: '#666666',
+          'light-gray': '#F5F5F5',
+          'off-white': '#FAFAFA',
+          white: '#FFFFFF',
+          'accent-green': '#10B981',
+          'cta-orange': '#FF6B35',
         },
       },
       fontFamily: {

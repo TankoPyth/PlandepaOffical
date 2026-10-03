@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { CalendlyPopup } from '../components/ui/CalendlyPopup';
+import { OFFER_PATH } from '../seo/offer';
 
 const s = {
   eyebrow: {
@@ -36,7 +38,6 @@ const OFFERS = [
     badge: 'Free',
     title: 'Automation Possibilities Webinar',
     duration: '90 minutes · Online',
-    price: 'Free',
     desc: 'What is actually possible with automation in a construction business. No hype, no theory. Real workflows, real examples, real questions answered live.',
     forWho: 'Owners and directors who keep hearing about AI but don\'t know what\'s real, what\'s safe, or what applies to their business.',
     includes: [
@@ -48,25 +49,24 @@ const OFFERS = [
   },
   {
     id: 'EDU.02',
-    badge: 'From $500',
-    title: 'Automation Clarity Session',
-    duration: '90 minutes · Remote',
-    price: '$500–$1,500',
-    desc: 'A working session that turns AI confusion into a clear, practical first-step plan you can act on the same week.',
-    forWho: 'Construction businesses that want clarity on what to automate first, without committing to a major project.',
+    badge: 'Clarity Blueprint',
+    title: 'Clarity Sprint',
+    duration: '3 hours · Virtual',
+    desc: 'The first size of the Clarity Blueprint: a working session that maps where your business is leaking and names the first workflow to fix.',
+    forWho: 'Construction businesses with 10–50 staff that want clarity on what to fix and automate first, without committing to a major project.',
     includes: [
-      'Map where work is getting stuck, duplicated, or lost',
-      'Prioritise 3 automation opportunities by ROI',
-      'Define a clear first step — tool, process, and scope',
-      'Written summary delivered within 48 hours',
+      'High-level Business Clarity Map',
+      'Top Three Leak Register',
+      'First Workflow Decision',
+      '30-day priority plan and readout call',
     ],
+    href: OFFER_PATH,
   },
   {
     id: 'EDU.03',
-    badge: 'From $2,500',
+    badge: 'For teams',
     title: 'Team Workshop',
     duration: 'Half or full day · On-site or remote',
-    price: 'From $2,500',
     desc: 'Hands-on training for your team on the operational systems that run your business. Built around your actual tools and workflows.',
     forWho: 'Teams that have implemented new systems and need everyone operating at the same standard.',
     includes: [
@@ -149,9 +149,15 @@ export function TrainingPage() {
                       </div>
                     ))}
                   </div>
-                  <button onClick={open} style={{ marginTop: 'var(--sp-3)', padding: '10px 24px', background: i === 0 ? 'var(--accent)' : 'transparent', color: i === 0 ? '#fff' : 'var(--ink)', border: `1px solid ${i === 0 ? 'var(--accent)' : 'var(--ink)'}`, borderRadius: 'var(--radius)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '13px', letterSpacing: '0.03em', cursor: 'pointer' }}>
-                    {offer.badge === 'Free' ? 'Register Free' : 'Book a Call'}
-                  </button>
+                  {'href' in offer && offer.href ? (
+                    <Link to={offer.href} className="pd-btn pd-btn-outline" style={{ marginTop: 'var(--sp-3)', padding: '10px 24px' }}>
+                      See the Clarity Blueprint
+                    </Link>
+                  ) : (
+                    <button onClick={open} style={{ marginTop: 'var(--sp-3)', padding: '10px 24px', background: i === 0 ? 'var(--accent)' : 'transparent', color: i === 0 ? '#fff' : 'var(--ink)', border: `1px solid ${i === 0 ? 'var(--accent)' : 'var(--ink)'}`, borderRadius: 'var(--radius)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '13px', letterSpacing: '0.03em', cursor: 'pointer' }}>
+                      {offer.badge === 'Free' ? 'Register Free' : 'Book a Call'}
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -170,7 +176,7 @@ export function TrainingPage() {
               30-minute <em>call.</em>
             </h2>
             <p style={{ ...s.body, fontSize: '17px', maxWidth: '46ch', margin: '0 auto var(--sp-6)' }}>
-              Tell us about your business. We'll point you to the right starting point — whether that's a free webinar or jumping straight into a pilot.
+              Tell us about your business. We'll point you to the right starting point — whether that's a free webinar, the Clarity Blueprint, or jumping straight into a pilot.
             </p>
             <button onClick={open} style={{ padding: '14px 40px', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 'var(--radius)', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '13px', letterSpacing: '0.03em', cursor: 'pointer', display: 'block', margin: '0 auto' }}>
               Book a Free Call

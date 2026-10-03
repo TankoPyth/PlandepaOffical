@@ -12,17 +12,16 @@ export function StickyContactButton() {
   const [showThankYou, setShowThankYou] = useState(false);
 
   useEffect(() => {
-    let timeoutId: number;
+    let ticking = false;
 
     const handleScroll = () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsVisible(window.scrollY > 200);
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      timeoutId = window.setTimeout(() => {
-        const scrollY = window.scrollY;
-        setIsVisible(scrollY > 200);
-      }, 100);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -30,9 +29,6 @@ export function StickyContactButton() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
     };
   }, []);
 

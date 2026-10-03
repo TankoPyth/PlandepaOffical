@@ -17,6 +17,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { SEO } from './components/SEO';
+import { ScrollToTop } from './components/ScrollToTop';
 import { LOCATIONS } from './seo/site';
 import { OFFER_PATH } from './seo/offer';
 
@@ -42,6 +43,9 @@ const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 const ThankYouPage = lazy(() => import('./pages/ThankYouPage').then(m => ({ default: m.ThankYouPage })));
+const AdCampaignLandingPage = lazy(() => import('./pages/AdCampaignLandingPage').then(m => ({ default: m.default })));
+const BuildxactAdLandingPage = lazy(() => import('./pages/BuildxactAdLandingPage').then(m => ({ default: m.default })));
+const PipelineRecoveryReviewPage = lazy(() => import('./pages/PipelineRecoveryReviewPage').then(m => ({ default: m.PipelineRecoveryReviewPage })));
 
 /**
  * Layout Component
@@ -129,51 +133,65 @@ export function AppRouter() {
  */
 export function AppRoutes() {
   return (
-      <Layout>
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-pulse text-gray-600">Loading...</div>
-          </div>
-        }>
-          <Routes>
-            {/* Home page - shows at www.plandepa.com/ */}
-            <Route path="/" element={<HomePage />} />
+    <>
+      <ScrollToTop />
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-pulse text-gray-600">Loading...</div>
+        </div>
+      }>
+        <Routes>
+          {/* Ad landing pages without Layout (have their own header/footer) */}
+          <Route path="/lp/ad-campaign" element={<AdCampaignLandingPage />} />
+          <Route path="/lp/buildxact-ad" element={<BuildxactAdLandingPage />} />
 
-            {/* Service pages */}
-            <Route path="/business-audit" element={<BusinessAuditPage />} />
-            <Route path="/free-audit" element={<Navigate to="/business-audit" replace />} />
-            <Route path={OFFER_PATH} element={<ClarityBlueprintPage />} />
-            <Route path="/operations-review" element={<Navigate to={OFFER_PATH} replace />} />
-            <Route path="/osr" element={<Navigate to={OFFER_PATH} replace />} />
-            <Route path="/pilot-program" element={<PilotProgramPage />} />
-            <Route path="/training" element={<TrainingPage />} />
-            <Route path="/ongoing-support" element={<OngoingSupportPage />} />
-            <Route path="/buildxact" element={<BuildxactPartnerPage />} />
-            <Route path="/enquiry-automation" element={<EnquiryAutomationPage />} />
-            <Route path="/lead-generation" element={<Navigate to="/enquiry-automation" replace />} />
+          {/* All other routes wrapped in Layout */}
+          <Route path="*" element={
+            <Layout>
+              <Routes>
+                {/* Home page - shows at www.plandepa.com/ */}
+                <Route path="/" element={<HomePage />} />
 
-            {/* Location landing pages */}
-            <Route path={LOCATIONS.brisbane.slug} element={<LocationPage location="brisbane" />} />
-            <Route path={LOCATIONS.newcastle.slug} element={<LocationPage location="newcastle" />} />
-            <Route path="/brisbane" element={<Navigate to={LOCATIONS.brisbane.slug} replace />} />
-            <Route path="/newcastle" element={<Navigate to={LOCATIONS.newcastle.slug} replace />} />
-            <Route path="/roi-calculator" element={<ROICalculatorPage />} />
+                {/* Service pages */}
+                <Route path="/business-audit" element={<BusinessAuditPage />} />
+                <Route path="/free-audit" element={<Navigate to="/business-audit" replace />} />
+                <Route path={OFFER_PATH} element={<ClarityBlueprintPage />} />
+                <Route path="/operations-review" element={<Navigate to={OFFER_PATH} replace />} />
+                <Route path="/osr" element={<Navigate to={OFFER_PATH} replace />} />
+                <Route path="/pilot-program" element={<PilotProgramPage />} />
+                <Route path="/training" element={<TrainingPage />} />
+                <Route path="/ongoing-support" element={<OngoingSupportPage />} />
+                <Route path="/buildxact" element={<BuildxactPartnerPage />} />
+                <Route path="/enquiry-automation" element={<EnquiryAutomationPage />} />
+                <Route path="/lead-generation" element={<Navigate to="/enquiry-automation" replace />} />
 
-            {/* Information pages */}
-            <Route path="/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/software" element={<Navigate to={OFFER_PATH} replace />} />
-            <Route path="/services" element={<Navigate to={OFFER_PATH} replace />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/contact/thank-you" element={<ThankYouPage />} />
+                {/* Location landing pages */}
+                <Route path={LOCATIONS.brisbane.slug} element={<LocationPage location="brisbane" />} />
+                <Route path={LOCATIONS.newcastle.slug} element={<LocationPage location="newcastle" />} />
+                <Route path="/brisbane" element={<Navigate to={LOCATIONS.brisbane.slug} replace />} />
+                <Route path="/newcastle" element={<Navigate to={LOCATIONS.newcastle.slug} replace />} />
+                <Route path="/roi-calculator" element={<ROICalculatorPage />} />
+                <Route path="/pipeline-recovery-review" element={<PipelineRecoveryReviewPage />} />
+                <Route path="/revenue-leak-scorecard" element={<Navigate to="/pipeline-recovery-review" replace />} />
 
-            {/* Blog pages */}
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} />  {/* :slug = post URL name */}
+                {/* Information pages */}
+                <Route path="/case-studies" element={<CaseStudiesPage />} />
+                <Route path="/software" element={<Navigate to={OFFER_PATH} replace />} />
+                <Route path="/services" element={<Navigate to={OFFER_PATH} replace />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/contact/thank-you" element={<ThankYouPage />} />
 
-            {/* 404 catch-all route - MUST be last */}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </Layout>
+                {/* Blog pages */}
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />  {/* :slug = post URL name */}
+
+                {/* 404 catch-all route - MUST be last */}
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Layout>
+          } />
+        </Routes>
+      </Suspense>
+    </>
   );
 }

@@ -7,13 +7,21 @@ export function StickyWorkflowBar() {
   const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    const heroHeight = window.innerHeight * 0.8;
+
     const handleScroll = () => {
-      const heroHeight = window.innerHeight * 0.8;
-      const shouldShow = window.scrollY > heroHeight;
-      setIsVisible(shouldShow && !isDismissed);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const shouldShow = window.scrollY > heroHeight;
+          setIsVisible(shouldShow && !isDismissed);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);

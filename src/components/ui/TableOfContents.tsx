@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { List } from 'lucide-react';
 
 interface Section {
@@ -15,32 +15,35 @@ export function TableOfContents({ sections }: TableOfContentsProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
+    const elements = sections
+      .map(section => ({
+        id: section.id,
+        element: document.getElementById(section.id)
+      }))
+      .filter(item => item.element !== null) as Array<{ id: string; element: HTMLElement }>;
 
-    sections.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (element) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setActiveSection(section.id);
-              }
-            });
-          },
-          { rootMargin: '-20% 0px -70% 0px' }
-        );
-        observer.observe(element);
-        observers.push(observer);
-      }
-    });
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            setActiveSection(id);
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -70% 0px' }
+    );
+
+    elements.forEach(({ element }) => observer.observe(element));
 
     return () => {
-      observers.forEach((observer) => observer.disconnect());
+      observer.disconnect();
     };
   }, [sections]);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = useCallback((id: string) => {
     const element = document.getElementById(id);
     if (element) {
       const offset = 100;
@@ -53,12 +56,15 @@ export function TableOfContents({ sections }: TableOfContentsProps) {
       });
       setIsOpen(false);
     }
-  };
+  }, []);
+
+  const toggleOpen = useCallback(() => setIsOpen(prev => !prev), []);
+  const handleBackdropClick = useCallback(() => setIsOpen(false), []);
 
   return (
     <>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleOpen}
         className="lg:hidden fixed bottom-6 left-6 z-40 w-14 h-14 bg-brand-black text-white rounded-full shadow-xl flex items-center justify-center hover:bg-gray-800 transition-colors"
         aria-label="Toggle Table of Contents"
       >
@@ -68,7 +74,7 @@ export function TableOfContents({ sections }: TableOfContentsProps) {
       {isOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black/50 z-40"
-          onClick={() => setIsOpen(false)}
+          onClick={handleBackdropClick}
         />
       )}
 

@@ -495,6 +495,31 @@ export const ROUTES: RouteMeta[] = [
     changefreq: 'yearly',
     schema: [breadcrumb('Contact', '/contact')],
   },
+  {
+    path: '/pipeline-recovery-review',
+    title: 'Pipeline Recovery Review | Construction Lead Follow-Up Scorecard',
+    description:
+      'Check where your construction revenue pipeline is leaking, then book a practical Pipeline Recovery Review with PlanDepa.',
+    priority: 0.6,
+    changefreq: 'monthly',
+  },
+  // Ad landing pages (rendered outside Layout; they set the same title/description themselves)
+  {
+    path: '/lp/ad-campaign',
+    title: 'Transform Your Construction Business with AI | Plandepa',
+    description:
+      'Stop wasting time on paperwork. Get more quotes out, win more work, and scale your construction business with AI automation.',
+    priority: 0.3,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/lp/buildxact-ad',
+    title: 'Cut Your Buildxact Quoting Time in Half | Custom Templates by Real Builders',
+    description:
+      "Stop wasting 8 hours on every quote. Get a custom Buildxact template built by actual builders that cuts your time to 2 hours. 50% faster or it's free.",
+    priority: 0.3,
+    changefreq: 'monthly',
+  },
   ...LOCAL_POSTS.map(blogRoute),
   {
     path: '/contact/thank-you',

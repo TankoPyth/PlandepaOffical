@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { motion } from 'framer-motion';
 
@@ -7,7 +7,7 @@ interface StatCardProps {
   label: string;
 }
 
-export function StatCard({ value, label }: StatCardProps) {
+export const StatCard = memo(function StatCard({ value, label }: StatCardProps) {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.5 });
   const [displayValue, setDisplayValue] = useState(value);
   const hasAnimated = useRef(false);
@@ -76,4 +76,4 @@ export function StatCard({ value, label }: StatCardProps) {
       </div>
     </div>
   );
-}
+});
