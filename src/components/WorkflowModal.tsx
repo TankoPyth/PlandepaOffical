@@ -158,16 +158,16 @@ export function WorkflowModal({
                   transition={{ delay: 0.7 }}
                 >
                   <a
-                    href="/operations-review"
+                    href="/pilot-program"
                     className="flex-1 bg-brand-black text-white text-center px-8 py-4 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
                   >
                     Apply for This Pilot
                   </a>
                   <a
-                    href="/operations-review"
+                    href="/clarity-blueprint"
                     className="flex-1 bg-white text-brand-black text-center px-8 py-4 rounded-xl font-semibold border-2 border-brand-black hover:bg-brand-black hover:text-white transition-all duration-300"
                   >
-                    Book Discovery Call
+                    See the Clarity Blueprint
                   </a>
                 </motion.div>
               </div>

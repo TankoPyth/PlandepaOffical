@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { SimpleFAQ } from '../components/SimpleFAQ';
 import { AngleDivider } from '../components/ui/AngleDivider';
 import { SectionNumber } from '../components/SectionNumber';
-import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -44,8 +43,8 @@ export function BusinessAuditPage() {
       '@type': 'Organization',
       name: 'Plandepa',
     },
-    areaServed: ['Brisbane', 'Sydney', 'Newcastle', 'Australia'],
-    description: 'Free no-obligation business strategy audit and discovery call for construction companies in Brisbane, Sydney, and across Australia. ISO certified consultants with construction industry expertise.',
+    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
+    description: 'Free no-obligation business strategy audit and discovery call for construction companies in Brisbane, Newcastle and across Australia. consultants with construction industry expertise.',
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -68,11 +67,6 @@ export function BusinessAuditPage() {
 
   return (
     <>
-      <SEO
-        title="Free Construction Business Audit Brisbane Sydney | ISO Certified Consultants"
-        description="Free no-obligation business strategy audit for construction companies in Brisbane, Sydney & Newcastle. ISO certified consultants with diplomas in project management & construction. Book discovery call today."
-        keywords="construction business audit Brisbane, construction consultant Sydney, free business audit construction, construction strategy audit Australia, ISO certified construction consultant, construction business consultant Newcastle, Buildxact consultation"
-      />
       <StructuredData data={[auditBreadcrumb, serviceSchema, faqSchema]} />
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
         <div className="max-w-7xl mx-auto">

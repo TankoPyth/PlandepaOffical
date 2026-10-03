@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
 import { AngleDivider } from '../components/ui/AngleDivider';
-import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -146,7 +145,7 @@ export function BuildxactPartnerPage() {
     },
     {
       question: 'Why buy through Plandepa instead of directly from Buildxact?',
-      answer: 'You get the same software pricing (actually 5% cheaper through our link!) plus the advantage of local Brisbane/Sydney expertise. We know construction, we know Buildxact inside-out, and we can customize it specifically for your business type. Buildxact provides the software, we make sure you actually use it properly.',
+      answer: 'You get the same software pricing (actually 5% cheaper through our link!) plus the advantage of local Brisbane and Newcastle expertise. We know construction, we know Buildxact inside-out, and we can customize it specifically for your business type. Buildxact provides the software, we make sure you actually use it properly.',
     },
     {
       question: 'How long does implementation take?',
@@ -191,7 +190,7 @@ export function BuildxactPartnerPage() {
       '@type': 'Organization',
       name: 'Plandepa',
     },
-    areaServed: ['Brisbane', 'Sydney', 'Newcastle', 'Australia'],
+    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
     description: 'Official Buildxact partner providing complete implementation, customization, training, and ongoing support for construction estimating and project management software.',
   };
 
@@ -210,11 +209,6 @@ export function BuildxactPartnerPage() {
 
   return (
     <>
-      <SEO
-        title="Buildxact Partner Brisbane & Sydney - Implementation & Training | Plandepa"
-        description="Official Buildxact partner in Brisbane & Sydney. Complete implementation, custom setup, team training, and ongoing support for construction estimating and project management."
-        keywords="Buildxact partner Brisbane, Buildxact implementation Sydney, Buildxact training, construction estimating software, Buildxact consultant Australia, Buildxact setup Brisbane"
-      />
       <StructuredData data={[buildxactBreadcrumb, serviceSchema, faqSchema]} />
 
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
@@ -477,7 +471,7 @@ export function BuildxactPartnerPage() {
               <ul className="space-y-4">
                 {[
                   'Construction industry background - we understand your business',
-                  'Local Brisbane & Sydney presence for on-site support',
+                  'Local Brisbane & Newcastle presence for on-site support',
                   'Custom templates built for your specific trade or building type',
                   'Business process streamlining and workflow optimization',
                   'Integration with your existing tools and processes',

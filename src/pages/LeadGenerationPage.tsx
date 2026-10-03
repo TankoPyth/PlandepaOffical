@@ -1,103 +1,57 @@
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, Check, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, X, Inbox, Sparkles, Filter, CalendarCheck, Send, BarChart3 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { StatCard } from '../components/StatCard';
 import { AngleDivider } from '../components/ui/AngleDivider';
-import { fadeInUp, staggerContainer, staggerItem, appleEasing } from '../utils/animations';
-import { SEO } from '../components/SEO';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
+import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
+import { ENQUIRY_FAQS } from '../seo/site';
+import { OFFER_PATH } from '../seo/offer';
+
+const LEAKS = [
+  'Enquiries land in five places — the website, email, phone, Facebook, hipages — and nobody owns them.',
+  'The builder who replies first usually gets the site visit. You reply when you get off the tools.',
+  'Quotes go out and are never chased. Good jobs go to whoever followed up.',
+  "You can't say which enquiries turn into work, or what your marketing actually returns.",
+];
+
+const MODULES = [
+  { icon: Inbox, name: 'One enquiry inbox', desc: 'Every channel feeds a single pipeline. Each enquiry is logged, tagged by job type and location, and assigned to an owner.' },
+  { icon: Sparkles, name: 'Instant first response', desc: 'AI drafts a reply in your voice within minutes — acknowledging the job, asking the right qualifying questions, offering a call time.' },
+  { icon: Filter, name: 'Qualification', desc: 'Budget, location, timing and job type captured up front, so your time goes to the jobs you actually want.' },
+  { icon: CalendarCheck, name: 'Site visit booking', desc: 'Qualified enquiries book straight into your calendar with reminders — no phone tag.' },
+  { icon: Send, name: 'Quote follow-up', desc: 'Every quote gets a follow-up sequence that stops the moment the client replies. Nothing sits unanswered.' },
+  { icon: BarChart3, name: 'Pipeline & source reporting', desc: 'See enquiries, quotes, win rate and where the work came from — in one view, updated automatically.' },
+];
 
 export function LeadGenerationPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
-  const faqItems = [
-    {
-      question: 'How much does it cost?',
-      answer: 'Depends on your situation - where you are, what trade you\'re in, and what size jobs you want. Have a chat with us and we\'ll put together a package that makes sense for you.',
-    },
-    {
-      question: 'How many leads will I get?',
-      answer: 'Usually somewhere between 15-40 good leads every month. Depends on your area, trade, and what you want to spend. We\'re more about quality than quantity.',
-    },
-    {
-      question: 'What if the leads are duds?',
-      answer: 'If you don\'t make back 10 times what you spent within 3 months, we keep working for free until you do. Simple as that.',
-    },
-    {
-      question: 'Do I need to change everything I\'m doing now?',
-      answer: 'Nah. We can usually work with what you\'ve got. If you need better stuff, we\'ll help you upgrade. But we\'ll work with your current setup.',
-    },
-    {
-      question: 'How long till I see something happening?',
-      answer: 'Most people get their first good leads within 2-3 weeks. Takes about 2-3 months to really dial it in and get it humming properly.',
-    },
-  ];
-
-  const leadGenBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Lead Generation', url: 'https://plandepa.com/lead-generation' },
-  ]);
-
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Construction Lead Generation',
-    provider: {
-      '@type': 'Organization',
-      name: 'Plandepa',
-    },
-    areaServed: ['Brisbane', 'Sydney', 'Newcastle', 'Australia'],
-    description: 'Guaranteed lead generation system for construction companies in Brisbane, Sydney, and across Australia. Get 15-40 quality leads per month or we work for free until you achieve 10X ROI.',
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
+  const open = () => setIsContactModalOpen(true);
 
   return (
     <>
-      <SEO
-        title="Construction Lead Generation Brisbane Sydney | Guaranteed Results"
-        description="Guaranteed construction lead generation for Brisbane, Sydney & Newcastle builders. Get 15-40 quality leads/month. 10X ROI guarantee or we work free. Buildxact partner."
-        keywords="construction lead generation Brisbane, construction leads Sydney, builder lead generation Australia, construction marketing Brisbane, qualified construction leads, contractor lead generation Sydney, home builder leads Newcastle"
-      />
-      <StructuredData data={[leadGenBreadcrumb, serviceSchema, faqSchema]} />
-      <section className="bg-brand-off-white py-12 md:py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 text-sm md:text-base text-brand-gray hover:text-brand-black mb-8 md:mb-12 group transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
-            Back to home
-          </a>
-
+      <section className="bg-brand-off-white py-12 md:py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-sm font-semibold text-brand-red uppercase tracking-wider mb-4">AI Enquiry Capture &amp; Follow-up</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-black mb-4 md:mb-6">
-            Get More Quality Leads
+            Every enquiry answered. Every quote followed up.
           </h1>
-          <p className="text-base md:text-lg text-brand-gray max-w-3xl mb-8 md:mb-12 leading-relaxed">
-            Stop waiting for the phone to ring. We bring serious buyers straight to you - people who are actually ready to build, not just kicking tyres.
+          <p className="text-base md:text-lg text-brand-gray max-w-3xl mb-8 leading-relaxed">
+            We build AI-assisted enquiry systems for construction companies in Brisbane, Newcastle and across Australia. Every lead is captured,
+            answered, qualified and followed up — without you chasing it from the ute.
           </p>
           <button
-            onClick={() => setIsContactModalOpen(true)}
+            onClick={open}
             className="inline-flex items-center gap-2 md:gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-brand-black text-white font-semibold text-sm md:text-base rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
           >
-            Request consultation
-            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 apple-ease" />
+            Book a call
+            <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
           </button>
+          <p className="text-sm text-brand-gray mt-4">No pitch. No obligation. 30 minutes.</p>
         </div>
       </section>
 
@@ -105,384 +59,86 @@ export function LeadGenerationPage() {
 
       <section className="bg-white py-12 md:py-16 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-12">
-            Why the old ways don't work anymore
-          </h2>
-
+          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-4">You don't have a lead problem. You have a follow-up problem.</h2>
+          <p className="text-brand-gray mb-10 max-w-3xl leading-relaxed">
+            Most builders we talk to already get enough enquiries. The work is lost between the first message and the signed contract — slow replies,
+            no qualification, and quotes nobody chases.
+          </p>
           <div className="space-y-6 bg-red-50 border-l-4 border-brand-red p-8 rounded-r-xl">
-            <div className="flex items-start gap-4">
-              <X className="w-6 h-6 text-brand-red flex-shrink-0 mt-1" />
-              <p className="text-body-lg text-brand-gray">
-                You pay for Google ads but get time-wasters who aren't serious
-              </p>
-            </div>
-            <div className="flex items-start gap-4">
-              <X className="w-6 h-6 text-brand-red flex-shrink-0 mt-1" />
-              <p className="text-body-lg text-brand-gray">
-                People asking for quotes with no intention of building
-              </p>
-            </div>
-            <div className="flex items-start gap-4">
-              <X className="w-6 h-6 text-brand-red flex-shrink-0 mt-1" />
-              <p className="text-body-lg text-brand-gray">
-                Some months you're flat out, others you're scrambling
-              </p>
-            </div>
-            <div className="flex items-start gap-4">
-              <X className="w-6 h-6 text-brand-red flex-shrink-0 mt-1" />
-              <p className="text-body-lg text-brand-gray">
-                You've got no idea what work is coming next month
-              </p>
-            </div>
-            <div className="flex items-start gap-4">
-              <X className="w-6 h-6 text-brand-red flex-shrink-0 mt-1" />
-              <p className="text-body-lg text-brand-gray">
-                You're spending heaps on marketing with bugger all to show for it
-              </p>
-            </div>
+            {LEAKS.map((l) => (
+              <div key={l} className="flex items-start gap-4">
+                <X className="w-6 h-6 text-brand-red flex-shrink-0 mt-1" />
+                <p className="text-body-lg text-brand-gray">{l}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
 
-      <section className="bg-brand-light-gray py-12 md:py-16 px-6" >
-        <div className="max-w-5xl mx-auto">
-          <div className="space-y-20">
-            <div>
-              <h2 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                Challenge
-              </h2>
-              <p className="mt-8 text-body-lg text-brand-gray leading-relaxed">
-                You're banking on word-of-mouth and crossing your fingers the phone rings. You never know what's coming in. You waste hours on people who go quiet or just want the cheapest price, no matter what.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                Solution
-              </h2>
-              <p className="mt-8 text-body-lg text-brand-gray mb-6 leading-relaxed">
-                We set up a system that finds potential customers from different places, works out who's serious and who's not, asks them the right questions automatically, and only sends you the ones who are actually ready to start building.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>
-                    We find leads from Google, Facebook, trade websites, and referrals
-                  </span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>
-                    We work out if they have the money, when they want to start, and if they can actually say yes
-                  </span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>They answer important questions before we send them to you</span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>Everything gets tracked and organized automatically</span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>We keep in touch with people who aren't ready yet until they are</span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>We send you weekly updates and keep making it better</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-heading-lg font-bold text-brand-black mb-2 border-b-4 border-brand-black inline-block pb-2">
-                Impact
-              </h2>
-              <ul className="mt-8 space-y-4">
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>Most clients close 4 out of 10 leads (way better than the usual 1-2 out of 10)</span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>Usually 156 solid leads over 6 months</span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>Saves about 3.5 hours per lead compared to cold calling</span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>You can actually plan ahead because you know what's coming</span>
-                </li>
-                <li className="flex items-start gap-3 text-body-lg text-brand-gray leading-relaxed">
-                  <span className="text-brand-black text-2xl">•</span>
-                  <span>For every dollar you spend, you get ten back within 3 months (guaranteed)</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <section className="bg-white py-12 md:py-16 px-6" >
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-16 text-center">
-            Here's how it actually works
-          </h2>
-
-          <div className="grid md:grid-cols-4 gap-8 mb-16">
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-brand-black text-white flex items-center justify-center text-heading-md font-bold mx-auto mb-6">
-                1
-              </div>
-              <h3 className="text-heading-sm font-bold text-brand-black mb-3">
-                Capture
-              </h3>
-              <p className="text-body-md text-brand-gray">
-                We find your perfect customers from different places
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-brand-black text-white flex items-center justify-center text-heading-md font-bold mx-auto mb-6">
-                2
-              </div>
-              <h3 className="text-heading-sm font-bold text-brand-black mb-3">
-                Work Out Who's Serious
-              </h3>
-              <p className="text-body-md text-brand-gray">
-                Check if they have money, a timeline, and are ready to go
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-brand-black text-white flex items-center justify-center text-heading-md font-bold mx-auto mb-6">
-                3
-              </div>
-              <h3 className="text-heading-sm font-bold text-brand-black mb-3">
-                Qualify
-              </h3>
-              <p className="text-body-md text-brand-gray">
-                Filter out the time-wasters automatically
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-brand-black text-white flex items-center justify-center text-heading-md font-bold mx-auto mb-6">
-                4
-              </div>
-              <h3 className="text-heading-sm font-bold text-brand-black mb-3">
-                Deliver
-              </h3>
-              <p className="text-body-md text-brand-gray">
-                Only serious buyers land in your inbox
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={80} />
-
-      <section className="bg-brand-light-gray py-12 md:py-16 px-6" >
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-12 text-center">
-            Average performance across our clients
-          </h2>
-          <div className="grid md:grid-cols-3 gap-12">
-            <StatCard value="8.5/10" label="Lead Quality Score" />
-            <StatCard value="38%" label="Conversion Rate" />
-            <StatCard value="3.5 hrs" label="Time Saved Per Lead" />
-          </div>
-        </div>
-      </section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <section className="bg-white py-12 md:py-16 px-6" >
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-12">
-            What makes someone worth your time
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div>
-              <h3 className="text-heading-sm font-bold text-brand-black mb-6">
-                We look for:
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-brand-accent-green flex items-center justify-center flex-shrink-0 mt-1">
-                    <Check className="w-5 h-5 text-white" />
-                  </div>
-                  <p className="text-body-lg text-brand-gray">
-                    They have the money (meets your minimum job size)
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-brand-accent-green flex items-center justify-center flex-shrink-0 mt-1">
-                    <Check className="w-5 h-5 text-white" />
-                  </div>
-                  <p className="text-body-lg text-brand-gray">
-                    They want to start in the next 3 months
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-brand-accent-green flex items-center justify-center flex-shrink-0 mt-1">
-                    <Check className="w-5 h-5 text-white" />
-                  </div>
-                  <p className="text-body-lg text-brand-gray">
-                    They can actually say yes and sign the contract
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-brand-accent-green flex items-center justify-center flex-shrink-0 mt-1">
-                    <Check className="w-5 h-5 text-white" />
-                  </div>
-                  <p className="text-body-lg text-brand-gray">
-                    The work matches what you're good at
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-brand-accent-green flex items-center justify-center flex-shrink-0 mt-1">
-                    <Check className="w-5 h-5 text-white" />
-                  </div>
-                  <p className="text-body-lg text-brand-gray">
-                    They're in your area
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-heading-sm font-bold text-brand-black mb-6">
-                We filter out:
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <X className="w-8 h-8 text-brand-red flex-shrink-0 mt-1" />
-                  <p className="text-body-lg text-brand-gray">
-                    People just hunting for the cheapest price
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <X className="w-8 h-8 text-brand-red flex-shrink-0 mt-1" />
-                  <p className="text-body-lg text-brand-gray">
-                    People who are "just looking" with no real plans
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <X className="w-8 h-8 text-brand-red flex-shrink-0 mt-1" />
-                  <p className="text-body-lg text-brand-gray">
-                    Jobs that are too small or too big for you
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <X className="w-8 h-8 text-brand-red flex-shrink-0 mt-1" />
-                  <p className="text-body-lg text-brand-gray">
-                    People too far away
-                  </p>
-                </div>
-                <div className="flex items-start gap-4">
-                  <X className="w-8 h-8 text-brand-red flex-shrink-0 mt-1" />
-                  <p className="text-body-lg text-brand-gray">
-                    DIYers wanting free tips
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#F5F5F5" height={100} />
-
-      <section className="bg-brand-light-gray py-12 md:py-16 px-6" >
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-12 text-center">
-            Our guarantee
-          </h2>
-          <div className="bg-white rounded-2xl p-12 shadow-xl text-center max-w-3xl mx-auto">
-            <p className="text-body-xl text-brand-gray mb-8 leading-relaxed">
-              We only win when you win. If you don't make back 10 times what you spent within 3 months, we keep working for free until you do.
-            </p>
-            <button
-              onClick={() => setIsContactModalOpen(true)}
-              className="inline-flex items-center gap-3 px-12 py-5 bg-brand-black text-white font-semibold text-body-lg rounded-full hover:bg-gray-800 transition-all duration-300 apple-ease shadow-xl hover:scale-105 active:scale-95"
-            >
-              Request consultation to discuss pricing
-              <ArrowRight className="w-6 h-6 transition-transform duration-300 apple-ease" />
-            </button>
-            <p className="text-body-md text-brand-gray mt-8">
-              Every business is different. We'll work out a plan that fits your area, what you do, and the size of jobs you want.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <AngleDivider direction="down-right" fromColor="#F5F5F5" toColor="#FFFFFF" height={100} />
-
-      <section className="bg-white py-12 md:py-16 px-6" >
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-display-sm font-bold text-brand-black mb-16">
-            Common questions about lead generation
-          </h2>
-          <SimpleFAQ items={faqItems} />
-        </div>
-      </section>
-
-      <AngleDivider direction="up-right" fromColor="#FFFFFF" toColor="#FAFAFA" height={100} />
-
-      <section id="contact" className="bg-brand-off-white py-12 md:py-16 px-6" >
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-display-md font-bold text-brand-black mb-8">
-            Ready to fill your pipeline?
-          </h2>
-          <p className="text-body-xl text-brand-gray mb-12 max-w-2xl mx-auto">
-            Let's have a chat about your business and work out a plan that fits.
-          </p>
-          <button
-            onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center gap-3 px-12 py-5 bg-brand-black text-white font-semibold text-body-lg rounded-full hover:bg-gray-800 transition-all duration-300 apple-ease shadow-xl mb-8 hover:scale-105 active:scale-95"
+      <section id="what-we-build" className="bg-brand-light-gray py-12 md:py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-black text-center mb-12">From first message to signed contract</h2>
+          <motion.div
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={staggerContainer}
           >
-            Request consultation
-            <ArrowRight className="w-6 h-6 transition-transform duration-300 apple-ease" />
-          </button>
-          <p className="text-body-md text-brand-gray">
-            Or call:{' '}
-            <a href="tel:+1234567890" className="text-brand-black hover:text-brand-red font-semibold transition-colors duration-300 apple-ease">
-              (123) 456-7890
-            </a>
-          </p>
+            {MODULES.map((m) => (
+              <motion.div key={m.name} variants={staggerItem} className="bg-white rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12 bg-brand-black rounded-xl flex items-center justify-center mb-4">
+                  <m.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-brand-black mb-2">{m.name}</h3>
+                <p className="text-sm text-brand-gray leading-relaxed">{m.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+          <motion.p className="text-center text-brand-gray max-w-3xl mx-auto mt-10 leading-relaxed" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            Tool-agnostic: we build on what fits — HubSpot, Monday, Airtable, or the CRM you already have — and connect it to Buildxact or your
+            estimating tool so won jobs hand over cleanly to delivery.
+          </motion.p>
         </div>
       </section>
 
-      <Modal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-        title="Request Consultation"
-      >
+      <section className="bg-white py-12 md:py-16 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-4">Not sure enquiries are the real leak?</h2>
+          <p className="text-brand-gray mb-8 leading-relaxed">
+            The Clarity Blueprint maps where your business is actually losing time, margin and work, and names the first workflow to fix. For a lot
+            of builders it's this one — but we'll tell you if it isn't.
+          </p>
+          <Link
+            to={OFFER_PATH}
+            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-brand-black text-brand-black font-semibold rounded-lg hover:bg-brand-black hover:text-white transition-all duration-300"
+          >
+            See the Clarity Blueprint <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-brand-light-gray py-12 md:py-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-black mb-8">Enquiry automation — FAQ</h2>
+          <SimpleFAQ items={ENQUIRY_FAQS.map((f) => ({ question: f.q, answer: f.a }))} />
+        </div>
+      </section>
+
+      <Modal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} title="Book a call">
         <ContactForm
           source="lead_generation"
           onSuccess={() => {
             setTimeout(() => {
               setIsContactModalOpen(false);
               setShowThankYou(true);
-            }, 1000);
+            }, 1500);
           }}
         />
       </Modal>
-
-      <ThankYouModal
-        isOpen={showThankYou}
-        onClose={() => setShowThankYou(false)}
-      />
+      <ThankYouModal isOpen={showThankYou} onClose={() => setShowThankYou(false)} />
     </>
   );
 }

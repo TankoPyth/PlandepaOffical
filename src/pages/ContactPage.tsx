@@ -8,7 +8,6 @@ import { AngleDivider } from '../components/ui/AngleDivider';
 import { SectionNumber } from '../components/SectionNumber';
 import { ThankYouModal } from '../components/ThankYouModal';
 import { fadeInUp, staggerContainer, staggerItem, appleEasing } from '../utils/animations';
-import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 
 export function ContactPage() {
@@ -41,7 +40,7 @@ export function ContactPage() {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact Plandepa',
-    description: 'Get in touch with Plandepa construction business consultants in Brisbane and Sydney. ISO certified consultants ready to help your construction business.',
+    description: 'Get in touch with Plandepa construction business consultants in Brisbane and Newcastle. consultants ready to help your construction business.',
   };
 
   const faqSchema = {
@@ -59,11 +58,6 @@ export function ContactPage() {
 
   return (
     <>
-      <SEO
-        title="Contact Plandepa | Brisbane & Sydney Construction Consultants"
-        description="Contact Plandepa construction business consultants in Brisbane, Sydney & Newcastle. ISO certified team with construction industry expertise. Email: admin@plandepa.com | Phone: 0447 733 216"
-        keywords="contact construction consultant Brisbane, construction consultant Sydney, Plandepa contact, construction business consulting Australia, ISO certified construction consultant contact"
-      />
       <StructuredData data={[contactBreadcrumb, contactSchema, faqSchema]} />
       <section className="bg-brand-off-white py-12 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">

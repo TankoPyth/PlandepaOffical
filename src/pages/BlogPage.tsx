@@ -6,8 +6,7 @@ import CategoryFilter from '../components/CategoryFilter';
 import { supabase } from '../lib/supabase';
 import { AngleDivider } from '../components/ui/AngleDivider';
 import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
-import { SEO } from '../components/SEO';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
+import { LOCAL_POSTS } from '../content/blog';
 
 interface BlogPost {
   id: string;
@@ -30,13 +29,29 @@ interface Category {
   slug: string;
 }
 
+// Posts stored in the codebase render immediately (and in the prerendered HTML); Supabase posts merge in after load
+const LOCAL_LIST: BlogPost[] = LOCAL_POSTS.map((p) => ({
+  id: `local-${p.slug}`,
+  title: p.title,
+  slug: p.slug,
+  excerpt: p.excerpt,
+  featured_image: null,
+  author_name: p.author.name,
+  published_at: p.published_at,
+  category_id: null,
+  category: p.category,
+}));
+
+const LOCAL_CATEGORIES: Category[] = Array.from(new Map(LOCAL_POSTS.map((p) => [p.category.slug, p.category])).values())
+  .map((c) => ({ id: `local-${c.slug}`, ...c }));
+
 export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [posts, setPosts] = useState<BlogPost[]>(LOCAL_LIST);
+  const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(LOCAL_LIST);
+  const [categories, setCategories] = useState<Category[]>(LOCAL_CATEGORIES);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(LOCAL_LIST.length === 0);
 
   useEffect(() => {
     fetchData();
@@ -66,8 +81,11 @@ export default function BlogPage() {
       if (postsResponse.error) throw postsResponse.error;
       if (categoriesResponse.error) throw categoriesResponse.error;
 
-      setPosts(postsResponse.data || []);
-      setCategories(categoriesResponse.data || []);
+      const localSlugs = new Set(LOCAL_LIST.map((p) => p.slug));
+      const remote: BlogPost[] = (postsResponse.data || []).filter((p: BlogPost) => !localSlugs.has(p.slug));
+      setPosts([...LOCAL_LIST, ...remote].sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()));
+      const catSlugs = new Set(LOCAL_CATEGORIES.map((c) => c.slug));
+      setCategories([...LOCAL_CATEGORIES, ...(categoriesResponse.data || []).filter((c: Category) => !catSlugs.has(c.slug))]);
     } catch (error) {
       console.error('Error fetching blog data:', error);
     } finally {
@@ -96,20 +114,8 @@ export default function BlogPage() {
     setFilteredPosts(filtered);
   };
 
-  const blogBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Blog', url: 'https://plandepa.com/blog' },
-  ]);
-
   return (
     <>
-      <SEO
-        title="Construction Industry Blog - AI Automation & Business Tips | Brisbane Sydney"
-        description="Expert construction business advice, AI automation tips, and industry insights for Australian builders. Learn how to improve efficiency and grow your construction company."
-        keywords="construction blog Australia, construction AI blog, construction business tips, builder automation advice, construction industry insights Brisbane Sydney"
-      />
-      <StructuredData data={[blogBreadcrumb]} />
-
       <motion.section
         className="bg-brand-off-white py-16 px-6"
         initial="hidden"
@@ -119,11 +125,11 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div variants={staggerItem} className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold text-brand-black mb-6">
-              Construction Industry{' '}
-              <span className="text-brand-red">Insights</span>
+              AI &amp; Systems For{' '}
+              <span className="text-brand-red">Construction Businesses</span>
             </h1>
             <p className="text-xl text-brand-gray max-w-3xl mx-auto mb-8">
-              Expert advice, industry trends, and practical tips to help your construction business thrive
+              Practical, honest guides for construction business owners — on AI, operational systems, and getting your business to run without you
             </p>
 
             <div className="max-w-2xl mx-auto relative">

@@ -2,13 +2,14 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
   build: {
-    rollupOptions: {
+    // manualChunks only applies to the client build; the SSR build is prerender-only
+    rollupOptions: isSsrBuild ? {} : {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
@@ -19,4 +20,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
 import { AngleDivider } from '../components/ui/AngleDivider';
 import { SectionNumber } from '../components/SectionNumber';
-import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -211,8 +210,8 @@ export function PilotProgramPage() {
       '@type': 'Organization',
       name: 'Plandepa',
     },
-    areaServed: ['Brisbane', 'Sydney', 'Newcastle', 'Australia'],
-    description: 'Risk-free 28-day pilot program to automate construction business workflows. Pay only on proven results. ISO certified consultants with construction industry expertise.',
+    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
+    description: 'Risk-free 28-day pilot program to automate construction business workflows. Pay only on proven results. consultants with construction industry expertise.',
   };
 
   const faqSchema = {
@@ -230,11 +229,6 @@ export function PilotProgramPage() {
 
   return (
     <>
-      <SEO
-        title="28-Day Pilot Program - Risk-Free Workflow Automation | Plandepa"
-        description="Transform your construction business workflows in 28 days. Pay only on proven results. Choose from 6 proven workflow solutions. Limited to 3 pilots per month. Brisbane, Sydney, Newcastle."
-        keywords="construction automation pilot, workflow automation trial, construction process improvement, risk-free business automation, construction technology pilot, Brisbane construction automation"
-      />
       <StructuredData data={[pilotBreadcrumb, serviceSchema, faqSchema]} />
 
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>

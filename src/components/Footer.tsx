@@ -28,7 +28,7 @@ export function Footer() {
           <Link to="/" className="flex items-center group">
             <img
               src="/plandepa_logo_slim.png"
-              alt="Plandepa - Build Smart, Grow Simple"
+              alt="PlanDepa - AI & systems for construction companies"
               className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
             />
@@ -37,17 +37,41 @@ export function Footer() {
           {/* Footer Navigation Links */}
           <nav className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
             <Link
-              to="/software"
+              to="/clarity-blueprint"
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
             >
-              Software & Tools
+              Clarity Blueprint
             </Link>
-            <a
-              href="/#workflows"
+            <Link
+              to="/enquiry-automation"
+              className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
+            >
+              Enquiry Automation
+            </Link>
+            <Link
+              to="/pilot-program"
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
             >
               28-Day Pilots
-            </a>
+            </Link>
+            <Link
+              to="/buildxact"
+              className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
+            >
+              Buildxact
+            </Link>
+            <Link
+              to="/construction-ai-brisbane"
+              className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
+            >
+              Brisbane
+            </Link>
+            <Link
+              to="/construction-ai-newcastle"
+              className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
+            >
+              Newcastle
+            </Link>
             <Link
               to="/case-studies"
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
@@ -59,12 +83,6 @@ export function Footer() {
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
             >
               Blog
-            </Link>
-            <Link
-              to="/operations-review"
-              className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
-            >
-              Free Discovery
             </Link>
             <Link
               to="/contact"

@@ -107,3 +107,19 @@ input:focus, textarea:focus {
     scroll-behavior: auto !important;
   }
 }
+
+/* Blog article body (HTML written in src/content/blog) */
+.blog-prose { font-size: 1.125rem; line-height: 1.8; }
+.blog-prose > * + * { margin-top: 1.25em; }
+.blog-prose h2 { font-size: 1.75rem; font-weight: 700; color: #000; margin-top: 2em; line-height: 1.25; }
+.blog-prose h3 { font-size: 1.35rem; font-weight: 700; color: #000; margin-top: 1.75em; line-height: 1.3; }
+.blog-prose strong { color: #000; font-weight: 600; }
+.blog-prose a { color: #C41E3A; text-decoration: underline; text-underline-offset: 3px; }
+.blog-prose a:hover { color: #9d1830; }
+.blog-prose ul, .blog-prose ol { padding-left: 1.4em; }
+.blog-prose ul { list-style: disc; }
+.blog-prose ol { list-style: decimal; }
+.blog-prose li + li { margin-top: 0.5em; }
+.blog-prose table { width: 100%; border-collapse: collapse; font-size: 0.95rem; display: block; overflow-x: auto; }
+.blog-prose th, .blog-prose td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+.blog-prose th { color: #000; font-weight: 600; }

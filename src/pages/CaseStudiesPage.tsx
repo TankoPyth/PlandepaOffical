@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { AngleDivider } from '../components/ui/AngleDivider';
-import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -95,11 +94,6 @@ export function CaseStudiesPage() {
 
   return (
     <>
-      <SEO
-        title="Case Studies - Construction Automation Success Stories | Brisbane Sydney"
-        description="Real results from Brisbane & Sydney construction companies using Plandepa's AI automation. See how builders reduced paperwork 60%, increased leads 85%, and improved efficiency."
-        keywords="construction case studies Australia, construction automation results Brisbane, construction efficiency improvement Sydney, builder automation success stories, Buildxact case studies, construction ROI examples"
-      />
       <StructuredData data={[caseStudiesBreadcrumb]} />
 
       <motion.section

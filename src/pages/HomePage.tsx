@@ -20,7 +20,7 @@
  * - Services: Search for "MinimalServiceCard" component usage
  */
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState } from 'react';
 import { Settings, Brain, DollarSign, Network, RefreshCw, Wrench, ArrowRight, Calculator, Facebook, Instagram, Linkedin, Mail, Target, Zap, Shield, TrendingUp, Clock, CheckCircle2, Phone, Rocket, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -39,8 +39,7 @@ import { WorkflowCard } from '../components/WorkflowCard';
 import { WorkflowModal } from '../components/WorkflowModal';
 import { StickyWorkflowBar } from '../components/StickyWorkflowBar';
 import { fadeInUp, staggerContainer, staggerItem, appleEasing } from '../utils/animations';
-import { SEO } from '../components/SEO';
-import { StructuredData, organizationSchema, localBusinessBrisbane, localBusinessSydney, websiteSchema, serviceSchemas, breadcrumbSchema } from '../components/StructuredData';
+import { OFFER_PATH } from '../seo/offer';
 import { workflows, faqItems } from '../data/workflows';
 
 export function HomePage() {
@@ -49,39 +48,8 @@ export function HomePage() {
   const [selectedWorkflow, setSelectedWorkflow] = useState<number | null>(null);
   const [showStickyBar, setShowStickyBar] = useState(false);
 
-  const faqSchema = useMemo(() => ({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  }), []);
-
-  const homeBreadcrumb = useMemo(() => breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-  ]), []);
-
   return (
     <>
-      <SEO
-        title="Plandepa - Construction AI Automation Brisbane, Sydney | ISO Certified Business Consultants"
-        description="Brisbane & Sydney ISO certified construction business consultants. Diplomas in project management, building & construction. Cut paperwork 60%, increase leads 85%. Buildxact partner serving Australia."
-        keywords="construction automation Brisbane, construction business consultant Sydney, AI automation construction Australia, construction consultant Newcastle, Buildxact partner Brisbane, ISO certified construction consultant, construction lead generation Australia, project management construction Queensland, construction automation NSW"
-      />
-      <StructuredData data={[
-        organizationSchema,
-        localBusinessBrisbane,
-        localBusinessSydney,
-        websiteSchema,
-        ...serviceSchemas,
-        faqSchema,
-        homeBreadcrumb,
-      ]} />
       {/* ============================================
           SECTION 1: HERO SECTION
           Main headline, description, and CTA buttons
@@ -100,7 +68,7 @@ export function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.1 }}
             >
-              Construction Systems That Actually Work
+              AI & Systems For Construction Companies
             </motion.h1>
             <motion.p
               className="text-lg sm:text-xl md:text-2xl text-brand-black font-semibold mb-3 max-w-3xl mx-auto"
@@ -108,7 +76,7 @@ export function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.15 }}
             >
-              Your Technology Partner Built By Builders
+              Built By Builders. Based In Brisbane. Working In Brisbane & Newcastle.
             </motion.p>
             <motion.p
               className="text-base sm:text-lg md:text-xl text-brand-gray mb-8 max-w-3xl mx-auto"
@@ -116,7 +84,7 @@ export function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.2 }}
             >
-              ISO certified team with real construction experience. We implement software, build automation, and optimize your business systems. Start with a risk-free 28-day pilot or go straight to full implementation.
+              We implement AI, software and automation for construction businesses with 10–50 staff, so the business stops running through you. Start with the Clarity Blueprint — a paid diagnostic that shows exactly where it's breaking — from $990 + GST, credited if we implement the fix.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
@@ -125,10 +93,10 @@ export function HomePage() {
               transition={{ duration: 0.8, ease: appleEasing, delay: 0.3 }}
             >
               <Link
-                to="/operations-review"
+                to={OFFER_PATH}
                 className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-brand-red text-white font-semibold text-lg rounded-lg hover:bg-red-700 transition-all duration-300 apple-ease shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
               >
-                Book Free Discovery
+                See the Clarity Blueprint
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <a
@@ -206,7 +174,7 @@ export function HomePage() {
           transition={{ duration: 0.8, ease: appleEasing, delay: 0.5 }}
         >
           <p className="text-sm md:text-base text-brand-gray">
-            Trusted by 30+ construction companies across Australia • ISO Certified • Buildxact Partner
+            Trusted by 30+ construction companies across Australia • Brisbane & Newcastle • Buildxact Partner
           </p>
         </motion.div>
       </section>
@@ -335,12 +303,12 @@ export function HomePage() {
               >
                 <Target className="w-7 h-7 text-white" strokeWidth={2} />
               </motion.div>
-              <h3 className="text-xl font-bold text-brand-black mb-3">Planning & Strategy</h3>
+              <h3 className="text-xl font-bold text-brand-black mb-3">The Clarity Blueprint</h3>
               <p className="text-brand-gray mb-4 text-sm">
-                Business audits, process mapping, and strategic roadmaps for construction automation
+                A paid diagnostic that shows exactly where your business is breaking. From $990 + GST, credited if we implement the fix.
               </p>
-              <Link to="/operations-review" className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
-                Learn More <ArrowRight className="w-4 h-4" />
+              <Link to={OFFER_PATH} className="inline-flex items-center gap-2 text-brand-red font-semibold text-sm hover:gap-3 transition-all duration-300">
+                See Options <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
 
@@ -435,8 +403,8 @@ export function HomePage() {
               <div className="text-sm md:text-base text-brand-gray font-medium">Hours Saved Monthly</div>
             </motion.div>
             <motion.div className="text-center" variants={fadeInUp}>
-              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">100%</div>
-              <div className="text-sm md:text-base text-brand-gray font-medium">ISO Certified Team</div>
+              <div className="text-4xl md:text-5xl font-extrabold text-brand-red mb-2">10–50</div>
+              <div className="text-sm md:text-base text-brand-gray font-medium">Staff — Who We Work Best With</div>
             </motion.div>
           </motion.div>
         </div>
@@ -530,9 +498,9 @@ export function HomePage() {
               Our promise: what we build saves you more money than it costs within 6 months. Whether you start with a pilot or go straight to full implementation, we prove value fast.
             </p>
             <div className="pt-4 border-t border-brand-gray/20">
-              <p className="text-sm md:text-base text-brand-gray mb-2 font-semibold">ISO Certified & Qualified Team</p>
+              <p className="text-sm md:text-base text-brand-gray mb-2 font-semibold">Qualified Team With Real Construction Experience</p>
               <p className="text-xs md:text-sm text-brand-gray mb-3">
-                Our team holds Diplomas in Project Management, Health & Safety, Building & Construction, plus ISO Auditing Accreditation
+                Our team holds Diplomas in Project Management, Health & Safety, and Building & Construction
               </p>
               <div className="flex flex-wrap justify-center gap-4 text-xs text-brand-gray">
                 <span className="flex items-center gap-1">
@@ -576,16 +544,16 @@ export function HomePage() {
           <motion.div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12" variants={staggerItem}>
             <PathCard
               label="NOT SURE WHERE TO START?"
-              title="Free Discovery Call"
+              title="The Clarity Blueprint"
               benefits={[
-                'No obligation, no cost',
-                'Identify biggest opportunities',
-                'Get honest recommendations',
-                'Understand all options',
+                'Find exactly where the business is breaking',
+                'Named first workflow to fix',
+                'From $990 + GST',
+                'Fee credited if we implement',
               ]}
               badge="Recommended"
               badgeColor="red"
-              href="/operations-review"
+              href="/clarity-blueprint"
               icon={Phone}
             />
             <PathCard
@@ -648,7 +616,7 @@ export function HomePage() {
               Pick one bottleneck. We'll build control around it in 28 days. Prove value before scaling.
             </p>
             <p className="text-sm md:text-base text-brand-gray max-w-2xl mx-auto">
-              Want something different? We can pilot any workflow in your business. <Link to="/operations-review" className="text-brand-red font-semibold hover:underline">Book a discovery call</Link> to discuss your specific needs.
+              Want something different? We can pilot any workflow in your business. <Link to={OFFER_PATH} className="text-brand-red font-semibold hover:underline">Start with a Clarity Blueprint</Link> to discuss your specific needs.
             </p>
           </motion.div>
 
@@ -866,7 +834,7 @@ export function HomePage() {
 
           <motion.div className="mt-12 text-center" variants={fadeInUp}>
             <a
-              href="/operations-review"
+              href="/pilot-program"
               className="inline-flex items-center gap-2 px-10 py-4 bg-brand-black text-white font-semibold text-lg rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
             >
               Apply for Pilot Slot

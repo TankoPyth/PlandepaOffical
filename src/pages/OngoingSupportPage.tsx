@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
 import { AngleDivider } from '../components/ui/AngleDivider';
-import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -58,7 +57,7 @@ export function OngoingSupportPage() {
         'Weekly optimization and planning',
         'Unlimited support hours',
         'Continuous system monitoring',
-        'Monthly on-site visits (Brisbane/Sydney)',
+        'Monthly on-site visits (Brisbane/Newcastle)',
         'Strategic planning sessions',
         'Custom automation development',
         'Team training programs',
@@ -144,7 +143,7 @@ export function OngoingSupportPage() {
       '@type': 'Organization',
       name: 'Plandepa',
     },
-    areaServed: ['Brisbane', 'Sydney', 'Newcastle', 'Australia'],
+    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
     description: 'Monthly retainer support for construction business systems. Proactive monitoring, maintenance, optimization, and technical support for Buildxact, ClickUp, and custom automation systems.',
   };
 
@@ -163,11 +162,6 @@ export function OngoingSupportPage() {
 
   return (
     <>
-      <SEO
-        title="Ongoing Support & Retainer - Construction Systems Maintenance | Plandepa"
-        description="Monthly retainer support for construction business systems in Brisbane, Sydney & Newcastle. Proactive monitoring, maintenance, optimization, and priority technical support."
-        keywords="construction systems support, Buildxact support Brisbane, ongoing IT support construction, systems maintenance retainer, construction technology support Sydney"
-      />
       <StructuredData data={[supportBreadcrumb, serviceSchema, faqSchema]} />
 
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>

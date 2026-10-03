@@ -7,7 +7,6 @@ import { appleEasing } from '../utils/animations';
 import { SocialShare } from '../components/ui/SocialShare';
 import { trackROICalculatorComplete } from '../utils/analytics';
 import { CalendlyPopup } from '../components/ui/CalendlyPopup';
-import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 
 const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_URL || '';
@@ -364,11 +363,6 @@ export function ROICalculatorPage() {
       priceCurrency: 'AUD',
     },
     description: 'Free ROI calculator for Australian construction companies to estimate potential savings from AI automation and workflow optimization. Calculate time savings, cost reductions, and payback period.',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '30',
-    },
   };
 
   const howToSchema = {
@@ -403,11 +397,6 @@ export function ROICalculatorPage() {
 
   return (
     <>
-      <SEO
-        title="ROI Calculator - Construction Automation Savings | Plandepa Brisbane Sydney"
-        description="Free ROI calculator for Australian construction companies. Calculate potential savings from AI automation. See hours saved, cost reductions & payback period. Brisbane, Sydney, Newcastle."
-        keywords="construction ROI calculator Australia, construction automation ROI, AI automation calculator construction, construction business savings calculator, Buildxact ROI calculator, construction efficiency calculator Brisbane"
-      />
       <StructuredData data={[calculatorBreadcrumb, softwareApplicationSchema, howToSchema]} />
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
         <div className="max-w-3xl mx-auto">

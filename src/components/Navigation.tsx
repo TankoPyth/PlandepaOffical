@@ -36,11 +36,17 @@ const servicesMenu = [
     href: '/pilot-program'
   },
   {
-    name: 'Plandepa Systems Review',
-    description: 'Diagnose control issues & get execution plan',
+    name: 'The Clarity Blueprint',
+    description: 'Find exactly where the business is breaking',
     icon: ClipboardCheck,
-    badge: '10 Days',
-    href: '/operations-review'
+    badge: 'From $990',
+    href: '/clarity-blueprint'
+  },
+  {
+    name: 'AI Enquiry Automation',
+    description: 'Every enquiry answered, every quote chased',
+    icon: Zap,
+    href: '/enquiry-automation'
   }
 ];
 

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
 import { AngleDivider } from '../components/ui/AngleDivider';
-import { SEO } from '../components/SEO';
 import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
@@ -54,7 +53,7 @@ export function TrainingPage() {
         'A "first automation" recommendation and why it wins',
         'A simple workflow map for that process',
         'Draft success metrics for a pilot',
-        'Recommended next step: either 28-day pilot or OSR',
+        'Recommended next step: either a 28-day pilot or the Clarity Blueprint',
       ],
       whatItIsNot: [
         'Not generic AI training',
@@ -161,7 +160,7 @@ export function TrainingPage() {
       '@type': 'Organization',
       name: 'Plandepa',
     },
-    areaServed: ['Brisbane', 'Sydney', 'Newcastle', 'Australia'],
+    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
     description: 'AI and automation education programs for construction businesses. Free webinars, clarity sessions, and team workshops to understand and implement automation in construction operations.',
   };
 
@@ -180,11 +179,6 @@ export function TrainingPage() {
 
   return (
     <>
-      <SEO
-        title="AI Automation Education for Construction Brisbane | Training & Workshops"
-        description="Learn what is possible with AI automation in construction. Free webinars, clarity sessions, and team workshops. From concept to implementation for Brisbane, Sydney & Newcastle builders."
-        keywords="AI training construction, automation education Brisbane, construction AI workshop, business automation training, construction technology education Sydney"
-      />
       <StructuredData data={[trainingBreadcrumb, serviceSchema, faqSchema]} />
 
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>

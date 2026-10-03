@@ -234,8 +234,6 @@ export function PipelineRecoveryReviewPage() {
       <SEO
         title="Pipeline Recovery Review | Construction Lead Follow-Up Scorecard"
         description="Check where your construction revenue pipeline is leaking, then book a practical Pipeline Recovery Review with PlanDepa."
-        keywords="construction pipeline review, sales pipeline scorecard, lost leads follow-up, construction business review, revenue leak scorecard"
-        canonical="/pipeline-recovery-review"
       />
       <StructuredData data={[breadcrumb, serviceSchema]} />
 

@@ -4,8 +4,10 @@ import { Calendar, Clock, ArrowLeft, Tag, Calculator } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 import { ScrollProgress } from '../components/ui/ScrollProgress';
-import { SocialProofBar } from '../components/ui/SocialProofBar';
 import { TableOfContents } from '../components/ui/TableOfContents';
+import { SEO } from '../components/SEO';
+import { OFFER_PATH } from '../seo/offer';
+import { LOCAL_POSTS, getLocalPost, type LocalPost } from '../content/blog';
 
 const AustralianAIPolicyPost = lazy(() => import('../components/blog/AustralianAIPolicyPost'));
 const ConstructionAIBusinessCasePost = lazy(() => import('../components/blog/ConstructionAIBusinessCasePost'));
@@ -18,6 +20,9 @@ interface BlogPost {
   content: string;
   featured_image: string | null;
   author_name: string;
+  author_image?: string;
+  meta_description?: string;
+  faqs?: { q: string; a: string }[];
   published_at: string;
   category?: {
     name: string;
@@ -38,14 +43,45 @@ interface RelatedPost {
   published_at: string;
 }
 
+const fromLocal = (p: LocalPost): BlogPost => ({
+  id: `local-${p.slug}`,
+  title: p.title,
+  slug: p.slug,
+  excerpt: p.excerpt,
+  content: p.content,
+  featured_image: null,
+  author_name: p.author.name,
+  author_image: p.author.image,
+  meta_description: p.metaDescription,
+  faqs: p.faqs,
+  published_at: p.published_at,
+  category: p.category,
+  tags: p.tags.map((t) => ({ name: t, slug: t.toLowerCase().replace(/[^a-z0-9]+/g, '-') })),
+});
+
+const localRelated = (slug: string): RelatedPost[] =>
+  LOCAL_POSTS.filter((p) => p.slug !== slug)
+    .slice(0, 3)
+    .map((p) => ({ id: `local-${p.slug}`, title: p.title, slug: p.slug, excerpt: p.excerpt, featured_image: null, published_at: p.published_at }));
+
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Posts stored in the codebase render synchronously so they're fully prerendered; others load from Supabase
+  const initialLocal = getLocalPost(slug);
+  const [post, setPost] = useState<BlogPost | null>(initialLocal ? fromLocal(initialLocal) : null);
+  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>(initialLocal ? localRelated(initialLocal.slug) : []);
+  const [loading, setLoading] = useState(!initialLocal);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
+    const local = getLocalPost(slug);
+    if (local) {
+      setPost(fromLocal(local));
+      setRelatedPosts(localRelated(local.slug));
+      setLoading(false);
+      setNotFound(false);
+      return;
+    }
     if (slug) {
       fetchPost();
     }
@@ -189,6 +225,13 @@ export default function BlogPostPage() {
 
   return (
     <article className="min-h-screen bg-brand-off-white py-16">
+      <SEO
+        title={`${post.title} | PlanDepa`}
+        description={post.meta_description || post.excerpt}
+        ogType="article"
+        ogImage={post.featured_image || undefined}
+        article={{ publishedTime: post.published_at, author: post.author_name, section: post.category?.name, tags: post.tags?.map((t) => t.name) }}
+      />
       <ScrollProgress />
 
       <div className={`mx-auto px-6 ${showTableOfContents ? 'max-w-7xl' : 'max-w-4xl'}`}>
@@ -233,7 +276,7 @@ export default function BlogPostPage() {
               </div>
               <div className="flex items-center gap-2">
                 <img
-                  src="/linkedin_profile_picture_(1).png"
+                  src={post.author_image || '/linkedin_profile_picture_(1).png'}
                   alt={post.author_name}
                   className="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
                   loading="lazy"
@@ -252,9 +295,6 @@ export default function BlogPostPage() {
               </button>
             )}
 
-            <div className="mb-8 pb-8 border-b border-gray-200">
-              <SocialProofBar />
-            </div>
 
           {post.featured_image && (
             <div className="relative h-96 rounded-xl overflow-hidden mb-8">
@@ -281,10 +321,30 @@ export default function BlogPostPage() {
               </Suspense>
             ) : (
               <div
-                className="text-brand-gray leading-relaxed"
+                className="blog-prose text-brand-gray leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             )}
+          </div>
+
+          {post.faqs && post.faqs.length > 0 && (
+            <section className="mt-12 mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-4">Frequently asked questions</h2>
+              {post.faqs.map((f) => (
+                <div key={f.q} className="border-t border-gray-200 py-5">
+                  <h3 className="font-semibold text-brand-black mb-2">{f.q}</h3>
+                  <p className="text-brand-gray leading-relaxed">{f.a}</p>
+                </div>
+              ))}
+            </section>
+          )}
+
+          <div className="bg-brand-black text-white rounded-2xl p-8 my-10 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">Know exactly where your business is breaking.</h2>
+            <p className="text-white/80 mb-6">A paid diagnostic for construction businesses with 10–50 staff. From $990 + GST, and the fee comes off the invoice if we implement the fix.</p>
+            <Link to={OFFER_PATH} className="inline-block bg-brand-red text-white font-semibold px-8 py-3 rounded-lg hover:bg-red-700 transition-colors">
+              See the Clarity Blueprint
+            </Link>
           </div>
 
           {post.tags && post.tags.length > 0 && (

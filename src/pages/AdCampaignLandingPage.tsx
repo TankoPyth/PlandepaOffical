@@ -13,7 +13,6 @@ export default function AdCampaignLandingPage() {
       <SEO
         title="Transform Your Construction Business with AI | Plandepa"
         description="Stop wasting time on paperwork. Get more quotes out, win more work, and scale your construction business with AI automation."
-        canonical="/lp/ad-campaign"
       />
 
       <div className="min-h-screen bg-white">

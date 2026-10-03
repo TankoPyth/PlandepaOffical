@@ -14,7 +14,6 @@ export default function BuildxactAdLandingPage() {
       <SEO
         title="Cut Your Buildxact Quoting Time in Half | Custom Templates by Real Builders"
         description="Stop wasting 8 hours on every quote. Get a custom Buildxact template built by actual builders that cuts your time to 2 hours. 50% faster or it's free."
-        canonical="/lp/buildxact-ad"
       />
 
       <div className="min-h-screen bg-white">
