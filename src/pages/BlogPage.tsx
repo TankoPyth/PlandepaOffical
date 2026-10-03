@@ -15,6 +15,7 @@ interface BlogPost {
   excerpt: string;
   featured_image: string | null;
   author_name: string;
+  author_image?: string;
   published_at: string;
   category_id: string | null;
   category?: {
@@ -37,6 +38,7 @@ const LOCAL_LIST: BlogPost[] = LOCAL_POSTS.map((p) => ({
   excerpt: p.excerpt,
   featured_image: null,
   author_name: p.author.name,
+  author_image: p.author.image,
   published_at: p.published_at,
   category_id: null,
   category: p.category,
@@ -200,6 +202,7 @@ export default function BlogPage() {
                     excerpt={post.excerpt}
                     featuredImage={post.featured_image || undefined}
                     authorName={post.author_name}
+                    authorImage={post.author_image}
                     publishedAt={post.published_at}
                     categoryName={post.category?.name}
                   />

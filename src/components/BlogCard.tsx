@@ -9,6 +9,7 @@ interface BlogCardProps {
   excerpt: string;
   featuredImage?: string;
   authorName: string;
+  authorImage?: string;
   publishedAt: string;
   categoryName?: string;
   readTime?: number;
@@ -20,6 +21,7 @@ export default function BlogCard({
   excerpt,
   featuredImage,
   authorName,
+  authorImage,
   publishedAt,
   categoryName,
   readTime = 5
@@ -86,7 +88,7 @@ export default function BlogCard({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <img
-                src="/linkedin_profile_picture_(1).png"
+                src={authorImage || (authorName.startsWith('Mitch') ? '/mitch_profile_picture.png' : '/linkedin_profile_picture_(1).png')}
                 alt={authorName}
                 className="w-6 h-6 rounded-full object-cover border border-slate-200"
                 loading="lazy"
