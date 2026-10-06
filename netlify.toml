@@ -65,11 +65,8 @@ to = "/enquiry-automation"
 status = 301
 force = true
 
-# Blog posts that live only in Supabase are not prerendered: let the app load them.
-[[redirects]]
-from = "/blog/*"
-to = "/app.html"
-status = 200
+# All blog posts live in the codebase and are prerendered, so an unknown /blog/ address is a real 404.
+# (If Supabase-hosted posts are ever restored, re-add a /blog/* rule pointing at /app.html with status 200.)
 
 # Everything else that is not a real file is a genuine 404 (not a soft 404 with status 200).
 [[redirects]]
