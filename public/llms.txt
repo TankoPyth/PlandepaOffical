@@ -48,6 +48,8 @@
 - [What AI can actually do for a 20-person builder in 2026](https://plandepa.com/blog/ai-for-construction-companies): Workflow-by-workflow guide to AI for construction companies, what works today and what is still hype.
 - [The Can't-Leave-For-A-Week Test](https://plandepa.com/blog/cant-leave-for-a-week-test): 12-question self-test for construction business owners who are still the bottleneck.
 - [Four tools, zero answers](https://plandepa.com/blog/construction-software-source-of-truth): Why Buildxact, Xero, spreadsheets and WhatsApp don't talk, and how to design a single source of truth.
+- [The business case for AI in a construction business](https://plandepa.com/blog/ai-business-case-construction): A worked example with the arithmetic shown, covering admin time and unchased quotes, plus how to test before committing.
+- [Australia's AI rules for construction businesses](https://plandepa.com/blog/australian-ai-policy-2025): No AI Act and no mandatory guardrails; what existing laws and the six voluntary practices mean for a builder, and the 10 December 2026 privacy change.
 - [Pete's Tuesday: a Clarity Day, mapped](https://plandepa.com/blog/clarity-day-walkthrough): What happens during a one-day Clarity Blueprint review and what the owner receives.
 
 ## More

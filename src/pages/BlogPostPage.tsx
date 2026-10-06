@@ -1,16 +1,13 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowLeft, Tag, Calculator } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 import { ScrollProgress } from '../components/ui/ScrollProgress';
-import { TableOfContents } from '../components/ui/TableOfContents';
 import { SEO } from '../components/SEO';
 import { OFFER_PATH } from '../seo/offer';
 import { LOCAL_POSTS, getLocalPost, type LocalPost } from '../content/blog';
 
-const AustralianAIPolicyPost = lazy(() => import('../components/blog/AustralianAIPolicyPost'));
-const ConstructionAIBusinessCasePost = lazy(() => import('../components/blog/ConstructionAIBusinessCasePost'));
 
 interface BlogPost {
   id: string;
@@ -178,51 +175,6 @@ export default function BlogPostPage() {
 
   const readTime = Math.ceil(post.content.split(' ').length / 200);
 
-  const businessCaseSections = [
-    { id: 'section-1', title: '1. Executive Summary' },
-    { id: 'section-2', title: '2. Financial Analysis' },
-    { id: 'section-3', title: '3. Solution Overview' },
-    { id: 'section-4', title: '4. Implementation Strategy' },
-    { id: 'section-5', title: '5. Market Context' },
-    { id: 'section-6', title: '6. Recommendation' },
-    { id: 'section-6-5', title: '6.5 Common Concerns' },
-  ];
-
-  const policySections = [
-    { id: 'section-timeline', title: 'How It Happened' },
-    { id: 'section-aisi', title: 'Meet the New Sheriff' },
-    { id: 'section-ai6', title: 'The AI6 Survival Guide' },
-    { id: 'section-winners', title: 'Who Won the Pivot?' },
-    { id: 'section-future', title: 'The Crystal Ball: 2026+' },
-    { id: 'section-faq', title: 'Common Policy Questions' },
-  ];
-
-  const showTableOfContents =
-    post.slug === 'ai-business-case-construction' ||
-    post.slug === 'australian-ai-policy-update';
-
-  const sections =
-    post.slug === 'ai-business-case-construction'
-      ? businessCaseSections
-      : post.slug === 'australian-ai-policy-update'
-      ? policySections
-      : [];
-
-  const scrollToInteractive = () => {
-    const targetId = post.slug === 'ai-business-case-construction' ? 'section-2' : 'section-ai6';
-    const element = document.getElementById(targetId);
-    if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-  };
-
-  const quickActionLabel = post.slug === 'ai-business-case-construction'
-    ? 'Jump to ROI Calculator'
-    : 'Jump to AI6 Checklist';
-
   return (
     <article className="min-h-screen bg-brand-off-white py-16">
       <SEO
@@ -234,14 +186,8 @@ export default function BlogPostPage() {
       />
       <ScrollProgress />
 
-      <div className={`mx-auto px-6 ${showTableOfContents ? 'max-w-7xl' : 'max-w-4xl'}`}>
-        {showTableOfContents && (
-          <div className="hidden lg:block fixed left-8 top-32 w-64">
-            <TableOfContents sections={sections} />
-          </div>
-        )}
-
-        <div className={`${showTableOfContents ? 'lg:ml-72 max-w-4xl' : ''}`}>
+      <div className="mx-auto px-6 max-w-4xl">
+        <div>
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 text-brand-gray hover:text-brand-red transition-colors mb-8"
@@ -285,15 +231,6 @@ export default function BlogPostPage() {
               </div>
             </div>
 
-            {showTableOfContents && (
-              <button
-                onClick={scrollToInteractive}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-cta-orange text-white rounded-lg hover:bg-orange-600 transition-colors mb-6 font-medium"
-              >
-                <Calculator className="w-4 h-4" />
-                {quickActionLabel}
-              </button>
-            )}
 
 
           {post.featured_image && (
@@ -311,20 +248,10 @@ export default function BlogPostPage() {
               {post.excerpt}
             </p>
 
-            {post.slug === 'australian-ai-policy-2025' ? (
-              <Suspense fallback={<div className="text-center py-8 text-brand-gray">Loading...</div>}>
-                <AustralianAIPolicyPost />
-              </Suspense>
-            ) : post.slug === 'ai-business-case-construction' ? (
-              <Suspense fallback={<div className="text-center py-8 text-brand-gray">Loading...</div>}>
-                <ConstructionAIBusinessCasePost />
-              </Suspense>
-            ) : (
-              <div
-                className="blog-prose text-brand-gray leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-            )}
+            <div
+              className="blog-prose text-brand-gray leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
           </div>
 
           {post.faqs && post.faqs.length > 0 && (
