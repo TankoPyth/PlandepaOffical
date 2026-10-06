@@ -7,57 +7,14 @@ import { SimpleFAQ } from '../components/SimpleFAQ';
 import { SectionNumber } from '../components/SectionNumber';
 import { ThankYouModal } from '../components/ThankYouModal';
 import { fadeInUp, staggerContainer, staggerItem } from '../utils/animations';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
+import { CONTACT_FAQS } from '../content/faqs';
 
 export function ContactPage() {
   const [showThankYou, setShowThankYou] = useState(false);
-  const contactFaqs = [
-    {
-      question: 'How quickly will you respond?',
-      answer: 'We aim to respond to all enquiries within 24 hours during business days. Urgent matters? Give us a call.',
-    },
-    {
-      question: 'What information should I include in my message?',
-      answer: 'Tell us about your business, what you\'re struggling with, and what you want to achieve. The more detail, the better we can help.',
-    },
-    {
-      question: 'Do you offer phone consultations?',
-      answer: 'Absolutely. After you reach out, we\'ll schedule a call that works for you. Most initial calls take 15-30 minutes.',
-    },
-    {
-      question: 'What if I\'m not sure what I need?',
-      answer: 'No worries. That\'s what the discovery call is for. We\'ll work out together what makes sense for your business.',
-    },
-  ];
-
-  const contactBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Contact', url: 'https://plandepa.com/contact' },
-  ]);
-
-  const contactSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ContactPage',
-    name: 'Contact Plandepa',
-    description: 'Get in touch with Plandepa construction business consultants in Brisbane and Newcastle. consultants ready to help your construction business.',
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: contactFaqs.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
+  const contactFaqs = CONTACT_FAQS;
 
   return (
     <>
-      <StructuredData data={[contactBreadcrumb, contactSchema, faqSchema]} />
       <section className="bg-brand-off-white py-12 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <Link
@@ -168,13 +125,13 @@ export function ContactPage() {
                 <div className="mt-12 p-6 bg-brand-light-gray rounded-lg">
                   <h3 className="font-bold text-brand-black mb-3">Prefer to book a call?</h3>
                   <p className="text-sm text-brand-gray mb-4">
-                    Jump straight to our discovery call booking and we'll set up a time to chat.
+                    See the Clarity Blueprint, or send us a message above and we'll set up a time to talk.
                   </p>
                   <Link
-                    to="/business-audit"
+                    to="/clarity-blueprint"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-brand-black text-white font-semibold text-sm rounded-lg hover:bg-gray-800 transition-all duration-300 apple-ease"
                   >
-                    Book Discovery Call
+                    See the Clarity Blueprint
                   </Link>
                 </div>
               </motion.div>

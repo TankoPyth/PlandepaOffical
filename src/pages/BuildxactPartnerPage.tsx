@@ -3,11 +3,11 @@ import { ArrowLeft, Check, Award, Users, Target, FileText, DollarSign, Clock, Sh
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
 import { staggerContainer, staggerItem } from '../utils/animations';
+import { BUILDXACT_FAQS } from '../content/faqs';
 
 export function BuildxactPartnerPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -83,7 +83,7 @@ export function BuildxactPartnerPage() {
         'Access to comprehensive library of pre-built templates',
         'Industry-specific templates: carpentry, plumbing, renovations',
         'Specialized templates: bathrooms, kitchens, extensions',
-        'Regularly updated and maintained by Plandepa team',
+        'Regularly updated and maintained by PlanDepa team',
         'New templates added monthly based on industry trends',
         'Templates refined from real-world construction projects',
         'Download and customize for your specific needs',
@@ -101,7 +101,7 @@ export function BuildxactPartnerPage() {
         'Software implementation tailored to your trade',
         'Comprehensive team training program',
         'Access to exclusive support video library',
-        'Direct support line to Plandepa implementation team',
+        'Direct support line to PlanDepa implementation team',
         'Ensure system is properly running and optimized',
         '30-day post-launch support included',
       ],
@@ -121,7 +121,7 @@ export function BuildxactPartnerPage() {
         'Ongoing monthly support retainer included in package',
         'Regular business process optimization walkthroughs',
         'Streamline entire business operations using Buildxact',
-        'Priority direct access to senior Plandepa consultants',
+        'Priority direct access to senior PlanDepa consultants',
         'Quarterly strategy and optimization reviews',
         'Advanced automation and integration setup',
       ],
@@ -129,86 +129,10 @@ export function BuildxactPartnerPage() {
     },
   ];
 
-  const faqItems = [
-    {
-      question: 'Do I need a Buildxact subscription to use Plandepa\'s services?',
-      answer: 'Yes. Our Template Library Access requires an active Buildxact subscription. For our Complete Implementation and Premium Custom packages, we can set you up with a new Buildxact subscription (with 5% discount through our referral link above) or work with your existing subscription.',
-    },
-    {
-      question: 'What\'s the difference between the Buildxact software and Plandepa\'s templates?',
-      answer: 'Buildxact is the estimating and project management software itself. Our templates are pre-built estimating templates, workflows, and configurations that save you hundreds of hours of setup time. Think of Buildxact as the platform, and our templates as professionally designed shortcuts for your specific trade.',
-    },
-    {
-      question: 'How do I get the 5% Buildxact discount?',
-      answer: 'Simply sign up through our referral link at the top of this page. The 5% discount is applied automatically when you use our reseller code. This discount is separate from our service packages and comes directly from Buildxact.',
-    },
-    {
-      question: 'Why buy through Plandepa instead of directly from Buildxact?',
-      answer: 'You get the same software pricing (actually 5% cheaper through our link!) plus the advantage of local Brisbane and Newcastle expertise. We know construction, we know Buildxact inside-out, and we can customize it specifically for your business type. Buildxact provides the software, we make sure you actually use it properly.',
-    },
-    {
-      question: 'How long does implementation take?',
-      answer: 'Typically 4-6 weeks from kickoff to confident daily use. Week 1 is setup, weeks 2-3 are customization and training, week 4+ is go-live support. We can accelerate if you need faster deployment.',
-    },
-    {
-      question: 'Can you migrate data from our current estimating system?',
-      answer: 'Usually yes. We can import cost libraries, client data, and historical projects from Excel, Cubit, EstimateOne, and most other systems. We assess what makes sense to migrate versus starting fresh.',
-    },
-    {
-      question: 'Do we need to be tech-savvy to use Buildxact?',
-      answer: 'Not at all. Buildxact is designed for tradies and builders, not IT experts. Our training focuses on practical, day-to-day use. If you can use email and a smartphone, you can use Buildxact.',
-    },
-    {
-      question: 'What construction types does Buildxact work for?',
-      answer: 'Residential building, renovations, commercial fit-outs, civil works, landscaping, trade contractors. We customize the setup for your specific type. It\'s particularly strong for residential builders and reno companies.',
-    },
-    {
-      question: 'Can Buildxact integrate with our accounting software?',
-      answer: 'Yes. Native integrations with Xero, MYOB, and QuickBooks. We set up the integration so your financials flow automatically between systems.',
-    },
-    {
-      question: 'What if we try Buildxact and it doesn\'t work for us?',
-      answer: 'Buildxact offers a trial period. We\'ll help you properly test it with real projects before you commit. In 10 years, we\'ve only had 2 clients where Buildxact wasn\'t a good fit, and we identified that during the trial.',
-    },
-    {
-      question: 'Is training included in the implementation package?',
-      answer: 'Yes. Complete Implementation includes comprehensive training for your whole team. We cover estimating, scheduling, variations, client portal, reporting, everything you need for daily use.',
-    },
-  ];
-
-  const buildxactBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Buildxact Partnership', url: 'https://plandepa.com/buildxact' },
-  ]);
-
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Buildxact Implementation and Support',
-    provider: {
-      '@type': 'Organization',
-      name: 'Plandepa',
-    },
-    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
-    description: 'Official Buildxact partner providing complete implementation, customization, training, and ongoing support for construction estimating and project management software.',
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
+  const faqItems = BUILDXACT_FAQS;
 
   return (
     <>
-      <StructuredData data={[buildxactBreadcrumb, serviceSchema, faqSchema]} />
 
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
         <div className="max-w-7xl mx-auto">
@@ -347,7 +271,7 @@ export function BuildxactPartnerPage() {
               </p>
 
               <p className="text-base text-white/80 mb-8">
-                This discount is separate from Plandepa's service packages below. First, get your Buildxact subscription with 5% off, then choose how we can help you get the most out of it.
+                This discount is separate from PlanDepa's service packages below. First, get your Buildxact subscription with 5% off, then choose how we can help you get the most out of it.
               </p>
 
               <a

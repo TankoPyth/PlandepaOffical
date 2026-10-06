@@ -168,7 +168,7 @@ export function PipelineRecoveryReviewPage() {
     name: 'Construction Pipeline Recovery Review',
     provider: {
       '@type': 'Organization',
-      name: 'Plandepa',
+      name: 'PlanDepa',
     },
     description: 'A practical review of where enquiries, quotes, approvals, and follow-ups are getting lost across your construction pipeline.',
     areaServed: 'AU',

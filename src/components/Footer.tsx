@@ -4,7 +4,7 @@
  * This is the FOOTER that appears at the bottom of every page.
  *
  * What's included:
- * - Plandepa logo
+ * - PlanDepa logo
  * - Navigation links
  * - Contact email link
  * - Copyright notice
@@ -79,6 +79,12 @@ export function Footer() {
               Case Studies
             </Link>
             <Link
+              to="/about"
+              className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
+            >
+              About
+            </Link>
+            <Link
               to="/blog"
               className="text-body-md text-brand-gray hover:text-brand-black transition-colors"
             >
@@ -93,7 +99,7 @@ export function Footer() {
           </nav>
 
           <p className="text-body-md text-brand-gray">
-            © {currentYear} Plandepa. Built for construction companies.
+            © {currentYear} PlanDepa. Built for construction companies.
           </p>
         </div>
       </div>

@@ -140,8 +140,7 @@ ${pages
   .filter((p) => !p.noindex)
   .map(
     (p) => `  <url>
-    <loc>${esc(p.loc)}</loc>
-    <lastmod>${p.lastmod || today}</lastmod>${p.changefreq ? `\n    <changefreq>${p.changefreq}</changefreq>` : ''}${p.priority != null ? `\n    <priority>${p.priority.toFixed(1)}</priority>` : ''}
+    <loc>${esc(p.loc)}</loc>${p.lastmod ? `\n    <lastmod>${p.lastmod}</lastmod>` : ''}${p.changefreq ? `\n    <changefreq>${p.changefreq}</changefreq>` : ''}${p.priority != null ? `\n    <priority>${p.priority.toFixed(1)}</priority>` : ''}
   </url>`
   )
   .join('\n')}

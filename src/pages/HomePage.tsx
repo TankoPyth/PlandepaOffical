@@ -208,7 +208,7 @@ export function HomePage() {
           </div>
           <p className="mt-10 text-brand-gray max-w-3xl leading-relaxed">
             Between us we hold Diplomas in Project Management, Health and Safety, and Building and Construction. We have worked inside the
-            businesses we now fix, so we know what actually breaks.
+            businesses we now fix, so we know what actually breaks. <Link to="/about" className="text-brand-red font-semibold hover:underline">More about us</Link>.
           </p>
         </div>
       </section>

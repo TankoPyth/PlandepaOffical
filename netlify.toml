@@ -7,7 +7,19 @@ NODE_VERSION = "18"
 
 [[redirects]]
 from = "/free-audit"
-to = "/business-audit"
+to = "/clarity-blueprint"
+status = 301
+force = true
+
+[[redirects]]
+from = "/business-audit"
+to = "/clarity-blueprint"
+status = 301
+force = true
+
+[[redirects]]
+from = "/revenue-leak-scorecard"
+to = "/pipeline-recovery-review"
 status = 301
 force = true
 
@@ -53,10 +65,17 @@ to = "/enquiry-automation"
 status = 301
 force = true
 
+# Blog posts that live only in Supabase are not prerendered: let the app load them.
 [[redirects]]
-from = "/*"
+from = "/blog/*"
 to = "/app.html"
 status = 200
+
+# Everything else that is not a real file is a genuine 404 (not a soft 404 with status 200).
+[[redirects]]
+from = "/*"
+to = "/404.html"
+status = 404
 
 [[headers]]
 for = "/*"

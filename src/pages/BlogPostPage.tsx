@@ -281,7 +281,7 @@ export default function BlogPostPage() {
                   className="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
                   loading="lazy"
                 />
-                <span>By {post.author_name}</span>
+                <span>By <Link to="/about" className="hover:text-brand-red underline-offset-4 hover:underline">{post.author_name}</Link></span>
               </div>
             </div>
 

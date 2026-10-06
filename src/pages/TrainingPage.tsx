@@ -3,11 +3,11 @@ import { ArrowLeft, Check, Users, Video, Clock, Target, Brain, Zap, CheckCircle2
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
 import { staggerContainer, staggerItem } from '../utils/animations';
+import { TRAINING_FAQS } from '../content/faqs';
 
 export function TrainingPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -88,36 +88,7 @@ export function TrainingPage() {
     },
   ];
 
-  const faqItems = [
-    {
-      question: 'How is this different from generic AI training?',
-      answer: 'We focus exclusively on construction business workflows. Every example, every automation, every ROI calculation is specific to builders, renovators, and trade contractors. No generic ChatGPT tutorials or theory.',
-    },
-    {
-      question: 'Do I need to be technical to understand this?',
-      answer: 'Not at all. These sessions are designed for business owners and operations leaders, not IT people. We explain everything in plain English with real construction examples.',
-    },
-    {
-      question: 'What if I am not ready to implement anything yet?',
-      answer: 'That is fine. The free webinar is perfect for learning what is possible. The paid sessions are for when you want specific guidance on your business, even if you are not ready to pull the trigger yet.',
-    },
-    {
-      question: 'Can I bring my whole team to the webinar?',
-      answer: 'Absolutely. The more people who understand what is possible, the easier implementation becomes later. Register once and share the link with your team.',
-    },
-    {
-      question: 'What happens after the Clarity Sprint?',
-      answer: 'You get a clear recommendation: either proceed with a 28-day pilot, move up to a Clarity Day, or implement specific changes yourself. No pressure, no lock-in.',
-    },
-    {
-      question: 'Why should I pay for a Clarity Sprint when the webinar is free?',
-      answer: 'The webinar shows what is possible across construction businesses generally. The Clarity Sprint looks at your specific workflows, your bottlenecks, your team, and gives you a custom roadmap.',
-    },
-    {
-      question: 'How is the Team Workshop different from the Clarity Sprint?',
-      answer: 'The Clarity Sprint is focused on the business owner or decision-maker. The Team Workshop brings everyone together, admin, ops and leadership, to get alignment so implementation actually works.',
-    },
-  ];
+  const faqItems = TRAINING_FAQS;
 
   const learningPath = [
     {
@@ -146,39 +117,8 @@ export function TrainingPage() {
     },
   ];
 
-  const trainingBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'AI Automation Education', url: 'https://plandepa.com/training' },
-  ]);
-
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'AI Automation Education for Construction',
-    provider: {
-      '@type': 'Organization',
-      name: 'Plandepa',
-    },
-    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
-    description: 'AI and automation education programs for construction businesses. Free webinars, clarity sessions, and team workshops to understand and implement automation in construction operations.',
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
-
   return (
     <>
-      <StructuredData data={[trainingBreadcrumb, serviceSchema, faqSchema]} />
 
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
         <div className="max-w-7xl mx-auto">

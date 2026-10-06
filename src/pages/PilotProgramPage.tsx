@@ -3,7 +3,6 @@ import { ArrowLeft, Check, Inbox, RotateCcw, FileText, Camera, Truck, ArrowLeftR
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
@@ -11,6 +10,7 @@ import { WorkflowCard } from '../components/WorkflowCard';
 import { WorkflowModal } from '../components/WorkflowModal';
 import { StickyWorkflowBar } from '../components/StickyWorkflowBar';
 import { staggerContainer, staggerItem } from '../utils/animations';
+import { PILOT_FAQS } from '../content/faqs';
 
 export function PilotProgramPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -160,74 +160,10 @@ export function PilotProgramPage() {
     },
   ];
 
-  const faqItems = [
-    {
-      question: 'How does the "pay on results" model actually work?',
-      answer: 'Simple. We scope the pilot (usually 1-2 workflows), agree on measurable outcomes, and do the work. After 28 days, we measure the results together. If you got the value we promised, you pay. If not, you don\'t. No deposit, no retainer, no BS.',
-    },
-    {
-      question: 'What happens in the 28 days?',
-      answer: 'Week 1: We map your current process and design the solution. Week 2: We build and configure everything. Week 3: We train your team and go live. Week 4: We monitor, adjust, and measure results. You\'re involved throughout but we do the heavy lifting.',
-    },
-    {
-      question: 'Do we need to buy new software?',
-      answer: 'Usually no. We work with what you have: your existing estimating software, email, spreadsheets. If we need to add something, we discuss it first and factor it into the ROI calculation.',
-    },
-    {
-      question: 'How much of our time does this take?',
-      answer: 'Minimal. About 2-3 hours total across the whole month. We do the heavy lifting. Your team just needs to give us 30 minutes at the start to understand the workflow, then quick check-ins as we build.',
-    },
-    {
-      question: 'Can we pilot multiple workflows at once?',
-      answer: 'We don\'t recommend it. Better to prove value on one bottleneck first, then expand. Trying to fix everything at once usually means nothing gets done properly.',
-    },
-    {
-      question: 'What happens after the pilot?',
-      answer: 'You\'ll have clear data on what improved. Then you decide: stop here, extend to more workflows, or scale across your whole operation. No lock-in, no surprises. We only continue if you want us to.',
-    },
-    {
-      question: 'Why only 3 pilots per month?',
-      answer: 'Quality over quantity. Each pilot gets hands-on attention from senior consultants. We\'d rather do 3 properly than 10 half-arsed. Plus we need time to properly measure results and ensure success.',
-    },
-    {
-      question: 'What if we need changes during the pilot?',
-      answer: 'Expected and included. We iterate based on feedback. The 28 days includes refinement time. The goal is a solution that actually works for you, not just ticking boxes.',
-    },
-  ];
-
-  const pilotBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: '28-Day Pilot Program', url: 'https://plandepa.com/pilot-program' },
-  ]);
-
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: '28-Day Business Process Automation Pilot',
-    provider: {
-      '@type': 'Organization',
-      name: 'Plandepa',
-    },
-    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
-    description: 'Risk-free 28-day pilot program to automate construction business workflows. Pay only on proven results. consultants with construction industry expertise.',
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
+  const faqItems = PILOT_FAQS;
 
   return (
     <>
-      <StructuredData data={[pilotBreadcrumb, serviceSchema, faqSchema]} />
 
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
         <div className="max-w-7xl mx-auto">

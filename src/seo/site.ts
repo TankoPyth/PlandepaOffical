@@ -7,6 +7,7 @@
 
 import { OFFER_FAQS, OFFER_NAME, OFFER_PATH, OFFER_SUMMARY, TIERS } from './offer';
 import { LOCAL_POSTS, type LocalPost } from '../content/blog';
+import { BUILDXACT_FAQS, CONTACT_FAQS, ONGOING_FAQS, PILOT_FAQS, TRAINING_FAQS } from '../content/faqs';
 
 export const SITE_URL = 'https://plandepa.com';
 export const SITE_NAME = 'PlanDepa';
@@ -69,6 +70,8 @@ export const organizationSchema = {
   founder: [
     {
       '@type': 'Person',
+      '@id': `${SITE_URL}/about#jarrod-tanko`,
+      url: `${SITE_URL}/about`,
       name: 'Jarrod Tanko',
       jobTitle: 'Co-Founder',
       description: 'Construction company founder and site manager with experience from startup operations to Tier 1 mining projects.',
@@ -76,6 +79,8 @@ export const organizationSchema = {
     },
     {
       '@type': 'Person',
+      '@id': `${SITE_URL}/about#mitch-humphries`,
+      url: `${SITE_URL}/about`,
       name: 'Mitch Humphries',
       jobTitle: 'Co-Founder',
       description: 'Former carpenter and State Manager in building and restoration with expertise in construction systems and scaling operations.',
@@ -117,6 +122,8 @@ export const faqSchema = (faqs: { q: string; a: string }[]) => ({
     acceptedAnswer: { '@type': 'Answer', text: a },
   })),
 });
+
+const faqFrom = (items: { question: string; answer: string }[]) => faqSchema(items.map((f) => ({ q: f.question, a: f.answer })));
 
 const serviceSchema = (name: string, path: string, description: string, areaServed: string[] = ['Brisbane', 'Newcastle', 'Australia']) => ({
   '@context': 'https://schema.org',
@@ -330,7 +337,7 @@ function blogRoute(post: LocalPost): RouteMeta {
         inLanguage: 'en-AU',
         articleSection: post.category.name,
         keywords: post.tags.join(', '),
-        author: { '@type': 'Person', name: post.author.name, jobTitle: post.author.role, sameAs: post.author.linkedin },
+        author: { '@type': 'Person', '@id': `${SITE_URL}/about#${post.author.name.toLowerCase().replace(/\s+/g, '-')}`, name: post.author.name, jobTitle: post.author.role, url: `${SITE_URL}/about`, sameAs: post.author.linkedin },
         publisher: { '@id': ORG_ID },
       },
       faqSchema(post.faqs),
@@ -393,7 +400,11 @@ export const ROUTES: RouteMeta[] = [
       'Fix your single biggest operational bottleneck first. We scope, build and test one system: enquiries, follow-ups, variations or handovers, and train your team on it.',
     priority: 0.8,
     changefreq: 'monthly',
-    schema: [breadcrumb('Pilot Program', '/pilot-program')],
+    schema: [
+      serviceSchema('28-day automation pilot for construction businesses', '/pilot-program', 'A 28-day pilot that fixes one high-impact workflow in a construction business: scoped, built, tested and handed over with training, paid on agreed results.'),
+      faqFrom(PILOT_FAQS),
+      breadcrumb('Pilot Program', '/pilot-program'),
+    ],
   },
   {
     path: '/training',
@@ -402,7 +413,11 @@ export const ROUTES: RouteMeta[] = [
       'Education for construction businesses that want to understand what AI, automation and operational systems look like in practice, before making any commitments.',
     priority: 0.7,
     changefreq: 'monthly',
-    schema: [breadcrumb('Training', '/training')],
+    schema: [
+      serviceSchema('AI and automation training for construction teams', '/training', 'Education for construction businesses: a free webinar, the Clarity Sprint, and team workshops that show what AI, automation and operational systems look like in practice.'),
+      faqFrom(TRAINING_FAQS),
+      breadcrumb('Training', '/training'),
+    ],
   },
   {
     path: '/ongoing-support',
@@ -411,7 +426,11 @@ export const ROUTES: RouteMeta[] = [
       'We stay on as your operational partner after the build: monthly reviews, continuous improvement and support as your construction business changes.',
     priority: 0.7,
     changefreq: 'monthly',
-    schema: [breadcrumb('Ongoing Support', '/ongoing-support')],
+    schema: [
+      serviceSchema('Ongoing systems support for construction businesses', '/ongoing-support', 'Monthly support for construction business systems: proactive monitoring, maintenance, optimisation and technical help for Buildxact, ClickUp and custom automation.'),
+      faqFrom(ONGOING_FAQS),
+      breadcrumb('Ongoing Support', '/ongoing-support'),
+    ],
   },
   {
     path: '/buildxact',
@@ -422,17 +441,9 @@ export const ROUTES: RouteMeta[] = [
     changefreq: 'monthly',
     schema: [
       serviceSchema('Buildxact implementation and training', '/buildxact', 'Buildxact setup, configuration, training and ongoing optimisation for Australian builders.'),
+      faqFrom(BUILDXACT_FAQS),
       breadcrumb('Buildxact Partner', '/buildxact'),
     ],
-  },
-  {
-    path: '/business-audit',
-    title: 'Construction Business Audit | PlanDepa',
-    description:
-      "A structured audit of how your construction business runs today, where it's losing control, and what to fix or automate first. Honest assessment, no upsell.",
-    priority: 0.7,
-    changefreq: 'monthly',
-    schema: [breadcrumb('Business Audit', '/business-audit')],
   },
   {
     path: '/enquiry-automation',
@@ -484,7 +495,22 @@ export const ROUTES: RouteMeta[] = [
       'Practical guides on AI, automation and operational systems for construction businesses navigating growth.',
     priority: 0.7,
     changefreq: 'weekly',
-    schema: [breadcrumb('Blog', '/blog')],
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        name: 'PlanDepa blog: AI and systems for construction businesses',
+        url: `${SITE_URL}/blog`,
+        publisher: { '@id': ORG_ID },
+        blogPost: LOCAL_POSTS.map((p) => ({
+          '@type': 'BlogPosting',
+          headline: p.title,
+          url: `${SITE_URL}/blog/${p.slug}`,
+          datePublished: p.published_at,
+        })),
+      },
+      breadcrumb('Blog', '/blog'),
+    ],
   },
   {
     path: '/contact',
@@ -493,7 +519,17 @@ export const ROUTES: RouteMeta[] = [
       'Talk to PlanDepa about AI implementation and operational systems for your construction business. We reply within one business day.',
     priority: 0.6,
     changefreq: 'yearly',
-    schema: [breadcrumb('Contact', '/contact')],
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: 'Contact PlanDepa',
+        url: `${SITE_URL}/contact`,
+        about: { '@id': ORG_ID },
+      },
+      faqFrom(CONTACT_FAQS),
+      breadcrumb('Contact', '/contact'),
+    ],
   },
   {
     path: '/pipeline-recovery-review',
@@ -506,7 +542,7 @@ export const ROUTES: RouteMeta[] = [
   // Ad landing pages (rendered outside Layout; they set the same title/description themselves)
   {
     path: '/lp/ad-campaign',
-    title: 'Transform Your Construction Business with AI | Plandepa',
+    title: 'Transform Your Construction Business with AI | PlanDepa',
     description:
       'Stop wasting time on paperwork. Get more quotes out, win more work, and scale your construction business with AI automation.',
     priority: 0.3,
@@ -521,6 +557,30 @@ export const ROUTES: RouteMeta[] = [
     changefreq: 'monthly',
   },
   ...LOCAL_POSTS.map(blogRoute),
+  {
+    path: '/about',
+    title: 'About PlanDepa: Jarrod Tanko and Mitch Humphries',
+    description:
+      'PlanDepa is two founders, Jarrod Tanko and Mitch Humphries, who have worked inside construction businesses and now fix how they run. Based in Brisbane, working in Brisbane and Newcastle.',
+    priority: 0.7,
+    changefreq: 'monthly',
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: 'About PlanDepa',
+        url: `${SITE_URL}/about`,
+        mainEntity: { '@id': ORG_ID },
+      },
+      breadcrumb('About', '/about'),
+    ],
+  },
+  {
+    path: '/404',
+    title: 'Page Not Found | PlanDepa',
+    description: 'This page does not exist. Try the PlanDepa homepage or the Clarity Blueprint.',
+    noindex: true,
+  },
   {
     path: '/contact/thank-you',
     title: 'Thank You | PlanDepa',

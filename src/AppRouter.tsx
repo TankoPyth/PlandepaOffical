@@ -29,7 +29,7 @@ import { trackChatOpened, trackChatClosed } from './utils/analytics';
 import { HomePage } from './pages/HomePage';
 
 // All other pages lazy loaded (code splitting)
-const BusinessAuditPage = lazy(() => import('./pages/BusinessAuditPage').then(m => ({ default: m.BusinessAuditPage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
 const LeadGenerationPage = lazy(() => import('./pages/LeadGenerationPage').then(m => ({ default: m.LeadGenerationPage })));
 const CaseStudiesPage = lazy(() => import('./pages/CaseStudiesPage').then(m => ({ default: m.CaseStudiesPage })));
 const ROICalculatorPage = lazy(() => import('./pages/ROICalculatorPage').then(m => ({ default: m.ROICalculatorPage })));
@@ -155,8 +155,9 @@ export function AppRoutes() {
                 <Route path="/" element={<HomePage />} />
 
             {/* Service pages */}
-            <Route path="/business-audit" element={<BusinessAuditPage />} />
-            <Route path="/free-audit" element={<Navigate to="/business-audit" replace />} />
+            <Route path="/business-audit" element={<Navigate to={OFFER_PATH} replace />} />
+            <Route path="/free-audit" element={<Navigate to={OFFER_PATH} replace />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path={OFFER_PATH} element={<ClarityBlueprintPage />} />
             <Route path="/operations-review" element={<Navigate to={OFFER_PATH} replace />} />
             <Route path="/osr" element={<Navigate to={OFFER_PATH} replace />} />

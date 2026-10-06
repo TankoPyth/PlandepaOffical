@@ -3,11 +3,11 @@ import { ArrowLeft, Check, Shield, Zap, Headphones as HeadphonesIcon, TrendingUp
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SimpleFAQ } from '../components/SimpleFAQ';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
 import { staggerContainer, staggerItem } from '../utils/animations';
+import { ONGOING_FAQS } from '../content/faqs';
 
 export function OngoingSupportPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -98,70 +98,10 @@ export function OngoingSupportPage() {
     },
   ];
 
-  const faqItems = [
-    {
-      question: 'Can we change support tiers as our needs change?',
-      answer: 'Yes. You can upgrade or downgrade at any time. We just need 30 days notice for downgrades. Most clients start with Essential and move up as they see the value.',
-    },
-    {
-      question: 'What happens if we exceed our monthly hours?',
-      answer: 'We\'ll let you know if you\'re approaching your limit. You can either purchase additional hours at your tier rate, or we can suggest upgrading to the next tier if it makes financial sense.',
-    },
-    {
-      question: 'Is there a minimum commitment?',
-      answer: 'Month-to-month for Essential and Professional tiers. We recommend at least 3 months to see real value, but you\'re not locked in. Enterprise tier is typically 12-month agreements.',
-    },
-    {
-      question: 'What counts as "support hours"?',
-      answer: 'Troubleshooting, system changes, training, new feature setup, optimization work. Monthly health checks and proactive monitoring don\'t count against your hours.',
-    },
-    {
-      question: 'Do you support software you didn\'t originally set up?',
-      answer: 'Absolutely. We\'ll do a discovery session to understand your current setup, then we can support and improve it. Many clients come to us with existing systems that need expert help.',
-    },
-    {
-      question: 'What\'s your response time for urgent issues?',
-      answer: 'Professional tier gets 4-hour response for urgent issues during business hours. Enterprise tier gets 1-hour response plus after-hours emergency support. Essential tier is 2 business days.',
-    },
-    {
-      question: 'Can we pause support if we don\'t need it for a while?',
-      answer: 'Not for ongoing retainers, you\'re paying for availability and proactive monitoring, not just reactive support. But you can cancel with 30 days notice and re-engage when needed.',
-    },
-  ];
-
-  const supportBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Ongoing Support', url: 'https://plandepa.com/ongoing-support' },
-  ]);
-
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Ongoing Construction Business Systems Support',
-    provider: {
-      '@type': 'Organization',
-      name: 'Plandepa',
-    },
-    areaServed: ['Brisbane', 'Newcastle', 'Australia'],
-    description: 'Monthly retainer support for construction business systems. Proactive monitoring, maintenance, optimization, and technical support for Buildxact, ClickUp, and custom automation systems.',
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
+  const faqItems = ONGOING_FAQS;
 
   return (
     <>
-      <StructuredData data={[supportBreadcrumb, serviceSchema, faqSchema]} />
 
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
         <div className="max-w-7xl mx-auto">

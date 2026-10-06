@@ -11,7 +11,7 @@ export default function AdCampaignLandingPage() {
   return (
     <>
       <SEO
-        title="Transform Your Construction Business with AI | Plandepa"
+        title="Transform Your Construction Business with AI | PlanDepa"
         description="Stop wasting time on paperwork. Get more quotes out, win more work, and scale your construction business with AI automation."
       />
 
@@ -21,7 +21,7 @@ export default function AdCampaignLandingPage() {
             <a href="/" className="flex items-center">
               <img
                 src="/plandepa_logo_slim.png"
-                alt="Plandepa"
+                alt="PlanDepa"
                 className="h-8 md:h-10"
               />
             </a>
@@ -414,11 +414,11 @@ export default function AdCampaignLandingPage() {
             <div className="flex flex-col items-center justify-center gap-4">
               <img
                 src="/plandepa_logo_slim.png"
-                alt="Plandepa"
+                alt="PlanDepa"
                 className="h-8 opacity-70"
               />
               <p className="text-brand-gray text-sm text-center">
-                © {new Date().getFullYear()} Plandepa. All rights reserved.
+                © {new Date().getFullYear()} PlanDepa. All rights reserved.
               </p>
             </div>
             <div className="mt-6 text-center">

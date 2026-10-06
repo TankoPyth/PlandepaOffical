@@ -6,7 +6,6 @@ import { appleEasing } from '../utils/animations';
 import { SocialShare } from '../components/ui/SocialShare';
 import { trackROICalculatorComplete } from '../utils/analytics';
 import { CalendlyPopup } from '../components/ui/CalendlyPopup';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 
 const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_URL || '';
 
@@ -345,58 +344,11 @@ export function ROICalculatorPage() {
     exit: { opacity: 0, x: -20 },
   };
 
-  const calculatorBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'ROI Calculator', url: 'https://plandepa.com/roi-calculator' },
-  ]);
 
-  const softwareApplicationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Construction ROI Calculator',
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web Browser',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'AUD',
-    },
-    description: 'Free ROI calculator for Australian construction companies to estimate potential savings from AI automation and workflow optimization. Calculate time savings, cost reductions, and payback period.',
-  };
 
-  const howToSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'How to Calculate Construction Automation ROI',
-    description: 'Step-by-step guide to calculating return on investment for construction automation and AI systems.',
-    step: [
-      {
-        '@type': 'HowToStep',
-        name: 'Enter Business Information',
-        text: 'Select your business type (residential builder, commercial builder, trades/subcontractor, or civil/infrastructure) and number of projects per year.',
-      },
-      {
-        '@type': 'HowToStep',
-        name: 'Input Time and Cost Data',
-        text: 'Enter weekly hours spent on quoting and admin work, plus your hourly labour cost rate.',
-      },
-      {
-        '@type': 'HowToStep',
-        name: 'Provide Contact Details',
-        text: 'Enter your name, email, and optional company name to receive your personalized ROI results.',
-      },
-      {
-        '@type': 'HowToStep',
-        name: 'View ROI Results',
-        text: 'See your potential annual savings, hours saved, net benefit after automation costs, and payback period.',
-      },
-    ],
-    totalTime: 'PT3M',
-  };
 
   return (
     <>
-      <StructuredData data={[calculatorBreadcrumb, softwareApplicationSchema, howToSchema]} />
       <section className="bg-brand-off-white py-12 md:py-16 px-6" style={{ position: 'relative', zIndex: 1 }}>
         <div className="max-w-3xl mx-auto">
           <Link
@@ -680,7 +632,7 @@ export function ROICalculatorPage() {
                               <SocialShare
                                 title={`I could save $${results.netBenefit.toLocaleString()} annually with construction AI automation!`}
                                 url={`${window.location.origin}/roi-calculator`}
-                                description={`Check out my ROI results: ${results.annualHoursSaved.toLocaleString()} hours saved, ${results.roiPercent}% ROI. Calculate yours at PlanDePA!`}
+                                description={`Check out my ROI results: ${results.annualHoursSaved.toLocaleString()} hours saved, ${results.roiPercent}% ROI. Calculate yours at PlanDepa!`}
                               />
                             </div>
                           </div>

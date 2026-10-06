@@ -4,7 +4,7 @@
  * This is the HEADER/TOP MENU that appears on every page.
  *
  * What's included:
- * - Plandepa logo (links to home page)
+ * - PlanDepa logo (links to home page)
  * - Resources dropdown (Blog, Case Studies)
  * - Services dropdown (with all service categories)
  * - Mobile hamburger menu
@@ -72,6 +72,12 @@ const resourcesMenu = [
     description: 'Real results from real businesses',
     icon: FileText,
     href: '/case-studies'
+  },
+  {
+    name: 'About Jarrod & Mitch',
+    description: 'Who you work with and how we work',
+    icon: Settings,
+    href: '/about'
   }
 ];
 
@@ -173,7 +179,7 @@ export function Navigation() {
           <Link to="/" className="flex items-center group">
             <img
               src="/plandepa_logo_clean.png"
-              alt="Plandepa, Build Smart, Grow Simple"
+              alt="PlanDepa, Build Smart, Grow Simple"
               className="h-10 w-auto"
             />
           </Link>

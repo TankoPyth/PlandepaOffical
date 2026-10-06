@@ -8,7 +8,8 @@
     "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && NODE_ENV=production node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit -p tsconfig.app.json"
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

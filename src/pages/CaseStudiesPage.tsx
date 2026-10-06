@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { StructuredData, breadcrumbSchema } from '../components/StructuredData';
 import { Modal } from '../components/ui/Modal';
 import { ContactForm } from '../components/ContactForm';
 import { ThankYouModal } from '../components/ThankYouModal';
@@ -86,14 +85,9 @@ export function CaseStudiesPage() {
 
   const selectedCase = caseStudiesData.find((c) => c.id === selectedId)!;
 
-  const caseStudiesBreadcrumb = breadcrumbSchema([
-    { name: 'Home', url: 'https://plandepa.com/' },
-    { name: 'Case Studies', url: 'https://plandepa.com/case-studies' },
-  ]);
 
   return (
     <>
-      <StructuredData data={[caseStudiesBreadcrumb]} />
 
       <motion.section
         className="bg-brand-off-white py-12 md:py-16 px-6"

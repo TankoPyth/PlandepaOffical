@@ -21,11 +21,11 @@ export function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
           transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-center"
         >
-          {/* Plandepa Logo */}
+          {/* PlanDepa Logo */}
           <div className="mb-6 flex justify-center">
             <img
               src="/plandepa_nobg.png"
-              alt="Plandepa Logo"
+              alt="PlanDepa Logo"
               className="w-32 h-32 object-contain"
               loading="lazy"
             />
