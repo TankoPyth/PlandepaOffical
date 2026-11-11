@@ -2,11 +2,12 @@ import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Send, Check, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { supabase } from '../lib/supabase';
+import { sendWebsiteLead } from '../lib/leads';
 import { appleEasing } from '../utils/animations';
 import { trackContactFormSubmit } from '../utils/analytics';
 
-const CONTACT_WEBHOOK_URL = import.meta.env.VITE_CONTACT_WEBHOOK_URL || '';
+const CALENDLY_URL = 'https://calendly.com/admin-plandepa/30min';
+const FAIL_MESSAGE = "Sorry, that didn't send. Email admin@plandepa.com or book a call";
 
 interface ContactFormProps {
   source?: 'contact' | 'homepage' | 'sticky_button' | 'business_audit' | 'lead_generation' | 'buildxact_ad';
@@ -32,7 +33,7 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [honeypot, setHoneypot] = useState('');
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -45,49 +46,31 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    setErrorMessage('');
 
     try {
-      // Validate all fields are filled
-      if (!formData.full_name.trim() || !formData.email.trim() ||
-          !formData.company_name.trim() || !formData.phone_number.trim() ||
-          !formData.message.trim()) {
-        throw new Error('Please fill out all fields');
+      if (!formData.full_name.trim() || !formData.email.trim() || !formData.message.trim()) {
+        setSubmitStatus('error');
+        return;
       }
 
-      const submissionData = {
+      // Saved by netlify/functions/lead.ts into the Notion CRM, with an email copy.
+      // Blog, newsletter and social share still use Supabase and are unchanged.
+      const result = await sendWebsiteLead({
         full_name: formData.full_name.trim(),
         email: formData.email.trim(),
         company_name: formData.company_name.trim(),
         phone_number: formData.phone_number.trim(),
         message: formData.message.trim(),
         source_page: source,
-        status: 'new',
-        submitted_at: new Date().toISOString(),
-      };
+        website: honeypot,
+      });
 
-      const { error: supabaseError } = await supabase
-        .from('contact_submissions')
-        .insert([submissionData]);
-
-      if (supabaseError) {
-        throw new Error(`Database error: ${supabaseError.message}`);
-      }
-
-      if (CONTACT_WEBHOOK_URL) {
-        try {
-          await fetch(CONTACT_WEBHOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(submissionData),
-          });
-        } catch (webhookError) {
-          console.error('Webhook error:', webhookError);
-        }
+      if (!result.ok) {
+        setSubmitStatus('error');
+        return;
       }
 
       setSubmitStatus('success');
-
       trackContactFormSubmit(source);
 
       if (onSuccess) {
@@ -97,12 +80,8 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
           navigate('/contact/thank-you');
         }, 1500);
       }
-    } catch (error) {
-      console.error('Contact form error:', error);
+    } catch {
       setSubmitStatus('error');
-      setErrorMessage(
-        error instanceof Error ? error.message : 'Something went wrong. Please try again.'
-      );
     } finally {
       setIsSubmitting(false);
     }
@@ -110,6 +89,19 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Hidden from people, filled in by bots */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
       <div className="space-y-2">
         <label htmlFor="full_name" className="block text-sm font-semibold text-brand-black">
           Full Name <span className="text-brand-red">*</span>
@@ -146,7 +138,7 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
 
       <div className="space-y-2">
         <label htmlFor="company_name" className="block text-sm font-semibold text-brand-black">
-          Company Name <span className="text-brand-red">*</span>
+          Company Name
         </label>
         <input
           id="company_name"
@@ -154,7 +146,6 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
           type="text"
           value={formData.company_name}
           onChange={handleInputChange}
-          required
           disabled={isSubmitting}
           className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-black placeholder-gray-400 focus:border-brand-black focus:outline-none transition-colors duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
           placeholder="ABC Construction"
@@ -163,7 +154,7 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
 
       <div className="space-y-2">
         <label htmlFor="phone_number" className="block text-sm font-semibold text-brand-black">
-          Phone Number <span className="text-brand-red">*</span>
+          Phone Number
         </label>
         <input
           id="phone_number"
@@ -171,7 +162,6 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
           type="tel"
           value={formData.phone_number}
           onChange={handleInputChange}
-          required
           disabled={isSubmitting}
           className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 bg-white text-brand-black placeholder-gray-400 focus:border-brand-black focus:outline-none transition-colors duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
           placeholder="+61 400 000 000"
@@ -221,13 +211,21 @@ export function ContactForm({ source = 'contact', onSuccess }: ContactFormProps)
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: appleEasing }}
-            className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg"
+            role="alert"
+            className="flex items-start gap-2 p-4 bg-red-50 border border-red-200 rounded-lg"
           >
             <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
               <AlertCircle className="w-5 h-5 text-brand-red" />
             </div>
             <p className="text-sm font-medium text-red-800">
-              {errorMessage || 'Something went wrong. Please try again or email us directly.'}
+              {FAIL_MESSAGE.split('Email admin@plandepa.com or book a call')[0]}
+              <a href="mailto:admin@plandepa.com" className="underline">
+                Email admin@plandepa.com
+              </a>
+              {' or '}
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="underline">
+                book a call
+              </a>
             </p>
           </motion.div>
         )}
