@@ -56,7 +56,7 @@ export function trackROICalculatorComplete(roiData: {
   });
 }
 
-export function trackContactFormSubmit(source: 'contact' | 'homepage' | 'sticky_button' | 'business_audit' | 'lead_generation') {
+export function trackContactFormSubmit(source: 'contact' | 'homepage' | 'sticky_button' | 'business_audit' | 'lead_generation' | 'buildxact_ad') {
   trackEvent('contact_form_submit', {
     form_source: source,
   });
